@@ -1,43 +1,43 @@
 # Tools
 
-Ensemble d'outils/scripts utilitaires pour le projet Sundance (Unreal Engine).
+A collection of utility tools/scripts for the Sundance project (Unreal Engine).
 
-## Outils disponibles
+## Available tools
 
 ### ProcessLevelInstances
 
-Dossier : [`ProcessLevelInstances/`](ProcessLevelInstances/)
+Folder: [`ProcessLevelInstances/`](ProcessLevelInstances/)
 
-Script batch Windows (`process_li.bat`) qui exécute la commandlet
-`WorldPartitionBuilderCommandlet` (builder `WorldPartitionRuleBuilder`) sur une
-liste de Level Instances, l'une après l'autre.
+Windows batch script (`process_li.bat`) that runs the
+`WorldPartitionBuilderCommandlet` (using the `WorldPartitionRuleBuilder` builder)
+on a list of Level Instances, one after another.
 
-Pour chaque Level Instance de la liste, le script lance l'éditeur Unreal en
-mode ligne de commande avec les règles de build (DataLayer, HLOD, RuntimeGrid)
-et affiche un statut `[OK]` / `[ERREUR]` pour chaque traitement.
+For each Level Instance in the list, the script launches the Unreal editor in
+command-line mode with the build rules (DataLayer, HLOD, RuntimeGrid) and prints
+an `[OK]` / `[ERROR]` status for each run.
 
 #### Configuration
 
-À adapter en haut du fichier `process_li.bat` :
+Adjust these at the top of `process_li.bat`:
 
-| Variable | Description | Valeur actuelle |
+| Variable | Description | Current value |
 | --- | --- | --- |
-| `EDITOR_CMD` | Chemin vers l'exécutable de l'éditeur Unreal | `D:\Sun\Engine\Binaries\Win64\UnrealEditor-Win64-DebugGame.exe` |
-| `UPROJECT` | Chemin vers le fichier `.uproject` | `D:\Sun\Sundance\Sundance.uproject` |
-| `ARGS` | Arguments passés à la commandlet (contient le marqueur `<NOM_DU_LI>`) | voir le fichier |
-| `LI_LIST` | Liste des Level Instances à traiter (un nom par ligne) | voir le fichier |
+| `EDITOR_CMD` | Path to the Unreal editor executable | `D:\Sun\Engine\Binaries\Win64\UnrealEditor-Win64-DebugGame.exe` |
+| `UPROJECT` | Path to the `.uproject` file | `D:\Sun\Sundance\Sundance.uproject` |
+| `ARGS` | Arguments passed to the commandlet (contains the `<NOM_DU_LI>` placeholder) | see the file |
+| `LI_LIST` | List of Level Instances to process (one name per line) | see the file |
 
-Le marqueur `<NOM_DU_LI>` présent dans `ARGS` est automatiquement remplacé,
-à chaque itération, par le nom du Level Instance courant.
+The `<NOM_DU_LI>` placeholder in `ARGS` is automatically replaced, on every
+iteration, with the name of the current Level Instance.
 
-#### Utilisation
+#### Usage
 
-1. Vérifier / ajuster `EDITOR_CMD`, `UPROJECT` et `LI_LIST`.
-2. Double-cliquer sur `process_li.bat` ou l'exécuter depuis une invite de commandes :
+1. Check / adjust `EDITOR_CMD`, `UPROJECT` and `LI_LIST`.
+2. Double-click `process_li.bat`, or run it from a command prompt:
 
 ```bat
 process_li.bat
 ```
 
-Le script traite tous les Level Instances puis attend une touche (`pause`)
-avant de fermer la fenêtre.
+The script processes all Level Instances, then waits for a key press (`pause`)
+before closing the window.
