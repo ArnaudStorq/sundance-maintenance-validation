@@ -3,7 +3,7 @@
 This folder documents every changelist **submitted by `arnaud.storq` since 2026-01-01**, one Markdown report per changelist.
 
 - **Scope:** original (human-authored) changelists only. Automated `#ROBOMERGE` re-integrations across branches are intentionally excluded.
-- **Total changelists documented:** 80
+- **Total changelists documented:** 79
 - **File naming:** `YYYY-MM-DD-HH-MM-<short-summary>.md` (timestamp is Perforce server time).
 - **Source data:** generated from `p4 changes` / `p4 describe -s`.
 
@@ -17,7 +17,7 @@ This folder documents every changelist **submitted by `arnaud.storq` since 2026-
 | **HLOD / MapCheck cleanup** | Fixing invalid-HLOD-layer MapCheck warnings and tuning HLOD rule data assets. | SUNDANCE-41838 |
 | **Actor Folders** | New fixup builder for orphaned/duplicated Actor Folders, resaving stale folders, and an engine fix to stop ghost `UActorFolder` creation. | SUNDANCE-41837, 54425 |
 | **Outliner tooling & columns** | New Outliner columns (OutlinerPath, IncludeInHLOD), hierarchy export command/commandlet, and non-partitioned-parent hints. | SUNDANCE-41837, 48603 |
-| **Misc. editor robustness** | Startup-warning cleanups, Python name-clash fix, crash fixes, road spline robustness. | various |
+| **Misc. editor robustness** | Startup-warning cleanups, Python name-clash fix, crash fixes. | various |
 
 ## Index (most recent first)
 
@@ -102,7 +102,6 @@ This folder documents every changelist **submitted by `arnaud.storq` since 2026-
 | 2026-01-12 13:30 | 1669784 | @MAJOR | Outliner: move Mercuna to Nav | [link](2026-01-12-13-30-outliner-move-mercuna-nav.md) |
 | 2026-01-12 09:57 | 1668736 | @MAJOR | Outliner: delete root empty folders (2) | [link](2026-01-12-09-57-outliner-delete-root-empty-folders-2.md) |
 | 2026-01-12 08:05 | 1668632 | @MAJOR | Outliner: delete root empty folders (1) | [link](2026-01-12-08-05-outliner-delete-root-empty-folders-1.md) |
-| 2026-01-06 07:03 | 1661126 | @MINOR | RoadSplineComponent robustness | [link](2026-01-06-07-03-roadspline-getroadjunctions-robustness.md) |
 
 ---
 

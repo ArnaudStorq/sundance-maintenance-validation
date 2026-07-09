@@ -32,13 +32,6 @@ inactive world and crashed.
 > Lesson: "there's always exactly one world" is a tempting assumption — and a wrong
 > one. (Fixed in the `AutoDbAuthoring` plugin.)
 
-### Road spline robustness
-**What:** `RoadSplineComponent::GetRoadJunctions` was hardened against edge-case road
-spline data so querying road junctions doesn't misbehave.
-
-**Why:** defensive robustness in the Roads plugin — malformed/edge-case input
-shouldn't cause errors.
-
 ## 3. Startup-warning cleanups
 
 Every warning printed at editor launch trains people to ignore the log. These fixes
@@ -83,7 +76,6 @@ This shipped in an instructive sequence:
 | Fix | Assumption that was wrong / noise removed |
 |-----|-------------------------------------------|
 | Redirector crash | "there is always one main world" |
-| Road spline | "spline data is always well-formed" |
 | Scriptable Tools icon (see its file) | "the icon is always in the plugin" |
 | Toolbar warnings | old extension API still fine |
 | Python name clash | two members can't collide in Python |
@@ -91,11 +83,11 @@ This shipped in an instructive sequence:
 ## 6. Related changelists
 
 In `Reports/P4-History/`: `*fix-crash-update-redirector-references*`,
-`*roadspline-getroadjunctions-robustness*`, `*fix-levelviewporttoolbar-warnings*`,
+`*fix-levelviewporttoolbar-warnings*`,
 `*fix-python-name-clash-warning*`, `*outliner-nonpartitioned-parent-message*`,
 `*buildfix-undo-outliner-columns*`.
 
-Jira: **SUNDANCE-58039**, **SUNDANCE-42530**, **SUNDANCE-54425**,
+Jira: **SUNDANCE-58039**, **SUNDANCE-54425**,
 **SUNDANCE-56129**, **SUNDANCE-48603**.
 
 ## See also
