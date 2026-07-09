@@ -10,7 +10,7 @@ warnings/errors, Outliner organization, and related technical workflows.
 
 ```
 .
-├── Reference/                  Technical knowledge base (flat, one file per topic)
+├── ReferenceDocs/              Technical knowledge base (flat, one file per topic)
 ├── WorkDoneByTopic/            Plain-language, why-it-was-done narratives
 ├── WorkDoneByChangelists/      Per-changelist history (P4-History/)
 └── Tools/                      Source code / scripts
@@ -19,12 +19,12 @@ warnings/errors, Outliner organization, and related technical workflows.
 
 ## Documentation
 
-Start at the [Reference index](Reference/README.md), or jump to a topic:
+Start at the [Reference index](ReferenceDocs/README.md), or jump to a topic:
 
-- [World Partition rules](Reference/WorldPartitionRules.md)
-- [Fixing MapCheck issues](Reference/FixingMapCheckIssues.md)
-- [Outliner management](Reference/OutlinerManagement.md)
-- [Builders & commandlets](Reference/BuildersAndCommandlets.md)
+- [World Partition rules](ReferenceDocs/WorldPartitionRules.md)
+- [Fixing MapCheck issues](ReferenceDocs/FixingMapCheckIssues.md)
+- [Outliner management](ReferenceDocs/OutlinerManagement.md)
+- [Builders & commandlets](ReferenceDocs/BuildersAndCommandlets.md)
 
 ## Tools
 
@@ -35,5 +35,5 @@ Start at the [Reference index](Reference/README.md), or jump to a topic:
 
 - Write everything (docs, code comments, commit messages) in English.
 - Put new tools under `Tools/<ToolName>/` with their own `README.md`.
-- Put new documentation in `Reference/` as a single flat topic file and link it from
-  [`Reference/README.md`](Reference/README.md).
+- Put new documentation in `ReferenceDocs/` as a single flat topic file and link it from
+  [`ReferenceDocs/README.md`](ReferenceDocs/README.md).

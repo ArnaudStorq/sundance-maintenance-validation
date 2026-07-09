@@ -1,8 +1,8 @@
-# Reference
+# Reference Docs
 
 The single knowledge base for the Sundance / `LV_Overland` maintenance work
 (Unreal Engine 5.7, WB Games Montréal). This folder merges what used to be split
-between `Docs/` (task-oriented how-to) and `Reference/` (exact classes, methods, log
+between `Docs/` (task-oriented how-to) and `ReferenceDocs/` (exact classes, methods, log
 strings) into **one flat set of topic files** — no sub-folders.
 
 It answers "when someone brings up a topic I already worked on, I can respond with
@@ -84,4 +84,4 @@ The analysis is a self-contained series of six documents:
 - **Log/message strings** are quoted verbatim so they are searchable.
 - Corrections to earlier informal notes are flagged with a **⚠ Note** callout.
 
-*Last reorganized 2026-07-09 (merged `Docs/` into a single flat `Reference/`).*
+*Last reorganized 2026-07-09 (merged `Docs/` into a single flat `ReferenceDocs/`).*

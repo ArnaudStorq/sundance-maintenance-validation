@@ -4,7 +4,7 @@ A **cause → solution** playbook for the MapCheck warnings/errors actually hit 
 fixed on `LV_Overland`, grounded in the changelist history
 ([`WorkDoneByChangelists/P4-History/`](../WorkDoneByChangelists/P4-History/README.md)), the topic write-ups
 ([`WorkDoneByTopic/`](../WorkDoneByTopic/README.md)), and the technical reference
-([`Reference/`](README.md)).
+([`ReferenceDocs/`](README.md)).
 
 > This file focuses on **what we resolved on the project and *how it connects to the
 > World Partition rules*** — because most of these were fixed

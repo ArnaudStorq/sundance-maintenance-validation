@@ -140,7 +140,7 @@ This silences everything (`Global none`) except the categories relevant to the t
 ## The documentation repo itself
 
 `D:\CustomGitRepos\sundance-maintenance-validation` (this repo) is a **git** repo
-(separate from the Perforce game depot). Structure: `Reference/` (this knowledge base),
+(separate from the Perforce game depot). Structure: `ReferenceDocs/` (this knowledge base),
 `WorkDoneByTopic/`, `WorkDoneByChangelists/P4-History/`, and `Tools/`. Conventions:
 **everything in English**; commit messages in English; one tool per `Tools/<Name>/` with
 its own README.
