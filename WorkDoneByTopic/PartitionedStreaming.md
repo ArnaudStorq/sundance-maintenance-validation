@@ -1,4 +1,4 @@
-Parent: [Work Summaries](README.md)
+Parent: [Work Done By Topic](README.md)
 
 # Partitioned Streaming Migration
 
@@ -7,7 +7,7 @@ streamed and rule-managed.*
 
 ---
 
-## 1. The core idea
+## The core idea
 
 For World Partition to stream a level's actors individually — and for the rule
 builder to assign each actor a **RuntimeGrid** and **HLOD layer** — the level must
@@ -21,7 +21,7 @@ inner actors their own per-actor settings.
 > you can't tell each item inside the box to behave differently. "Partitioning" the
 > level opens the box so each item can be addressed individually.
 
-## 2. Why this matters (the concrete bug it fixes)
+## Why this matters (the concrete bug it fixes)
 
 There was a real conflict in the data:
 
@@ -35,7 +35,7 @@ conflict.
 
 Jira: **SUNDANCE-62658**.
 
-## 3. The two-step recipe (important!)
+## The two-step recipe (important!)
 
 The migration always happens in **two distinct steps**, often in separate
 changelists:
@@ -49,7 +49,7 @@ changelists:
 You can see this pattern directly in the history — e.g. six levels were *converted*
 in one changelist, and their actors were *rule-processed* in a later one.
 
-## 4. How it was rolled out
+## How it was rolled out
 
 Because there are many levels, conversions were done in **batches** to keep each
 change reviewable and each Perforce checkout sane. Example batch sizes from the work:
@@ -66,7 +66,7 @@ Types of content converted include Level Assemblies (Rocks/Trees/Debris), Camp/
 Population props, Road scatter meshes, Poacher camp meshes, CastleKit meshes, Ruins,
 and Experimental/Vault levels.
 
-## 5. The on/off switch for the SmallGrid rule
+## The on/off switch for the SmallGrid rule
 
 A small but instructive detail: to make the automatic assignment work during a
 migration pass, `DA_SmallGrid_Rules` was **added** to the *"Runtime Grid Rules for
@@ -77,13 +77,13 @@ Actor Save"* config, the actors were processed, and then it was **removed** agai
 > pass, so it was toggled on, used, and toggled off. This is a common, safe pattern
 > for one-shot data migrations.
 
-## 6. How levels to migrate were found
+## How levels to migrate were found
 
 The `Editor.LogNonPartitionedLevelInstances` console command (see
 `WorldPartitionRules.md`) lists every level still non-partitioned. That list drives
 the migration batches instead of hunting by hand.
 
-## 7. Cheat-sheet
+## Cheat-sheet
 
 ```
 Non-partitioned level ("sealed box")
@@ -95,7 +95,7 @@ Partitioned level ("open box")
 Conflict resolved, no more HLOD warnings
 ```
 
-## 8. Related changelists
+## Related changelists
 
 In `WorkDoneByChangelists/P4-History/`: files named `*partitioned-streaming-*`,
 `*wp-rules-level-instances*`, `*wp-rules-404-actors-smallgrid*`,

@@ -1,6 +1,6 @@
 Parent: [Sundance Maintenance & Validation](../README.md)
 
-# Work Summaries
+# Work Done By Topic
 
 Plain-language, example-driven explanations of the engineering work done on the
 **Sundance** project in 2026 — the *what*, the *why*, and the *how*.

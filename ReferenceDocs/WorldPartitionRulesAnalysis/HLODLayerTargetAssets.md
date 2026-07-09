@@ -153,3 +153,9 @@ per-region `Foliage_Far` layers.
 | `DA_HM_HLODLayer_Foliage_Near_Rules` | *(none — inherits)* | Foliage_Near = Dummy |
 | `*_NoneInclude_Rules` | *(none — inherits, kept in HLOD)* | — |
 | `*_NoneExclude_Rules` | *(none — removed from HLOD)* | — |
+
+---
+
+**In this series:** [Rule engine mechanics](RuleEngineMechanics.md) | [Runtime Grid rules](RuntimeGridRules.md) | [HLOD Layer rules](HLODLayerRules.md) | **HLOD Layer target assets** | [Processing order & priority](ProcessingOrderAndPriority.md) | [Data asset inventory](DataAssetInventory.md)
+
+Back to the [analysis overview](../WorldPartitionRulesAnalysis.md).

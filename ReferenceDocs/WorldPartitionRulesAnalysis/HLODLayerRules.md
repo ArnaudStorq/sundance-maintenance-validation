@@ -185,3 +185,9 @@ target layer, keeping them HLOD-relevant but out of the `Near` mesh-merge layer.
 
 See [processing order & priority](ProcessingOrderAndPriority.md) for exactly how these rules'
 ordering + `*RulesToExclude` produce a single deterministic outcome per actor.
+
+---
+
+**In this series:** [Rule engine mechanics](RuleEngineMechanics.md) | [Runtime Grid rules](RuntimeGridRules.md) | **HLOD Layer rules** | [HLOD Layer target assets](HLODLayerTargetAssets.md) | [Processing order & priority](ProcessingOrderAndPriority.md) | [Data asset inventory](DataAssetInventory.md)
+
+Back to the [analysis overview](../WorldPartitionRulesAnalysis.md).

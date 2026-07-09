@@ -1,4 +1,4 @@
-Parent: [Work Summaries](README.md)
+Parent: [Work Done By Topic](README.md)
 
 # Actor Folders
 
@@ -7,7 +7,7 @@ tooling built to fix them in 2026.*
 
 ---
 
-## 1. What is an Actor Folder?
+## What is an Actor Folder?
 
 In a World Partition level, the Outliner folders you see (see `Outliner.md`) are not
 just labels in the UI. Each folder is backed by a real asset on disk called a
@@ -22,7 +22,7 @@ This design lets a huge world be edited by many people at once (each folder/acto
 its own file, so two people rarely touch the same file). But it also means the folder
 *assets* can get out of sync with reality.
 
-## 2. The two problems
+## The two problems
 
 ### Problem A — Orphaned and duplicated folders
 Over time the level accumulated:
@@ -41,7 +41,7 @@ When parent folders were renamed/moved during the Outliner restructure, their
 **child folder packages were not re-saved**. Result: they appeared **dirty on every
 editor session**, constantly asking to be checked out.
 
-## 3. How each problem was solved
+## How each problem was solved
 
 ### Fix the leak at the source (engine)
 The engine's `WorldFolders.cpp` was changed so the world-folders rebuild **no longer
@@ -81,7 +81,7 @@ LV_Overland
 - A broader pass **resaved many Actor Folder assets** to bring them to the current
   format.
 
-## 4. Why build a commandlet instead of clicking in the editor?
+## Why build a commandlet instead of clicking in the editor?
 
 - **Scale:** thousands of folders across a massive world — manual is impractical.
 - **Safety:** report-only mode lets you preview before changing anything.
@@ -90,7 +90,7 @@ LV_Overland
 - **Correctness:** by calling the engine's own `FixupActorFolders`, the result is
   identical to the editor's behavior — no risk of a divergent custom implementation.
 
-## 5. The order of operations (why it matters)
+## The order of operations (why it matters)
 
 ```
 1. Expose ULevel::FixupActorFolders        (engine: enable reuse)
@@ -101,7 +101,7 @@ LV_Overland
 ```
 Fixing the existing mess *and* stopping the source is what makes the fix stick.
 
-## 6. Related changelists
+## Related changelists
 
 In `WorkDoneByChangelists/P4-History/`: `*expose-fixupactorfolders*`,
 `*add-fixup-actorfolders-builder*`, `*fix-orphan-duplicate-actor-folders*`,

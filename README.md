@@ -28,10 +28,10 @@ here, and down again through the section indexes below.
 - [**Reference Docs**](ReferenceDocs/README.md) — the technical knowledge base
   (exact classes, methods, log strings) plus the
   [World Partition rule data-asset analysis](ReferenceDocs/WorldPartitionRulesAnalysis.md).
-- [**Work Summaries**](WorkDoneByTopic/README.md) — plain-language, per-topic
+- [**Work Done By Topic**](WorkDoneByTopic/README.md) — plain-language, per-topic
   explanations of the 2026 engineering work.
-- [**Perforce changelist history**](WorkDoneByChangelists/P4-History/README.md) — one
-  factual report per submitted changelist.
+- [**Work Done By Changelists**](WorkDoneByChangelists/README.md) — one factual report
+  per submitted Perforce changelist.
 
 ## Documentation — jump to a topic
 

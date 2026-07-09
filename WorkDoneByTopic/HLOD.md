@@ -1,4 +1,4 @@
-Parent: [Work Summaries](README.md)
+Parent: [Work Done By Topic](README.md)
 
 # HLOD & MapCheck Cleanup
 
@@ -7,7 +7,7 @@ done in 2026.*
 
 ---
 
-## 1. What is HLOD?
+## What is HLOD?
 
 **HLOD** = **Hierarchical Level of Detail**. When objects are far from the camera,
 rendering each one individually is wasteful. HLOD replaces groups of distant objects
@@ -22,7 +22,7 @@ represented at distance (or that it should be excluded from HLOD entirely). Exam
 in this project: `LV_Overland_HLODLayer_Near`, `..._Foliage_Near`, `Road_Near`, and
 "NoneInclude"/"NoneExclude" rule sets.
 
-## 2. What is MapCheck?
+## What is MapCheck?
 
 **MapCheck** is Unreal's built-in level validation. It scans a level and reports
 problems as warnings/errors — for example, an actor pointing at an HLOD layer that no
@@ -35,7 +35,7 @@ longer exists:
 Hundreds of these warnings drown out the *real* problems, so keeping MapCheck clean
 matters for everyone's validation workflow.
 
-## 3. The problems that were fixed
+## The problems that were fixed
 
 ### Invalid HLOD layer warnings
 Many actors referenced HLOD layers that were no longer valid. Two notable cleanups:
@@ -58,7 +58,7 @@ HLOD data on their actors is meaningless — and it generated warnings. A pass
 - **Road handling:** added `Overland_Road_Near` to the include/exclude rules so road
   content is treated consistently.
 
-## 4. Why this connects to the bigger picture
+## Why this connects to the bigger picture
 
 The recurring theme across topics is the conflict:
 
@@ -70,7 +70,7 @@ The HLOD cleanup here and the **Partitioned Streaming** migration
 level so each actor can be given a *consistent* grid + HLOD, and remove the stale
 HLOD data that never applied.
 
-## 5. Cheat-sheet
+## Cheat-sheet
 
 | Symptom | Cause | Fix |
 |---------|-------|-----|
@@ -79,7 +79,7 @@ HLOD data that never applied.
 | HLOD warnings on inherited content | explicit HLOD data on non-partitioned levels | remove that data |
 | Unexpected HLOD chaining | Foliage_Near had a Parent Layer | set Parent Layer to None |
 
-## 6. Related changelists
+## Related changelists
 
 In `WorkDoneByChangelists/P4-History/`: `*fix-mapcheck-invalid-hlod-layer*`,
 `*fix-644-mapcheck-hlod-warnings*`, `*remove-hlod-nonpartitioned-levels*`,

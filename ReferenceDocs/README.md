@@ -32,6 +32,12 @@ scripts.
 
 ## Topics
 
+### MapCheck
+
+| Topic | Read when… |
+|-------|------------|
+| [Fixing MapCheck issues](FixingMapCheckIssues.md) | the project playbook (cause → solution per warning actually hit on `LV_Overland`), plus a generic stock-engine MapCheck catalog in appendix G |
+
 ### World Partition streaming
 
 | Topic | Read when… |
@@ -64,12 +70,6 @@ set of independent documents:
 | [Builders & commandlets](BuildersAndCommandlets.md) | the maintenance builders used on `LV_Overland`, with line-level code |
 | [World Partition builders catalog](WorldPartitionBuildersCatalog.md) | the full list of every engine + custom WP builder/commandlet and its switches |
 
-### MapCheck
-
-| Topic | Read when… |
-|-------|------------|
-| [Fixing MapCheck issues](FixingMapCheckIssues.md) | the project playbook (cause → solution per warning actually hit on `LV_Overland`), plus a generic stock-engine MapCheck catalog in appendix G |
-
 ### Organization, source control & tooling
 
 | Topic | Read when… |
@@ -89,4 +89,6 @@ set of independent documents:
 - **Log/message strings** are quoted verbatim so they are searchable.
 - Corrections to earlier informal notes are flagged with a **⚠ Note** callout.
 
-*Last reorganized 2026-07-09 (merged `Docs/` into a single flat `ReferenceDocs/`).*
+*Last reorganized 2026-07-09: merged `Docs/` into `ReferenceDocs/`, then split the
+deep rule-system analysis into the [`WorldPartitionRulesAnalysis/`](WorldPartitionRulesAnalysis/)
+sub-folder.*

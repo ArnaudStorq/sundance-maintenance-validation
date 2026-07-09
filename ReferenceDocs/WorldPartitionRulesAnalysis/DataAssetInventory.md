@@ -179,3 +179,9 @@ defined on the `LV_Overland` runtime hash set, not in the `.ini`.
 | Rule application effects, evaluation model, "Skipped RuntimeGrid override" | Engine source cited in the [reference topics](../README.md) | High (source-cited) |
 | Foliage_Near "handled by imposter pipeline" intent | Inferred from unset target + Dummy target layer | Medium (interpretation) |
 | Numeric bounds (2 m), grid cell sizes / loading ranges | Changelist history + `ReferenceDocs/` + map hash | Medium (not re-derived from binary) |
+
+---
+
+**In this series:** [Rule engine mechanics](RuleEngineMechanics.md) | [Runtime Grid rules](RuntimeGridRules.md) | [HLOD Layer rules](HLODLayerRules.md) | [HLOD Layer target assets](HLODLayerTargetAssets.md) | [Processing order & priority](ProcessingOrderAndPriority.md) | **Data asset inventory**
+
+Back to the [analysis overview](../WorldPartitionRulesAnalysis.md).

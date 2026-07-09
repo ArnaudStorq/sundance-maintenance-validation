@@ -1,4 +1,4 @@
-Parent: [Work Summaries](README.md)
+Parent: [Work Done By Topic](README.md)
 
 # World Events
 
@@ -6,7 +6,7 @@ Parent: [Work Summaries](README.md)
 
 ---
 
-## 1. What are World Events?
+## What are World Events?
 
 **World Events** are scripted things that happen in the world — triggered by
 conditions such as the player getting within a certain distance, time of day, or
@@ -17,7 +17,7 @@ A "**Possible World Event**" is an event that may be placed/activated in the wor
 editing its content can touch shared World Partition data (specifically the
 `WorldDataLayers` instance, which describes the level's Data Layers).
 
-## 2. The two changes
+## The two changes
 
 ### A. Safe check-out before editing a Possible World Event
 **Problem:** when updating the content of a Possible World Event, the code modified
@@ -47,7 +47,7 @@ Python name, producing a warning at **every editor startup**.
 **Fix:** disambiguate the exposed name (via `ScriptName` meta-data) so the two
 members no longer clash.
 
-## 3. Why these matter
+## Why these matter
 
 - Change **A** is a **data-safety** fix: it prevents a failed/corrupting edit on
   shared World Partition data.
@@ -55,7 +55,7 @@ members no longer clash.
   the log stays readable and real issues stand out. (This is the same motivation as
   the other startup-warning cleanups — see `EditorStabilityAndWarnings.md`.)
 
-## 4. Related changelists
+## Related changelists
 
 In `WorkDoneByChangelists/P4-History/`: `*worldevent-datalayers-checkout-check*`,
 `*fix-python-name-clash-warning*`.

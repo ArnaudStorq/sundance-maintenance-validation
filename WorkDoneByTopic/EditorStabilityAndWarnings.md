@@ -1,4 +1,4 @@
-Parent: [Work Summaries](README.md)
+Parent: [Work Done By Topic](README.md)
 
 # Editor Stability & Startup Warnings
 
@@ -7,7 +7,7 @@ improvements made in 2026.*
 
 ---
 
-## 1. Why this topic exists
+## Why this topic exists
 
 Beyond the big feature efforts (Outliner, World Partition, Actor Folders), a steady
 stream of smaller fixes kept the **editor healthy**: it shouldn't crash, and it
@@ -18,7 +18,7 @@ Two categories:
 - **Crashes / correctness** — the editor breaks; must be fixed.
 - **Startup warnings** — noise in the log that hides real problems.
 
-## 2. Crash & correctness fixes
+## Crash & correctness fixes
 
 ### Crash on "Update Redirector References"
 **What:** the editor crashed when running *Update Redirector References* if actors got
@@ -34,7 +34,7 @@ inactive world and crashed.
 > Lesson: "there's always exactly one world" is a tempting assumption — and a wrong
 > one. (Fixed in the `AutoDbAuthoring` plugin.)
 
-## 3. Startup-warning cleanups
+## Startup-warning cleanups
 
 Every warning printed at editor launch trains people to ignore the log. These fixes
 removed recurring noise.
@@ -55,7 +55,7 @@ Covered in detail in `WorldEvents.md`: two `WorldEventActorComponent` members
 generated the same Python name; the exposed name was disambiguated with `ScriptName`
 meta-data.
 
-## 4. Non-partitioned parent hints in the Outliner (usability)
+## Non-partitioned parent hints in the Outliner (usability)
 
 Not a crash or warning, but a clarity fix worth noting here. Actors inside a
 **non-partitioned Level Instance** inherit their World Partition settings from the
@@ -73,7 +73,7 @@ This shipped in an instructive sequence:
 > **revert fast** (unblock the team), then re-land properly — not to hot-patch under
 > pressure.
 
-## 5. The common thread
+## The common thread
 
 | Fix | Assumption that was wrong / noise removed |
 |-----|-------------------------------------------|
@@ -82,7 +82,7 @@ This shipped in an instructive sequence:
 | Toolbar warnings | old extension API still fine |
 | Python name clash | two members can't collide in Python |
 
-## 6. Related changelists
+## Related changelists
 
 In `WorkDoneByChangelists/P4-History/`: `*fix-crash-update-redirector-references*`,
 `*fix-levelviewporttoolbar-warnings*`,

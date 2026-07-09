@@ -317,4 +317,5 @@ keeping it permanently in the on-save rules would reassign grids on every future
 - [Streaming properties](WorldPartitionStreamingProperties.md) — the three properties and the invalid-HLOD-layer gate.
 - [Builders & commandlets](BuildersAndCommandlets.md) — the `WorldPartitionRuleBuilder`.
 - [Fixing MapCheck issues](FixingMapCheckIssues.md) — cause → fix playbook these rules feed into.
-- Plain-language: [`WorkDoneByTopic/WorldPartitionRules.md`](../WorkDoneByTopic/WorldPartitionRules.md).
+- **Plain-language narrative:** [`WorkDoneByTopic/WorldPartitionRules.md`](../WorkDoneByTopic/WorldPartitionRules.md)
+  — the why-it-was-done story that this reference backs.

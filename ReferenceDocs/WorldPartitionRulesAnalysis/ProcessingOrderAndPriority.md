@@ -228,3 +228,9 @@ Actor: `WaterBodyRiver`, spatially loaded, in `LV_Overland/.../Water`.
 For the concrete field values behind each rule referenced here, see
 [Runtime Grid rules](RuntimeGridRules.md), [HLOD Layer rules](HLODLayerRules.md) and
 [the data asset inventory](DataAssetInventory.md).
+
+---
+
+**In this series:** [Rule engine mechanics](RuleEngineMechanics.md) | [Runtime Grid rules](RuntimeGridRules.md) | [HLOD Layer rules](HLODLayerRules.md) | [HLOD Layer target assets](HLODLayerTargetAssets.md) | **Processing order & priority** | [Data asset inventory](DataAssetInventory.md)
+
+Back to the [analysis overview](../WorldPartitionRulesAnalysis.md).

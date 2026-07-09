@@ -17,7 +17,7 @@ maintenance builders used on `LV_Overland`, see
 
 ---
 
-## 1. Architecture
+## Architecture
 
 There are two distinct things that people loosely call "commandlets":
 
@@ -29,7 +29,7 @@ There are two distinct things that people loosely call "commandlets":
 So `WorldPartitionBuilderCommandlet` is the **host**; builders are **plugins** it loads and
 runs against one world.
 
-### 1.1 `UWorldPartitionBuilder` base class
+### `UWorldPartitionBuilder` base class
 
 `D:\Sun\Engine\Source\Editor\UnrealEd\Public\WorldPartition\WorldPartitionBuilder.h`
 
@@ -87,7 +87,7 @@ command line, so builders read their own switches directly.
 > builders can override the run loop and construct cell info — see the
 > `@third party code - AVA` markers at lines 16-18 and 58-60 of the header.
 
-### 1.2 `UWorldPartitionBuilderCommandlet` (the host)
+### `UWorldPartitionBuilderCommandlet` (the host)
 
 `D:\Sun\Engine\Source\Editor\UnrealEd\Classes\Commandlets\WorldPartitionBuilderCommandlet.h`
 
@@ -114,7 +114,7 @@ Common **engine/base** switches valid for any builder (handled by base/engine, n
 | `-SCCProvider=Perforce` | override the ini SCC provider at startup |
 | `-Unattended -NoShaderCompile` | pass-through engine switches used by every batch run |
 
-### 1.3 Canonical invocation shape
+### Canonical invocation shape
 
 ```bat
 UnrealEditor-Cmd.exe "D:\Sun\Sundance\Sundance.uproject" ^
@@ -127,7 +127,7 @@ UnrealEditor-Cmd.exe "D:\Sun\Sundance\Sundance.uproject" ^
 
 ---
 
-## 2. Engine builders (`UWorldPartitionBuilder` subclasses)
+## Engine builders (`UWorldPartitionBuilder` subclasses)
 
 Registration name for `-Builder=` is the class name **without the `U` prefix**.
 
@@ -144,7 +144,7 @@ Registration name for `-Builder=` is the class name **without the `U` prefix**.
 | `WorldPartitionStaticLightingBuilder` | (see cpp) | **yes** | — | build static lighting / VLM / lightmaps |
 | `WorldPartitionRenameDuplicateBuilder` | Custom | no | — | rename or duplicate a WP world |
 
-### 2.1 `WorldPartitionHLODsBuilder`
+### `WorldPartitionHLODsBuilder`
 
 Full HLOD lifecycle. Step flags are combinable (`EHLODBuildStep` bit flags):
 
@@ -164,19 +164,19 @@ AVA additions: `-AllowFailedSave`, `-AllowFailedWorkloadValidation`,
 `-ModifyFilesWithoutCheckout`, `-ForceDistributeHLODs`.
 `RequiresCommandletRendering()==true`, `CanProcessNonPartitionedWorlds()==true`.
 
-### 2.2 `WorldPartitionNavigationDataBuilder`
+### `WorldPartitionNavigationDataBuilder`
 
 `IterativeCells2D`, no rendering, `bCleanBuilderPackages` option. Generates navmesh data
 per 2D cell (`GenerateNavigationData`), saving/deleting the nav-data actor packages and
 tracking added/deleted packages for submit.
 
-### 2.3 `WorldPartitionMiniMapBuilder`
+### `WorldPartitionMiniMapBuilder`
 
 `IterativeCells2D`, `RequiresCommandletRendering()==true`. Renders the world into an
 `AWorldPartitionMiniMap` texture (`WorldUnitsPerPixel`, `MinimapImageSizeX/Y`,
 `-DebugCapture`). Exposes an `OnWarmupTick` delegate so callers can pump rendering warmup.
 
-### 2.4 `WorldPartitionResaveActorsBuilder`
+### `WorldPartitionResaveActorsBuilder`
 
 The engine's general resave/repair tool. Example line in the header:
 `ProjectName MapName -run=WorldPartitionBuilderCommandlet -SCCProvider=Perforce -Builder=WorldPartitionResaveActorsBuilder [-ActorClassName=StaticMeshActor] [-SwitchActorPackagingSchemeToReduced] [-ActorTags=(...)] [-ActorProperties=((P,V),...)]`
@@ -187,32 +187,32 @@ Options (UPROPERTY-backed): `-ActorClassName=`, `-ActorClassesFromFile=`, `-Repo
 AVA/philippe.st-jean additions: `-MinVerMajor/-MinVerMinor/-MinVerPatch`, `-SkipEngineContent`,
 `-InvokeAvaSavePackageDelegates`, `-RecurseIntoLevelInstances`.
 `CanProcessNonPartitionedWorlds()==true`. This is the engine base for the project's custom
-`WorldPartitionResaveActorsRecursiveBuilder` (§4.4).
+[`WorldPartitionResaveActorsRecursiveBuilder`](#uworldpartitionresaveactorsrecursivebuilder).
 
-### 2.5 `WorldPartitionFoliageBuilder`
+### `WorldPartitionFoliageBuilder`
 
 Re-grids partitioned foliage. `-NewGridSize=<value>` (required for re-grid), `-Repair`
 (`bRepair`) to fix up broken instances. `Custom` mode, no rendering.
 
-### 2.6 `WorldPartitionLandscapeBuilder`
+### `WorldPartitionLandscapeBuilder`
 
 Landscape data processing; `RequiresCommandletRendering()` returns true (see cpp).
 Header example: `... -Builder=WorldPartitionLandscapeBuilder -AllowCommandletRendering (-IterativeCellSize=Value)`.
 
-### 2.7 `WorldPartitionLandscapeSplineMeshesBuilder`
+### `WorldPartitionLandscapeSplineMeshesBuilder`
 
 Bakes landscape-spline static meshes into `ALandscapeSplineMeshesActor` partition actors.
 `-NewGridSize=<value>` optional. Also callable in-editor via
 `RunOnInitializedWorld(World)` on an already-loaded world.
 
-### 2.8 `WorldPartitionRuntimeVirtualTextureBuilder`
+### `WorldPartitionRuntimeVirtualTextureBuilder`
 
 Builds RVT; `RequiresCommandletRendering()==true`, `CanProcessNonPartitionedWorlds()==true`.
 Header example: `... -Builder=WorldPartitionRuntimeVirtualTextureBuilder -AllowCommandletRendering [-AutoSubmit]`.
 Exposes `LoadRuntimeVirtualTextureActors()` to load contributing actors. Subclassed by the
-project (§4.7).
+project — see [`UAvaWorldPartitionRuntimeVirtualTextureBuilder`](#uavaworldpartitionruntimevirtualtexturebuilder).
 
-### 2.9 `WorldPartitionStaticLightingBuilder`
+### `WorldPartitionStaticLightingBuilder`
 
 Builds static lighting / Volumetric Lightmaps / lightmaps. Combinable step flags
 (`EWPStaticLightingBuildStep`) parsed from `FCommandLine`:
@@ -231,7 +231,7 @@ Builds static lighting / Volumetric Lightmaps / lightmaps. Combinable step flags
 
 `RequiresCommandletRendering()==true`.
 
-### 2.10 `WorldPartitionRenameDuplicateBuilder`
+### `WorldPartitionRenameDuplicateBuilder`
 
 Renames or duplicates a WP world to a new package.
 Header example: `... -Builder=WorldPartitionRenameDuplicateBuilder -NewPackage=NewPackage [-Rename]`.
@@ -239,9 +239,9 @@ Without `-Rename` it duplicates; with it, it renames.
 
 ---
 
-## 3. Engine commandlets (not builders)
+## Engine commandlets (not builders)
 
-### 3.1 `WorldPartitionConvertCommandlet`
+### `WorldPartitionConvertCommandlet`
 
 `-run=WorldPartitionConvertCommandlet` — converts a **non-partitioned** level (with
 streaming sub-levels) into a World Partition world. It creates the `UWorldPartition`,
@@ -253,7 +253,7 @@ config-driven `EditorHashClass`, `RuntimeHashClass`, `ExcludedLevels`, `WorldOri
 `ReadAdditionalTokensAndSwitches`, `ShouldDeleteActor`, `PerformAdditionalActorChanges`, etc.
 See [converting levels to World Partition](ConvertingLevelsToWorldPartition.md).
 
-### 3.2 `WorldPartitionDataLayerToAssetCommandlet` (`DataLayerToAssetCommandlet`)
+### `WorldPartitionDataLayerToAssetCommandlet` (`DataLayerToAssetCommandlet`)
 
 `-run=DataLayerToAssetCommandlet <Level> -DestinationFolder=<Folder>` — migrates legacy
 (deprecated) data layers into `UDataLayerAsset` + `UDataLayerInstanceWithAsset`, and remaps
@@ -265,7 +265,7 @@ extras.
 
 ---
 
-## 4. Custom builders (`WorldBuildingEditor` module)
+## Custom builders (`WorldBuildingEditor` module)
 
 These are the WB Games / AVA builders written for the Sundance maintenance work.
 
@@ -280,7 +280,7 @@ These are the WB Games / AVA builders written for the Sundance maintenance work.
 | `UWorldPartitionLandscapeProxyDataBuilder` | `WorldPartitionLandscapeProxyDataBuilder` | rebuild Landscape Proxy Nanite/GrassMaps/PhysicalMaterial |
 | `UAvaWorldPartitionRuntimeVirtualTextureBuilder` | `AvaWorldPartitionRuntimeVirtualTextureBuilder` | RVT build with explicit data-layer loading |
 
-### 4.1 `UWorldPartitionRuleBuilder`
+### `UWorldPartitionRuleBuilder`
 
 Applies the World Partition rules (DataLayer / HLOD / RuntimeGrid) to actors and saves dirty
 packages — the batch equivalent of the on-save rule reapplication. `Custom` loading mode.
@@ -288,7 +288,7 @@ Switches: `-DataLayerRules`, `-HLODLayerRules`, `-RuntimeGridRules` (each opt-in
 `-ContainOutlinerPathSubstrings=a,b`, `-DiscardOutlinerPathSubstrings=a,b`. **No `-DryRun`.**
 Full detail in [builders & commandlets](BuildersAndCommandlets.md#uworldpartitionrulebuilder).
 
-### 4.2 `UWorldPartitionFixupNonPartitionedActorsBuilder`
+### `UWorldPartitionFixupNonPartitionedActorsBuilder`
 
 Cleans `HLODLayer` / `RuntimeGrid` / `DataLayers` off inner actors of **non-partitioned**
 Level Instances (and optionally the parent `ALevelInstance` actors). Switches:
@@ -297,13 +297,13 @@ Level Instances (and optionally the parent `ALevelInstance` actors). Switches:
 dry-run report under `<ProjectSaved>/WorldBuildingEditor/`. Full detail in
 [builders & commandlets](BuildersAndCommandlets.md).
 
-### 4.3 `UWorldPartitionFixupActorFoldersBuilder`
+### `UWorldPartitionFixupActorFoldersBuilder`
 
 Repairs orphaned/duplicated `UActorFolder` assets via `ULevel::FixupActorFolders()`.
 Switches: `-bOrphans`, `-bDuplicates`, `-bReportOnly`. Full detail in
 [builders & commandlets](BuildersAndCommandlets.md).
 
-### 4.4 `UWorldPartitionResaveActorsRecursiveBuilder`
+### `UWorldPartitionResaveActorsRecursiveBuilder`
 
 Recursively resaves `__ExternalActors__` (and optionally `__ExternalObjects__`) packages,
 descending into Level Instances via an `FLevelInstanceEditScope`. Rich filtering
@@ -322,15 +322,15 @@ descending into Level Instances via an `FLevelInstanceEditScope`. Rich filtering
 Tracks per-category stats (`FResaveStats` for Actor / ActorFolder / DataLayerInstance,
 including a version histogram). `PackagesToSave` is `UPROPERTY(Transient)`.
 `CanProcessNonPartitionedWorlds()==true`. Derives conceptually from the engine
-`WorldPartitionResaveActorsBuilder` (§2.4) but with recursion + rule-subsystem awareness.
+[`WorldPartitionResaveActorsBuilder`](#worldpartitionresaveactorsbuilder) but with recursion + rule-subsystem awareness.
 
-### 4.5 `UForceHLODExcludeFromLogBuilder`
+### `UForceHLODExcludeFromLogBuilder`
 
 Parses a `HLODLayerWarnings_*.txt` log (`for actor '...' in level '...'`) and for each
 matched actor sets `bEnableAutoLODGeneration = false` + `SetHLODLayer(nullptr)`. Switches:
 `-DryRun`, `-Recurse`, `-LogFile=<path>`. Skips non-partitioned LI inner actors.
 
-### 4.6 `UWorldPartitionInvalidNativeClassBuilder`
+### `UWorldPartitionInvalidNativeClassBuilder`
 
 Scans WP levels for external actors whose **native class no longer resolves**, then proposes
 `+ClassRedirects` lines for `DefaultEngine.ini [CoreRedirects]`. `Custom` mode,
@@ -348,7 +348,7 @@ Scans WP levels for external actors whose **native class no longer resolves**, t
 Resolution status is `Resolved` / `Deleted` / `Ambiguous` (`EResolutionStatus`); it builds a
 native-class short-name index to find rename candidates.
 
-### 4.7 `UWorldPartitionLandscapeProxyDataBuilder`
+### `UWorldPartitionLandscapeProxyDataBuilder`
 
 Rebuilds **Landscape Proxy** data (Nanite by default; optionally GrassMaps and
 PhysicalMaterial) for proxies with outdated data. `RequiresCommandletRendering()==true`,
@@ -364,9 +364,9 @@ PhysicalMaterial) for proxies with outdated data. `RequiresCommandletRendering()
 
 Requires `-AllowCommandletRendering`.
 
-### 4.8 `UAvaWorldPartitionRuntimeVirtualTextureBuilder`
+### `UAvaWorldPartitionRuntimeVirtualTextureBuilder`
 
-Subclass of the engine `WorldPartitionRuntimeVirtualTextureBuilder` (§2.8) that loads a
+Subclass of the engine [`WorldPartitionRuntimeVirtualTextureBuilder`](#worldpartitionruntimevirtualtexturebuilder) that loads a
 chosen set of data layers before building. Switches: `-ForceLoadAllLayers`,
 `-ForceOnlyLoadIncludeDataLayer`, `-IncludeDataLayers="..."`, `-ExcludeDataLayers="..."`,
 plus the base `-AllowCommandletRendering [-AutoSubmit]`.
@@ -377,34 +377,34 @@ plus the base `-AllowCommandletRendering [-AutoSubmit]`.
 > Those are **`UHLODBuilder` subclasses** (how a single HLOD actor's geometry is generated),
 > **not** `UWorldPartitionBuilder` commandlet builders, so they are not invoked with
 > `-Builder=`. They are selected per-`UHLODLayer` and run *inside* the HLOD build step of
-> §2.1. `LevelInstanceTraversalBuilder` is likewise a helper, not a commandlet builder.
+> [`WorldPartitionHLODsBuilder`](#worldpartitionhlodsbuilder). `LevelInstanceTraversalBuilder` is likewise a helper, not a commandlet builder.
 
 ---
 
-## 5. Quick decision guide
+## Quick decision guide
 
 | I want to… | Use |
 |------------|-----|
-| Convert a legacy streamed level to WP | `WorldPartitionConvertCommandlet` (§3.1) |
-| Migrate deprecated data layers to assets | `DataLayerToAssetCommandlet` (§3.2) |
-| Apply DataLayer/HLOD/Grid rules to actors | `WorldPartitionRuleBuilder` (§4.1) |
-| Build / rebuild / delete HLODs | `WorldPartitionHLODsBuilder` (§2.1) |
-| Render the world minimap | `WorldPartitionMiniMapBuilder` (§2.3) |
-| Generate navmesh | `WorldPartitionNavigationDataBuilder` (§2.2) |
-| Build RVT | `WorldPartitionRuntimeVirtualTextureBuilder` / `AvaWorldPartitionRuntimeVirtualTextureBuilder` (§2.8/§4.8) |
-| Build static lighting / VLM | `WorldPartitionStaticLightingBuilder` (§2.9) |
-| Re-grid foliage | `WorldPartitionFoliageBuilder` (§2.5) |
-| Rebuild landscape proxy Nanite/grass/physmat | `WorldPartitionLandscapeProxyDataBuilder` (§4.7) |
-| Resave stale actor packages | `WorldPartitionResaveActorsBuilder` / `...RecursiveBuilder` (§2.4/§4.4) |
-| Fix non-partitioned LI streaming props | `WorldPartitionFixupNonPartitionedActorsBuilder` (§4.2) |
-| Repair actor folder assets | `WorldPartitionFixupActorFoldersBuilder` (§4.3) |
-| Force-exclude HLOD from a warning log | `ForceHLODExcludeFromLogBuilder` (§4.5) |
-| Fix unresolved native classes (CoreRedirects) | `WorldPartitionInvalidNativeClassBuilder` (§4.6) |
-| Rename / duplicate a WP world | `WorldPartitionRenameDuplicateBuilder` (§2.10) |
+| Convert a legacy streamed level to WP | [`WorldPartitionConvertCommandlet`](#worldpartitionconvertcommandlet) |
+| Migrate deprecated data layers to assets | [`DataLayerToAssetCommandlet`](#worldpartitiondatalayertoassetcommandlet-datalayertoassetcommandlet) |
+| Apply DataLayer/HLOD/Grid rules to actors | [`WorldPartitionRuleBuilder`](#uworldpartitionrulebuilder) |
+| Build / rebuild / delete HLODs | [`WorldPartitionHLODsBuilder`](#worldpartitionhlodsbuilder) |
+| Render the world minimap | [`WorldPartitionMiniMapBuilder`](#worldpartitionminimapbuilder) |
+| Generate navmesh | [`WorldPartitionNavigationDataBuilder`](#worldpartitionnavigationdatabuilder) |
+| Build RVT | [`WorldPartitionRuntimeVirtualTextureBuilder`](#worldpartitionruntimevirtualtexturebuilder) / [`AvaWorldPartitionRuntimeVirtualTextureBuilder`](#uavaworldpartitionruntimevirtualtexturebuilder) |
+| Build static lighting / VLM | [`WorldPartitionStaticLightingBuilder`](#worldpartitionstaticlightingbuilder) |
+| Re-grid foliage | [`WorldPartitionFoliageBuilder`](#worldpartitionfoliagebuilder) |
+| Rebuild landscape proxy Nanite/grass/physmat | [`WorldPartitionLandscapeProxyDataBuilder`](#uworldpartitionlandscapeproxydatabuilder) |
+| Resave stale actor packages | [`WorldPartitionResaveActorsBuilder`](#worldpartitionresaveactorsbuilder) / [`…RecursiveBuilder`](#uworldpartitionresaveactorsrecursivebuilder) |
+| Fix non-partitioned LI streaming props | [`WorldPartitionFixupNonPartitionedActorsBuilder`](#uworldpartitionfixupnonpartitionedactorsbuilder) |
+| Repair actor folder assets | [`WorldPartitionFixupActorFoldersBuilder`](#uworldpartitionfixupactorfoldersbuilder) |
+| Force-exclude HLOD from a warning log | [`ForceHLODExcludeFromLogBuilder`](#uforcehlodexcludefromlogbuilder) |
+| Fix unresolved native classes (CoreRedirects) | [`WorldPartitionInvalidNativeClassBuilder`](#uworldpartitioninvalidnativeclassbuilder) |
+| Rename / duplicate a WP world | [`WorldPartitionRenameDuplicateBuilder`](#worldpartitionrenameduplicatebuilder) |
 
 ---
 
-## 6. Operating principles (observed across all custom builders)
+## Operating principles (observed across all custom builders)
 
 1. **Only modify if necessary** — every setter is equality-guarded; empty changelists avoided.
 2. **Reuse engine behaviour** — call `ULevel::FixupActorFolders`, use
@@ -413,7 +413,7 @@ plus the base `-AllowCommandletRendering [-AutoSubmit]`.
 4. **Report-only / dry-run first**, then run for real.
 5. **Iterate with Live Coding** during development to avoid full editor restarts.
 
-## 7. See also
+## See also
 
 - [Builders & commandlets](BuildersAndCommandlets.md) (the maintenance subset, with line-level code)
 - [World Partition streaming properties](WorldPartitionStreamingProperties.md)

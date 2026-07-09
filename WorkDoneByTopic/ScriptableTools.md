@@ -1,4 +1,4 @@
-Parent: [Work Summaries](README.md)
+Parent: [Work Done By Topic](README.md)
 
 # Scriptable Tools
 
@@ -6,7 +6,7 @@ Parent: [Work Summaries](README.md)
 
 ---
 
-## 1. What are Scriptable Tools?
+## What are Scriptable Tools?
 
 Unreal's **Scriptable Tools** framework lets a team build custom editor tools
 (buttons, brushes, actions) that appear in a dedicated **editor mode** — without
@@ -17,7 +17,7 @@ of the Outliner/World Partition helpers) is surfaced through this mode via the
 Each tool typically has an **icon** shown in the toolbar. To display that icon, the
 code has to **resolve the icon's file path** at runtime.
 
-## 2. The problem
+## The problem
 
 The icon path was being resolved by looking the tool up inside its **plugin**. If
 that plugin lookup failed for any reason (e.g. the tool is packaged/located
@@ -26,7 +26,7 @@ differently than expected), icon resolution could break.
 > Simple version: the code assumed "the icon always lives in my plugin folder". When
 > that assumption didn't hold, it had nowhere to look.
 
-## 3. The fix
+## The fix
 
 `BaseScriptableToolsEditorModeToolkit` was made **more robust** when resolving the
 icon path:
@@ -37,7 +37,7 @@ icon path:
 So there are now two places to find the icon, and the code checks that the first one
 actually worked before using it.
 
-## 4. Why it matters
+## Why it matters
 
 This is a small **robustness / defensive-programming** fix. It doesn't add a feature;
 it prevents a failure. The payoff is that the tool's icon (and the tool) keep working
@@ -47,7 +47,7 @@ regardless of how or where the plugin is loaded — no broken toolbar, no error 
 > assumptions and provide a sensible fallback.* The same philosophy appears in the
 > crash and startup-warning fixes (see `EditorStabilityAndWarnings.md`).
 
-## 5. Related changelists
+## Related changelists
 
 In `WorkDoneByChangelists/P4-History/`: `*scriptabletools-icon-path-robustness*`.
 

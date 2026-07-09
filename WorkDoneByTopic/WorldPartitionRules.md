@@ -1,4 +1,4 @@
-Parent: [Work Summaries](README.md)
+Parent: [Work Done By Topic](README.md)
 
 # World Partition Rules
 
@@ -7,7 +7,7 @@ the fixes made to it in 2026.*
 
 ---
 
-## 1. Background: what is World Partition?
+## Background: what is World Partition?
 
 A modern open world is far too big to keep entirely in memory. **World Partition**
 is Unreal's system that automatically splits the world into a grid of cells and
@@ -22,7 +22,7 @@ is Unreal's system that automatically splits the world into a grid of cells and
 Setting these by hand on tens of thousands of actors is impossible. So the project
 uses **rules**.
 
-## 2. What are "World Partition Rules" here?
+## What are "World Partition Rules" here?
 
 They are two things working together:
 
@@ -34,7 +34,7 @@ They are two things working together:
 
 Analogy: the **rule assets are the recipe**, the **rule builder is the cook**.
 
-## 3. Why work was needed
+## Why work was needed
 
 Two kinds of problems showed up:
 
@@ -48,7 +48,7 @@ Two kinds of problems showed up:
 Main Jira references: **SUNDANCE-52910** (builder), **SUNDANCE-41838** (HLOD rules),
 **SUNDANCE-54425** (folder/streaming), **SUNDANCE-62658** (streaming migration).
 
-## 4. Fixing the "cook" (the rule builder)
+## Fixing the "cook" (the rule builder)
 
 Several fixes made the builder correct and safe, in order:
 
@@ -72,7 +72,7 @@ When the bad CI run was discovered, the safest immediate action was to **revert*
 it — undoing a changelist that had touched **~8,700 files**. Only after the builder
 fixes above were in place was rule processing trusted again.
 
-## 5. Repairing the damage (relative transforms)
+## Repairing the damage (relative transforms)
 
 Because the bad run had shifted actors, follow-up passes restored correct
 `RelativeLocation` / `RelativeRotation` values:
@@ -85,7 +85,7 @@ Because the bad run had shifted actors, follow-up passes restored correct
 > the instance, not in absolute world space. A bug in how the builder recomputed
 > these relative values is exactly what caused the drift.
 
-## 6. Tuning the "recipe" (rule data assets)
+## Tuning the "recipe" (rule data assets)
 
 Concrete examples of rule-asset changes:
 
@@ -100,14 +100,14 @@ Concrete examples of rule-asset changes:
 - **New exclusions:** added `Overland_Road_Near` to the road HLOD include/exclude
   rules for consistent handling.
 
-## 7. A helpful diagnostic tool
+## A helpful diagnostic tool
 
 A console command **`Editor.LogNonPartitionedLevelInstances`** was added to list all
 Level Instances that are still non-partitioned. This directly feeds the
 **Partitioned Streaming** migration (see `PartitionedStreaming.md`), because a level
 must be partitioned before the builder can assign per-actor rules to it.
 
-## 8. Mental model / cheat-sheet
+## Mental model / cheat-sheet
 
 ```
 Rule assets (recipe)  ──►  WorldPartitionRuleBuilder (cook)  ──►  actors get
@@ -116,7 +116,7 @@ Rule assets (recipe)  ──►  WorldPartitionRuleBuilder (cook)  ──►  ac
                              - save only real changes             Data Layer
 ```
 
-## 9. Related changelists
+## Related changelists
 
 In `WorkDoneByChangelists/P4-History/`: files named `*wp-rules-*`, `*fix-relative-transform*`,
 `*fix-wp-rules-packagestosave*`, `*release-references-wp-rules*`,
@@ -124,5 +124,9 @@ In `WorkDoneByChangelists/P4-History/`: files named `*wp-rules-*`, `*fix-relativ
 `*add-lognonpartitioned-command*`, and the HLOD rule tweaks.
 
 ## See also
-- `PartitionedStreaming.md` — making levels eligible for these rules.
-- `HLOD.md` — the HLOD side of the rules.
+
+- **Technical reference:** [`ReferenceDocs/WorldPartitionRules.md`](../ReferenceDocs/WorldPartitionRules.md)
+  — the exact classes, config fields and log strings behind this narrative (and its
+  [per-asset analysis](../ReferenceDocs/WorldPartitionRulesAnalysis.md)).
+- [Partitioned Streaming](PartitionedStreaming.md) — making levels eligible for these rules.
+- [HLOD](HLOD.md) — the HLOD side of the rules.

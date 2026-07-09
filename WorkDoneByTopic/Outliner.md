@@ -1,4 +1,4 @@
-Parent: [Work Summaries](README.md)
+Parent: [Work Done By Topic](README.md)
 
 # The Outliner Restructure
 
@@ -6,7 +6,7 @@ Parent: [Work Summaries](README.md)
 
 ---
 
-## 1. What is the Outliner? (the basics)
+## What is the Outliner? (the basics)
 
 In Unreal Engine, the **World Outliner** is the panel that lists every actor placed
 in a level, organized in a tree of **folders**. Think of it exactly like the file
@@ -31,7 +31,7 @@ file (an "external actor" or "external object" package, under
 actor into a folder actually rewrites files on disk**, which is why these changes
 touch hundreds or thousands of packages at a time.
 
-## 2. Why did this work need to happen?
+## Why did this work need to happen?
 
 `LV_Overland` is the huge open world of the game. After years of production by many
 teams, its Outliner had become a mess:
@@ -48,7 +48,7 @@ World Partition rules (which often key off folder paths) unreliable. The goal wa
 
 This effort is tracked mostly under Jira **SUNDANCE-41837** (and 41854).
 
-## 3. How the work was carried out
+## How the work was carried out
 
 The restructure was done **incrementally**, in many small changelists, rather than
 one giant risky commit. This is a deliberate strategy:
@@ -88,7 +88,7 @@ Before moving anything, tooling was built to *see* and *measure* the structure:
 4. **Normalize names.** e.g. `Region Coast → Region/Coast`, `LI_Hogsmeade → Hogsmeade`,
    `LI_Hogwarts → Hogwarts`, keeping Data Layer rules in sync with the new paths.
 
-## 4. Real examples from the work
+## Real examples from the work
 
 **Example — renaming was risky.** Renaming the Hogsmeade folder was first attempted
 in one changelist, but it **froze the editor** when loading `LV_Overland`. It was
@@ -104,14 +104,14 @@ moved into `Landscape`, then reverted ~4 minutes later because they logically be
 with `Water`. The history intentionally keeps both the move and its undo, so the
 reasoning is traceable.
 
-## 5. The loose end that had to be cleaned up
+## The loose end that had to be cleaned up
 
 Renaming/moving parent folders early in the year left **699 child `ActorFolder`
 packages** that were never re-saved. The symptom: they showed up as "dirty" and
 asked to be checked out **on every editor session**. A dedicated pass force-resaved
 them so they stopped nagging everyone. (See also `ActorFolders.md`.)
 
-## 6. Cheat-sheet of the folder categories created
+## Cheat-sheet of the folder categories created
 
 | Folder | Holds |
 |--------|-------|
@@ -125,7 +125,7 @@ them so they stopped nagging everyone. (See also `ActorFolders.md`.)
 | `WorldEvents`, `Automation` | Gameplay/world-event and automation actors |
 | `#_TO_CLASSIFY` | Not-yet-sorted actors (sorts to the top) |
 
-## 7. Related changelists
+## Related changelists
 
 See `WorkDoneByChangelists/P4-History/` — files named `*outliner*`, `*to-classify*`,
 `*landscape*`, `*hogsmeade*`, `*region*`, `*nav*`, `*add-outliner-columns*`,
