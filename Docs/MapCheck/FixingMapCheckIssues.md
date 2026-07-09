@@ -269,6 +269,44 @@ These are raised by the Sundance `UWorldPartitionMapCheckValidator` (runs on
 - **Cause**: a brush ≥ 200000 units from the LI pivot.
 - **Solution**: move the brush near the pivot, or rebuild the LI pivot.
 
+### D4 — Spatially loaded actor references a non-spatially loaded actor
+
+- **Message**: `Spatially loaded actor <actor> references Non-spatially loaded actor <other>`
+  (token `WorldPartition_StreamedActorReferenceAlwaysLoadedActor_CheckForErrors`).
+- **Severity**: Warning (it is an **Error** in the mirror case — a non-spatial actor
+  referencing a spatial one — but the streamed→always-loaded direction is the one that
+  shows up on the project).
+- **Cause**: streaming generation requires a reference to link actors that share the
+  **same `Is Spatially Loaded` state** — the check is literally
+  `bIsActorDescSpatiallyLoaded == bIsActorDescRefSpatiallyLoaded`
+  (`WorldPartitionStreamingGeneration.cpp:1404`, `IsReferenceGridPlacementValid`). A
+  spatially-loaded (streamed) actor hard-references a non-spatially-loaded
+  (always-loaded) actor. On the project this is overwhelmingly **mission/staging
+  content**: a streamed manager/spline/trigger BP (`BP_*Manager`, `BP_PerformTasks_*`,
+  `BP_*Spline*`) referencing an always-loaded scene-rig / cinematic / volume actor
+  (`*_SR`, `CIV_*`, `VOM_*`, `SceneRig`, `*PreloadVolume`, `*TriggerBox`).
+- **Consequence**: this is not cosmetic. When it isn't the error-reporting pass, the
+  generator calls `SetForcedNonSpatiallyLoaded()` on **both** actors
+  (`WorldPartitionStreamingGeneration.cpp:1575`) — i.e. it silently **demotes the
+  streamed actor to always-loaded** so the pair stays together. The actor then never
+  streams out, bloating the always-loaded set (and dragging along everything it chains
+  to).
+- **Solution** (make the two sides consistent):
+  1. **Editor-only reference** — if the link is only needed in the editor, expose it
+     through an editor-only property; the check explicitly skips editor-only references
+     (`IsEditorOnlyReference`, `WorldPartitionStreamingGeneration.cpp:1564`).
+  2. **Align the streamed side** — set the referencing actor's **Is Spatially Loaded =
+     false** when it genuinely belongs with its always-loaded staging (the common fix
+     for mission scene-rig setups), so the demotion becomes intentional rather than
+     silent.
+  3. **Align the referenced side** — set the target's **Is Spatially Loaded = true** if
+     it can actually stream, so both end up spatially loaded.
+  4. Keep tightly-coupled staging actors in the **same streaming state / Data Layer** at
+     level-setup time so the generator never has to force-demote them.
+- **Rules link**: indirect — the rules set grids/HLOD/DataLayers, but the spatial state
+  behind this warning is an authored per-actor property; the fix is a level/mission
+  data cleanup, not a rule assignment.
+
 ---
 
 ## E. Components & references
@@ -280,6 +318,32 @@ These are raised by the Sundance `UWorldPartitionMapCheckValidator` (runs on
 - **Cause**: the component's override array is longer than the mesh's material slots
   (usually after a mesh's slots were reduced).
 - **Solution**: Fix It trims the extra overrides, dropping the useless references.
+
+---
+
+## F. Actor descriptor maintenance
+
+### F1 — Actor needs resave
+
+- **Message**: `Actor needs resave <actor>`
+  (token `WorldPartition_ActorNeedsResave_CheckForErrors`).
+- **Severity**: **Info** (a notice, not counted in the Warning/Error totals) — but it
+  points at real stale data.
+- **Cause**: the actor's World Partition descriptor is out of date. `IsResaveNeeded()`
+  returns true when the actor is **spatially loaded but its cached `RuntimeBounds` are
+  invalid** (`WorldPartitionActorDesc.h:381` —
+  `bIsSpatiallyLoaded && !RuntimeBounds.IsValid`). This is the classic "saved before the
+  descriptor format added runtime bounds" case: the package predates the current
+  actor-desc version.
+- **Consequence**: without valid runtime bounds the actor can't be placed accurately in
+  the streaming grid (cell/bounds computation falls back), which can feed the oversized
+  streaming-bounds (D2) and inconsistent-streaming symptoms.
+- **Solution**: **re-save the actor's package** in an allowed map — the resave
+  regenerates the descriptor with valid `RuntimeBounds` and clears the notice. Diff
+  before submit so nothing but the descriptor changed (see the transform-drift guard in
+  the Workflow below).
+- **Rules link**: indirect — same "resave reapplies everything" mechanism the A/B fixes
+  rely on; here it is refreshing the descriptor rather than reassigning a rule.
 
 ---
 
