@@ -4,6 +4,12 @@ This section documents the **Map Check** warnings and errors reported by Unreal
 Engine 5 for the Sundance project: what they mean, why they matter, and how to
 fix them.
 
+> **Fixing what we actually hit:** for the project-specific warnings/errors resolved
+> on `LV_Overland` — with a **cause → solution** for each and the link to the
+> **World Partition rules** that fixed (or exposed) them — see
+> **[Fixing MapCheck errors & warnings — Sundance playbook](FixingMapCheckIssues.md)**.
+> The catalog below stays as the generic, stock-engine message reference.
+
 ## What is Map Check?
 
 Map Check is Unreal's map-validation pass. It inspects the level for actors and
