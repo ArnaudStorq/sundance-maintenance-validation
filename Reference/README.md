@@ -35,7 +35,7 @@ changelists in [`Reports/P4-History/`](../Reports/P4-History/README.md).
 | 7 | [Rules, SmallGrid & IncludeInHLOD](RulesSmallGridIncludeInHLOD.md) | the rule system, grid sizes, the "Skipped RuntimeGrid override" warning |
 | 8 | [Peeves submit validation](PeevesSubmitValidation.md) | validation at submit, the WB Peeves system |
 | 9 | [Auxiliary tools & workflow](AuxiliaryToolsAndWorkflow.md) | Outliner columns, `process_li.bat`, Blueprint utilities, log extraction |
-| 10 | [Environment & infrastructure](EnvironmentAndInfra.md) | WSL2/Mercury TURN, advanced git, GameLift, ActorFolders format |
+| 10 | [Environment & infrastructure](EnvironmentAndInfra.md) | advanced git, GameLift, ActorFolders format |
 | 11 | [Transcription & research](TranscriptionAndResearch.md) | Unreal Fest notes, Phil/William video transcripts, image retouch |
 | 12 | [Cursor & Miro tooling](CursorAndMiroTooling.md) | AI skills workflow, Miro MCP access |
 | 13 | [World Partition builders catalog](WorldPartitionBuildersCatalog.md) | the full list of every engine + custom WP builder/commandlet and its switches |

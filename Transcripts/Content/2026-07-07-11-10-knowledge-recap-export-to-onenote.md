@@ -189,7 +189,6 @@ Connaissances pratiques accumulées :
 
 ## 10. Environnement & infra
 
-- **Mercury TURN server for UE4** : clone du repo `github.wbgames.com` sous **WSL2 Ubuntu**. Le HTTPS+PAT a échoué (write access refusé) → passage à une **clé SSH**. Install de VS Code + GitHub Desktop dans WSL2. Switch de branche (rebase vs checkout).
 - **Git avancé** : `core.protectNTFS false`, `core.longpaths true`, `reset --hard`, `clean -fd`, création de branche depuis `origin/...`, rôle de `git pull`.
 - **GameLift Server SDK** : version minimale pour Amazon Linux 2023.
 - **ActorFolders** (UE5) : resauvegarde périodique des acteurs de type ActorFolder ; remplacement de `FActorFolderDescsContext::GetActorFolderDesc` par `FActorFolderDesc::GetPath`.

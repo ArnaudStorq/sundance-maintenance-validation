@@ -39,18 +39,6 @@ child folders" cleanup). See [Topic 3](BuildersAndCommandlets.md) for
 
 ---
 
-## Mercury TURN server (UE4) on WSL2
-
-The Mercury TURN server (a UE4-based network relay) was set up for local dev under
-**WSL2 (Ubuntu)**:
-
-- **Auth:** cloning over HTTPS + PAT failed; switching to an **SSH key** worked.
-- **Tooling:** VS Code and GitHub Desktop were used *inside* WSL2.
-- **Branch handling:** switching branches via **rebase vs. checkout** was a decision
-  point (rebase to move local commits onto a new base; checkout to just switch).
-
----
-
 ## Advanced git (large UE-adjacent repos)
 
 Settings and commands that matter on Windows for big/long-path repos:

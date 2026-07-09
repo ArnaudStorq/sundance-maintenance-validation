@@ -1,6 +1,6 @@
 # Transcripts — Analysis & Summary
 
-This document synthesizes **48 working sessions** captured between **May 4 and July 9, 2026**.
+This document synthesizes **46 working sessions** captured between **May 4 and July 9, 2026**.
 The individual conversations, converted to Markdown, live in [`Content/`](./Content) and are named
 `YYYY-MM-DD-HH-MM-<short-topic>.md`.
 
@@ -213,8 +213,6 @@ Smaller, self-contained requests not tied to the World Partition effort:
 - [Trim the last seconds of a video](./Content/2026-07-08-14-16-trim-last-seconds-of-video.md)
 - [Replace the Ubisoft logo with WB Games Montreal](./Content/2026-05-13-15-08-replace-ubisoft-logo-with-wb-games-montreal.md)
 - [GameLift Server SDK minimum version for Amazon Linux 2023](./Content/2026-05-29-13-19-gamelift-server-sdk-min-version-amazon-linux-2023.md)
-- [Git: pulling the TurnServer branch](./Content/2026-06-01-14-15-git-commands-pull-turnserver-branch.md)
-- [WSL2: clone & work on the TURN server repo (SSH / PAT)](./Content/2026-05-07-14-15-wsl2-clone-turn-server-git-repo-ssh-pat.md)
 - [Miro access check](./Content/2026-07-07-10-44-miro-access-check.md)
 - [Quick help request](./Content/2026-07-07-16-33-quick-help-request.md)
 
