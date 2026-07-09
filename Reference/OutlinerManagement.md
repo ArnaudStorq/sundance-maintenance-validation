@@ -43,10 +43,10 @@ Keep folder structure predictable so rules and filters stay stable:
 1. Organize actors under consistent, rule-aware folders.
 2. Verify that the intended `Contain` / `Discard` substrings match the paths.
 3. Apply [World Partition rules](WorldPartitionRules.md).
-4. Run a [Map Check](MapCheckCatalog.md) to catch actors that fell through.
+4. Run a [Map Check](FixingMapCheckIssues.md) to catch actors that fell through.
 
 ## See also
 
 - [World Partition Rules](WorldPartitionRules.md)
-- [MapCheck warnings & errors](MapCheckCatalog.md)
+- [Fixing MapCheck errors & warnings](FixingMapCheckIssues.md)
 - [ProcessLevelInstances tool](../Tools/ProcessLevelInstances/README.md)

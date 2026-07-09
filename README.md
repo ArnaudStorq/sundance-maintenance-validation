@@ -22,7 +22,7 @@ warnings/errors, Outliner organization, and related technical workflows.
 Start at the [Reference index](Reference/README.md), or jump to a topic:
 
 - [World Partition rules](Reference/WorldPartitionRules.md)
-- [MapCheck catalog](Reference/MapCheckCatalog.md) · [Fixing MapCheck issues](Reference/FixingMapCheckIssues.md)
+- [Fixing MapCheck issues](Reference/FixingMapCheckIssues.md)
 - [Outliner management](Reference/OutlinerManagement.md)
 - [Builders & commandlets](Reference/BuildersAndCommandlets.md)
 

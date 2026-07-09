@@ -63,8 +63,7 @@ The analysis is a self-contained series of six documents:
 
 | Topic | Read when… |
 |-------|------------|
-| [MapCheck catalog](MapCheckCatalog.md) | the generic, stock-engine MapCheck message reference |
-| [Fixing MapCheck issues](FixingMapCheckIssues.md) | the project playbook: cause → solution per warning actually hit on `LV_Overland` |
+| [Fixing MapCheck issues](FixingMapCheckIssues.md) | the project playbook (cause → solution per warning actually hit on `LV_Overland`), plus a generic stock-engine MapCheck catalog in appendix G |
 
 ### Organization, source control & tooling
 

@@ -275,7 +275,7 @@ keeping it permanently in the on-save rules would reassign grids on every future
 2. **Apply the rules**, either interactively (resave) or via the batch tool for many
    Level Instances at once.
 3. **Run a Map Check** and resolve any warnings/errors the rule pass surfaced (see the
-   [MapCheck fix playbook](FixingMapCheckIssues.md) and the [MapCheck catalog](MapCheckCatalog.md)).
+   [MapCheck fix playbook](FixingMapCheckIssues.md)).
 4. **Validate streaming** in-editor (World Partition minimap, data layer toggles) before
    submitting.
 

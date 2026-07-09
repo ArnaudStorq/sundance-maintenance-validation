@@ -6,11 +6,12 @@ fixed on `LV_Overland`, grounded in the changelist history
 ([`WorkDoneByTopic/`](../WorkDoneByTopic/README.md)), and the technical reference
 ([`Reference/`](README.md)).
 
-> This complements the generic [MapCheck catalog](MapCheckCatalog.md). Where the catalog lists
-> stock-engine messages, **this file focuses on what we resolved on the project and
-> *how it connects to the World Partition rules*** — because most of these were fixed
+> This file focuses on **what we resolved on the project and *how it connects to the
+> World Partition rules*** — because most of these were fixed
 > not by hand-editing actors, but by assigning/tuning rules or by resolving
-> conflicting properties that rule processing produced.
+> conflicting properties that rule processing produced. For the other stock-engine
+> Map Check messages (assets, lighting, collision, navigation, foliage…), see the
+> generic catalog in [appendix G](#g-generic-engine-mapcheck-messages-catalog).
 
 ---
 
@@ -365,9 +366,146 @@ These are raised by the Sundance `UWorldPartitionMapCheckValidator` (runs on
    ([Reference: Peeves](PeevesSubmitValidation.md)) run the same checks
    at submit.
 
+---
+
+## G. Generic engine MapCheck messages (catalog)
+
+The sections above cover what was actually resolved on `LV_Overland` and how it maps
+to the World Partition rules. This appendix is the **generic reference** for the other
+stock **Map Check** messages Unreal Engine 5 can raise — what they mean and how to fix
+them — so a clean triage has a single home.
+
+> **Map Check** is Unreal's map-validation pass (**Build → Map Check**, or a commandlet
+> pass; results in **Message Log → Map Check**). **Errors** must be fixed (they break
+> cooking, streaming, lighting, or gameplay); **Warnings** should be reviewed. Each
+> entry below lists the *(exact or pattern)* message, severity, cause, consequence, and
+> fix. When you hit a new one, paste the **exact** log line so this stays searchable.
+>
+> Streaming/rule messages that we hit are documented above, not here:
+> "actor left on the default grid / not assigned to a Data Layer" → **A1/A2/A7**;
+> "actor references a missing / unloaded Data Layer asset" → **B1**.
+
+### References & assets
+
+#### G1 — Static mesh actor has NULL StaticMesh property
+
+- **Message**: `Static mesh actor has NULL StaticMesh property`
+- **Severity**: Error.
+- **Cause**: a `StaticMeshActor` exists with no mesh assigned, usually after the
+  referenced mesh was deleted or a placeholder was left behind.
+- **Consequence**: nothing renders for the actor; can indicate a broken reference that
+  also fails to cook.
+- **Fix**: assign a valid Static Mesh, or delete the actor if it is obsolete.
+
+#### G2 — Brush has NULL BrushComponent property
+
+- **Message**: `Brush has NULL BrushComponent property`
+- **Severity**: Error.
+- **Cause**: a BSP brush actor lost its `BrushComponent`.
+- **Consequence**: invalid geometry; potential cook/build failures.
+- **Fix**: delete and recreate the brush, or remove it if unused.
+
+#### G3 — Actor references a missing / invalid asset
+
+- **Message**: *(pattern)* — references to a mesh, material, or Blueprint that no
+  longer exists (distinct from the actor→actor **invalid reference** in D1).
+- **Severity**: Error.
+- **Cause**: an asset was deleted, renamed, or not submitted to source control.
+- **Consequence**: cook failures, missing content, or runtime crashes.
+- **Fix**: reassign a valid asset, or delete the actor. Confirm the referenced asset is
+  submitted.
+
+### Placement & duplicates
+
+#### G4 — Coincident / duplicated actors
+
+- **Message**: *(pattern)* — an actor is reported at the same location as another actor.
+- **Severity**: Warning.
+- **Cause**: two actors share the same transform, typically from copy/paste, merges, or
+  import mistakes.
+- **Consequence**: Z-fighting, doubled draw calls, ambiguous collision.
+- **Fix**: delete the duplicate, or offset it if both are intentional.
+
+#### G5 — Actor is far outside the world bounds
+
+- **Message**: *(pattern)* — an actor is placed at an extreme coordinate (distinct from
+  the Level-Instance bounds/pivot warnings D2/D3).
+- **Severity**: Warning.
+- **Cause**: an actor accidentally dragged/typed to a huge coordinate.
+- **Consequence**: bloats the World Partition grid and streaming bounds; precision
+  issues far from origin.
+- **Fix**: move the actor back into the intended playable area, or delete it.
+
+### Lighting
+
+#### G6 — Maps need lighting rebuilt
+
+- **Message**: `Maps need lighting rebuilt`
+- **Severity**: Warning.
+- **Cause**: static geometry or static/stationary lights changed since the last lighting
+  build.
+- **Consequence**: stale or incorrect lightmaps, visual artifacts.
+- **Fix**: **Build → Build Lighting Only**, or confirm the level is intended to be fully
+  dynamic (Lumen / movable lights).
+
+#### G7 — Multiple lights with the same GUID
+
+- **Message**: *(pattern)* — lights sharing the same lighting GUID.
+- **Severity**: Warning.
+- **Cause**: a light was duplicated via copy/paste, carrying the original GUID.
+- **Consequence**: lightmap allocation conflicts; incorrect baked lighting.
+- **Fix**: select the affected lights and use **Choose New Light GUID**, then rebuild
+  lighting.
+
+### World Partition & streaming
+
+#### G8 — HLOD needs to be rebuilt
+
+- **Message**: *(pattern)* — HLOD is out of date for the world (distinct from the
+  *invalid* HLOD-layer warnings in A1/A3, which are about wrong assignments rather than a
+  stale build).
+- **Severity**: Warning.
+- **Cause**: actors or HLOD layer assignments changed after the last HLOD build.
+- **Consequence**: stale or missing proxy meshes at distance; visible pop-in.
+- **Fix**: rebuild HLOD (`-Builder=WorldPartitionHLODsBuilder` commandlet, or the
+  editor's Build HLODs action — see [builders](BuildersAndCommandlets.md)).
+
+### Collision, physics & navigation
+
+#### G9 — Actor has collision disabled
+
+- **Message**: *(pattern)* — a collidable actor has collision turned off.
+- **Severity**: Warning.
+- **Cause**: `Collision Enabled` set to `NoCollision` on geometry players are expected
+  to interact with.
+- **Consequence**: players/AI clip through the geometry.
+- **Fix**: enable the appropriate collision, or confirm it is intentionally
+  non-colliding.
+
+#### G10 — Navigation data needs to be rebuilt
+
+- **Message**: *(pattern)* — navmesh out of date.
+- **Severity**: Warning.
+- **Cause**: navigation-relevant geometry changed since the last navmesh build.
+- **Consequence**: AI pathing errors.
+- **Fix**: rebuild navigation (**Build → Build Paths**) or confirm dynamic runtime
+  navmesh generation is enabled.
+
+### Foliage & landscape
+
+#### G11 — Foliage instances for a missing static mesh removed
+
+- **Message**: `Foliage instances for a missing static mesh have been removed.`
+- **Severity**: Warning.
+- **Cause**: a foliage type's mesh was deleted; the editor pruned its instances.
+- **Consequence**: missing foliage; unintended content loss if it was a mistake.
+- **Fix**: reassign a valid mesh to the foliage type before saving, or accept the
+  removal if intentional.
+
+---
+
 ## See also
 
-- [MapCheck catalog (generic engine messages)](MapCheckCatalog.md)
 - [Reference — streaming properties](WorldPartitionStreamingProperties.md),
   [rules/SmallGrid/IncludeInHLOD](WorldPartitionRules.md),
   [builders](BuildersAndCommandlets.md)

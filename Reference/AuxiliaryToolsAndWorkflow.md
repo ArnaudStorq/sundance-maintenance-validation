@@ -113,8 +113,7 @@ This silences everything (`Global none`) except the categories relevant to the t
 1. Apply the [World Partition rules](WorldPartitionRules.md) to the changed Level
    Instances / maps.
 2. Run **Build > Map Check** and resolve entries (see the
-   [MapCheck fix playbook](FixingMapCheckIssues.md) and the
-   [MapCheck catalog](MapCheckCatalog.md)) — errors first, then warnings.
+   [MapCheck fix playbook](FixingMapCheckIssues.md)) — errors first, then warnings.
 3. Confirm the [Outliner](OutlinerManagement.md) paths match the intended rule filters.
 4. Rebuild HLOD / lighting if geometry or assignments changed.
 5. Verify streaming in-editor (World Partition minimap, Data Layer toggles).
