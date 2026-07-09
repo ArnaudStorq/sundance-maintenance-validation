@@ -39,21 +39,6 @@ child folders" cleanup). See [Topic 3](BuildersAndCommandlets.md) for
 
 ---
 
-## Advanced git (large UE-adjacent repos)
-
-Settings and commands that matter on Windows for big/long-path repos:
-
-| Setting / command | Why |
-|-------------------|-----|
-| `git config core.protectNTFS false` | allow paths NTFS would otherwise reject |
-| `git config core.longpaths true` | allow paths > 260 chars (deep UE content trees) |
-| `git reset --hard` | discard all local changes to match a ref |
-| `git clean -fd` | remove untracked files/dirs |
-| `git checkout -b <branch> origin/<branch>` | branch from a remote tracking branch |
-| `git pull` | fetch + merge (or rebase) the remote into the current branch |
-
----
-
 ## Related changelists
 
 - [Expose `ULevel::FixupActorFolders` (CL 1896115)](../WorkDoneByChangelists/P4-History/2026-05-26-14-39-expose-fixupactorfolders.md)

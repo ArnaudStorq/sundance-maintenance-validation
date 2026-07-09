@@ -49,22 +49,6 @@ workflow so it could be taken over.
 
 ---
 
-## Unreal Fest 2026 (Chicago, June 17–18)
-
-Conference notes and photos were transcribed faithfully:
-
-- Images/notes captured as `.jpg`, **dated via EXIF**, renamed accordingly.
-- Content extracted into **Confluence** for the team.
-
----
-
-## Image retouch
-
-One-off asset edit: replacing the **Ubisoft logo with the WB Games Montréal logo** on a
-shared image.
-
----
-
 ## Why this is a "reference" topic
 
 The transcripts and summaries are the primary record of design intent that isn't in the
