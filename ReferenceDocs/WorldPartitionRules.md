@@ -1,3 +1,5 @@
+Parent: [Reference Docs](README.md)
+
 # World Partition rules
 
 How the Sundance project assigns per-actor streaming properties **automatically** from
@@ -6,11 +8,12 @@ and in batch), and the grid/HLOD compatibility that produces the "Skipped Runtim
 override" warning.
 
 This is the entry point for the rule system. For the **exact content of every rule
-asset** and the precise precedence model, see the data-asset analysis series:
-[rule engine mechanics](RuleEngineMechanics.md), [Runtime Grid rules](RuntimeGridRules.md),
-[HLOD Layer rules](HLODLayerRules.md), [HLOD Layer target assets](HLODLayerTargetAssets.md),
-[processing order & priority](ProcessingOrderAndPriority.md) and the
-[data asset inventory](DataAssetInventory.md).
+asset** and the precise precedence model, see the
+[data-asset analysis](WorldPartitionRulesAnalysis.md) series:
+[rule engine mechanics](WorldPartitionRulesAnalysis/RuleEngineMechanics.md), [Runtime Grid rules](WorldPartitionRulesAnalysis/RuntimeGridRules.md),
+[HLOD Layer rules](WorldPartitionRulesAnalysis/HLODLayerRules.md), [HLOD Layer target assets](WorldPartitionRulesAnalysis/HLODLayerTargetAssets.md),
+[processing order & priority](WorldPartitionRulesAnalysis/ProcessingOrderAndPriority.md) and the
+[data asset inventory](WorldPartitionRulesAnalysis/DataAssetInventory.md).
 
 ---
 
@@ -57,7 +60,7 @@ A rule asset is just data; it is executed by one of three drivers:
 
 > The builder and manual save share the **same** rule set (the `*ForActorSave` arrays).
 > The mutator uses a **different, deliberately smaller** set (`*ForStreamingGeneration`)
-> and is view-only. Full detail: [rule engine mechanics](RuleEngineMechanics.md).
+> and is view-only. Full detail: [rule engine mechanics](WorldPartitionRulesAnalysis/RuleEngineMechanics.md).
 
 ### Config location & key settings
 
@@ -77,7 +80,7 @@ Key fields (`WorldPartitionRuleSettings.h`):
 - `ActorTypesToClearDataLayers` / `OutlinerPathsToClearDataLayers`.
 
 The exact arrays as configured today are reproduced in the
-[data asset inventory](DataAssetInventory.md#config-arrays).
+[data asset inventory](WorldPartitionRulesAnalysis/DataAssetInventory.md#config-arrays).
 
 ### On-save reapplication
 
@@ -118,7 +121,7 @@ Specialized assets:
   `IncludeInHLOD` (`bool`, default `true`).
 
 The full struct anatomy and per-actor evaluation model are documented in
-[rule engine mechanics](RuleEngineMechanics.md).
+[rule engine mechanics](WorldPartitionRulesAnalysis/RuleEngineMechanics.md).
 
 ### IncludeInHLOD & TargetHLODLayer application
 

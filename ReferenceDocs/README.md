@@ -1,9 +1,13 @@
+Parent: [Sundance Maintenance & Validation](../README.md)
+
 # Reference Docs
 
 The single knowledge base for the Sundance / `LV_Overland` maintenance work
 (Unreal Engine 5.7, WB Games Montréal). This folder merges what used to be split
 between `Docs/` (task-oriented how-to) and `ReferenceDocs/` (exact classes, methods, log
-strings) into **one flat set of topic files** — no sub-folders.
+strings) into **one flat set of topic files**, plus the
+[`WorldPartitionRulesAnalysis/`](WorldPartitionRulesAnalysis/) sub-folder that holds the
+deep, per-asset rule-system analysis series.
 
 It answers "when someone brings up a topic I already worked on, I can respond with
 confidence": every claim is grounded in the actual implementation under `D:\Sun`
@@ -42,15 +46,16 @@ scripts.
 | Topic | Read when… |
 |-------|------------|
 | [World Partition rules](WorldPartitionRules.md) | applying rules, grid sizes, the "Skipped RuntimeGrid override" warning, `IncludeInHLOD` — the practitioner + reference entry point |
-| [World Partition rule data-asset analysis](WorldPartitionRulesAnalysis.md) | the deep, per-asset breakdown (index to the 6 analysis documents below) |
+| [World Partition rule data-asset analysis](WorldPartitionRulesAnalysis.md) | the deep, per-asset breakdown (index to the analysis documents below) |
 
-The analysis is a self-contained series of six documents:
-[1 — rule engine mechanics](RuleEngineMechanics.md) ·
-[2 — Runtime Grid rules](RuntimeGridRules.md) ·
-[3 — HLOD Layer rules](HLODLayerRules.md) ·
-[4 — HLOD Layer target assets](HLODLayerTargetAssets.md) ·
-[5 — processing order & priority](ProcessingOrderAndPriority.md) ·
-[6 — data asset inventory](DataAssetInventory.md).
+The analysis lives in [`WorldPartitionRulesAnalysis/`](WorldPartitionRulesAnalysis/) as a
+set of independent documents:
+[rule engine mechanics](WorldPartitionRulesAnalysis/RuleEngineMechanics.md) ·
+[Runtime Grid rules](WorldPartitionRulesAnalysis/RuntimeGridRules.md) ·
+[HLOD Layer rules](WorldPartitionRulesAnalysis/HLODLayerRules.md) ·
+[HLOD Layer target assets](WorldPartitionRulesAnalysis/HLODLayerTargetAssets.md) ·
+[processing order & priority](WorldPartitionRulesAnalysis/ProcessingOrderAndPriority.md) ·
+[data asset inventory](WorldPartitionRulesAnalysis/DataAssetInventory.md).
 
 ### Builders & commandlets
 

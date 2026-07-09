@@ -1,3 +1,5 @@
+Parent: [Reference Docs](README.md)
+
 # World Partition Rules — Data Asset Analysis
 
 A precise, data-driven analysis of the World Partition **rule system** as it is
@@ -29,15 +31,19 @@ local: `D:\Sun\Sundance\Content\Data\WorldPartition\`).
 
 ## Index
 
-| # | Document | Read it for |
-|---|----------|-------------|
-| — | [00 — Executive summary](#executive-summary) | The 2-minute mental model (below). |
-| 1 | [Rule engine mechanics](RuleEngineMechanics.md) | How rules are declared, evaluated and applied to actors. |
-| 2 | [Runtime Grid rules](RuntimeGridRules.md) | The 5 grid rule assets and the on-save vs streaming-generation grid split. |
-| 3 | [HLOD Layer rules](HLODLayerRules.md) | The 12 HLOD rule assets, `NoneInclude` vs `NoneExclude`, per-region chains. |
-| 4 | [HLOD Layer target assets](HLODLayerTargetAssets.md) | The `UHLODLayer` assets the rules assign (builders, parent chains). |
-| 5 | [Processing order & priority](ProcessingOrderAndPriority.md) | The precise precedence model + worked examples. |
-| 6 | [Data asset inventory](DataAssetInventory.md) | Appendix: every asset with its extracted fields. |
+The analysis is split across the documents in the
+[`WorldPartitionRulesAnalysis/`](WorldPartitionRulesAnalysis/) folder. They are
+independent — read them in any order.
+
+| Document | Read it for |
+|----------|-------------|
+| [Executive summary](#executive-summary) | The 2-minute mental model (below). |
+| [Rule engine mechanics](WorldPartitionRulesAnalysis/RuleEngineMechanics.md) | How rules are declared, evaluated and applied to actors. |
+| [Runtime Grid rules](WorldPartitionRulesAnalysis/RuntimeGridRules.md) | The 5 grid rule assets and the on-save vs streaming-generation grid split. |
+| [HLOD Layer rules](WorldPartitionRulesAnalysis/HLODLayerRules.md) | The 12 HLOD rule assets, `NoneInclude` vs `NoneExclude`, per-region chains. |
+| [HLOD Layer target assets](WorldPartitionRulesAnalysis/HLODLayerTargetAssets.md) | The `UHLODLayer` assets the rules assign (builders, parent chains). |
+| [Processing order & priority](WorldPartitionRulesAnalysis/ProcessingOrderAndPriority.md) | The precise precedence model + worked examples. |
+| [Data asset inventory](WorldPartitionRulesAnalysis/DataAssetInventory.md) | Appendix: every asset with its extracted fields. |
 
 ## Executive summary
 

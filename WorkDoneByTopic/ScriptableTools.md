@@ -1,3 +1,5 @@
+Parent: [Work Summaries](README.md)
+
 # Scriptable Tools
 
 *A plain-language guide to the Scriptable Tools editor mode work in 2026.*

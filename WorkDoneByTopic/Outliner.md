@@ -1,3 +1,5 @@
+Parent: [Work Summaries](README.md)
+
 # The Outliner Restructure
 
 *A plain-language guide to the work done on the `LV_Overland` Outliner in 2026.*

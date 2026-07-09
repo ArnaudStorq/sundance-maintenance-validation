@@ -1,3 +1,5 @@
+Parent: [Work Summaries](README.md)
+
 # Editor Stability & Startup Warnings
 
 *A plain-language guide to the crash fixes, startup-warning cleanups, and robustness

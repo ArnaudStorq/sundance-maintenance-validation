@@ -1,4 +1,6 @@
-# 1. Rule engine mechanics
+Parent: [World Partition rules — data-asset analysis](../WorldPartitionRulesAnalysis.md)
+
+# Rule engine mechanics
 
 How the World Partition rule system is declared, evaluated and applied — the
 common machinery shared by every asset in `/Game/Data/WorldPartition/`.
@@ -14,7 +16,7 @@ All rule classes live in the editor-only module `WorldBuildingEditor`
 
 ---
 
-## 1.1 Where the settings live
+## Where the settings live
 
 The rule set is bound to the project through
 `[/Script/WorldBuildingEditor.WorldPartitionRuleSettings]` in
@@ -34,12 +36,12 @@ display name *"WorldPartition Rules"*). The fields that matter:
 | `ActorTypesToClearRuntimeGrid` / `…ClearDataLayers` | Types whose grid / data layers are forcibly cleared. |
 
 The **ordering** of the `*ForActorSave` arrays is a first-class part of the
-behaviour — see [document 5](ProcessingOrderAndPriority.md). The exact arrays
+behaviour — see [processing order & priority](ProcessingOrderAndPriority.md). The exact arrays
 as configured today are reproduced in [the inventory](DataAssetInventory.md#config-arrays).
 
 ---
 
-## 1.2 The two (three) execution paths
+## The two (three) execution paths
 
 A rule asset is just data. It is executed by one of three drivers:
 
@@ -85,7 +87,7 @@ UE_LOG(LogAvaStreamingGeneration, Warning, TEXT("Skipped RuntimeGrid override ('
 
 This is why `DA_SmallGrid_Rules` is on the streaming-generation path only: SmallGrid
 membership is computed at generation time and never written back onto thousands of
-actors (see [document 2](RuntimeGridRules.md)).
+actors (see [Runtime Grid rules](RuntimeGridRules.md)).
 
 ### C. In batch — the builder
 
@@ -94,8 +96,8 @@ same **on-save** subsystems to a target (a Level Instance, a set of actors, or a
 whole map) in a headless commandlet. Switches: `-DataLayerRules`, `-HLODLayerRules`,
 `-RuntimeGridRules`, plus `-ContainOutlinerPathSubstrings` /
 `-DiscardOutlinerPathSubstrings` to scope the pass. See
-[World Partition rules](WorldPartitionRules.md) and
-[builders & commandlets](BuildersAndCommandlets.md).
+[World Partition rules](../WorldPartitionRules.md) and
+[builders & commandlets](../BuildersAndCommandlets.md).
 
 > **Takeaway:** the builder and manual save share the *same* rule set (the
 > `*ForActorSave` arrays). The mutator uses a *different, deliberately smaller* set
@@ -103,7 +105,7 @@ whole map) in a headless commandlet. Switches: `-DataLayerRules`, `-HLODLayerRul
 
 ---
 
-## 1.3 Anatomy of a rule asset
+## Anatomy of a rule asset
 
 Every rule derives from `UWorldPartitionRuleAsset` and shares this structure
 (field names below are the ones actually serialized in the assets):
@@ -139,7 +141,7 @@ sub-tests combine.
 > presence of the `bUse*`/`*Bounds*` field names in every asset only reflects the
 > struct layout, not that a gate is enabled. Where a specific threshold is known
 > (e.g. the *2 m* minimum on the Hogsmeade `NoneInclude` rule, added in CL 1950932),
-> it is called out and attributed in [document 3](HLODLayerRules.md); it was
+> it is called out and attributed in [HLOD Layer rules](HLODLayerRules.md); it was
 > confirmed from the changelist history, not re-derived from the binary.
 
 ### `FWorldPartitionRuleExclusion` (the exclusion criteria)
@@ -157,7 +159,7 @@ If the exclusion fires for an actor, the rule is skipped for that actor:
 | `OutlinerPathsToExclude` | Outliner substrings that veto the rule. |
 
 The `*RulesToExclude` fields are how **precedence** is expressed without a numeric
-priority — see [document 5](ProcessingOrderAndPriority.md).
+priority — see [processing order & priority](ProcessingOrderAndPriority.md).
 
 ### Specialised fields
 
@@ -169,7 +171,7 @@ priority — see [document 5](ProcessingOrderAndPriority.md).
 
 ---
 
-## 1.4 What "applying a rule" does to the data
+## What "applying a rule" does to the data
 
 ### Grid rule application
 
@@ -199,13 +201,13 @@ This is the concrete meaning of the two "None" HLOD rules:
 
 The difference matters because the engine's invalid-HLOD-layer check only fires for
 actors that are HLOD-relevant, spatially loaded, and carry an explicit layer that is
-not valid on their grid ([streaming properties](WorldPartitionStreamingProperties.md)).
+not valid on their grid ([streaming properties](../WorldPartitionStreamingProperties.md)).
 `NoneExclude` makes an actor drop out of that check; `NoneInclude` keeps it in HLOD
 but with no explicit (and therefore no *invalid*) layer.
 
 ---
 
-## 1.5 Evaluation model (per actor)
+## Evaluation model (per actor)
 
 For a given rule family and a given actor:
 

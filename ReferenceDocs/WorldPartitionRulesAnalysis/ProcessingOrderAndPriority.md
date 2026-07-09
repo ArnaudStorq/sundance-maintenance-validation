@@ -1,4 +1,6 @@
-# 5. Processing order & priority
+Parent: [World Partition rules — data-asset analysis](../WorldPartitionRulesAnalysis.md)
+
+# Processing order & priority
 
 How a single, deterministic outcome is produced for each actor. There is **no
 numeric priority field** on any rule asset. Precedence emerges from four layers,
@@ -14,7 +16,7 @@ applied in this order of authority:
 
 ---
 
-## 5.1 Layer 1 — ignore lists (hard skip)
+## Layer 1 — ignore lists (hard skip)
 
 Before any rule runs, the actor's class is checked against the family's ignore list.
 These types are simply never processed by that rule family:
@@ -30,7 +32,7 @@ infrastructure actors must keep the streaming settings their own systems give th
 
 ---
 
-## 5.2 Layer 2 — config array order (first match wins)
+## Layer 2 — config array order (first match wins)
 
 The engine walks the configured array top to bottom and applies the **first** rule
 that claims the actor, then stops. The order as configured today:
@@ -76,7 +78,7 @@ that claims the actor, then stops. The order as configured today:
 
 ---
 
-## 5.3 Layer 3 — `*RulesToExclude` (the real precedence)
+## Layer 3 — `*RulesToExclude` (the real precedence)
 
 Each generic rule lists the specific rules it must yield to in its
 `ExclusionCriteria`. Semantics: *"if this actor also satisfies rule X's matching
@@ -131,7 +133,7 @@ small-object population.
 
 ---
 
-## 5.4 Layer 4 — global force lists (override)
+## Layer 4 — global force lists (override)
 
 Independent of the rule assets, the config applies hard overrides:
 
@@ -155,7 +157,7 @@ keep the actor in HLOD or on a grid.
 
 ---
 
-## 5.5 Worked example — a Level Instance in Overland
+## Worked example — a Level Instance in Overland
 
 Actor: an `ALevelInstance` under `LV_Overland/.../Props`, spatially loaded, no
 special data layer, not a sub-world, not blockout.
@@ -193,7 +195,7 @@ substring, HLOD would be force-excluded at the end regardless of the `Near` resu
 
 ---
 
-## 5.6 Worked example — a river in Overland
+## Worked example — a river in Overland
 
 Actor: `WaterBodyRiver`, spatially loaded, in `LV_Overland/.../Water`.
 
@@ -207,7 +209,7 @@ Actor: `WaterBodyRiver`, spatially loaded, in `LV_Overland/.../Water`.
 
 ---
 
-## 5.7 Decision checklist (per actor, per family)
+## Decision checklist (per actor, per family)
 
 ```
 [Grid family]                         [HLOD family]
@@ -224,5 +226,5 @@ Actor: `WaterBodyRiver`, spatially loaded, in `LV_Overland/.../Water`.
 ```
 
 For the concrete field values behind each rule referenced here, see
-[document 2](RuntimeGridRules.md), [document 3](HLODLayerRules.md) and
-[the inventory](DataAssetInventory.md).
+[Runtime Grid rules](RuntimeGridRules.md), [HLOD Layer rules](HLODLayerRules.md) and
+[the data asset inventory](DataAssetInventory.md).

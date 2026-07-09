@@ -1,3 +1,5 @@
+Parent: [Work Summaries](README.md)
+
 # World Events
 
 *A plain-language guide to the World Events system changes made in 2026.*

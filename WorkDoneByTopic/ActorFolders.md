@@ -1,3 +1,5 @@
+Parent: [Work Summaries](README.md)
+
 # Actor Folders
 
 *A plain-language guide to what Actor Folders are, the problems they caused, and the

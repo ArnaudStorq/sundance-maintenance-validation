@@ -1,4 +1,6 @@
-# 4. HLOD Layer target assets
+Parent: [World Partition rules — data-asset analysis](../WorldPartitionRulesAnalysis.md)
+
+# HLOD Layer target assets
 
 The `UHLODLayer` assets (`/Script/Engine.HLODLayer`) that the HLOD **rules** point at
 via `TargetHLODLayer`, plus the supporting imposter-config asset. These define **how**
@@ -12,7 +14,7 @@ each other via `ParentLayer`.
 > imposter config**. Numeric distances are noted as "on the asset / map hash" and are
 > not quoted.
 
-## 4.1 HLOD builder classes seen in the project
+## HLOD builder classes seen in the project
 
 | Builder class | Produces |
 |---------------|----------|
@@ -31,18 +33,18 @@ each other via `ParentLayer`.
 
 ---
 
-## 4.2 Overland layers
+## Overland layers
 
 | Asset | `LayerType` | Builder | `ParentLayer` | Notes |
 |-------|-------------|---------|---------------|-------|
 | `LV_Overland_HLODLayer_Near` | `Custom` | `HLODBuilderMeshMergeWithAutoInstancing` | `LV_Overland_HLODLayer_Far` | Main near layer; has a component **MinimumExtent** filter + auto-classification. Target of `DA_Overland_HLODLayer_Near_Rules`. |
 | `LV_Overland_HLODLayer_Far` | `Custom` | `HLODBuilderMeshApproximateWithAutoInstancing` | *(root)* | Far layer; component filter removes non-Nanite components. |
 | `LV_Overland_HLODLayer_BLK_Far` | `MeshApproximate` | `HLODBuilderMeshApproximate` | `LV_Overland_HLODLayer_Far` | Blockout far proxy. |
-| `LV_Overland_HLODLayer_Foliage_Near` | `Custom` | **`HLODBuilderDummy`** | *(none)* | **No proxy** — placeholder near-foliage layer (see §4.6). |
+| `LV_Overland_HLODLayer_Foliage_Near` | `Custom` | **`HLODBuilderDummy`** | *(none)* | **No proxy** — placeholder near-foliage layer (see [The `Dummy` layers and the foliage split](#the-dummy-layers-and-the-foliage-split)). |
 | `LV_Overland_HLODLayer_Foliage_Far` | `Custom` | `FoliageHLODBuilder` | *(none)* | Uses `ImposterConfig → DA_Overland_FoliageImposter_Config`. |
 | `LV_Overland_HLODLayer_Landscape_Near` | `MeshMerge` | `HLODBuilderFilteredInstancing` / mesh-merge | `LV_Overland_HLODLayer_Landscape_Far2` | Target of the landscape rule. |
 | `LV_Overland_HLODLayer_Landscape_Far2` | `MeshMerge` | `HLODBuilderFilteredInstancing` / mesh-merge | *(root)* | The live landscape-far layer. |
-| `LV_Overland_HLODLayer_Landscape_Far` | — | — | — | **`ObjectRedirector` → `LV_Overland_HLODLayer_Landscape_Near`** (deprecated name; not a real layer, see §4.5). |
+| `LV_Overland_HLODLayer_Landscape_Far` | — | — | — | **`ObjectRedirector` → `LV_Overland_HLODLayer_Landscape_Near`** (deprecated name; not a real layer, see [The Landscape_Far redirector](#the-landscape_far-redirector)). |
 | `LV_Overland_HLODLayer_Road_Near` | `MeshSimplify` | `HLODBuilderMeshSimplify` (area-weighted normals) | *(root)* | Target of the road rule. |
 | `LV_Overland_HLODLayer_Water_Near` | `MeshApproximate` | `HLODBuilderMeshApproximate` (filtered instancing) | *(root)* | Target of the water rule. |
 
@@ -59,7 +61,7 @@ Foliage_Near (Dummy)  /  Foliage_Far (imposter)
 
 ---
 
-## 4.3 Hogsmeade layers
+## Hogsmeade layers
 
 | Asset | `LayerType` | Builder | `ParentLayer` | Notes |
 |-------|-------------|---------|---------------|-------|
@@ -74,7 +76,7 @@ two-level `Near → Far`).
 
 ---
 
-## 4.4 Hogwarts layers
+## Hogwarts layers
 
 | Asset | `LayerType` | Builder | `ParentLayer` | Notes |
 |-------|-------------|---------|---------------|-------|
@@ -87,7 +89,7 @@ two-level `Near → Far`).
 
 ---
 
-## 4.5 The Landscape_Far redirector
+## The Landscape_Far redirector
 
 `LV_Overland_HLODLayer_Landscape_Far` is **not** a layer — it is an
 `ObjectRedirector` whose `DestinationObject` is
@@ -104,7 +106,7 @@ target.
 
 ---
 
-## 4.6 The `Dummy` layers and the foliage split
+## The `Dummy` layers and the foliage split
 
 Two categories of "no-op" layer exist:
 
@@ -112,17 +114,17 @@ Two categories of "no-op" layer exist:
   layer, the auto-injected default the engine falls back on. It generates nothing.
 - **`LV_*_HLODLayer_Foliage_Near`** (Overland + Hogsmeade) — also `HLODBuilderDummy`.
 
-This is the key to reading the `Foliage_Near` **rules** (document 3): those rules
+This is the key to reading the `Foliage_Near` **rules** (see [HLOD Layer rules](HLODLayerRules.md)): those rules
 match tree foliage and assign **no** explicit layer while keeping `IncludeInHLOD =
 true`. Near-range foliage HLOD is therefore effectively a no-op (Dummy), while the
 distance representation of foliage is produced by:
 
 - `LV_*_HLODLayer_Foliage_Far` via `FoliageHLODBuilder` + `DA_Overland_FoliageImposter_Config`, and
-- the dedicated **FarFoliage** layers (§4.7).
+- the dedicated **FarFoliage** layers (see [FarFoliage layers and imposter config](#farfoliage-layers-and-imposter-config)).
 
 ---
 
-## 4.7 FarFoliage layers and imposter config
+## FarFoliage layers and imposter config
 
 | Asset | Class | Role |
 |-------|-------|------|
@@ -137,7 +139,7 @@ per-region `Foliage_Far` layers.
 
 ---
 
-## 4.8 Rule → target-layer map (quick reference)
+## Rule → target-layer map (quick reference)
 
 | HLOD rule | Assigns layer | Layer builder |
 |-----------|---------------|---------------|

@@ -1,4 +1,6 @@
-# 2. Runtime Grid rules
+Parent: [World Partition rules — data-asset analysis](../WorldPartitionRulesAnalysis.md)
+
+# Runtime Grid rules
 
 The five `URuntimeGridRuleAsset` assets in
 `/Game/Data/WorldPartition/RuntimeGrid/` and the two-stage grid assignment they
@@ -10,7 +12,7 @@ cell size, loading range and HLOD behaviour). The rule only ever stores a grid
 
 ---
 
-## 2.1 The two-stage grid architecture
+## The two-stage grid architecture
 
 The single most important structural fact about grids in Sundance is that grid
 assignment happens in **two stages with different rule sets**:
@@ -28,7 +30,7 @@ Read together, the intent is:
 2. **At streaming generation**, `DA_SmallGrid_Rules` sweeps the broad population of
    Overland actors onto `SmallGrid` — but only as a generation-time view, and only
    where the actor's HLOD layer is valid on the SmallGrid partition (otherwise the
-   override is skipped and warned, see [document 1 §1.2B](RuleEngineMechanics.md#b-during-streaming-generation--the-mutator)).
+   override is skipped and warned, see [rule engine mechanics](RuleEngineMechanics.md#b-during-streaming-generation--the-mutator)).
 
 This is deliberate: baking `SmallGrid` onto thousands of Overland actors on every
 save would be destructive and noisy, so it is kept off the on-save path. During the
@@ -38,7 +40,7 @@ migration passes `DA_SmallGrid_Rules` was *temporarily* added to
 
 ---
 
-## 2.2 On-save grid rules (order as configured)
+## On-save grid rules (order as configured)
 
 `RuntimeGridRulesForActorSave` is evaluated top to bottom; first match wins.
 
@@ -102,7 +104,7 @@ exactly the state `DA_SmallGrid_Rules` then overrides at generation time).
 
 ---
 
-## 2.3 Streaming-generation grid rule
+## Streaming-generation grid rule
 
 ### 5. `DA_SmallGrid_Rules` → `SmallGrid` (generation-time, view-only)
 
@@ -135,12 +137,12 @@ philosophy but are applied specifically to the SmallGrid sweep.
 > partition (e.g. an LI still tagged `LV_Overland_HLODLayer_Near`), it refuses the
 > move and logs `Skipped RuntimeGrid override`. The fix is to align the actor's HLOD
 > layer (via the HLOD rules) or to exclude it — see
-> [document 3](HLODLayerRules.md) and
-> [World Partition rules](WorldPartitionRules.md).
+> [HLOD Layer rules](HLODLayerRules.md) and
+> [World Partition rules](../WorldPartitionRules.md).
 
 ---
 
-## 2.4 Grid physical parameters (not stored in the rules)
+## Grid physical parameters (not stored in the rules)
 
 The rules carry only names. The cell size / loading range for each grid are
 serialized on the map's `UWorldPartitionRuntimeSpatialHash` /
@@ -156,7 +158,7 @@ Only `MainGrid` and `FarFoliageGrid` are declared in `DefaultPlugins.ini`; the
 `SmallGrid`, `HogsmeadeGrid` and `HogwartsGrid` partitions (and their allowed HLOD
 layers) are defined **on the map's runtime hash set**, which is the authoritative
 compatibility source consulted by `IsValidHLODLayer`
-([streaming properties](WorldPartitionStreamingProperties.md)).
+([streaming properties](../WorldPartitionStreamingProperties.md)).
 
 Approximate, **documented** values (confirm against the map hash before quoting):
 
@@ -167,12 +169,12 @@ Approximate, **documented** values (confirm against the map hash before quoting)
 | `HogwartsGrid` | *(on map hash)* | *(on map hash)* | Hogwarts exterior. |
 
 > These distances are **not** in the rule assets; they are quoted from
-> [World Partition rules](WorldPartitionRules.md) and must be verified against
+> [World Partition rules](../WorldPartitionRules.md) and must be verified against
 > `LV_Overland`'s runtime hash. They are included only for context.
 
 ---
 
-## 2.5 Summary table
+## Summary table
 
 | Asset | Target grid | Matches | Key exclusions | Path |
 |-------|-------------|---------|----------------|------|

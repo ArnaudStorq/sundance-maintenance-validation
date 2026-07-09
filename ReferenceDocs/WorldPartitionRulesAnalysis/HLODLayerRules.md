@@ -1,11 +1,13 @@
-# 3. HLOD Layer rules
+Parent: [World Partition rules — data-asset analysis](../WorldPartitionRulesAnalysis.md)
+
+# HLOD Layer rules
 
 The twelve `UHLODLayerRuleAsset` assets (the `*_Rules` files under
 `/Game/Data/WorldPartition/HLOD/`). They decide, per actor, **which HLOD layer** it
 contributes to and **whether** it participates in HLOD at all.
 
 Recall the two "None" patterns from
-[document 1 §1.4](RuleEngineMechanics.md#14-what-applying-a-rule-does-to-the-data):
+[rule engine mechanics](RuleEngineMechanics.md#what-applying-a-rule-does-to-the-data):
 
 - `*_NoneInclude_Rules`: `TargetHLODLayer = None`, `IncludeInHLOD = true` → HLOD-relevant, no explicit layer (inherits parent).
 - `*_NoneExclude_Rules`: `TargetHLODLayer = None`, `IncludeInHLOD = false` → dropped from HLOD entirely.
@@ -15,14 +17,14 @@ HLOD rule leaves it at its default of `true`.
 
 ---
 
-## 3.1 Overland HLOD rules
+## Overland HLOD rules
 
 Config order in `HLODLayerRulesForActorSave` (Overland block):
 `NoneInclude → NoneExclude → Near → Foliage_Near → Landscape_Near → Water_Near → Road_Near`.
 
 The two generic "None" rules appear **first** but defer to the specific layer rules
 via `HLODLayerRulesToExclude`, so in practice the specific rules win (see
-[document 5](ProcessingOrderAndPriority.md)).
+[processing order & priority](ProcessingOrderAndPriority.md)).
 
 ### `DA_Overland_HLODLayer_NoneInclude_Rules`
 
@@ -87,7 +89,7 @@ near layer.
 > `FarFoliage`, and the imposter config), rather than by the Level-Instance
 > mesh-merge near layer. The per-region `LV_*_HLODLayer_Foliage_Near` target assets
 > use the **Dummy** builder (no near-range proxy), consistent with this reading — see
-> [document 4](HLODLayerTargetAssets.md). The intent is inferred from the matched
+> [HLOD Layer target assets](HLODLayerTargetAssets.md). The intent is inferred from the matched
 > types + the target being unset; the *values* (type filter, unset target, include
 > = true) are read directly from the asset.
 
@@ -124,7 +126,7 @@ layer (CL 1893933).
 
 ---
 
-## 3.2 Hogwarts HLOD rules
+## Hogwarts HLOD rules
 
 Config order: `NoneInclude → NoneExclude → Near`. Path scope for all three is
 `LV_Overland/Hogwarts/LI_Hogwarts`.
@@ -141,7 +143,7 @@ Hogwarts **interiors** (`_INT`), world-events (`LI_WE`), dungeons (`LI_DUN`,
 
 ---
 
-## 3.3 Hogsmeade HLOD rules
+## Hogsmeade HLOD rules
 
 Config order: `NoneInclude → NoneExclude → Near → Foliage_Near`. Path scope is
 `LV_Overland/Hogsmeade/LI_Hogsmeade`.
@@ -158,7 +160,7 @@ Config order: `NoneInclude → NoneExclude → Near → Foliage_Near`. Path scop
 > stones, debris — do not get pulled into HLOD. This numeric threshold is not
 > readable from the package text; it is attributed to the changelist and recorded
 > here for completeness. See
-> [World Partition rules](WorldPartitionRules.md).
+> [World Partition rules](../WorldPartitionRules.md).
 
 The Hogsmeade `Foliage_Near` rule mirrors the Overland one: it claims the listed tree
 species (as an `InstancedFoliageActor` within the Hogsmeade LI) with **no** explicit
@@ -166,14 +168,14 @@ target layer, keeping them HLOD-relevant but out of the `Near` mesh-merge layer.
 
 ---
 
-## 3.4 Cross-region observations
+## Cross-region observations
 
 - **`NoneInclude`/`NoneExclude` are per-region.** Each region (Overland, Hogwarts,
   Hogsmeade) has its own pair, scoped by the region's Outliner path and registered
   separately in the config array. There is no single global "none" rule.
 - **`Near` rules target region-specific layers.** `LV_Overland_HLODLayer_Near`,
   `LV_HW_HLODLayer_Near`, `LV_HM_HLODLayer_Near`. Their build settings differ (see
-  [document 4](HLODLayerTargetAssets.md)).
+  [HLOD Layer target assets](HLODLayerTargetAssets.md)).
 - **Only Overland has dedicated `Landscape/Water/Road` HLOD rules.** Hogwarts and
   Hogsmeade collapse everything into `Near`/`None`.
 - **`Foliage_Near` exists only for Overland and Hogsmeade**, not Hogwarts (Hogwarts
@@ -181,5 +183,5 @@ target layer, keeping them HLOD-relevant but out of the `Near` mesh-merge layer.
 - **Every specific rule excludes the sub-worlds it doesn't own**, so a Level Instance
   is only ever claimed by the rule set of its own region.
 
-See [document 5](ProcessingOrderAndPriority.md) for exactly how these rules'
+See [processing order & priority](ProcessingOrderAndPriority.md) for exactly how these rules'
 ordering + `*RulesToExclude` produce a single deterministic outcome per actor.

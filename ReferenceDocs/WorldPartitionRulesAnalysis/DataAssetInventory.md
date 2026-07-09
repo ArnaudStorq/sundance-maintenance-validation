@@ -1,14 +1,16 @@
-# 6. Data asset inventory (appendix)
+Parent: [World Partition rules — data-asset analysis](../WorldPartitionRulesAnalysis.md)
+
+# Data asset inventory (appendix)
 
 Complete list of every asset under `/Game/Data/WorldPartition/` with the fields
 extracted from the packages, plus the project config arrays that bind them. Use this
-as the lookup table behind documents [2](RuntimeGridRules.md),
-[3](HLODLayerRules.md) and [4](HLODLayerTargetAssets.md).
+as the lookup table behind [Runtime Grid rules](RuntimeGridRules.md),
+[HLOD Layer rules](HLODLayerRules.md) and [HLOD Layer target assets](HLODLayerTargetAssets.md).
 
 Local root: `D:\Sun\Sundance\Content\Data\WorldPartition\`
 (Perforce: `//sun/Dev/Sundance/Content/Data/WorldPartition/`).
 
-## 6.1 File tree (45 assets)
+## File tree (45 assets)
 
 ```
 WorldPartition/
@@ -66,7 +68,7 @@ redirector, 3 dummy) + **1** FarFoliage imposter config + **the root Dummy** = 4
 `.uasset` files (2 duplicated names between the tree above and the flat listing are
 the same files).
 
-## 6.2 RuntimeGrid rules
+## RuntimeGrid rules
 
 | Asset | `TargetRuntimeGrid` | Match type | Match path | `*RulesToExclude` | `TypesToExclude` | Path excludes | Slot |
 |-------|--------------------|-----------|-----------|-------------------|------------------|---------------|------|
@@ -76,7 +78,7 @@ the same files).
 | `DA_NoneGrid_Rules` | `None` | `Actor` | (all) | Grid: `Hogsmeade`, `Hogwarts`, `HogwartsInterior` | — | — | save |
 | `DA_SmallGrid_Rules` | `SmallGrid` | `Actor` (AND+OR) | (all) | DataLayer: `DA_AUDIO`, `DA_AUTOMATION`, `DA_DEGUG`, `DA_WORLD_EVENTS`, `DA_MISSIONS` | `LandscapeSplineActor`, `PCGPartitionActor`, `WorldPartitionHLOD`, `ForageableBlueprint` | `Dungeon`, `Mission`, `LI_Sanctuary`, Hogsmeade LI, Hogwarts LI | **streaming-gen** |
 
-## 6.3 HLOD Layer rules
+## HLOD Layer rules
 
 | Asset | `TargetHLODLayer` | `IncludeInHLOD` | Match type | `HLODLayerRulesToExclude` | Other defers | Path excludes |
 |-------|-------------------|-----------------|-----------|---------------------------|--------------|---------------|
@@ -99,7 +101,7 @@ the same files).
 `SM_Hawthorn`, `SM_HM_HeroBeech`, `SM_Juniper_Manicured`, `SM_Larch`, `SM_Oak`,
 `SM_Pine`, `SM_ScotsPine`, `SM_Spruce`, `SM_WildCherry`.
 
-## 6.4 HLOD Layer target assets
+## HLOD Layer target assets
 
 | Asset | Class | `LayerType` | Builder | `ParentLayer` |
 |-------|-------|-------------|---------|---------------|
@@ -126,9 +128,10 @@ the same files).
 | `LV_FarFoliage_HLODLayer_Foliage_Far` | HLODLayer | Custom | MeshMergeFromSource | (root) |
 | `DA_FarFoliage_Config` | FarFoliageImposterConfig | — | — | — |
 
-## 6.5 Config arrays (verbatim, `DefaultEditor.ini`)
+## Config arrays
 
-Section `[/Script/WorldBuildingEditor.WorldPartitionRuleSettings]`:
+Verbatim from `DefaultEditor.ini`, section
+`[/Script/WorldBuildingEditor.WorldPartitionRuleSettings]`:
 
 ```156:174:D:\Sun\Sundance\Config\DefaultEditor.ini
 +HLODLayerRulesForActorSave=/Game/Data/WorldPartition/HLOD/Overland/DA_Overland_HLODLayer_NoneInclude_Rules.DA_Overland_HLODLayer_NoneInclude_Rules
@@ -154,10 +157,10 @@ Section `[/Script/WorldBuildingEditor.WorldPartitionRuleSettings]`:
 
 Force / clear / ignore lists (same section): `ActorTypesIgnoredBy*Rules`,
 `ActorTypesToForceExcludeFromHLOD`, `OutlinerPathsToForceExcludeFromHLOD`,
-`ActorTypesToClearRuntimeGrid` — see [document 5 §5.1 & §5.4](ProcessingOrderAndPriority.md)
+`ActorTypesToClearRuntimeGrid` — see [processing order & priority](ProcessingOrderAndPriority.md)
 for the resolved contents, and `DefaultEditor.ini:175–236` for the raw lines.
 
-## 6.6 Grid ↔ HLOD allowlist (`DefaultPlugins.ini`)
+## Grid ↔ HLOD allowlist (`DefaultPlugins.ini`)
 
 ```43:44:D:\Sun\Sundance\Config\DefaultPlugins.ini
 +AllowedRuntimeGrids=(RuntimeGrid="MainGrid",AllowedHLODLayers=("/Game/Data/WorldPartition/HLOD/Overland/LV_Overland_HLODLayer_Near.LV_Overland_HLODLayer_Near",None))
@@ -167,12 +170,12 @@ for the resolved contents, and `DefaultEditor.ini:175–236` for the raw lines.
 Grids `SmallGrid`, `HogsmeadeGrid`, `HogwartsGrid` and their allowed HLOD layers are
 defined on the `LV_Overland` runtime hash set, not in the `.ini`.
 
-## 6.7 Notes on provenance & confidence
+## Notes on provenance & confidence
 
 | Fact category | Source | Confidence |
 |---------------|--------|------------|
 | Asset class, target grid/layer, matched actor types, outliner substrings, `*RulesToExclude`, `LogicOperator`, `IncludeInHLOD=false` on NoneExclude | Package name/import/export tables | High (read directly) |
 | Config array order, force/ignore/clear lists, AllowedRuntimeGrids | `DefaultEditor.ini` / `DefaultPlugins.ini` | High (verbatim) |
-| Rule application effects, evaluation model, "Skipped RuntimeGrid override" | Engine source cited in the [reference topics](README.md) | High (source-cited) |
+| Rule application effects, evaluation model, "Skipped RuntimeGrid override" | Engine source cited in the [reference topics](../README.md) | High (source-cited) |
 | Foliage_Near "handled by imposter pipeline" intent | Inferred from unset target + Dummy target layer | Medium (interpretation) |
 | Numeric bounds (2 m), grid cell sizes / loading ranges | Changelist history + `ReferenceDocs/` + map hash | Medium (not re-derived from binary) |

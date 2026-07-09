@@ -1,3 +1,5 @@
+Parent: [Work Summaries](README.md)
+
 # World Partition Rules
 
 *A plain-language guide to the World Partition rule system, the rule builder, and
