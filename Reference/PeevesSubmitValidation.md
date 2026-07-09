@@ -98,7 +98,7 @@ rather than a hard submit gate.
 
 ## Related changelists
 
-- [WorldEvent DataLayers checkout check (CL 1758012)](../Reports/P4-History/2026-03-11-09-21-worldevent-datalayers-checkout-check.md) — a data-safety check in the same spirit.
+- [WorldEvent DataLayers checkout check (CL 1758012)](../WorkDoneByChangelists/P4-History/2026-03-11-09-21-worldevent-datalayers-checkout-check.md) — a data-safety check in the same spirit.
 
 ## See also
 

@@ -93,12 +93,12 @@ the time the first skeletal-mesh build runs. With assemblies unsupported,
 
 ## Related changelists
 
-- [Partitioned streaming — 88 levels (CL 1946247)](../Reports/P4-History/2026-06-26-15-57-partitioned-streaming-88-levels.md)
-- [Partitioned streaming — 6 levels (CL 1949614)](../Reports/P4-History/2026-06-29-15-10-partitioned-streaming-6-levels.md)
-- [Partitioned streaming — 6 levels (CL 1957917)](../Reports/P4-History/2026-07-06-09-52-partitioned-streaming-6-levels.md)
-- [Partitioned streaming — 4 levels (CL 1954875)](../Reports/P4-History/2026-07-02-11-52-partitioned-streaming-4-levels.md)
-- [Partitioned streaming — 1 level (CL 1958172)](../Reports/P4-History/2026-07-06-12-12-partitioned-streaming-1-level.md)
-- [Apply WP rules to Level Instances (CL 1959005)](../Reports/P4-History/2026-07-06-16-12-wp-rules-level-instances.md)
+- [Partitioned streaming — 88 levels (CL 1946247)](../WorkDoneByChangelists/P4-History/2026-06-26-15-57-partitioned-streaming-88-levels.md)
+- [Partitioned streaming — 6 levels (CL 1949614)](../WorkDoneByChangelists/P4-History/2026-06-29-15-10-partitioned-streaming-6-levels.md)
+- [Partitioned streaming — 6 levels (CL 1957917)](../WorkDoneByChangelists/P4-History/2026-07-06-09-52-partitioned-streaming-6-levels.md)
+- [Partitioned streaming — 4 levels (CL 1954875)](../WorkDoneByChangelists/P4-History/2026-07-02-11-52-partitioned-streaming-4-levels.md)
+- [Partitioned streaming — 1 level (CL 1958172)](../WorkDoneByChangelists/P4-History/2026-07-06-12-12-partitioned-streaming-1-level.md)
+- [Apply WP rules to Level Instances (CL 1959005)](../WorkDoneByChangelists/P4-History/2026-07-06-16-12-wp-rules-level-instances.md)
 
 ## See also
 

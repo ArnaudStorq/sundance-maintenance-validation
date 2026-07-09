@@ -55,7 +55,7 @@ members no longer clash.
 
 ## 4. Related changelists
 
-In `Reports/P4-History/`: `*worldevent-datalayers-checkout-check*`,
+In `WorkDoneByChangelists/P4-History/`: `*worldevent-datalayers-checkout-check*`,
 `*fix-python-name-clash-warning*`.
 
 Jira: **SUNDANCE-51436**, **SUNDANCE-56129**.

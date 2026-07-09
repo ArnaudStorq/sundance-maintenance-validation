@@ -47,7 +47,7 @@ regardless of how or where the plugin is loaded — no broken toolbar, no error 
 
 ## 5. Related changelists
 
-In `Reports/P4-History/`: `*scriptabletools-icon-path-robustness*`.
+In `WorkDoneByChangelists/P4-History/`: `*scriptabletools-icon-path-robustness*`.
 
 Jira: **SUNDANCE-46349**.
 

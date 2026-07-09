@@ -82,7 +82,7 @@ This shipped in an instructive sequence:
 
 ## 6. Related changelists
 
-In `Reports/P4-History/`: `*fix-crash-update-redirector-references*`,
+In `WorkDoneByChangelists/P4-History/`: `*fix-crash-update-redirector-references*`,
 `*fix-levelviewporttoolbar-warnings*`,
 `*fix-python-name-clash-warning*`, `*outliner-nonpartitioned-parent-message*`,
 `*buildfix-undo-outliner-columns*`.

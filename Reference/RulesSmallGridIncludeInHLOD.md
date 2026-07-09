@@ -178,14 +178,14 @@ keeping it permanently in the on-save rules would reassign grids on every future
 
 ## Related changelists
 
-- [Apply WP rules to 404 actors — SmallGrid (CL 1959722)](../Reports/P4-History/2026-07-07-06-46-wp-rules-404-actors-smallgrid.md)
-- [Add `DA_SmallGrid_Rules` to save rules (CL 1959020)](../Reports/P4-History/2026-07-06-16-14-add-smallgrid-to-runtime-grid-rules.md)
-- [Remove `DA_SmallGrid_Rules` from save rules (CL 1960226)](../Reports/P4-History/2026-07-07-12-03-remove-smallgrid-from-runtime-grid-rules.md)
-- [WP rules Dungeon/Mission naming (CL 1920591)](../Reports/P4-History/2026-06-10-14-19-wp-rules-dungeon-mission-naming.md)
-- [WP rules `WorldBitmapStreamingProxy` (CL 1916537)](../Reports/P4-History/2026-06-08-13-02-wp-rules-worldbitmapstreamingproxy.md)
-- [HLOD NoneInclude min bounds — Hogsmeade (CL 1950932)](../Reports/P4-History/2026-06-30-09-13-hlod-noneinclude-min-bounds.md)
-- [Set Parent Layer None (Foliage Near) (CL 1753959)](../Reports/P4-History/2026-03-09-09-07-set-parent-layer-none-foliage-near.md)
-- [Add `Overland_Road_Near` exclusions (CL 1893933)](../Reports/P4-History/2026-05-25-09-11-add-overland-road-near-exclusions.md)
+- [Apply WP rules to 404 actors — SmallGrid (CL 1959722)](../WorkDoneByChangelists/P4-History/2026-07-07-06-46-wp-rules-404-actors-smallgrid.md)
+- [Add `DA_SmallGrid_Rules` to save rules (CL 1959020)](../WorkDoneByChangelists/P4-History/2026-07-06-16-14-add-smallgrid-to-runtime-grid-rules.md)
+- [Remove `DA_SmallGrid_Rules` from save rules (CL 1960226)](../WorkDoneByChangelists/P4-History/2026-07-07-12-03-remove-smallgrid-from-runtime-grid-rules.md)
+- [WP rules Dungeon/Mission naming (CL 1920591)](../WorkDoneByChangelists/P4-History/2026-06-10-14-19-wp-rules-dungeon-mission-naming.md)
+- [WP rules `WorldBitmapStreamingProxy` (CL 1916537)](../WorkDoneByChangelists/P4-History/2026-06-08-13-02-wp-rules-worldbitmapstreamingproxy.md)
+- [HLOD NoneInclude min bounds — Hogsmeade (CL 1950932)](../WorkDoneByChangelists/P4-History/2026-06-30-09-13-hlod-noneinclude-min-bounds.md)
+- [Set Parent Layer None (Foliage Near) (CL 1753959)](../WorkDoneByChangelists/P4-History/2026-03-09-09-07-set-parent-layer-none-foliage-near.md)
+- [Add `Overland_Road_Near` exclusions (CL 1893933)](../WorkDoneByChangelists/P4-History/2026-05-25-09-11-add-overland-road-near-exclusions.md)
 
 ## See also
 

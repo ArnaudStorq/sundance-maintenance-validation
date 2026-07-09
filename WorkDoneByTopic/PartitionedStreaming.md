@@ -95,7 +95,7 @@ Conflict resolved, no more HLOD warnings
 
 ## 8. Related changelists
 
-In `Reports/P4-History/`: files named `*partitioned-streaming-*`,
+In `WorkDoneByChangelists/P4-History/`: files named `*partitioned-streaming-*`,
 `*wp-rules-level-instances*`, `*wp-rules-404-actors-smallgrid*`,
 `*add-smallgrid-to-runtime-grid-rules*`,
 `*remove-smallgrid-from-runtime-grid-rules*`,

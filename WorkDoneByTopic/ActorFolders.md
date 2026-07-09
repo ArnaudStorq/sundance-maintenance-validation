@@ -101,7 +101,7 @@ Fixing the existing mess *and* stopping the source is what makes the fix stick.
 
 ## 6. Related changelists
 
-In `Reports/P4-History/`: `*expose-fixupactorfolders*`,
+In `WorkDoneByChangelists/P4-History/`: `*expose-fixupactorfolders*`,
 `*add-fixup-actorfolders-builder*`, `*fix-orphan-duplicate-actor-folders*`,
 `*stop-ghost-actorfolder-assets*`, `*resave-child-actorfolders*`,
 `*resave-actor-folders*`.

@@ -121,8 +121,8 @@ asset. Please save to proceed."*
 
 ## Related changelists
 
-- [WorldEvent DataLayers checkout check (CL 1758012)](../Reports/P4-History/2026-03-11-09-21-worldevent-datalayers-checkout-check.md)
-- [Revert last WP Rules processing (CL 1844521)](../Reports/P4-History/2026-04-22-12-33-revert-wp-rules-processing.md)
+- [WorldEvent DataLayers checkout check (CL 1758012)](../WorkDoneByChangelists/P4-History/2026-03-11-09-21-worldevent-datalayers-checkout-check.md)
+- [Revert last WP Rules processing (CL 1844521)](../WorkDoneByChangelists/P4-History/2026-04-22-12-33-revert-wp-rules-processing.md)
 
 ## See also
 

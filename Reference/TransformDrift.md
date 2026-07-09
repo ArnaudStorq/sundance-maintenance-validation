@@ -85,12 +85,12 @@ false-positives. A human reviewing the diff is the reliable gate.
 
 ## Related changelists
 
-- [Revert last WP Rules processing (CL 1844521)](../Reports/P4-History/2026-04-22-12-33-revert-wp-rules-processing.md)
-- [Fix WP rules `PackagesToSave` transient (CL 1841026)](../Reports/P4-History/2026-04-21-06-18-fix-wp-rules-packagestosave.md)
-- [Release kept references (CL 1837219)](../Reports/P4-History/2026-04-17-14-07-release-references-wp-rules.md)
-- [Fix relative transform — TeamCity (CL 1804673)](../Reports/P4-History/2026-03-27-14-28-fix-relative-transform-teamcity.md)
-- [Fix relative transform — more levels (CL 1812627)](../Reports/P4-History/2026-04-02-09-49-fix-relative-transform-levels.md)
-- [Fix Books relative transform (CL 1827113)](../Reports/P4-History/2026-04-13-09-27-fix-books-relative-transform.md)
+- [Revert last WP Rules processing (CL 1844521)](../WorkDoneByChangelists/P4-History/2026-04-22-12-33-revert-wp-rules-processing.md)
+- [Fix WP rules `PackagesToSave` transient (CL 1841026)](../WorkDoneByChangelists/P4-History/2026-04-21-06-18-fix-wp-rules-packagestosave.md)
+- [Release kept references (CL 1837219)](../WorkDoneByChangelists/P4-History/2026-04-17-14-07-release-references-wp-rules.md)
+- [Fix relative transform — TeamCity (CL 1804673)](../WorkDoneByChangelists/P4-History/2026-03-27-14-28-fix-relative-transform-teamcity.md)
+- [Fix relative transform — more levels (CL 1812627)](../WorkDoneByChangelists/P4-History/2026-04-02-09-49-fix-relative-transform-levels.md)
+- [Fix Books relative transform (CL 1827113)](../WorkDoneByChangelists/P4-History/2026-04-13-09-27-fix-books-relative-transform.md)
 
 ## See also
 

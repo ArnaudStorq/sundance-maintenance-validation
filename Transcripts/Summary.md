@@ -1,6 +1,6 @@
 # Transcripts — Analysis & Summary
 
-This document synthesizes **45 working sessions** captured between **May 4 and July 9, 2026**.
+This document synthesizes **44 working sessions** captured between **May 4 and July 9, 2026**.
 The individual conversations, converted to Markdown, live in [`Content/`](./Content) and are named
 `YYYY-MM-DD-HH-MM-<short-topic>.md`.
 
@@ -211,7 +211,6 @@ Smaller, self-contained requests not tied to the World Partition effort:
 - [Transcribe handwritten notes (JPG → Markdown)](./Content/2026-06-22-13-25-transcribe-handwritten-notes-jpg-to-markdown.md)
 - [Date photos from EXIF and rename to .jpg](./Content/2026-06-22-14-21-date-photos-from-exif-rename-jpg.md)
 - [Trim the last seconds of a video](./Content/2026-07-08-14-16-trim-last-seconds-of-video.md)
-- [Replace the Ubisoft logo with WB Games Montreal](./Content/2026-05-13-15-08-replace-ubisoft-logo-with-wb-games-montreal.md)
 - [Miro access check](./Content/2026-07-07-10-44-miro-access-check.md)
 - [Quick help request](./Content/2026-07-07-16-33-quick-help-request.md)
 

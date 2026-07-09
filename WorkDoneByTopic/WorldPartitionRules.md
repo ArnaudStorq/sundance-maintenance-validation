@@ -116,7 +116,7 @@ Rule assets (recipe)  ──►  WorldPartitionRuleBuilder (cook)  ──►  ac
 
 ## 9. Related changelists
 
-In `Reports/P4-History/`: files named `*wp-rules-*`, `*fix-relative-transform*`,
+In `WorkDoneByChangelists/P4-History/`: files named `*wp-rules-*`, `*fix-relative-transform*`,
 `*fix-wp-rules-packagestosave*`, `*release-references-wp-rules*`,
 `*revert-wp-rules-processing*`, `*skip-nonpartitioned-li*`,
 `*add-lognonpartitioned-command*`, and the HLOD rule tweaks.

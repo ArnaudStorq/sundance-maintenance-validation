@@ -56,11 +56,11 @@ Settings and commands that matter on Windows for big/long-path repos:
 
 ## Related changelists
 
-- [Expose `ULevel::FixupActorFolders` (CL 1896115)](../Reports/P4-History/2026-05-26-14-39-expose-fixupactorfolders.md)
-- [Stop ghost `UActorFolder` assets (CL 1890839)](../Reports/P4-History/2026-05-22-09-04-stop-ghost-actorfolder-assets.md)
-- [Fix orphan/duplicate Actor Folders (CL 1901233)](../Reports/P4-History/2026-05-29-07-49-fix-orphan-duplicate-actor-folders.md)
-- [Resave child ActorFolders (CL 1770358)](../Reports/P4-History/2026-03-24-07-39-resave-child-actorfolders.md)
-- [Resave many Actor Folders (CL 1822824)](../Reports/P4-History/2026-04-09-11-21-resave-actor-folders.md)
+- [Expose `ULevel::FixupActorFolders` (CL 1896115)](../WorkDoneByChangelists/P4-History/2026-05-26-14-39-expose-fixupactorfolders.md)
+- [Stop ghost `UActorFolder` assets (CL 1890839)](../WorkDoneByChangelists/P4-History/2026-05-22-09-04-stop-ghost-actorfolder-assets.md)
+- [Fix orphan/duplicate Actor Folders (CL 1901233)](../WorkDoneByChangelists/P4-History/2026-05-29-07-49-fix-orphan-duplicate-actor-folders.md)
+- [Resave child ActorFolders (CL 1770358)](../WorkDoneByChangelists/P4-History/2026-03-24-07-39-resave-child-actorfolders.md)
+- [Resave many Actor Folders (CL 1822824)](../WorkDoneByChangelists/P4-History/2026-04-09-11-21-resave-actor-folders.md)
 
 ## See also
 

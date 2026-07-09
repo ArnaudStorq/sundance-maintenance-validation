@@ -140,8 +140,8 @@ static FAutoConsoleCommand LogNonPartitionedLevelInstancesCmd(
 
 ## Related changelists
 
-- [Add `LogNonPartitionedLevelInstances` command (CL 1751748)](../Reports/P4-History/2026-03-06-08-06-add-lognonpartitioned-command.md)
-- [Skip non-partitioned LI in RuleBuilder (CL 1727387)](../Reports/P4-History/2026-02-18-08-03-skip-nonpartitioned-li-rulebuilder.md)
+- [Add `LogNonPartitionedLevelInstances` command (CL 1751748)](../WorkDoneByChangelists/P4-History/2026-03-06-08-06-add-lognonpartitioned-command.md)
+- [Skip non-partitioned LI in RuleBuilder (CL 1727387)](../WorkDoneByChangelists/P4-History/2026-02-18-08-03-skip-nonpartitioned-li-rulebuilder.md)
 
 ## See also
 

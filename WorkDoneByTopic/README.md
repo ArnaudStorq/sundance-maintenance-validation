@@ -3,7 +3,7 @@
 Plain-language, example-driven explanations of the engineering work done on the
 **Sundance** project in 2026 — the *what*, the *why*, and the *how*.
 
-Where `Reports/P4-History/` is a factual, one-file-per-changelist log, **this folder
+Where `WorkDoneByChangelists/P4-History/` is a factual, one-file-per-changelist log, **this folder
 tells the story by topic**: it groups the ~80 changelists into themes and explains
 each theme so that someone new to the project can understand it.
 
@@ -12,7 +12,7 @@ each theme so that someone new to the project can understand it.
 - Start here for the big picture.
 - Jump to a topic file for a deep, beginner-friendly explanation.
 - Each topic file ends with the matching changelist file-name patterns in
-  `Reports/P4-History/`, so you can drill down to the exact commits.
+  `WorkDoneByChangelists/P4-History/`, so you can drill down to the exact commits.
 
 ## The topics
 
@@ -52,5 +52,5 @@ cleanups kept the editor healthy.
 
 ## Provenance
 
-Derived from `Reports/P4-History/` (generated from `p4 changes` / `p4 describe` of
+Derived from `WorkDoneByChangelists/P4-History/` (generated from `p4 changes` / `p4 describe` of
 all non-ROBOMERGE changelists submitted since 2026-01-01). Written 2026-07-09.

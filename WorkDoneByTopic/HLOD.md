@@ -79,7 +79,7 @@ HLOD data that never applied.
 
 ## 6. Related changelists
 
-In `Reports/P4-History/`: `*fix-mapcheck-invalid-hlod-layer*`,
+In `WorkDoneByChangelists/P4-History/`: `*fix-mapcheck-invalid-hlod-layer*`,
 `*fix-644-mapcheck-hlod-warnings*`, `*remove-hlod-nonpartitioned-levels*`,
 `*hlod-noneinclude-min-bounds*`, `*set-parent-layer-none-foliage-near*`,
 `*add-overland-road-near-exclusions*`.

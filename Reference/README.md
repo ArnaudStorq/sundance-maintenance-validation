@@ -15,7 +15,7 @@ documentation folders:
 
 Each file is one topic. Every claim is grounded in the actual implementation under
 `D:\Sun` (engine + `Sundance` game modules) and cross-linked to the exact
-changelists in [`Reports/P4-History/`](../Reports/P4-History/README.md).
+changelists in [`WorkDoneByChangelists/P4-History/`](../WorkDoneByChangelists/P4-History/README.md).
 
 > Source of truth: code paths point into `D:\Sun\...`. The custom editor logic lives
 > in the `WorldBuildingEditor` module

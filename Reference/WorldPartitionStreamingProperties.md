@@ -124,9 +124,9 @@ value until a builder resaves it.
 
 ## Related changelists
 
-- [Fix MapCheck invalid HLOD layer (CL 1738687)](../Reports/P4-History/2026-02-25-13-59-fix-mapcheck-invalid-hlod-layer.md)
-- [Fix 644 MapCheck HLOD warnings (CL 1904278)](../Reports/P4-History/2026-06-01-15-19-fix-644-mapcheck-hlod-warnings.md)
-- [Remove HLOD from non-partitioned levels (CL 1918257)](../Reports/P4-History/2026-06-09-09-31-remove-hlod-nonpartitioned-levels.md)
+- [Fix MapCheck invalid HLOD layer (CL 1738687)](../WorkDoneByChangelists/P4-History/2026-02-25-13-59-fix-mapcheck-invalid-hlod-layer.md)
+- [Fix 644 MapCheck HLOD warnings (CL 1904278)](../WorkDoneByChangelists/P4-History/2026-06-01-15-19-fix-644-mapcheck-hlod-warnings.md)
+- [Remove HLOD from non-partitioned levels (CL 1918257)](../WorkDoneByChangelists/P4-History/2026-06-09-09-31-remove-hlod-nonpartitioned-levels.md)
 
 ## See also
 

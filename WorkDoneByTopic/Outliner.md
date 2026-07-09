@@ -125,7 +125,7 @@ them so they stopped nagging everyone. (See also `ActorFolders.md`.)
 
 ## 7. Related changelists
 
-See `Reports/P4-History/` — files named `*outliner*`, `*to-classify*`,
+See `WorkDoneByChangelists/P4-History/` — files named `*outliner*`, `*to-classify*`,
 `*landscape*`, `*hogsmeade*`, `*region*`, `*nav*`, `*add-outliner-columns*`,
 `*export-hierarchy*`. Roughly 40 changelists contributed to this topic.
 

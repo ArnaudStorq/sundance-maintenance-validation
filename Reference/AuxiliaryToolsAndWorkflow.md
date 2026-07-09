@@ -82,7 +82,7 @@ drive fixes. `UForceHLODExcludeFromLogBuilder` consumes exactly this format
 
 `D:\CustomGitRepos\sundance-maintenance-validation` (this repo) is a **git** repo
 (separate from the Perforce game depot). Structure: `Docs/`, `WorkDoneByTopic/`,
-`Reports/P4-History/`, `Tools/`, and this `Reference/`. Conventions: **everything in
+`WorkDoneByChangelists/P4-History/`, `Tools/`, and this `Reference/`. Conventions: **everything in
 English**; commit messages in English; one tool per `Tools/<Name>/` with its own
 README.
 
@@ -103,11 +103,11 @@ Common build errors hit while developing the builders and their fixes:
 
 ## Related changelists
 
-- [Add Outliner columns (CL 1690531)](../Reports/P4-History/2026-01-27-08-13-add-outliner-columns.md)
-- [Add `Outliner.ExportAllHierarchy` (CL 1707391)](../Reports/P4-History/2026-02-03-07-43-add-outliner-export-hierarchy.md)
-- [Outliner "Non Partitioned Parent" (CL 1731394)](../Reports/P4-History/2026-02-20-05-36-outliner-nonpartitioned-parent-message.md)
-- [`@BUILDFIX` undo Outliner column utils (CL 1729621)](../Reports/P4-History/2026-02-19-11-54-buildfix-undo-outliner-columns.md)
-- [ScriptableTools icon path robustness (CL 1714709)](../Reports/P4-History/2026-02-06-11-34-scriptabletools-icon-path-robustness.md)
+- [Add Outliner columns (CL 1690531)](../WorkDoneByChangelists/P4-History/2026-01-27-08-13-add-outliner-columns.md)
+- [Add `Outliner.ExportAllHierarchy` (CL 1707391)](../WorkDoneByChangelists/P4-History/2026-02-03-07-43-add-outliner-export-hierarchy.md)
+- [Outliner "Non Partitioned Parent" (CL 1731394)](../WorkDoneByChangelists/P4-History/2026-02-20-05-36-outliner-nonpartitioned-parent-message.md)
+- [`@BUILDFIX` undo Outliner column utils (CL 1729621)](../WorkDoneByChangelists/P4-History/2026-02-19-11-54-buildfix-undo-outliner-columns.md)
+- [ScriptableTools icon path robustness (CL 1714709)](../WorkDoneByChangelists/P4-History/2026-02-06-11-34-scriptabletools-icon-path-robustness.md)
 
 ## See also
 

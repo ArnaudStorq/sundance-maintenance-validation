@@ -207,10 +207,10 @@ disk-writing MapCheck auto-fixer (`WorldPartitionHLODFixup::FixupOne`) is **disa
 
 ## Related changelists
 
-- [Skip non-partitioned LI in RuleBuilder (CL 1727387)](../Reports/P4-History/2026-02-18-08-03-skip-nonpartitioned-li-rulebuilder.md)
-- [Add FixupActorFolders builder (CL 1900064)](../Reports/P4-History/2026-05-28-13-20-add-fixup-actorfolders-builder.md)
-- [Expose `ULevel::FixupActorFolders` (CL 1896115)](../Reports/P4-History/2026-05-26-14-39-expose-fixupactorfolders.md)
-- [WP Rules improvements (CL 1857281)](../Reports/P4-History/2026-04-29-16-33-wp-rules-improvements.md)
+- [Skip non-partitioned LI in RuleBuilder (CL 1727387)](../WorkDoneByChangelists/P4-History/2026-02-18-08-03-skip-nonpartitioned-li-rulebuilder.md)
+- [Add FixupActorFolders builder (CL 1900064)](../WorkDoneByChangelists/P4-History/2026-05-28-13-20-add-fixup-actorfolders-builder.md)
+- [Expose `ULevel::FixupActorFolders` (CL 1896115)](../WorkDoneByChangelists/P4-History/2026-05-26-14-39-expose-fixupactorfolders.md)
+- [WP Rules improvements (CL 1857281)](../WorkDoneByChangelists/P4-History/2026-04-29-16-33-wp-rules-improvements.md)
 
 ## See also
 
