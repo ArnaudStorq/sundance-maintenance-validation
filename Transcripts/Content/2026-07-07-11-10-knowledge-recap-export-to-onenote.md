@@ -65,7 +65,7 @@ I'm realizing my filter was too aggressive—it's removing legitimate content th
 
 I'm organizing the key topics I've covered into a structured summary—starting with Unreal Engine's world partitioning system including HLOD layers and data layers, then moving into level instances and their different configurations, and wrapping up with some mapcheck validation issues.
 
-Now I'm laying out the remaining topics: the relative location drift problems, Perforce workflows, converting legacy levels to world partition, the various builder systems and validation tools, plus all the supporting infrastructure like Git, GameLift, and the cursor workflow with AI skills and batch processes. I should write this in French since that's what the user used, keeping it substantial but well-organized by topic with clear bullet points throughout.
+Now I'm laying out the remaining topics: the relative location drift problems, Perforce workflows, converting legacy levels to world partition, the various builder systems and validation tools, plus all the supporting infrastructure like Git and the cursor workflow with AI skills and batch processes. I should write this in French since that's what the user used, keeping it substantial but well-organized by topic with clear bullet points throughout.
 
 <details><summary>Tools used</summary>
 
@@ -190,7 +190,6 @@ Connaissances pratiques accumulées :
 ## 10. Environnement & infra
 
 - **Git avancé** : `core.protectNTFS false`, `core.longpaths true`, `reset --hard`, `clean -fd`, création de branche depuis `origin/...`, rôle de `git pull`.
-- **GameLift Server SDK** : version minimale pour Amazon Linux 2023.
 - **ActorFolders** (UE5) : resauvegarde périodique des acteurs de type ActorFolder ; remplacement de `FActorFolderDescsContext::GetActorFolderDesc` par `FActorFolderDesc::GetPath`.
 
 ---

@@ -54,14 +54,6 @@ Settings and commands that matter on Windows for big/long-path repos:
 
 ---
 
-## GameLift Server SDK
-
-The **Amazon GameLift Server SDK** was checked for the **minimum version compatible
-with Amazon Linux 2023** (the target runtime) — the constraint being the toolchain /
-glibc baseline of AL2023 vs. the SDK's supported build.
-
----
-
 ## Related changelists
 
 - [Expose `ULevel::FixupActorFolders` (CL 1896115)](../Reports/P4-History/2026-05-26-14-39-expose-fixupactorfolders.md)
