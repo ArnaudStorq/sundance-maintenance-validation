@@ -133,4 +133,4 @@ value until a builder resaves it.
 - [Topic 7 — Rules, SmallGrid & IncludeInHLOD](RulesSmallGridIncludeInHLOD.md)
 - [Topic 2 — Level Instances & OFPA](LevelInstancesAndOFPA.md)
 - How-to: [MapCheck fix playbook](../Docs/MapCheck/FixingMapCheckIssues.md) (cause → solution per warning)
-- Plain-language: [`WorkByTopic/HLOD.md`](../WorkByTopic/HLOD.md)
+- Plain-language: [`WorkDoneByTopic/HLOD.md`](../WorkDoneByTopic/HLOD.md)

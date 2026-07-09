@@ -191,4 +191,4 @@ keeping it permanently in the on-save rules would reassign grids on every future
 
 - [Topic 1 — Streaming properties](WorldPartitionStreamingProperties.md)
 - [Topic 3 — Builders (`WorldPartitionRuleBuilder`)](BuildersAndCommandlets.md)
-- Plain-language: [`WorkByTopic/WorldPartitionRules.md`](../WorkByTopic/WorldPartitionRules.md)
+- Plain-language: [`WorkDoneByTopic/WorldPartitionRules.md`](../WorkDoneByTopic/WorldPartitionRules.md)

@@ -59,7 +59,7 @@ set "ARGS=-LogCmds="Global none,LogWorldPartitionRules display,LogWorldPartition
 - **Scriptable Tools** editor mode (via `EditorToolExtensions`) surfaces custom tools
   with toolbar icons; the icon-path resolution was hardened to fall back to the project
   content dir when the plugin lookup fails (see
-  [`WorkByTopic/ScriptableTools.md`](../WorkByTopic/ScriptableTools.md)).
+  [`WorkDoneByTopic/ScriptableTools.md`](../WorkDoneByTopic/ScriptableTools.md)).
 - **Asset Action Utility** vs **Scripted Asset Actions**: an *Asset Action Utility*
   Blueprint adds entries to the content-browser right-click submenu — a known pitfall is
   it appearing in an unexpected submenu; *Scripted Asset Actions* is the newer,
@@ -81,7 +81,7 @@ drive fixes. `UForceHLODExcludeFromLogBuilder` consumes exactly this format
 ## The documentation repo itself
 
 `D:\CustomGitRepos\sundance-maintenance-validation` (this repo) is a **git** repo
-(separate from the Perforce game depot). Structure: `Docs/`, `WorkByTopic/`,
+(separate from the Perforce game depot). Structure: `Docs/`, `WorkDoneByTopic/`,
 `Reports/P4-History/`, `Tools/`, and this `Reference/`. Conventions: **everything in
 English**; commit messages in English; one tool per `Tools/<Name>/` with its own
 README.
@@ -112,4 +112,4 @@ Common build errors hit while developing the builders and their fixes:
 ## See also
 
 - [Topic 3 — Builders & commandlets](BuildersAndCommandlets.md)
-- Plain-language: [`WorkByTopic/Outliner.md`](../WorkByTopic/Outliner.md), [`WorkByTopic/EditorStabilityAndWarnings.md`](../WorkByTopic/EditorStabilityAndWarnings.md)
+- Plain-language: [`WorkDoneByTopic/Outliner.md`](../WorkDoneByTopic/Outliner.md), [`WorkDoneByTopic/EditorStabilityAndWarnings.md`](../WorkDoneByTopic/EditorStabilityAndWarnings.md)

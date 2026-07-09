@@ -9,7 +9,7 @@ documentation folders:
 
 | Folder | Audience | Style |
 |--------|----------|-------|
-| [`WorkByTopic/`](../WorkByTopic/README.md) | Anyone | Plain-language story, *why* it was done |
+| [`WorkDoneByTopic/`](../WorkDoneByTopic/README.md) | Anyone | Plain-language story, *why* it was done |
 | [`Docs/`](../Docs/README.md) | Practitioner | Task-oriented how-to |
 | **`Reference/`** (this folder) | **Me / engineers** | **Exact classes, methods, files, log strings, command lines, gotchas** |
 

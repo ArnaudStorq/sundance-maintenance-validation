@@ -3,7 +3,7 @@
 A **cause → solution** playbook for the MapCheck warnings/errors actually hit and
 fixed on `LV_Overland`, grounded in the changelist history
 ([`Reports/P4-History/`](../../Reports/P4-History/README.md)), the topic write-ups
-([`WorkByTopic/`](../../WorkByTopic/README.md)), and the technical reference
+([`WorkDoneByTopic/`](../../WorkDoneByTopic/README.md)), and the technical reference
 ([`Reference/`](../../Reference/README.md)).
 
 > This complements the generic [MapCheck catalog](README.md). Where the catalog lists
@@ -207,7 +207,7 @@ These are raised by the Sundance `UWorldPartitionMapCheckValidator` (runs on
   editing. Prevents a class of DataLayer breakage that would later show up in MapCheck.
 - **History**:
   [WorldEvent DataLayers checkout check (CL 1758012)](../../Reports/P4-History/2026-03-11-09-21-worldevent-datalayers-checkout-check.md) ·
-  see [`WorkByTopic/WorldEvents.md`](../../WorkByTopic/WorldEvents.md).
+  see [`WorkDoneByTopic/WorldEvents.md`](../../WorkDoneByTopic/WorldEvents.md).
 
 ---
 
@@ -372,4 +372,4 @@ These are raised by the Sundance `UWorldPartitionMapCheckValidator` (runs on
   [rules/SmallGrid/IncludeInHLOD](../../Reference/RulesSmallGridIncludeInHLOD.md),
   [builders](../../Reference/BuildersAndCommandlets.md)
 - [World Partition Rules (how-to)](../WorldPartitionRules/README.md)
-- Plain-language: [`WorkByTopic/HLOD.md`](../../WorkByTopic/HLOD.md)
+- Plain-language: [`WorkDoneByTopic/HLOD.md`](../../WorkDoneByTopic/HLOD.md)

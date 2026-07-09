@@ -95,4 +95,4 @@ false-positives. A human reviewing the diff is the reliable gate.
 ## See also
 
 - [Topic 3 — Builders & commandlets](BuildersAndCommandlets.md)
-- Plain-language: [`WorkByTopic/WorldPartitionRules.md`](../WorkByTopic/WorldPartitionRules.md) §4–5
+- Plain-language: [`WorkDoneByTopic/WorldPartitionRules.md`](../WorkDoneByTopic/WorldPartitionRules.md) §4–5

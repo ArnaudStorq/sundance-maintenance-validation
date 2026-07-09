@@ -147,4 +147,4 @@ static FAutoConsoleCommand LogNonPartitionedLevelInstancesCmd(
 
 - [Topic 6 — Converting levels to World Partition](ConvertingLevelsToWorldPartition.md)
 - [Topic 3 — Builders & commandlets](BuildersAndCommandlets.md)
-- Plain-language: [`WorkByTopic/PartitionedStreaming.md`](../WorkByTopic/PartitionedStreaming.md)
+- Plain-language: [`WorkDoneByTopic/PartitionedStreaming.md`](../WorkDoneByTopic/PartitionedStreaming.md)
