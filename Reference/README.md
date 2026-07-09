@@ -38,6 +38,7 @@ changelists in [`Reports/P4-History/`](../Reports/P4-History/README.md).
 | 10 | [Environment & infrastructure](EnvironmentAndInfra.md) | WSL2/Mercury TURN, advanced git, GameLift, ActorFolders format |
 | 11 | [Transcription & research](TranscriptionAndResearch.md) | Unreal Fest notes, Phil/William video transcripts, image retouch |
 | 12 | [Cursor & Miro tooling](CursorAndMiroTooling.md) | AI skills workflow, Miro MCP access |
+| 13 | [World Partition builders catalog](WorldPartitionBuildersCatalog.md) | the full list of every engine + custom WP builder/commandlet and its switches |
 
 ## The one-sentence goal
 
