@@ -137,8 +137,8 @@ the **exact** log line so the catalog stays searchable.
 - **Message**: *(pattern)* — actor left on the default grid or with no Data
   Layer.
 - **Severity**: Warning.
-- **Cause**: The [World Partition rules](../world-partition-rules/README.md) did
-  not match the actor, often because of its [Outliner path](../outliner/README.md).
+- **Cause**: The [World Partition rules](../WorldPartitionRules/README.md) did
+  not match the actor, often because of its [Outliner path](../Outliner/README.md).
 - **Consequence**: The actor streams incorrectly (always loaded, or in the wrong
   cell), hurting memory and performance.
 - **Fix**: Correct the actor's Outliner path and re-run the rule builder.
@@ -204,11 +204,11 @@ the **exact** log line so the catalog stays searchable.
 1. Run **Build > Map Check** on the map or Level Instance.
 2. Triage: fix all **Errors** first, then review **Warnings**.
 3. For streaming/rule-related entries, cross-check the
-   [World Partition rules](../world-partition-rules/README.md) and
-   [Outliner](../outliner/README.md).
+   [World Partition rules](../WorldPartitionRules/README.md) and
+   [Outliner](../Outliner/README.md).
 4. Re-run Map Check until it is clean before submitting.
 
 ## See also
 
-- [World Partition Rules](../world-partition-rules/README.md)
-- [Outliner management](../outliner/README.md)
+- [World Partition Rules](../WorldPartitionRules/README.md)
+- [Outliner management](../Outliner/README.md)

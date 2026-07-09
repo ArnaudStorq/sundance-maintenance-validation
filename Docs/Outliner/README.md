@@ -6,7 +6,7 @@ why that organization matters for World Partition and automated tooling.
 ## Why the Outliner matters
 
 Beyond being a convenience for artists, the Outliner **path** of an actor is
-used as an input by the [World Partition rules](../world-partition-rules/README.md).
+used as an input by the [World Partition rules](../WorldPartitionRules/README.md).
 The rule builder can target or exclude actors based on substrings of their
 Outliner path:
 
@@ -42,11 +42,11 @@ Keep folder structure predictable so rules and filters stay stable:
 
 1. Organize actors under consistent, rule-aware folders.
 2. Verify that the intended `Contain` / `Discard` substrings match the paths.
-3. Apply [World Partition rules](../world-partition-rules/README.md).
-4. Run a [Map Check](../map-check/README.md) to catch actors that fell through.
+3. Apply [World Partition rules](../WorldPartitionRules/README.md).
+4. Run a [Map Check](../MapCheck/README.md) to catch actors that fell through.
 
 ## See also
 
-- [World Partition Rules](../world-partition-rules/README.md)
-- [MapCheck warnings & errors](../map-check/README.md)
-- [ProcessLevelInstances tool](../../tools/ProcessLevelInstances/README.md)
+- [World Partition Rules](../WorldPartitionRules/README.md)
+- [MapCheck warnings & errors](../MapCheck/README.md)
+- [ProcessLevelInstances tool](../../Tools/ProcessLevelInstances/README.md)

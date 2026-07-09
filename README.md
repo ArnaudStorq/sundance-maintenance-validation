@@ -10,33 +10,33 @@ warnings/errors, Outliner organization, and related technical workflows.
 
 ```
 .
-├── docs/                     Documentation (Markdown)
-│   ├── world-partition-rules/  Applying World Partition rules
-│   ├── map-check/              Fixing MapCheck warnings & errors
-│   ├── outliner/               Outliner organization
-│   ├── technical/              Setup, conventions, troubleshooting
-│   └── images/                 Shared images for the docs
-└── tools/                    Source code / scripts
+├── Docs/                       Documentation (Markdown)
+│   ├── WorldPartitionRules/    Applying World Partition rules
+│   ├── MapCheck/               Fixing MapCheck warnings & errors
+│   ├── Outliner/               Outliner organization
+│   ├── Technical/              Setup, conventions, troubleshooting
+│   └── Images/                 Shared images for the docs
+└── Tools/                      Source code / scripts
     └── ProcessLevelInstances/  Batch rule builder for Level Instances
 ```
 
 ## Documentation
 
-Start at the [documentation index](docs/README.md), or jump to a section:
+Start at the [documentation index](Docs/README.md), or jump to a section:
 
-- [World Partition Rules](docs/world-partition-rules/README.md)
-- [MapCheck warnings & errors](docs/map-check/README.md)
-- [Outliner management](docs/outliner/README.md)
-- [Technical documentation](docs/technical/README.md)
+- [World Partition Rules](Docs/WorldPartitionRules/README.md)
+- [MapCheck warnings & errors](Docs/MapCheck/README.md)
+- [Outliner management](Docs/Outliner/README.md)
+- [Technical documentation](Docs/Technical/README.md)
 
 ## Tools
 
-- [ProcessLevelInstances](tools/ProcessLevelInstances/README.md) — runs the
+- [ProcessLevelInstances](Tools/ProcessLevelInstances/README.md) — runs the
   `WorldPartitionRuleBuilder` commandlet over a list of Level Instances.
 
 ## Contributing
 
 - Write everything (docs, code comments, commit messages) in English.
-- Put new tools under `tools/<ToolName>/` with their own `README.md`.
-- Put new documentation under `docs/<topic>/` and link it from
-  [`docs/README.md`](docs/README.md).
+- Put new tools under `Tools/<ToolName>/` with their own `README.md`.
+- Put new documentation under `Docs/<Topic>/` and link it from
+  [`Docs/README.md`](Docs/README.md).

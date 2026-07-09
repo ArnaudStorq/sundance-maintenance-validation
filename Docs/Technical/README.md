@@ -42,14 +42,14 @@ rule builder:
 ```
 
 This silences everything (`Global none`) except the categories relevant to the
-task. See [World Partition Rules > Reading the logs](../world-partition-rules/README.md#reading-the-logs).
+task. See [World Partition Rules > Reading the logs](../WorldPartitionRules/README.md#reading-the-logs).
 
 ## Conventions
 
 - **Language**: everything published (docs, code, comments, commit messages) is
   written in English.
-- **Tools** live under `tools/<ToolName>/` with their own `README.md`.
-- **Docs** live under `docs/<topic>/` and are linked from the
+- **Tools** live under `Tools/<ToolName>/` with their own `README.md`.
+- **Docs** live under `Docs/<Topic>/` and are linked from the
   [documentation index](../README.md).
 - **Paths**: absolute paths in scripts (editor, `.uproject`) are environment
   specific — document the expected values and keep them at the top of each
@@ -57,11 +57,11 @@ task. See [World Partition Rules > Reading the logs](../world-partition-rules/RE
 
 ## Validation checklist (before submitting)
 
-1. Apply the [World Partition rules](../world-partition-rules/README.md) to the
+1. Apply the [World Partition rules](../WorldPartitionRules/README.md) to the
    changed Level Instances / maps.
 2. Run **Build > Map Check** and resolve entries
-   ([catalog](../map-check/README.md)) — errors first, then warnings.
-3. Confirm the [Outliner](../outliner/README.md) paths match the intended rule
+   ([catalog](../MapCheck/README.md)) — errors first, then warnings.
+3. Confirm the [Outliner](../Outliner/README.md) paths match the intended rule
    filters.
 4. Rebuild HLOD / lighting if geometry or assignments changed.
 5. Verify streaming in-editor (World Partition minimap, Data Layer toggles).
@@ -78,6 +78,6 @@ task. See [World Partition Rules > Reading the logs](../world-partition-rules/RE
 
 ## See also
 
-- [World Partition Rules](../world-partition-rules/README.md)
-- [MapCheck warnings & errors](../map-check/README.md)
-- [Outliner management](../outliner/README.md)
+- [World Partition Rules](../WorldPartitionRules/README.md)
+- [MapCheck warnings & errors](../MapCheck/README.md)
+- [Outliner management](../Outliner/README.md)

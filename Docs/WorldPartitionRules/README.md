@@ -16,7 +16,7 @@ In Sundance, these rules are applied both:
 - **Interactively**, from the editor, and
 - **In batch**, through the `WorldPartitionBuilderCommandlet` with the
   `WorldPartitionRuleBuilder` builder (see
-  [`tools/ProcessLevelInstances`](../../tools/ProcessLevelInstances/README.md)).
+  [`Tools/ProcessLevelInstances`](../../Tools/ProcessLevelInstances/README.md)).
 
 ## Key concepts
 
@@ -55,7 +55,7 @@ The `WorldPartitionRuleBuilder` applies the project's rule set to a target
 | `-BuildMachine -Unattended` | Non-interactive mode, suitable for automation |
 
 > The Outliner path filters tie directly into how the
-> [Outliner](../outliner/README.md) is organized. Consistent Outliner naming is
+> [Outliner](../Outliner/README.md) is organized. Consistent Outliner naming is
 > what makes rule targeting reliable.
 
 ### Running the rule builder in batch
@@ -74,7 +74,7 @@ UnrealEditor-Cmd.exe "Sundance.uproject" ^
 ```
 
 To process many Level Instances in one pass, use the
-[`ProcessLevelInstances`](../../tools/ProcessLevelInstances/README.md) script,
+[`ProcessLevelInstances`](../../Tools/ProcessLevelInstances/README.md) script,
 which loops over a list and reports `[OK]` / `[ERROR]` per entry.
 
 ### Reading the logs
@@ -95,11 +95,11 @@ expected rule assignments in `LogWorldPartitionRules` is considered successful.
 ## Recommended workflow
 
 1. **Organize the Outliner** so actors sit under predictable, rule-friendly
-   paths (see [Outliner management](../outliner/README.md)).
+   paths (see [Outliner management](../Outliner/README.md)).
 2. **Apply the rules**, either interactively or via the batch tool for many
    Level Instances at once.
 3. **Run a Map Check** and resolve any warnings/errors that the rule pass
-   surfaced (see [MapCheck](../map-check/README.md)).
+   surfaced (see [MapCheck](../MapCheck/README.md)).
 4. **Validate streaming** in-editor (World Partition minimap, data layer
    toggles) before submitting.
 
@@ -113,6 +113,6 @@ expected rule assignments in `LogWorldPartitionRules` is considered successful.
 
 ## See also
 
-- [MapCheck warnings & errors](../map-check/README.md)
-- [Outliner management](../outliner/README.md)
-- [ProcessLevelInstances tool](../../tools/ProcessLevelInstances/README.md)
+- [MapCheck warnings & errors](../MapCheck/README.md)
+- [Outliner management](../Outliner/README.md)
+- [ProcessLevelInstances tool](../../Tools/ProcessLevelInstances/README.md)
