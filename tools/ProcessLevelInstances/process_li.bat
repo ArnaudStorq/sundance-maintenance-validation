@@ -2,18 +2,18 @@
 setlocal enabledelayedexpansion
 
 REM ============================================================
-REM  Traitement WorldPartitionRuleBuilder pour une liste de LI
+REM  WorldPartitionRuleBuilder processing for a list of LIs
 REM ============================================================
 
-REM --- A adapter selon votre installation ---------------------
-REM Chemin vers l'executable (UnrealEditor-Cmd.exe) et le .uproject
+REM --- Adjust to match your installation ----------------------
+REM Path to the executable (UnrealEditor-Cmd.exe) and the .uproject
 set "EDITOR_CMD=D:\Sun\Engine\Binaries\Win64\UnrealEditor-Win64-DebugGame.exe"
 set "UPROJECT=D:\Sun\Sundance\Sundance.uproject"
 
-REM Arguments communs (contenant le marqueur <NOM_DU_LI>)
-set "ARGS=-LogCmds=\"Global none,LogWorldPartitionRules display,LogWorldPartitionRuleBuilder display,LogWorldPartitionBuilder warning,LogCommandletPackageHelper error\" -run=WorldPartitionBuilderCommandlet -Builder=WorldPartitionRuleBuilder -DataLayerRules -HLODLayerRules -RuntimeGridRules -ContainOutlinerPathSubstrings=\"\" -DiscardOutlinerPathSubstrings=\"\" -BuildMachine -Unattended <NOM_DU_LI>"
+REM Shared arguments (containing the <LI_NAME> placeholder)
+set "ARGS=-LogCmds=\"Global none,LogWorldPartitionRules display,LogWorldPartitionRuleBuilder display,LogWorldPartitionBuilder warning,LogCommandletPackageHelper error\" -run=WorldPartitionBuilderCommandlet -Builder=WorldPartitionRuleBuilder -DataLayerRules -HLODLayerRules -RuntimeGridRules -ContainOutlinerPathSubstrings=\"\" -DiscardOutlinerPathSubstrings=\"\" -BuildMachine -Unattended <LI_NAME>"
 
-REM --- Liste des Level Instances a traiter --------------------
+REM --- List of Level Instances to process ---------------------
 set LI_LIST=^
  LI_Crate_Poachers_DragonClaw^
  LI_Crate_Poachers_UnicornHorn_B^
@@ -30,29 +30,29 @@ set LI_LIST=^
  LI_Camp_WoodenBox_A^
  LI_COG_Cottage_Blockout
 
-REM --- Boucle de traitement -----------------------------------
+REM --- Processing loop -----------------------------------------
 for %%L in (%LI_LIST%) do (
     echo.
     echo ============================================================
-    echo  Traitement de : %%L
+    echo  Processing: %%L
     echo ============================================================
 
-    REM Remplace <NOM_DU_LI> par le nom du LI courant
-    set "CURRENT_ARGS=!ARGS:<NOM_DU_LI>=%%L!"
+    REM Replace <LI_NAME> with the name of the current LI
+    set "CURRENT_ARGS=!ARGS:<LI_NAME>=%%L!"
 
     echo "%EDITOR_CMD%" "%UPROJECT%" !CURRENT_ARGS!
     "%EDITOR_CMD%" "%UPROJECT%" !CURRENT_ARGS!
 
     if errorlevel 1 (
-        echo [ERREUR] Le traitement de %%L a echoue ^(code !errorlevel!^).
+        echo [ERROR] Processing of %%L failed ^(code !errorlevel!^).
     ) else (
-        echo [OK] %%L traite avec succes.
+        echo [OK] %%L processed successfully.
     )
 )
 
 echo.
 echo ============================================================
-echo  Traitement termine.
+echo  Processing complete.
 echo ============================================================
 
 endlocal

@@ -1,43 +1,42 @@
-# Tools
+# Sundance Maintenance & Validation
 
-A collection of utility tools/scripts for the Sundance project (Unreal Engine).
+Tools and documentation for the maintenance and validation of the **Sundance**
+project (Unreal Engine 5), covering World Partition rules, Map Check
+warnings/errors, Outliner organization, and related technical workflows.
 
-## Available tools
+> All content published in this repository is written in **English**.
 
-### ProcessLevelInstances
+## Repository structure
 
-Folder: [`ProcessLevelInstances/`](ProcessLevelInstances/)
-
-Windows batch script (`process_li.bat`) that runs the
-`WorldPartitionBuilderCommandlet` (using the `WorldPartitionRuleBuilder` builder)
-on a list of Level Instances, one after another.
-
-For each Level Instance in the list, the script launches the Unreal editor in
-command-line mode with the build rules (DataLayer, HLOD, RuntimeGrid) and prints
-an `[OK]` / `[ERROR]` status for each run.
-
-#### Configuration
-
-Adjust these at the top of `process_li.bat`:
-
-| Variable | Description | Current value |
-| --- | --- | --- |
-| `EDITOR_CMD` | Path to the Unreal editor executable | `D:\Sun\Engine\Binaries\Win64\UnrealEditor-Win64-DebugGame.exe` |
-| `UPROJECT` | Path to the `.uproject` file | `D:\Sun\Sundance\Sundance.uproject` |
-| `ARGS` | Arguments passed to the commandlet (contains the `<NOM_DU_LI>` placeholder) | see the file |
-| `LI_LIST` | List of Level Instances to process (one name per line) | see the file |
-
-The `<NOM_DU_LI>` placeholder in `ARGS` is automatically replaced, on every
-iteration, with the name of the current Level Instance.
-
-#### Usage
-
-1. Check / adjust `EDITOR_CMD`, `UPROJECT` and `LI_LIST`.
-2. Double-click `process_li.bat`, or run it from a command prompt:
-
-```bat
-process_li.bat
+```
+.
+├── docs/                     Documentation (Markdown)
+│   ├── world-partition-rules/  Applying World Partition rules
+│   ├── map-check/              Fixing MapCheck warnings & errors
+│   ├── outliner/               Outliner organization
+│   ├── technical/              Setup, conventions, troubleshooting
+│   └── images/                 Shared images for the docs
+└── tools/                    Source code / scripts
+    └── ProcessLevelInstances/  Batch rule builder for Level Instances
 ```
 
-The script processes all Level Instances, then waits for a key press (`pause`)
-before closing the window.
+## Documentation
+
+Start at the [documentation index](docs/README.md), or jump to a section:
+
+- [World Partition Rules](docs/world-partition-rules/README.md)
+- [MapCheck warnings & errors](docs/map-check/README.md)
+- [Outliner management](docs/outliner/README.md)
+- [Technical documentation](docs/technical/README.md)
+
+## Tools
+
+- [ProcessLevelInstances](tools/ProcessLevelInstances/README.md) — runs the
+  `WorldPartitionRuleBuilder` commandlet over a list of Level Instances.
+
+## Contributing
+
+- Write everything (docs, code comments, commit messages) in English.
+- Put new tools under `tools/<ToolName>/` with their own `README.md`.
+- Put new documentation under `docs/<topic>/` and link it from
+  [`docs/README.md`](docs/README.md).
