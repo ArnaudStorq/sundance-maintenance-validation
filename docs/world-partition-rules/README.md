@@ -58,6 +58,40 @@ The `WorldPartitionRuleBuilder` applies the project's rule set to a target
 > [Outliner](../outliner/README.md) is organized. Consistent Outliner naming is
 > what makes rule targeting reliable.
 
+### Running the rule builder in batch
+
+The builder runs through the `WorldPartitionBuilderCommandlet`. A single
+invocation looks like:
+
+```bat
+UnrealEditor-Cmd.exe "Sundance.uproject" ^
+  -run=WorldPartitionBuilderCommandlet ^
+  -Builder=WorldPartitionRuleBuilder ^
+  -DataLayerRules -HLODLayerRules -RuntimeGridRules ^
+  -ContainOutlinerPathSubstrings="" -DiscardOutlinerPathSubstrings="" ^
+  -BuildMachine -Unattended ^
+  <TargetLevelInstance>
+```
+
+To process many Level Instances in one pass, use the
+[`ProcessLevelInstances`](../../tools/ProcessLevelInstances/README.md) script,
+which loops over a list and reports `[OK]` / `[ERROR]` per entry.
+
+### Reading the logs
+
+The builder narrows engine logging to the categories that matter for a rule
+pass. Watch these in the output:
+
+| Log category | What it tells you |
+| --- | --- |
+| `LogWorldPartitionRules` | Which rules matched and what they assigned |
+| `LogWorldPartitionRuleBuilder` | High-level builder progress per target |
+| `LogWorldPartitionBuilder` | Streaming/build-level warnings |
+| `LogCommandletPackageHelper` | Package load/save errors (blockers) |
+
+A run that finishes without `LogCommandletPackageHelper` errors and with the
+expected rule assignments in `LogWorldPartitionRules` is considered successful.
+
 ## Recommended workflow
 
 1. **Organize the Outliner** so actors sit under predictable, rule-friendly
