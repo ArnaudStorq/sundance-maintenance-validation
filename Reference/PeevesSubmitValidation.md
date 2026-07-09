@@ -1,4 +1,4 @@
-# 8. Peeves — validation at submit
+# Peeves — validation at submit
 
 **Peeves** is WB Games Montréal's in-house validation framework that runs at Perforce
 submit. It is not a single C++ class; it is a **Python framework + a C++ bridge
@@ -38,12 +38,12 @@ plugin** that wraps Unreal's Data Validation stack and the Perforce submit UI.
    - all enabled `UEditorValidatorBase` subclasses, including
      `UWorldPartitionChangelistValidator`, `UDirtyFilesChangelistValidator`, and the
      Sundance `UWorldPartitionMapCheckValidator` (see
-     [Topic 5](PerforceSourceControl.md) for those messages).
+     [Perforce source control](PerforceSourceControl.md) for those messages).
 3. **`verify_assets.py --mode presubmit`** runs each asset's `verify()` in
    `PreSubmit` mode.
 
 So Peeves is the umbrella; the World Partition / changelist correctness rules described
-in [Topic 5](PerforceSourceControl.md) are enforced **through** it. The WB tweak in
+in [Perforce source control](PerforceSourceControl.md) are enforced **through** it. The WB tweak in
 `DataValidationChangelist.cpp` explicitly exists to "match how we validate in Peeves"
 (added refs = error, checked-out refs = warning).
 
@@ -86,12 +86,12 @@ rule**. What actually happens:
 `LV_Overland`**, **skip the validation entirely** — there is no point forcing
 partitioning on levels outside the streamed overworld. This "is it in the `LV_Overland`
 hierarchy?" gate reuses the same traversal as
-[Topic 2](LevelInstancesAndOFPA.md)/`Editor.LogNonPartitionedLevelInstances`.
+[Level Instances & OFPA](LevelInstancesAndOFPA.md)/`Editor.LogNonPartitionedLevelInstances`.
 
 **Reservation on record:** validating this at submit is fastidious — the author only
 discovers the problem late (at submit), and forcing a conversion at that moment risks
 data loss. Hence the preference to (a) scope it tightly to the `LV_Overland` hierarchy
-and (b) lean on the migration tooling ([Topic 6](ConvertingLevelsToWorldPartition.md))
+and (b) lean on the migration tooling ([converting levels to World Partition](ConvertingLevelsToWorldPartition.md))
 rather than a hard submit gate.
 
 ---
@@ -102,5 +102,5 @@ rather than a hard submit gate.
 
 ## See also
 
-- [Topic 5 — Perforce source control](PerforceSourceControl.md) (the validators Peeves runs)
-- [Topic 2 — Level Instances & OFPA](LevelInstancesAndOFPA.md) (the `LV_Overland` reference test)
+- [Perforce source control](PerforceSourceControl.md) (the validators Peeves runs)
+- [Level Instances & OFPA](LevelInstancesAndOFPA.md) (the `LV_Overland` reference test)

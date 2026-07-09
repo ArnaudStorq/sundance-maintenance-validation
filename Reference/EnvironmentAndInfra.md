@@ -1,4 +1,4 @@
-# 10. Environment & infrastructure
+# Environment & infrastructure
 
 Cross-cutting environment, build-infra, and engine-format notes that surfaced during
 the work but aren't specific to World Partition rules.
@@ -34,7 +34,7 @@ private:
 
 `UActorFolder` assets are also **periodically resaved** to bring stale packages to the
 current serialization version (many were left dirty after Outliner renames — the "699
-child folders" cleanup). See [Topic 3](BuildersAndCommandlets.md) for
+child folders" cleanup). See [builders & commandlets](BuildersAndCommandlets.md) for
 `UWorldPartitionFixupActorFoldersBuilder`.
 
 ---
@@ -49,5 +49,5 @@ child folders" cleanup). See [Topic 3](BuildersAndCommandlets.md) for
 
 ## See also
 
-- [Topic 3 — Builders & commandlets](BuildersAndCommandlets.md)
+- [Builders & commandlets](BuildersAndCommandlets.md)
 - Plain-language: [`WorkDoneByTopic/ActorFolders.md`](../WorkDoneByTopic/ActorFolders.md)

@@ -1,4 +1,4 @@
-# 1. World Partition streaming properties
+# World Partition streaming properties
 
 The three per-actor properties World Partition uses to decide **how** an actor
 streams and how it is represented at distance.
@@ -65,7 +65,7 @@ bool UWorldPartitionRuntimeHashSet::IsValidHLODLayer(FName GridName, const FSoft
 
 This is why the fix is either (a) give the actor a layer that **is** allowed on its
 grid, or (b) clear the layer / make it non-HLOD-relevant. The grid↔layer allowlists
-live on the map (see [Topic 7](RulesSmallGridIncludeInHLOD.md)) and partly in
+live on the map (see [World Partition rules](WorldPartitionRules.md)) and partly in
 `DefaultPlugins.ini` (`AllowedRuntimeGrids`).
 
 ---
@@ -79,7 +79,7 @@ live on the map (see [Topic 7](RulesSmallGridIncludeInHLOD.md)) and partly in
   `bEnableAutoLODGeneration` is what makes it HLOD-relevant; the layer itself can be
   inherited or `None`. Clearing HLOD = `SetHLODLayer(nullptr)` **and**
   `bEnableAutoLODGeneration = false` (this is exactly what the force-exclude path does,
-  see [Topic 7](RulesSmallGridIncludeInHLOD.md)).
+  see [World Partition rules](WorldPartitionRules.md)).
 
 ---
 
@@ -104,7 +104,7 @@ The log-only variants (`FStreamingGenerationLogErrorHandler`) print the same tex
 > `WorldPartitionHLODFixup::FixupOne`, `.../Editor/UnrealEd/Private/WorldPartition/WorldPartitionHLODFixupHelper.cpp`)
 > but its call is **commented out / disabled** (`// @astorq Comment this call to
 > deactivate the mapcheck fixer.`). The bulk cleanup was done with the custom builder
-> instead (see [Topic 3](BuildersAndCommandlets.md)).
+> instead (see [builders & commandlets](BuildersAndCommandlets.md)).
 
 ---
 
@@ -130,7 +130,7 @@ value until a builder resaves it.
 
 ## See also
 
-- [Topic 7 — Rules, SmallGrid & IncludeInHLOD](RulesSmallGridIncludeInHLOD.md)
-- [Topic 2 — Level Instances & OFPA](LevelInstancesAndOFPA.md)
-- How-to: [MapCheck fix playbook](../Docs/MapCheck/FixingMapCheckIssues.md) (cause → solution per warning)
+- [World Partition rules](WorldPartitionRules.md)
+- [Level Instances & OFPA](LevelInstancesAndOFPA.md)
+- How-to: [MapCheck fix playbook](FixingMapCheckIssues.md) (cause → solution per warning)
 - Plain-language: [`WorkDoneByTopic/HLOD.md`](../WorkDoneByTopic/HLOD.md)

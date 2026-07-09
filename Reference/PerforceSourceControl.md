@@ -1,4 +1,4 @@
-# 5. Perforce (P4) source control
+# Perforce (P4) source control
 
 How the builders and validators interact with Perforce: checkout-before-save,
 diagnosing locked files, and changelist-level validation.
@@ -126,5 +126,5 @@ asset. Please save to proceed."*
 
 ## See also
 
-- [Topic 8 — Peeves submit validation](PeevesSubmitValidation.md) (runs these validators at submit)
-- [Topic 4 — Transform drift](TransformDrift.md) (diff-then-revert discipline)
+- [Peeves submit validation](PeevesSubmitValidation.md) (runs these validators at submit)
+- [Transform drift](TransformDrift.md) (diff-then-revert discipline)

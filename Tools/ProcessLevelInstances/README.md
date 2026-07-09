@@ -36,5 +36,5 @@ before closing the window.
 
 ## Related documentation
 
-- [World Partition Rules](../../Docs/WorldPartitionRules/README.md)
-- [Outliner management](../../Docs/Outliner/README.md)
+- [World Partition rules](../../Reference/WorldPartitionRules.md)
+- [Outliner management](../../Reference/OutlinerManagement.md)

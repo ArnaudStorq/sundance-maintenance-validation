@@ -173,6 +173,6 @@ defined on the `LV_Overland` runtime hash set, not in the `.ini`.
 |---------------|--------|------------|
 | Asset class, target grid/layer, matched actor types, outliner substrings, `*RulesToExclude`, `LogicOperator`, `IncludeInHLOD=false` on NoneExclude | Package name/import/export tables | High (read directly) |
 | Config array order, force/ignore/clear lists, AllowedRuntimeGrids | `DefaultEditor.ini` / `DefaultPlugins.ini` | High (verbatim) |
-| Rule application effects, evaluation model, "Skipped RuntimeGrid override" | Engine source cited in [`Reference/`](../../Reference/README.md) | High (source-cited) |
+| Rule application effects, evaluation model, "Skipped RuntimeGrid override" | Engine source cited in the [reference topics](README.md) | High (source-cited) |
 | Foliage_Near "handled by imposter pipeline" intent | Inferred from unset target + Dummy target layer | Medium (interpretation) |
 | Numeric bounds (2 m), grid cell sizes / loading ranges | Changelist history + `Reference/` + map hash | Medium (not re-derived from binary) |

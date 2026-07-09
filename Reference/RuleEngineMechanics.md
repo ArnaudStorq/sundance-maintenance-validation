@@ -94,8 +94,8 @@ same **on-save** subsystems to a target (a Level Instance, a set of actors, or a
 whole map) in a headless commandlet. Switches: `-DataLayerRules`, `-HLODLayerRules`,
 `-RuntimeGridRules`, plus `-ContainOutlinerPathSubstrings` /
 `-DiscardOutlinerPathSubstrings` to scope the pass. See
-[`Docs/WorldPartitionRules/README.md`](../WorldPartitionRules/README.md) and
-[`Reference/BuildersAndCommandlets.md`](../../Reference/BuildersAndCommandlets.md).
+[World Partition rules](WorldPartitionRules.md) and
+[builders & commandlets](BuildersAndCommandlets.md).
 
 > **Takeaway:** the builder and manual save share the *same* rule set (the
 > `*ForActorSave` arrays). The mutator uses a *different, deliberately smaller* set
@@ -199,7 +199,7 @@ This is the concrete meaning of the two "None" HLOD rules:
 
 The difference matters because the engine's invalid-HLOD-layer check only fires for
 actors that are HLOD-relevant, spatially loaded, and carry an explicit layer that is
-not valid on their grid ([Reference topic 1](../../Reference/WorldPartitionStreamingProperties.md)).
+not valid on their grid ([streaming properties](WorldPartitionStreamingProperties.md)).
 `NoneExclude` makes an actor drop out of that check; `NoneInclude` keeps it in HLOD
 but with no explicit (and therefore no *invalid*) layer.
 

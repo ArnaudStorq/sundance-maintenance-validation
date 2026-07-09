@@ -1,4 +1,4 @@
-# 3. Builders & commandlets
+# Builders & commandlets
 
 All custom builders derive from `UWorldPartitionBuilder` and run through the engine's
 `UWorldPartitionBuilderCommandlet`. They live in the `WorldBuildingEditor` module
@@ -76,7 +76,7 @@ the dirty packages. This is the batch equivalent of the on-save rule reapplicati
   subsystem's `ApplyRulesOnActor` (`:237`), with `bAutoCheckout=false`,
   `bAutoSave=false` — checkout happens at **save** time.
 - `PackagesToSave` is `UPROPERTY(Transient)` (must not be serialized — see
-  [Topic 4](TransformDrift.md)); flushed every 100 dirty packages, on GC, per pass,
+  [transform drift](TransformDrift.md)); flushed every 100 dirty packages, on GC, per pass,
   and in `FinalizeRunInternal`.
 - Log categories: `LogWorldPartitionRuleBuilder` (builder) and
   `LogWorldPartitionRules` (rule subsystems, e.g. `Applied RuntimeGrid '%s' to actor '%s'.`).
@@ -153,7 +153,7 @@ Example (full fix):
 
 Repairs orphaned/duplicated `UActorFolder` assets by calling the engine's own
 `ULevel::FixupActorFolders()` (exposed publicly by an AVA engine patch — see
-[Topic 10](EnvironmentAndInfra.md)).
+[environment & infrastructure](EnvironmentAndInfra.md)).
 
 - Switches: `-bOrphans`, `-bDuplicates`, `-bReportOnly`.
 - `PreRun` scans the Asset Registry (`FindOrphans` / `FindDuplicatePaths`).
@@ -188,7 +188,7 @@ Repairs orphaned/duplicated `UActorFolder` assets by calling the engine's own
 
 The MapCheck/streaming-generation error path is engine code with AVA modifications:
 `ITokenizedMessageErrorHandler::OnInvalidHLODLayer/OnInvalidRuntimeGrid/OnInvalidReference`
-(message strings in [Topic 1](WorldPartitionStreamingProperties.md)) and the
+(message strings in [streaming properties](WorldPartitionStreamingProperties.md)) and the
 in-memory fixup `FStreamingGenerationActorDescView::SetForcedNoHLODLayer()`. The
 disk-writing MapCheck auto-fixer (`WorldPartitionHLODFixup::FixupOne`) is **disabled**.
 
@@ -214,6 +214,6 @@ disk-writing MapCheck auto-fixer (`WorldPartitionHLODFixup::FixupOne`) is **disa
 
 ## See also
 
-- [Topic 4 — Transform drift](TransformDrift.md) (why `PackagesToSave` is transient)
-- [Topic 5 — Perforce source control](PerforceSourceControl.md)
-- [Topic 9 — Auxiliary tools (`process_li.bat`)](AuxiliaryToolsAndWorkflow.md)
+- [Transform drift](TransformDrift.md) (why `PackagesToSave` is transient)
+- [Perforce source control](PerforceSourceControl.md)
+- [Auxiliary tools (`process_li.bat`)](AuxiliaryToolsAndWorkflow.md)

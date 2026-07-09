@@ -158,7 +158,7 @@ Config order: `NoneInclude → NoneExclude → Near → Foliage_Near`. Path scop
 > stones, debris — do not get pulled into HLOD. This numeric threshold is not
 > readable from the package text; it is attributed to the changelist and recorded
 > here for completeness. See
-> [`Reference/RulesSmallGridIncludeInHLOD.md`](../../Reference/RulesSmallGridIncludeInHLOD.md).
+> [World Partition rules](WorldPartitionRules.md).
 
 The Hogsmeade `Foliage_Near` rule mirrors the Overland one: it claims the listed tree
 species (as an `InstancedFoliageActor` within the Hogsmeade LI) with **no** explicit

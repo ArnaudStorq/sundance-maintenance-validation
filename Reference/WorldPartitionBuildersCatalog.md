@@ -7,7 +7,7 @@ project's **custom** classes in the `WorldBuildingEditor` module.
 
 This document is the wide catalog. For the narrower, task-focused write-up of the four/five
 maintenance builders used on `LV_Overland`, see
-[Topic 3 — Builders & commandlets](BuildersAndCommandlets.md).
+[builders & commandlets](BuildersAndCommandlets.md).
 
 - Engine builders: `D:\Sun\Engine\Source\Editor\UnrealEd\Public\WorldPartition\`
 - Engine commandlets: `D:\Sun\Engine\Source\Editor\UnrealEd\Classes\Commandlets\`
@@ -249,7 +249,7 @@ generates an ini. Key switches / config: `-OnlyMergeSubLevels`, `-DeleteSourceLe
 config-driven `EditorHashClass`, `RuntimeHashClass`, `ExcludedLevels`, `WorldOrigin/Extent`,
 `DefaultHLODLayerAsset`, `LandscapeGridSize`, `DataLayerAssetFolder`. Subclassable via
 `ReadAdditionalTokensAndSwitches`, `ShouldDeleteActor`, `PerformAdditionalActorChanges`, etc.
-See [Topic 6 — Converting levels to World Partition](ConvertingLevelsToWorldPartition.md).
+See [converting levels to World Partition](ConvertingLevelsToWorldPartition.md).
 
 ### 3.2 `WorldPartitionDataLayerToAssetCommandlet` (`DataLayerToAssetCommandlet`)
 
@@ -284,7 +284,7 @@ Applies the World Partition rules (DataLayer / HLOD / RuntimeGrid) to actors and
 packages — the batch equivalent of the on-save rule reapplication. `Custom` loading mode.
 Switches: `-DataLayerRules`, `-HLODLayerRules`, `-RuntimeGridRules` (each opt-in),
 `-ContainOutlinerPathSubstrings=a,b`, `-DiscardOutlinerPathSubstrings=a,b`. **No `-DryRun`.**
-Full detail in [Topic 3](BuildersAndCommandlets.md#uworldpartitionrulebuilder).
+Full detail in [builders & commandlets](BuildersAndCommandlets.md#uworldpartitionrulebuilder).
 
 ### 4.2 `UWorldPartitionFixupNonPartitionedActorsBuilder`
 
@@ -293,13 +293,13 @@ Level Instances (and optionally the parent `ALevelInstance` actors). Switches:
 `-ForceResave`, `-SaveActorPackages`, `-SkipLevelPackage`, `-FixLevelInstanceActors`,
 `-DryRun`. Three phases: discover → fix inner actors → (optional) fix LI actors. Writes a
 dry-run report under `<ProjectSaved>/WorldBuildingEditor/`. Full detail in
-[Topic 3](BuildersAndCommandlets.md).
+[builders & commandlets](BuildersAndCommandlets.md).
 
 ### 4.3 `UWorldPartitionFixupActorFoldersBuilder`
 
 Repairs orphaned/duplicated `UActorFolder` assets via `ULevel::FixupActorFolders()`.
 Switches: `-bOrphans`, `-bDuplicates`, `-bReportOnly`. Full detail in
-[Topic 3](BuildersAndCommandlets.md).
+[builders & commandlets](BuildersAndCommandlets.md).
 
 ### 4.4 `UWorldPartitionResaveActorsRecursiveBuilder`
 
@@ -413,10 +413,10 @@ plus the base `-AllowCommandletRendering [-AutoSubmit]`.
 
 ## 7. See also
 
-- [Topic 3 — Builders & commandlets](BuildersAndCommandlets.md) (the maintenance subset, with line-level code)
-- [Topic 1 — World Partition streaming properties](WorldPartitionStreamingProperties.md)
-- [Topic 6 — Converting levels to World Partition](ConvertingLevelsToWorldPartition.md)
-- [Topic 5 — Perforce source control](PerforceSourceControl.md)
-- [Topic 9 — Auxiliary tools & workflow](AuxiliaryToolsAndWorkflow.md)
+- [Builders & commandlets](BuildersAndCommandlets.md) (the maintenance subset, with line-level code)
+- [World Partition streaming properties](WorldPartitionStreamingProperties.md)
+- [Converting levels to World Partition](ConvertingLevelsToWorldPartition.md)
+- [Perforce source control](PerforceSourceControl.md)
+- [Auxiliary tools & workflow](AuxiliaryToolsAndWorkflow.md)
 
 *Generated 2026-07-09. Grounded in `D:\Sun` engine + `Sundance/WorldBuildingEditor` sources.*

@@ -1,14 +1,10 @@
-# Map Check warnings & errors (Sundance / UE5)
+# MapCheck catalog — generic engine messages
 
-This section documents the **Map Check** warnings and errors reported by Unreal
-Engine 5 for the Sundance project: what they mean, why they matter, and how to
-fix them.
-
-> **Fixing what we actually hit:** for the project-specific warnings/errors resolved
-> on `LV_Overland` — with a **cause → solution** for each and the link to the
-> **World Partition rules** that fixed (or exposed) them — see
-> **[Fixing MapCheck errors & warnings — Sundance playbook](FixingMapCheckIssues.md)**.
-> The catalog below stays as the generic, stock-engine message reference.
+This is the generic reference for **Map Check** warnings and errors reported by Unreal
+Engine 5: what they mean, why they matter, and how to fix them. For the
+**project-specific** warnings actually resolved on `LV_Overland` — with a cause → fix
+for each and the link to the World Partition rules that fixed them — see the
+[MapCheck fix playbook](FixingMapCheckIssues.md).
 
 ## What is Map Check?
 
@@ -143,8 +139,8 @@ the **exact** log line so the catalog stays searchable.
 - **Message**: *(pattern)* — actor left on the default grid or with no Data
   Layer.
 - **Severity**: Warning.
-- **Cause**: The [World Partition rules](../WorldPartitionRules/README.md) did
-  not match the actor, often because of its [Outliner path](../Outliner/README.md).
+- **Cause**: The [World Partition rules](WorldPartitionRules.md) did
+  not match the actor, often because of its [Outliner path](OutlinerManagement.md).
 - **Consequence**: The actor streams incorrectly (always loaded, or in the wrong
   cell), hurting memory and performance.
 - **Fix**: Correct the actor's Outliner path and re-run the rule builder.
@@ -210,11 +206,11 @@ the **exact** log line so the catalog stays searchable.
 1. Run **Build > Map Check** on the map or Level Instance.
 2. Triage: fix all **Errors** first, then review **Warnings**.
 3. For streaming/rule-related entries, cross-check the
-   [World Partition rules](../WorldPartitionRules/README.md) and
-   [Outliner](../Outliner/README.md).
+   [World Partition rules](WorldPartitionRules.md) and
+   [Outliner](OutlinerManagement.md).
 4. Re-run Map Check until it is clean before submitting.
 
 ## See also
 
-- [World Partition Rules](../WorldPartitionRules/README.md)
-- [Outliner management](../Outliner/README.md)
+- [World Partition Rules](WorldPartitionRules.md)
+- [Outliner management](OutlinerManagement.md)

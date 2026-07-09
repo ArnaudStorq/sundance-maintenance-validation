@@ -136,7 +136,7 @@ philosophy but are applied specifically to the SmallGrid sweep.
 > move and logs `Skipped RuntimeGrid override`. The fix is to align the actor's HLOD
 > layer (via the HLOD rules) or to exclude it — see
 > [document 3](HLODLayerRules.md) and
-> [`Reference/RulesSmallGridIncludeInHLOD.md`](../../Reference/RulesSmallGridIncludeInHLOD.md).
+> [World Partition rules](WorldPartitionRules.md).
 
 ---
 
@@ -156,7 +156,7 @@ Only `MainGrid` and `FarFoliageGrid` are declared in `DefaultPlugins.ini`; the
 `SmallGrid`, `HogsmeadeGrid` and `HogwartsGrid` partitions (and their allowed HLOD
 layers) are defined **on the map's runtime hash set**, which is the authoritative
 compatibility source consulted by `IsValidHLODLayer`
-([Reference topic 1](../../Reference/WorldPartitionStreamingProperties.md)).
+([streaming properties](WorldPartitionStreamingProperties.md)).
 
 Approximate, **documented** values (confirm against the map hash before quoting):
 
@@ -167,9 +167,8 @@ Approximate, **documented** values (confirm against the map hash before quoting)
 | `HogwartsGrid` | *(on map hash)* | *(on map hash)* | Hogwarts exterior. |
 
 > These distances are **not** in the rule assets; they are quoted from
-> [`Reference/RulesSmallGridIncludeInHLOD.md`](../../Reference/RulesSmallGridIncludeInHLOD.md)
-> and must be verified against `LV_Overland`'s runtime hash. They are included only
-> for context.
+> [World Partition rules](WorldPartitionRules.md) and must be verified against
+> `LV_Overland`'s runtime hash. They are included only for context.
 
 ---
 

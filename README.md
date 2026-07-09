@@ -10,23 +10,21 @@ warnings/errors, Outliner organization, and related technical workflows.
 
 ```
 .
-├── Docs/                       Documentation (Markdown)
-│   ├── WorldPartitionRules/    Applying World Partition rules
-│   ├── MapCheck/               Fixing MapCheck warnings & errors
-│   ├── Outliner/               Outliner organization
-│   └── Technical/              Setup, conventions, troubleshooting
+├── Reference/                  Technical knowledge base (flat, one file per topic)
+├── WorkDoneByTopic/            Plain-language, why-it-was-done narratives
+├── WorkDoneByChangelists/      Per-changelist history (P4-History/)
 └── Tools/                      Source code / scripts
     └── ProcessLevelInstances/  Batch rule builder for Level Instances
 ```
 
 ## Documentation
 
-Start at the [documentation index](Docs/README.md), or jump to a section:
+Start at the [Reference index](Reference/README.md), or jump to a topic:
 
-- [World Partition Rules](Docs/WorldPartitionRules/README.md)
-- [MapCheck warnings & errors](Docs/MapCheck/README.md)
-- [Outliner management](Docs/Outliner/README.md)
-- [Technical documentation](Docs/Technical/README.md)
+- [World Partition rules](Reference/WorldPartitionRules.md)
+- [MapCheck catalog](Reference/MapCheckCatalog.md) · [Fixing MapCheck issues](Reference/FixingMapCheckIssues.md)
+- [Outliner management](Reference/OutlinerManagement.md)
+- [Builders & commandlets](Reference/BuildersAndCommandlets.md)
 
 ## Tools
 
@@ -37,5 +35,5 @@ Start at the [documentation index](Docs/README.md), or jump to a section:
 
 - Write everything (docs, code comments, commit messages) in English.
 - Put new tools under `Tools/<ToolName>/` with their own `README.md`.
-- Put new documentation under `Docs/<Topic>/` and link it from
-  [`Docs/README.md`](Docs/README.md).
+- Put new documentation in `Reference/` as a single flat topic file and link it from
+  [`Reference/README.md`](Reference/README.md).

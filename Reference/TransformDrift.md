@@ -1,4 +1,4 @@
-# 4. Transform drift (RelativeLocation / Rotation / Scale3D)
+# Transform drift (RelativeLocation / Rotation / Scale3D)
 
 The single most dangerous class of bug in this whole effort. A resave that was only
 supposed to touch streaming properties silently changed an actor's
@@ -94,5 +94,5 @@ false-positives. A human reviewing the diff is the reliable gate.
 
 ## See also
 
-- [Topic 3 — Builders & commandlets](BuildersAndCommandlets.md)
+- [Builders & commandlets](BuildersAndCommandlets.md)
 - Plain-language: [`WorkDoneByTopic/WorldPartitionRules.md`](../WorkDoneByTopic/WorldPartitionRules.md) §4–5

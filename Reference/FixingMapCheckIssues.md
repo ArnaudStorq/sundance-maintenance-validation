@@ -2,11 +2,11 @@
 
 A **cause → solution** playbook for the MapCheck warnings/errors actually hit and
 fixed on `LV_Overland`, grounded in the changelist history
-([`WorkDoneByChangelists/P4-History/`](../../WorkDoneByChangelists/P4-History/README.md)), the topic write-ups
-([`WorkDoneByTopic/`](../../WorkDoneByTopic/README.md)), and the technical reference
-([`Reference/`](../../Reference/README.md)).
+([`WorkDoneByChangelists/P4-History/`](../WorkDoneByChangelists/P4-History/README.md)), the topic write-ups
+([`WorkDoneByTopic/`](../WorkDoneByTopic/README.md)), and the technical reference
+([`Reference/`](README.md)).
 
-> This complements the generic [MapCheck catalog](README.md). Where the catalog lists
+> This complements the generic [MapCheck catalog](MapCheckCatalog.md). Where the catalog lists
 > stock-engine messages, **this file focuses on what we resolved on the project and
 > *how it connects to the World Partition rules*** — because most of these were fixed
 > not by hand-editing actors, but by assigning/tuning rules or by resolving
@@ -18,7 +18,7 @@ fixed on `LV_Overland`, grounded in the changelist history
 
 Most streaming MapChecks are **symptoms of inconsistent per-actor streaming
 properties** (`HLODLayer`, `RuntimeGrid`, `DataLayers`). Those properties are set, in
-practice, by the **rule system** ([Reference: rules](../../Reference/RulesSmallGridIncludeInHLOD.md)):
+practice, by the **rule system** ([Reference: rules](WorldPartitionRules.md)):
 
 - Rules run **on save** (allowed maps), during **streaming generation** (the
   `AvaStreamingGenerationMutator`), and in the batch **`WorldPartitionRuleBuilder`**.
@@ -28,14 +28,14 @@ practice, by the **rule system** ([Reference: rules](../../Reference/RulesSmallG
      `LV_Overland_HLODLayer_Near` while an inner actor is pushed to `SmallGrid`
      (mutually exclusive) — see the "Skipped RuntimeGrid override" warning below.
   3. **Convert the level to World Partition** → so per-actor rules can even apply
-     ([Reference: conversion](../../Reference/ConvertingLevelsToWorldPartition.md)).
+     ([Reference: conversion](ConvertingLevelsToWorldPartition.md)).
   4. **Remove meaningless data** → strip HLOD/grid/DataLayers from non-partitioned
      inner actors that only inherit from their parent.
 
 Key engine rule (why "invalid HLOD layer" fires): an actor is validated for HLOD/grid
 compatibility **only if** it is HLOD-relevant **and** spatially loaded **and** has an
 explicit HLOD layer **and** that layer is not allowed on its runtime grid. Full
-detail: [Reference: streaming properties](../../Reference/WorldPartitionStreamingProperties.md).
+detail: [Reference: streaming properties](WorldPartitionStreamingProperties.md).
 
 ---
 
@@ -63,13 +63,13 @@ detail: [Reference: streaming properties](../../Reference/WorldPartitionStreamin
 - **Rules link**: direct — this is the flagship case that the HLOD rules and the
   `WorldPartitionRuleBuilder`/fixup builders were built to clear.
 - **History**:
-  [Fix MapCheck invalid HLOD layer (CL 1738687)](../../WorkDoneByChangelists/P4-History/2026-02-25-13-59-fix-mapcheck-invalid-hlod-layer.md) ·
-  [Fix 644 HLOD warnings in `LI_HM_Rocks_EXT` (CL 1904278)](../../WorkDoneByChangelists/P4-History/2026-06-01-15-19-fix-644-mapcheck-hlod-warnings.md)
+  [Fix MapCheck invalid HLOD layer (CL 1738687)](../WorkDoneByChangelists/P4-History/2026-02-25-13-59-fix-mapcheck-invalid-hlod-layer.md) ·
+  [Fix 644 HLOD warnings in `LI_HM_Rocks_EXT` (CL 1904278)](../WorkDoneByChangelists/P4-History/2026-06-01-15-19-fix-644-mapcheck-hlod-warnings.md)
 
 > Note: an in-editor "Fix It" MapCheck auto-fixer exists in the engine
 > (`WorldPartitionHLODFixup::FixupOne`) but is **disabled** on this project; the bulk
 > cleanup was done with the custom builders instead
-> ([Reference: builders](../../Reference/BuildersAndCommandlets.md)).
+> ([Reference: builders](BuildersAndCommandlets.md)).
 
 ### A2 — Actor has an invalid runtime grid
 
@@ -103,11 +103,11 @@ detail: [Reference: streaming properties](../../Reference/WorldPartitionStreamin
   3. **Force-exclude from HLOD** where the actor should never have had a layer.
 - **Rules link**: this warning *is* rule processing telling you the data is
   contradictory. Full detail:
-  [Reference: rules/SmallGrid](../../Reference/RulesSmallGridIncludeInHLOD.md).
+  [Reference: rules/SmallGrid](WorldPartitionRules.md).
 - **History**:
-  [Apply WP rules to 404 actors — SmallGrid (CL 1959722)](../../WorkDoneByChangelists/P4-History/2026-07-07-06-46-wp-rules-404-actors-smallgrid.md) ·
-  [Add `DA_SmallGrid_Rules` on save (CL 1959020)](../../WorkDoneByChangelists/P4-History/2026-07-06-16-14-add-smallgrid-to-runtime-grid-rules.md) ·
-  [Remove it after the pass (CL 1960226)](../../WorkDoneByChangelists/P4-History/2026-07-07-12-03-remove-smallgrid-from-runtime-grid-rules.md)
+  [Apply WP rules to 404 actors — SmallGrid (CL 1959722)](../WorkDoneByChangelists/P4-History/2026-07-07-06-46-wp-rules-404-actors-smallgrid.md) ·
+  [Add `DA_SmallGrid_Rules` on save (CL 1959020)](../WorkDoneByChangelists/P4-History/2026-07-06-16-14-add-smallgrid-to-runtime-grid-rules.md) ·
+  [Remove it after the pass (CL 1960226)](../WorkDoneByChangelists/P4-History/2026-07-07-12-03-remove-smallgrid-from-runtime-grid-rules.md)
 
 ### A4 — Invalid HLOD layer on non-partitioned inner actors
 
@@ -124,7 +124,7 @@ detail: [Reference: streaming properties](../../Reference/WorldPartitionStreamin
   skips non-partitioned Level Instances in the `RuleBuilder` so rules aren't wrongly
   applied to inherited content.
 - **History**:
-  [Remove HLOD from non-partitioned levels (CL 1918257)](../../WorkDoneByChangelists/P4-History/2026-06-09-09-31-remove-hlod-nonpartitioned-levels.md)
+  [Remove HLOD from non-partitioned levels (CL 1918257)](../WorkDoneByChangelists/P4-History/2026-06-09-09-31-remove-hlod-nonpartitioned-levels.md)
 
 ### A5 — Tiny meshes wrongly treated as HLOD candidates
 
@@ -136,7 +136,7 @@ detail: [Reference: streaming properties](../../Reference/WorldPartitionStreamin
 - **Rules link**: direct — `FWorldPartitionRuleCondition` min-bounds guard on the HLOD
   rule asset.
 - **History**:
-  [HLOD NoneInclude min bounds — Hogsmeade (CL 1950932)](../../WorkDoneByChangelists/P4-History/2026-06-30-09-13-hlod-noneinclude-min-bounds.md)
+  [HLOD NoneInclude min bounds — Hogsmeade (CL 1950932)](../WorkDoneByChangelists/P4-History/2026-06-30-09-13-hlod-noneinclude-min-bounds.md)
 
 ### A6 — Unexpected HLOD chaining (Foliage Near)
 
@@ -144,7 +144,7 @@ detail: [Reference: streaming properties](../../Reference/WorldPartitionStreamin
 - **Cause**: `HLODLayer_Foliage_Near` had a **Parent Layer** set.
 - **Solution**: set the **Parent Layer to `None`** on `HLODLayer_Foliage_Near`.
 - **History**:
-  [Set Parent Layer None — Foliage Near (CL 1753959)](../../WorkDoneByChangelists/P4-History/2026-03-09-09-07-set-parent-layer-none-foliage-near.md)
+  [Set Parent Layer None — Foliage Near (CL 1753959)](../WorkDoneByChangelists/P4-History/2026-03-09-09-07-set-parent-layer-none-foliage-near.md)
 
 ### A7 — Rule matched nothing (naming) / wrong actor class handling
 
@@ -152,15 +152,15 @@ detail: [Reference: streaming properties](../../Reference/WorldPartitionStreamin
   **Cause**: rules used plural `Dungeons`/`Missions` but the real categories are
   singular `Dungeon`/`Mission` → matched nothing.
   **Solution**: fix the rule naming.
-  [WP rules Dungeon/Mission naming (CL 1920591)](../../WorkDoneByChangelists/P4-History/2026-06-10-14-19-wp-rules-dungeon-mission-naming.md)
+  [WP rules Dungeon/Mission naming (CL 1920591)](../WorkDoneByChangelists/P4-History/2026-06-10-14-19-wp-rules-dungeon-mission-naming.md)
 - **Symptom B**: `WorldBitmapStreamingProxy` was silently *ignored* by the grid rules.
   **Cause**: it sat in *"Actor Types Ignored by Runtime Grid Rules"*.
   **Solution**: remove it from the ignore list and handle it **explicitly** —
   add to *Force Exclude from HLOD* and *Clear Runtime Grid*.
-  [WP rules `WorldBitmapStreamingProxy` (CL 1916537)](../../WorkDoneByChangelists/P4-History/2026-06-08-13-02-wp-rules-worldbitmapstreamingproxy.md)
+  [WP rules `WorldBitmapStreamingProxy` (CL 1916537)](../WorkDoneByChangelists/P4-History/2026-06-08-13-02-wp-rules-worldbitmapstreamingproxy.md)
 - **Symptom C**: road content handled inconsistently.
   **Solution**: add `Overland_Road_Near` to the road HLOD include/exclude rules.
-  [Add `Overland_Road_Near` exclusions (CL 1893933)](../../WorkDoneByChangelists/P4-History/2026-05-25-09-11-add-overland-road-near-exclusions.md)
+  [Add `Overland_Road_Near` exclusions (CL 1893933)](../WorkDoneByChangelists/P4-History/2026-05-25-09-11-add-overland-road-near-exclusions.md)
 - **Rules link**: direct — all three are rule-asset/config edits.
 
 ---
@@ -206,8 +206,8 @@ These are raised by the Sundance `UWorldPartitionMapCheckValidator` (runs on
 - **Solution**: verify `WorldDataLayers` is checkoutable and up to date **before**
   editing. Prevents a class of DataLayer breakage that would later show up in MapCheck.
 - **History**:
-  [WorldEvent DataLayers checkout check (CL 1758012)](../../WorkDoneByChangelists/P4-History/2026-03-11-09-21-worldevent-datalayers-checkout-check.md) ·
-  see [`WorkDoneByTopic/WorldEvents.md`](../../WorkDoneByTopic/WorldEvents.md).
+  [WorldEvent DataLayers checkout check (CL 1758012)](../WorkDoneByChangelists/P4-History/2026-03-11-09-21-worldevent-datalayers-checkout-check.md) ·
+  see [`WorkDoneByTopic/WorldEvents.md`](../WorkDoneByTopic/WorldEvents.md).
 
 ---
 
@@ -224,9 +224,9 @@ These are raised by the Sundance `UWorldPartitionMapCheckValidator` (runs on
   conversion (with the Nanite-assembly cvar workaround) is the project workflow.
 - **Rules link**: prerequisite — conversion is step 1, rule application is step 2.
 - **History**:
-  [Partitioned streaming — 88 levels (CL 1946247)](../../WorkDoneByChangelists/P4-History/2026-06-26-15-57-partitioned-streaming-88-levels.md) ·
-  [Apply WP rules to Level Instances (CL 1959005)](../../WorkDoneByChangelists/P4-History/2026-07-06-16-12-wp-rules-level-instances.md) ·
-  full detail [Reference: conversion](../../Reference/ConvertingLevelsToWorldPartition.md).
+  [Partitioned streaming — 88 levels (CL 1946247)](../WorkDoneByChangelists/P4-History/2026-06-26-15-57-partitioned-streaming-88-levels.md) ·
+  [Apply WP rules to Level Instances (CL 1959005)](../WorkDoneByChangelists/P4-History/2026-07-06-16-12-wp-rules-level-instances.md) ·
+  full detail [Reference: conversion](ConvertingLevelsToWorldPartition.md).
 
 ### C2 — LevelInstance world does not support World Partition streaming
 
@@ -250,7 +250,7 @@ These are raised by the Sundance `UWorldPartitionMapCheckValidator` (runs on
 - **Cause**: an actor references another actor that is missing from the loaded set /
   changelist. In OFPA worlds, referenced external actors must be **in the same
   changelist** — this is enforced at submit by the changelist validators
-  ([Reference: Perforce](../../Reference/PerforceSourceControl.md)).
+  ([Reference: Perforce](PerforceSourceControl.md)).
 - **Solution**: include the referenced package(s) in the changelist, or fix/remove the
   dangling reference.
 
@@ -359,17 +359,17 @@ These are raised by the Sundance `UWorldPartitionMapCheckValidator` (runs on
 4. For most A/B cases, **re-saving the actor in an allowed map reapplies the rules** and
    clears the warning — try that before manual edits.
 5. **Diff before submit** — a resave must not change `RelativeLocation/Rotation/Scale3D`
-   ([Reference: transform drift](../../Reference/TransformDrift.md)). Revert any package
+   ([Reference: transform drift](TransformDrift.md)). Revert any package
    that drifted.
 6. Re-run Map Check until clean; the changelist/Peeves validators
-   ([Reference: Peeves](../../Reference/PeevesSubmitValidation.md)) run the same checks
+   ([Reference: Peeves](PeevesSubmitValidation.md)) run the same checks
    at submit.
 
 ## See also
 
-- [MapCheck catalog (generic engine messages)](README.md)
-- [Reference — streaming properties](../../Reference/WorldPartitionStreamingProperties.md),
-  [rules/SmallGrid/IncludeInHLOD](../../Reference/RulesSmallGridIncludeInHLOD.md),
-  [builders](../../Reference/BuildersAndCommandlets.md)
-- [World Partition Rules (how-to)](../WorldPartitionRules/README.md)
-- Plain-language: [`WorkDoneByTopic/HLOD.md`](../../WorkDoneByTopic/HLOD.md)
+- [MapCheck catalog (generic engine messages)](MapCheckCatalog.md)
+- [Reference — streaming properties](WorldPartitionStreamingProperties.md),
+  [rules/SmallGrid/IncludeInHLOD](WorldPartitionRules.md),
+  [builders](BuildersAndCommandlets.md)
+- [World Partition Rules (how-to)](WorldPartitionRules.md)
+- Plain-language: [`WorkDoneByTopic/HLOD.md`](../WorkDoneByTopic/HLOD.md)

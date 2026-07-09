@@ -8,7 +8,7 @@ local: `D:\Sun\Sundance\Content\Data\WorldPartition\`).
 > **Source of truth.** This analysis is built primarily from the serialized
 > `.uasset` files themselves, cross-checked against the project configuration in
 > `D:\Sun\Sundance\Config\DefaultEditor.ini` / `DefaultPlugins.ini` and the engine
-> mechanics documented in [`Reference/`](../../Reference/README.md). Where a value
+> mechanics documented in the [reference topics](README.md). Where a value
 > is only knowable from the map's runtime hash or from prior documentation (e.g.
 > grid cell sizes, numeric bounds thresholds), it is **explicitly flagged** as such.
 > The companion Confluence page *"HLODs & Grids Setup"* was not reachable without
@@ -43,7 +43,7 @@ local: `D:\Sun\Sundance\Content\Data\WorldPartition\`).
 
 Sundance drives per-actor streaming settings **automatically** from a set of
 **rule Data Assets**, instead of hand-tagging every actor. Three per-actor
-properties are governed ([Reference topic 1](../../Reference/WorldPartitionStreamingProperties.md)):
+properties are governed ([streaming properties](WorldPartitionStreamingProperties.md)):
 
 - **RuntimeGrid** — which streaming grid the actor belongs to.
 - **HLODLayer** (+ `IncludeInHLOD`) — how the actor is represented at distance.
@@ -118,7 +118,6 @@ Get-ChildItem -Recurse "D:\Sun\Sundance\Content\Data\WorldPartition" -Filter *.u
 
 ## See also
 
-- [`Reference/WorldPartitionStreamingProperties.md`](../../Reference/WorldPartitionStreamingProperties.md) — the three streaming properties and the invalid-HLOD-layer gate.
-- [`Reference/RulesSmallGridIncludeInHLOD.md`](../../Reference/RulesSmallGridIncludeInHLOD.md) — rule subsystem internals and the SmallGrid toggle.
-- [`Docs/WorldPartitionRules/README.md`](../WorldPartitionRules/README.md) — the practitioner how-to for applying rules.
-- [`Docs/MapCheck/FixingMapCheckIssues.md`](../MapCheck/FixingMapCheckIssues.md) — cause → fix playbook that these rules feed into.
+- [Streaming properties](WorldPartitionStreamingProperties.md) — the three streaming properties and the invalid-HLOD-layer gate.
+- [World Partition rules](WorldPartitionRules.md) — the practitioner how-to plus the rule subsystem internals and the SmallGrid toggle.
+- [Fixing MapCheck issues](FixingMapCheckIssues.md) — cause → fix playbook that these rules feed into.

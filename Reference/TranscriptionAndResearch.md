@@ -1,4 +1,4 @@
-# 11. Transcription & research
+# Transcription & research
 
 The "keep up with what the experts said" workstream: faithfully capturing knowledge
 from talks, screen-shares, and conference notes so it can be searched and acted on
@@ -27,7 +27,7 @@ Outputs land under `tools/transcripts/<name>/` and `.tmp_video_summary/`
 
 Screen-share sessions and talks by Phil (Philippe St-Jean — author of several of the
 AVA engine modifications, e.g. the HLOD-relevance skip in
-[Topic 1](WorldPartitionStreamingProperties.md)) and William were transcribed,
+[streaming properties](WorldPartitionStreamingProperties.md)) and William were transcribed,
 summarised, and turned into action items. Topics covered: HLOD, **Include In HLOD**,
 World Partition **Rules**, **SmallGrid**.
 
@@ -57,5 +57,5 @@ When a decision is questioned later, the transcript is the citation.
 
 ## See also
 
-- [Topic 7 — Rules, SmallGrid & IncludeInHLOD](RulesSmallGridIncludeInHLOD.md)
-- [Topic 1 — Streaming properties](WorldPartitionStreamingProperties.md) (the `[philippe.st-jean]` engine changes)
+- [World Partition rules](WorldPartitionRules.md)
+- [Streaming properties](WorldPartitionStreamingProperties.md) (the `[philippe.st-jean]` engine changes)

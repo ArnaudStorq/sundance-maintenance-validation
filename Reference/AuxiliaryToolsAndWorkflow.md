@@ -1,4 +1,4 @@
-# 9. Auxiliary tools & workflow
+# Auxiliary tools & workflow
 
 The supporting tools, editor extensions, scripts and dev-workflow details that make
 the World Partition cleanup practical.
@@ -64,8 +64,8 @@ set "ARGS=-LogCmds="Global none,LogWorldPartitionRules display,LogWorldPartition
   Blueprint adds entries to the content-browser right-click submenu — a known pitfall is
   it appearing in an unexpected submenu; *Scripted Asset Actions* is the newer,
   more predictable mechanism. `ConvertLevelsToWorldPartition`
-  ([Topic 6](ConvertingLevelsToWorldPartition.md)) is a `BlueprintCallable` that can
-  be driven from such a utility.
+  ([converting levels to World Partition](ConvertingLevelsToWorldPartition.md)) is a
+  `BlueprintCallable` that can be driven from such a utility.
 
 ---
 
@@ -78,13 +78,73 @@ drive fixes. `UForceHLODExcludeFromLogBuilder` consumes exactly this format
 
 ---
 
+## Commandlet setup
+
+Most batch operations (rule building, HLOD, validation) run through the Unreal
+**editor commandlet** interface rather than the editor UI.
+
+Prerequisites:
+
+- A built editor executable (`UnrealEditor-Cmd.exe`, or a configuration such as
+  `UnrealEditor-Win64-DebugGame.exe`).
+- The `Sundance.uproject` file.
+- A synced, up-to-date workspace (assets referenced by the maps must be present locally,
+  and ideally submitted to source control).
+
+The canonical invocation shape and the full switch list are documented in the
+[World Partition builders catalog](WorldPartitionBuildersCatalog.md); the maintenance
+subset is in [builders & commandlets](BuildersAndCommandlets.md).
+
+### Filtering logs
+
+Batch runs are far easier to read when log output is scoped. Example used by the rule
+builder:
+
+```
+-LogCmds="Global none,LogWorldPartitionRules display,LogWorldPartitionRuleBuilder display,LogWorldPartitionBuilder warning,LogCommandletPackageHelper error"
+```
+
+This silences everything (`Global none`) except the categories relevant to the task.
+
+---
+
+## Validation checklist (before submitting)
+
+1. Apply the [World Partition rules](WorldPartitionRules.md) to the changed Level
+   Instances / maps.
+2. Run **Build > Map Check** and resolve entries (see the
+   [MapCheck fix playbook](FixingMapCheckIssues.md) and the
+   [MapCheck catalog](MapCheckCatalog.md)) — errors first, then warnings.
+3. Confirm the [Outliner](OutlinerManagement.md) paths match the intended rule filters.
+4. Rebuild HLOD / lighting if geometry or assignments changed.
+5. Verify streaming in-editor (World Partition minimap, Data Layer toggles).
+6. **Diff before submit** — a resave must not change `RelativeLocation/Rotation/Scale3D`
+   ([transform drift](TransformDrift.md)); revert any package that drifted.
+7. Submit assets **and** their dependencies together (the changelist/Peeves validators
+   enforce this — see [Perforce source control](PerforceSourceControl.md) and
+   [Peeves submit validation](PeevesSubmitValidation.md)).
+
+---
+
+## Troubleshooting
+
+| Symptom | Likely cause | First check |
+| --- | --- | --- |
+| Commandlet exits immediately with an error | Wrong editor/`.uproject` path | Verify `EDITOR_CMD` and `UPROJECT` |
+| `LogCommandletPackageHelper` errors | Missing/locked packages | Sync workspace, ensure files are checked out |
+| Rules don't affect an actor | Outliner path not matched | Review `Contain`/`Discard` substrings |
+| Stale proxies at distance | HLOD not rebuilt | Run the HLOD builder |
+| `<LI_NAME>` passed as the map | placeholder not substituted in `process_li.bat` | Verify the echoed command line |
+
+---
+
 ## The documentation repo itself
 
 `D:\CustomGitRepos\sundance-maintenance-validation` (this repo) is a **git** repo
-(separate from the Perforce game depot). Structure: `Docs/`, `WorkDoneByTopic/`,
-`WorkDoneByChangelists/P4-History/`, `Tools/`, and this `Reference/`. Conventions: **everything in
-English**; commit messages in English; one tool per `Tools/<Name>/` with its own
-README.
+(separate from the Perforce game depot). Structure: `Reference/` (this knowledge base),
+`WorkDoneByTopic/`, `WorkDoneByChangelists/P4-History/`, and `Tools/`. Conventions:
+**everything in English**; commit messages in English; one tool per `Tools/<Name>/` with
+its own README.
 
 ---
 
@@ -111,5 +171,6 @@ Common build errors hit while developing the builders and their fixes:
 
 ## See also
 
-- [Topic 3 — Builders & commandlets](BuildersAndCommandlets.md)
+- [Builders & commandlets](BuildersAndCommandlets.md)
+- [Outliner management](OutlinerManagement.md)
 - Plain-language: [`WorkDoneByTopic/Outliner.md`](../WorkDoneByTopic/Outliner.md), [`WorkDoneByTopic/EditorStabilityAndWarnings.md`](../WorkDoneByTopic/EditorStabilityAndWarnings.md)

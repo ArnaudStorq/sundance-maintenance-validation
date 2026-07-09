@@ -1,4 +1,4 @@
-# 2. Level Instances & OFPA
+# Level Instances & OFPA
 
 A **Level Instance** (`ALevelInstance`) places the contents of another level (a
 `.umap`) into a parent world at a transform. `LV_Overland` is a deep tree of nested
@@ -43,7 +43,7 @@ The classification check in the fixup builder:
 With OFPA, each actor lives in its **own** `.uasset` under `__ExternalActors__`, so
 checkout/save happens per actor and many people can edit the same level without
 colliding. Outliner **folders** are also externalized as `UActorFolder` packages under
-`__ExternalObjects__` (see [Topic 10](EnvironmentAndInfra.md)).
+`__ExternalObjects__` (see [environment & infrastructure](EnvironmentAndInfra.md)).
 
 Practical consequences:
 
@@ -126,7 +126,7 @@ Sub-levels are loaded dynamically on demand (`LoadPackage` → `FullyLoad` →
 `Editor.LogNonPartitionedLevelInstances` (→
 `ULevelInstanceFunctionLibrary::LogNonPartitionedLevelInstances`) prints every
 non-partitioned Level Instance with its Outliner path and label. This is the worklist
-that drives the migration ([Topic 6](ConvertingLevelsToWorldPartition.md)).
+that drives the migration ([converting levels to World Partition](ConvertingLevelsToWorldPartition.md)).
 
 ```148:152:D:\Sun\Sundance\Source\WorldBuildingEditor\WorldBuildingEditorConsoleCommands.cpp
 static FAutoConsoleCommand LogNonPartitionedLevelInstancesCmd(
@@ -145,6 +145,6 @@ static FAutoConsoleCommand LogNonPartitionedLevelInstancesCmd(
 
 ## See also
 
-- [Topic 6 — Converting levels to World Partition](ConvertingLevelsToWorldPartition.md)
-- [Topic 3 — Builders & commandlets](BuildersAndCommandlets.md)
+- [Converting levels to World Partition](ConvertingLevelsToWorldPartition.md)
+- [Builders & commandlets](BuildersAndCommandlets.md)
 - Plain-language: [`WorkDoneByTopic/PartitionedStreaming.md`](../WorkDoneByTopic/PartitionedStreaming.md)

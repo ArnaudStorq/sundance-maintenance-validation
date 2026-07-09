@@ -1,8 +1,8 @@
-# 6. Converting a non-partitioned level to World Partition
+# Converting a non-partitioned level to World Partition
 
 To give a Level Instance's inner actors their own streaming properties, the level must
 first be partitioned. This is the "open the box" step; applying rules
-([Topic 7](RulesSmallGridIncludeInHLOD.md)) is the "label each item" step.
+([World Partition rules](WorldPartitionRules.md)) is the "label each item" step.
 
 ---
 
@@ -85,9 +85,9 @@ the time the first skeletal-mesh build runs. With assemblies unsupported,
   (adds external-actor packages), (2) apply WP rules to the now-exposed actors (edits
   packages).
 - The worklist of what still needs converting comes from
-  `Editor.LogNonPartitionedLevelInstances` ([Topic 2](LevelInstancesAndOFPA.md)).
+  `Editor.LogNonPartitionedLevelInstances` ([Level Instances & OFPA](LevelInstancesAndOFPA.md)).
 - Post-conversion, `FixupActorFolders` can dirty folder packages — hence the Actor
-  Folders cleanup ([Topic 10](EnvironmentAndInfra.md)).
+  Folders cleanup ([environment & infrastructure](EnvironmentAndInfra.md)).
 
 ---
 
@@ -102,5 +102,5 @@ the time the first skeletal-mesh build runs. With assemblies unsupported,
 
 ## See also
 
-- [Topic 7 — Rules, SmallGrid & IncludeInHLOD](RulesSmallGridIncludeInHLOD.md) (step 2)
+- [World Partition rules](WorldPartitionRules.md) (step 2)
 - Plain-language: [`WorkDoneByTopic/PartitionedStreaming.md`](../WorkDoneByTopic/PartitionedStreaming.md)

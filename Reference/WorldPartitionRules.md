@@ -1,23 +1,71 @@
-# 7. Rules, SmallGrid & IncludeInHLOD
+# World Partition rules
 
-The rule system that assigns streaming properties to actors automatically, plus the
-grid/HLOD compatibility that produces the "Skipped RuntimeGrid override" warning.
+How the Sundance project assigns per-actor streaming properties **automatically** from
+a set of rule Data Assets, how the rules are applied (on save, at streaming generation,
+and in batch), and the grid/HLOD compatibility that produces the "Skipped RuntimeGrid
+override" warning.
+
+This is the entry point for the rule system. For the **exact content of every rule
+asset** and the precise precedence model, see the data-asset analysis series:
+[rule engine mechanics](RuleEngineMechanics.md), [Runtime Grid rules](RuntimeGridRules.md),
+[HLOD Layer rules](HLODLayerRules.md), [HLOD Layer target assets](HLODLayerTargetAssets.md),
+[processing order & priority](ProcessingOrderAndPriority.md) and the
+[data asset inventory](DataAssetInventory.md).
 
 ---
 
-## The two places rules run
+## Overview
+
+World Partition is Unreal Engine 5's automatic streaming and data-management system for
+large worlds. Instead of a single monolithic level, the world is split into a grid of
+streaming cells loaded/unloaded around the player. Which cell, Data Layer and HLOD layer
+an actor belongs to is driven by **rules** rather than by hand-tagging every actor.
+
+Three per-actor properties are governed (see [streaming properties](WorldPartitionStreamingProperties.md)):
+
+### Runtime Grid
+
+The Runtime Grid controls which streaming cell an actor belongs to (cell size, loading
+range, HLOD behaviour). Assigning an actor to the correct grid is what keeps streaming
+performant: cells that are too large stream too much content, cells that are too small
+multiply overhead.
+
+### Data Layers
+
+Data Layers group actors so they can be enabled/disabled independently (gameplay states,
+quest variants, editor-only content). Rules assign actors to the appropriate Data Layer
+automatically instead of relying on manual tagging. (Data Layer rule assets live outside
+`/Game/Data/WorldPartition/`, under `/Game/Data/DataLayers/`.)
+
+### HLOD Layers
+
+Hierarchical Level of Detail (HLOD) generates simplified proxy meshes that represent
+unloaded cells at a distance. HLOD rules define which HLOD layer an actor contributes to,
+and whether it is included in HLOD generation at all.
+
+---
+
+## Where and how rules run
+
+A rule asset is just data; it is executed by one of three drivers:
 
 | Path | Trigger | Config field | Notable rule |
 |------|---------|--------------|--------------|
 | **On actor save** | manual save of a partitioned actor in an allowed map | `*RulesForActorSave` | e.g. `DA_HogsmeadeGrid_Rules` |
 | **Streaming generation** | WP streaming build / cook | `RuntimeGridRulesForStreamingGeneration` | `DA_SmallGrid_Rules` only |
-| **Batch commandlet** | `WorldPartitionRuleBuilder` | `*RulesForActorSave` (same subsystems) | all three switches |
+| **Batch commandlet** | `WorldPartitionRuleBuilder` | `*RulesForActorSave` (same subsystems) | all three rule families |
+
+> The builder and manual save share the **same** rule set (the `*ForActorSave` arrays).
+> The mutator uses a **different, deliberately smaller** set (`*ForStreamingGeneration`)
+> and is view-only. Full detail: [rule engine mechanics](RuleEngineMechanics.md).
+
+### Config location & key settings
 
 Config lives in `D:\Sun\Sundance\Config\DefaultEditor.ini` under
 `[/Script/WorldBuildingEditor.WorldPartitionRuleSettings]` (class
 `UWorldPartitionRuleSettings`, display name *"WorldPartition Rules"*).
 
-Key settings fields (`WorldPartitionRuleSettings.h`):
+Key fields (`WorldPartitionRuleSettings.h`):
 
 - `AutoApplyRulesOnActorSave` (master toggle), `MapsWithAutoApplyRules` (allowlist:
   `LV_Overland`, `LI_Hogwarts`, `LI_Hogsmeade`, …).
@@ -28,11 +76,13 @@ Key settings fields (`WorldPartitionRuleSettings.h`):
 - `ActorTypesToClearRuntimeGrid` / `OutlinerPathsToClearRuntimeGrid`.
 - `ActorTypesToClearDataLayers` / `OutlinerPathsToClearDataLayers`.
 
+The exact arrays as configured today are reproduced in the
+[data asset inventory](DataAssetInventory.md#config-arrays).
+
 ### On-save reapplication
 
 Each rule subsystem registers `UPackage::PreSavePackageWithContextEvent` and, on a
-**manual** save (not procedural, not autosave), reapplies its `*RulesForActorSave`
-rules:
+**manual** save (not procedural, not autosave), reapplies its `*RulesForActorSave` rules:
 
 ```810:816:D:\Sun\Sundance\Source\WorldBuildingEditor\WorldPartition\WorldPartitionRuleSubsystem.cpp
 	if (!SaveContext.IsProceduralSave() && !SaveContext.IsFromAutoSave())
@@ -51,8 +101,7 @@ guard (`bIsApplyingRules`) prevents recursion, and fixup builders use
 
 ## Rule data assets (the "recipe")
 
-Base `UWorldPartitionRuleAsset`: `bIsEnabled`, `MatchingConditions[]`,
-`ExclusionCriteria`.
+Base `UWorldPartitionRuleAsset`: `bIsEnabled`, `MatchingConditions[]`, `ExclusionCriteria`.
 
 - `FWorldPartitionRuleCondition`: `LogicOperator` (OR/AND), `ActorTypes`, `ActorTags`,
   `OutlinerPathContains`, min/max **bounds dimension**/**volume** guards, optional
@@ -68,9 +117,10 @@ Specialized assets:
 - `UHLODLayerRuleAsset.TargetHLODLayer` (`TSoftObjectPtr<UHLODLayer>`) +
   `IncludeInHLOD` (`bool`, default `true`).
 
----
+The full struct anatomy and per-actor evaluation model are documented in
+[rule engine mechanics](RuleEngineMechanics.md).
 
-## IncludeInHLOD & TargetHLODLayer application
+### IncludeInHLOD & TargetHLODLayer application
 
 `UHLODLayerRuleSubsystem::OnApplyRuleOnActor` (`HLODLayerRuleSubsystem.cpp:125`):
 
@@ -81,8 +131,61 @@ Specialized assets:
   `SetHLODLayer(nullptr)` + `bEnableAutoLODGeneration = false` on actor + components.
 
 This is the concrete meaning of "IncludeInHLOD=false + TargetHLODLayer=None" as a way
-to make an actor stop being HLOD-relevant (and thus stop tripping the invalid-HLOD-layer
-check — see [Topic 1](WorldPartitionStreamingProperties.md)).
+to make an actor stop being HLOD-relevant (and thus stop tripping the
+invalid-HLOD-layer check — see [streaming properties](WorldPartitionStreamingProperties.md)).
+
+---
+
+## The rule builder (batch)
+
+The `WorldPartitionRuleBuilder` applies the project's rule set to a target (a Level
+Instance, a set of actors, or a whole map) in a headless commandlet — the batch
+equivalent of the on-save reapplication. It runs through the
+`WorldPartitionBuilderCommandlet` (see [builders & commandlets](BuildersAndCommandlets.md)).
+
+| Switch | Effect |
+| --- | --- |
+| `-DataLayerRules` | Apply Data Layer assignment rules |
+| `-HLODLayerRules` | Apply HLOD layer assignment rules |
+| `-RuntimeGridRules` | Apply Runtime Grid assignment rules |
+| `-ContainOutlinerPathSubstrings="..."` | Restrict processing to actors whose Outliner path contains the given substrings |
+| `-DiscardOutlinerPathSubstrings="..."` | Exclude actors whose Outliner path contains the given substrings |
+| `-BuildMachine -Unattended` | Non-interactive mode, suitable for automation |
+
+> The Outliner path filters tie directly into how the [Outliner](OutlinerManagement.md)
+> is organized. Consistent Outliner naming is what makes rule targeting reliable. This
+> builder has **no `-DryRun`**; rule categories are opt-in.
+
+### Running the rule builder in batch
+
+```bat
+UnrealEditor-Cmd.exe "Sundance.uproject" ^
+  -run=WorldPartitionBuilderCommandlet ^
+  -Builder=WorldPartitionRuleBuilder ^
+  -DataLayerRules -HLODLayerRules -RuntimeGridRules ^
+  -ContainOutlinerPathSubstrings="" -DiscardOutlinerPathSubstrings="" ^
+  -BuildMachine -Unattended ^
+  <TargetLevelInstance>
+```
+
+To process many Level Instances in one pass, use the
+[`ProcessLevelInstances`](../Tools/ProcessLevelInstances/README.md) script
+([`process_li.bat`](AuxiliaryToolsAndWorkflow.md)), which loops over a list and reports
+`[OK]` / `[ERROR]` per entry.
+
+### Reading the logs
+
+The builder narrows engine logging to the categories that matter for a rule pass:
+
+| Log category | What it tells you |
+| --- | --- |
+| `LogWorldPartitionRules` | Which rules matched and what they assigned (`Applied RuntimeGrid '%s' to actor '%s'.`) |
+| `LogWorldPartitionRuleBuilder` | High-level builder progress per target |
+| `LogWorldPartitionBuilder` | Streaming/build-level warnings |
+| `LogCommandletPackageHelper` | Package load/save errors (blockers) |
+
+A run that finishes without `LogCommandletPackageHelper` errors and with the expected
+rule assignments in `LogWorldPartitionRules` is considered successful.
 
 ---
 
@@ -148,24 +251,42 @@ Important behavioral facts:
   change is often enough to converge.
 - **First matching rule wins** (the per-actor loop `break`s on first match).
 
----
-
-## Ways to resolve a grid/HLOD conflict
+### Ways to resolve a grid/HLOD conflict
 
 1. **Convert the owning level to World Partition** so each actor gets per-actor
-   granularity ([Topic 6](ConvertingLevelsToWorldPartition.md)).
+   granularity ([converting levels to World Partition](ConvertingLevelsToWorldPartition.md)).
 2. **Force-exclude from HLOD** (`IncludeInHLOD=false`, `TargetHLODLayer=None`) for actor
    types/paths that shouldn't participate.
 3. **Align the HLOD layer rule** (`UHLODLayerRuleAsset`) to the bounds/partitions that
    `DA_SmallGrid_Rules` targets, and add min-bounds guards so tiny meshes are excluded.
 
----
-
-## The SmallGrid on-save toggle (one-shot migration pattern)
+### The SmallGrid on-save toggle (one-shot migration pattern)
 
 To assign `SmallGrid` during a migration pass, `DA_SmallGrid_Rules` was **added** to
 `RuntimeGridRulesForActorSave`, actors were processed, then it was **removed** again —
 keeping it permanently in the on-save rules would reassign grids on every future save.
+
+---
+
+## Recommended workflow
+
+1. **Organize the Outliner** so actors sit under predictable, rule-friendly paths
+   (see [Outliner management](OutlinerManagement.md)).
+2. **Apply the rules**, either interactively (resave) or via the batch tool for many
+   Level Instances at once.
+3. **Run a Map Check** and resolve any warnings/errors the rule pass surfaced (see the
+   [MapCheck fix playbook](FixingMapCheckIssues.md) and the [MapCheck catalog](MapCheckCatalog.md)).
+4. **Validate streaming** in-editor (World Partition minimap, data layer toggles) before
+   submitting.
+
+### Common pitfalls
+
+- Actors left on the **default** grid/layer because their Outliner path did not match
+  any rule.
+- **HLOD** not regenerated after a rule change, leaving stale proxy meshes.
+- Data Layer assignments that conflict between a Level Instance and its parent world.
+
+---
 
 ## Rule-tuning changes made (examples)
 
@@ -189,6 +310,8 @@ keeping it permanently in the on-save rules would reassign grids on every future
 
 ## See also
 
-- [Topic 1 — Streaming properties](WorldPartitionStreamingProperties.md)
-- [Topic 3 — Builders (`WorldPartitionRuleBuilder`)](BuildersAndCommandlets.md)
-- Plain-language: [`WorkDoneByTopic/WorldPartitionRules.md`](../WorkDoneByTopic/WorldPartitionRules.md)
+- [World Partition rule data-asset analysis](WorldPartitionRulesAnalysis.md) — the deep, per-asset breakdown.
+- [Streaming properties](WorldPartitionStreamingProperties.md) — the three properties and the invalid-HLOD-layer gate.
+- [Builders & commandlets](BuildersAndCommandlets.md) — the `WorldPartitionRuleBuilder`.
+- [Fixing MapCheck issues](FixingMapCheckIssues.md) — cause → fix playbook these rules feed into.
+- Plain-language: [`WorkDoneByTopic/WorldPartitionRules.md`](../WorkDoneByTopic/WorldPartitionRules.md).
