@@ -14,8 +14,7 @@ warnings/errors, Outliner organization, and related technical workflows.
 │   ├── WorldPartitionRules/    Applying World Partition rules
 │   ├── MapCheck/               Fixing MapCheck warnings & errors
 │   ├── Outliner/               Outliner organization
-│   ├── Technical/              Setup, conventions, troubleshooting
-│   └── Images/                 Shared images for the docs
+│   └── Technical/              Setup, conventions, troubleshooting
 └── Tools/                      Source code / scripts
     └── ProcessLevelInstances/  Batch rule builder for Level Instances
 ```

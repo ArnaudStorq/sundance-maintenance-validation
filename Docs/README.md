@@ -18,5 +18,3 @@ Documentation for the maintenance and validation of the Sundance project
 - All content published in this repository is written in **English**.
 - Prefer copying exact engine log text when documenting warnings/errors, so
   entries stay searchable.
-- Store images under [`Images/`](Images/) and reference them with relative
-  links.
