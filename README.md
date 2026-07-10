@@ -4,8 +4,6 @@ Tools and documentation for the maintenance and validation of the **Sundance**
 project (Unreal Engine 5), covering World Partition rules, Map Check
 warnings/errors, Outliner organization, and related technical workflows.
 
-> All content published in this repository is written in **English**.
-
 This file is the root of the documentation. Every other Markdown file links back to
 its parent (a `Parent:` line at the top), so you can always walk up the hierarchy to
 here, and down again through the section indexes below.
