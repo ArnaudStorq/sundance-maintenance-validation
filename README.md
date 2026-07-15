@@ -38,6 +38,18 @@ here, and down again through the section indexes below.
 - [Fixing MapCheck issues](ReferenceDocs/FixingMapCheckIssues.md)
 - [Outliner management](ReferenceDocs/OutlinerManagement.md)
 - [Builders & commandlets](ReferenceDocs/BuildersAndCommandlets.md)
+- [Custom Tools (editor console commands)](ReferenceDocs/CustomTools.md)
+
+## Custom Tools
+
+In-editor console commands (`FAutoConsoleCommand`) run from the editor console with the
+target level open. See [Custom Tools](ReferenceDocs/CustomTools.md) for the full list.
+
+- [`Editor.FixRuntimeGridReferenceErrors`](ReferenceDocs/CustomTools.md#editorfixruntimegridreferenceerrors)
+  — fixes `WorldPartitionChangelistValidator` "different runtime grid" reference errors
+  from a log file: aligns each referee's `RuntimeGrid` to its referencer, tags both with
+  `ExcludeFromRules`, saves + checks out into a described Perforce changelist, and reverts
+  a couple's files if either actor fails.
 
 ## Tools
 

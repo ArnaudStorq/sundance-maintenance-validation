@@ -69,6 +69,7 @@ set of independent documents:
 |-------|------------|
 | [Builders & commandlets](BuildersAndCommandlets.md) | the maintenance builders used on `LV_Overland`, with line-level code |
 | [World Partition builders catalog](WorldPartitionBuildersCatalog.md) | the full list of every engine + custom WP builder/commandlet and its switches |
+| [Custom Tools](CustomTools.md) | in-editor console commands (e.g. `Editor.FixRuntimeGridReferenceErrors`) run interactively with the level open |
 
 ### Organization, source control & tooling
 
