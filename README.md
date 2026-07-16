@@ -42,14 +42,19 @@ here, and down again through the section indexes below.
 
 ## Custom Tools
 
-In-editor console commands (`FAutoConsoleCommand`) run from the editor console with the
-target level open. See [Custom Tools](ReferenceDocs/CustomTools.md) for the full list.
+In-editor tools (console commands and editor-mode UI) run interactively with the target
+level open. See [Custom Tools](ReferenceDocs/CustomTools.md) for the full list.
 
 - [`Editor.FixRuntimeGridReferenceErrors`](ReferenceDocs/CustomTools.md#editorfixruntimegridreferenceerrors)
   — fixes `WorldPartitionChangelistValidator` "different runtime grid" reference errors
   from a log file: aligns each referee's `RuntimeGrid` to its referencer, tags both with
   `ExcludeFromRules`, saves + checks out into a described Perforce changelist, and reverts
   a couple's files if either actor fails.
+- [Delete World Event](ReferenceDocs/CustomTools.md#delete-world-event-world-events-editor-mode)
+  — a guided World Events Editor Mode dialog that fully deletes a World Event (locator,
+  level instance(s), data layer instance(s) and data layer asset(s)) from the Overland,
+  with live per-step progress, a detailed log, an up-front plan, and a one-click rollback
+  on failure. Moves changes to a described Perforce changelist; never submits.
 
 ## Tools
 
