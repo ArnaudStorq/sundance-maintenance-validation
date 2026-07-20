@@ -45,11 +45,13 @@ here, and down again through the section indexes below.
 In-editor tools (console commands and editor-mode UI) run interactively with the target
 level open. See [Custom Tools](ReferenceDocs/CustomTools.md) for the full list.
 
-- [`Editor.FixRuntimeGridReferenceErrors`](ReferenceDocs/CustomTools.md#editorfixruntimegridreferenceerrors)
-  — fixes `WorldPartitionChangelistValidator` "different runtime grid" reference errors
-  from a log file: aligns each referee's `RuntimeGrid` to its referencer, tags both with
-  `ExcludeFromRules`, saves + checks out into a described Perforce changelist, and reverts
-  a couple's files if either actor fails.
+- [Runtime Grid Reference Tools](ReferenceDocs/CustomTools/RuntimeGridReferenceTools.md)
+  — two linked console commands for `WorldPartitionChangelistValidator` "different runtime
+  grid" reference errors: `Editor.ScanRuntimeGridReferenceErrors` scans the open world and
+  writes the conflicts to a file, then `Editor.FixRuntimeGridReferenceErrors` aligns each
+  referee's `RuntimeGrid` to its referencer, tags both with `ExcludeFromRules`, saves +
+  checks out into a described Perforce changelist, and reverts a couple's files if either
+  actor fails.
 - [Delete World Event](ReferenceDocs/CustomTools.md#delete-world-event-world-events-editor-mode)
   — a guided World Events Editor Mode dialog that fully deletes a World Event (locator,
   level instance(s), data layer instance(s) and data layer asset(s)) from the Overland,

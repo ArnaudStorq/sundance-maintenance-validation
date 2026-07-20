@@ -26,7 +26,7 @@ manually aligns a value (e.g. bringing a referee onto its referencer's `RuntimeG
 clear a `WorldPartitionChangelistValidator` "different runtime grid" error), the next rule
 pass would silently overwrite it again. The `ExcludeFromRules` tag tells the rule system
 to **skip** that actor entirely, so the manual value sticks. This is the foundation the
-[`Editor.FixRuntimeGridReferenceErrors`](FixRuntimeGridReferenceErrors.md) batch tool
+[Runtime Grid Reference Tools](RuntimeGridReferenceTools.md) batch fixer
 relies on when it tags both sides of each couple.
 
 ## The `ExcludeFromRules` tag
@@ -81,7 +81,7 @@ directly in the Scene Outliner.
 
 ## See also
 
-- [`Editor.FixRuntimeGridReferenceErrors`](FixRuntimeGridReferenceErrors.md) — batch tool that applies this tag from a validator log
+- [Runtime Grid Reference Tools](RuntimeGridReferenceTools.md) — the scan + fix commands; the fixer applies this tag to both sides of each couple
 - [World Partition rules](../WorldPartitionRules.md) — how `RuntimeGrid` / DataLayers / HLOD are normally applied
 - [Runtime Grid rules](../WorldPartitionRulesAnalysis/RuntimeGridRules.md) — the RuntimeGrid domain in detail
 - [Fixing map-check issues](../FixingMapCheckIssues.md) — the validator errors this unblocks
@@ -89,6 +89,6 @@ directly in the Scene Outliner.
 
 ---
 
-**In this section:** [`Editor.FixRuntimeGridReferenceErrors`](FixRuntimeGridReferenceErrors.md) | [Delete World Event](DeleteWorldEvent.md) | **Exclude From Rules tag**
+**In this section:** [Runtime Grid Reference Tools](RuntimeGridReferenceTools.md) | [Delete World Event](DeleteWorldEvent.md) | **Exclude From Rules tag**
 
 Back to [Custom Tools](../CustomTools.md).
