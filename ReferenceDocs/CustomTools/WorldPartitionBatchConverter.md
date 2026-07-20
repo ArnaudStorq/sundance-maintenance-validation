@@ -35,6 +35,8 @@ Nothing is modified until you select levels and press **Process Selected Levels*
 
 ## The window
 
+![The World Partition Batch Converter window](images/WorldPartitionBatchConverter.png)
+
 - **Header** — title and a short plain-language explanation of what the tool does.
 - **Toolbar** — `Refresh` (re-scan), `Settings` (toggles the inline settings panel), and a
   search box that filters by level name, folder or depot path.
