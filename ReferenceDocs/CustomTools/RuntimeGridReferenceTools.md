@@ -129,10 +129,22 @@ Editor.ScanRuntimeGridReferenceErrors D:/Sandbox/AI/RuntimeGridConflicts.txt
 The scan reuses the engine's streaming-generation validation
 (`UWorldPartition::CheckForErrors`) — the **very same code path** the
 `WorldPartitionChangelistValidator` runs. Streaming generation works on lightweight actor
-**descriptors**, so **no actor packages are loaded** (fast).
+**descriptors**, so **no actor packages are loaded** (fast). Detection runs in **two
+complementary phases** whose findings are merged and de-duplicated:
 
-Every level — the open world, then each nested Level Instance sublevel — is validated as
-its **own standalone base container**:
+**Phase 1 — authoritative (live full hierarchy).** The live main world partition is
+validated with its **full loaded child hierarchy**, exactly like the changelist validator
+does for a loaded world (it reuses the live main-world container). This is the **only**
+pass that:
+
+- resolves **cross-container references** — a referencer in the main world pointing at a
+  referee inside a Level Instance (or between two Level Instances); and
+- evaluates Level-Instance actors in their **real streamed parent context** (with the main
+  world's streaming enabled), instead of in isolation.
+
+**Phase 2 — complementary (isolated per level).** Every level — the open world, then each
+nested Level Instance sublevel — is **also** validated as its **own standalone base
+container**:
 
 - created **fresh** so it holds no live child hierarchy → streaming generation never
   recurses into the live editor container tree (that recursion is what trips an internal
@@ -142,8 +154,19 @@ its **own standalone base container**:
   that WP) fires and the **resolved** grids are computed. Without the mutator every actor
   resolves to grid `None` and no conflict would ever be reported.
 
-Level Instances are **never opened in edit mode**. The scan descends into nested Level
-Instance sublevels recursively, and each distinct sublevel asset is scanned **once**.
+This phase catches conflicts inside partitioned sublevels that keep streaming enabled on
+their own. It descends into nested Level Instance sublevels recursively, and each distinct
+sublevel asset is scanned **once**.
+
+> **Streaming-disabled sublevels.** A Level Instance content level whose World Partition
+> streaming is *disabled* has **all** its actor grids force-resolved to `None` by the
+> engine, so no runtime-grid *reference* conflict can exist *inside* it — this matches the
+> changelist validator's own behavior. Such conflicts only ever surface where streaming is
+> enabled (the main streamed world, resolved in Phase 1, or a sublevel that keeps its own
+> streaming enabled, resolved in Phase 2).
+
+Level Instances are **never opened in edit mode**; a Level Instance already open in edit
+mode **aborts** the scan (that state would make the live validation assert).
 
 ### Mutator-gate diagnostics
 
@@ -167,10 +190,12 @@ regardless of authoring** — the report says so explicitly. Fix the gate and re
 
 ### Performance
 
-The dominant cost is the single streaming-generation pass over the **main world**'s actor
-set — the same work the engine does at submit time, so it is essentially irreducible
-(≈18 s on `LV_Overland`; the nested Level Instance passes add well under a second). Two
-cheap prunes avoid needless work: non-partitioned levels are skipped, and any level whose
+The dominant cost is the streaming-generation pass over the **main world**'s actor set —
+the same work the engine does at submit time, so it is essentially irreducible (≈18 s on
+`LV_Overland`). Both phases pay this cost (Phase 1 over the live full hierarchy, Phase 2
+over the main world's own descriptors), so expect roughly **double** the single-pass time;
+the nested Level Instance passes in Phase 2 add well under a second. Two cheap prunes avoid
+needless work in Phase 2: non-partitioned levels are skipped, and any level whose
 descriptors contain **no actor references at all** skips the streaming-generation pass
 entirely (a reference conflict is impossible there).
 
