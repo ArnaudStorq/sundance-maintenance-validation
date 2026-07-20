@@ -34,6 +34,8 @@ Nothing is modified until you press **Begin deletion**.
 
 ## The dialog
 
+![The Delete World Event dialog in the World Events editor mode](images/DeleteWorldEvent.png)
+
 A polished, self-explanatory modal wizard:
 
 - **Header** — warning icon, the World Event name, and a plain-language summary.
