@@ -185,6 +185,6 @@ static FAutoConsoleCommand FixRuntimeGridReferenceErrorsCmd(
 
 ---
 
-**In this section:** **`Editor.FixRuntimeGridReferenceErrors`** | [Delete World Event](DeleteWorldEvent.md)
+**In this section:** **`Editor.FixRuntimeGridReferenceErrors`** | [Delete World Event](DeleteWorldEvent.md) | [Exclude From Rules tag](ExcludeFromRulesTag.md) | [World Partition Batch Converter](WorldPartitionBatchConverter.md)
 
 Back to [Custom Tools](../CustomTools.md).
