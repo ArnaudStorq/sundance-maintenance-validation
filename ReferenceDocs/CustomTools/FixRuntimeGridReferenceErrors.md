@@ -26,6 +26,76 @@ does not overwrite the value on the next save. Freezing is done with the
 `"ExcludeFromRules"`). Doing this by hand across dozens of couples, some nested inside
 Level Instances, is error-prone; this command batches it from the validator log.
 
+## Reproducing the error
+
+The error the tool fixes is raised by the `WorldPartitionChangelistValidator`, more
+precisely by the `IStreamingGenerationErrorHandler::OnInvalidReferenceGridPlacement`
+handler: one actor (the **referencer**, e.g. `BP_PerformTasks`) holds a **hard reference**
+to another actor (the **referee**, e.g. `STN_OL_..._Stand_1P_FS`), but the two actors sit
+on **different runtime grids**. World Partition streaming could then load one without the
+other → dangling reference, hence the error at submit.
+
+Starting from an empty partitioned level:
+
+### Step 1 — Define a second runtime grid
+
+1. `Window > World Settings`.
+2. Section **World Partition Setup** → **Runtime Hash** (`WorldPartitionRuntimeSpatialHash`).
+3. Expand the **Grids** array. By default it only has `MainGrid`.
+4. Add an element and give it a **Grid Name**, e.g. `SecondGrid` (leave Cell Size /
+   Loading Range at their defaults).
+
+> You need two **valid** and **different** grids. Assigning a grid that does not exist
+> triggers a *different* error (`OnInvalidRuntimeGrid`), not this one.
+
+### Step 2 — Create the referenced actor (the `STN_...`)
+
+Place an actor in the level (a Static Mesh Actor or a Blueprint is enough). Rename it so
+you can find it (e.g. `STN_Target`). In **Details**, category **World Partition**:
+
+- `Is Spatially Loaded` = **true**
+- `Runtime Grid` = **`MainGrid`**
+
+### Step 3 — Create the referencing Blueprint (`BP_PerformTasks`)
+
+1. Create an Actor Blueprint, name it `BP_PerformTasks`.
+2. Add a variable of type **Actor (Object Reference)** and tick **Instance Editable**.
+   Compile / Save.
+3. Place `BP_PerformTasks` in the level.
+4. In its **Details**, assign that variable to the `STN_Target` actor placed in step 2 —
+   this creates the hard actor→actor reference that WP detects.
+5. Still in **Details**, category **World Partition**:
+   - `Is Spatially Loaded` = **true**
+   - `Runtime Grid` = **`SecondGrid`** ← different from the `STN_`'s grid
+
+### Step 4 — Save
+
+`Ctrl+Shift+S`. Because the level is partitioned, each actor is serialized into its own
+external package under `__ExternalActors__/...` (this is what appears in the error message).
+
+### Step 5 — Trigger the validation
+
+Two ways:
+
+- **Like your CL (Perforce):** put both actors' external packages into a changelist, then
+  right-click the changelist → **Validate**. This is exactly the path that runs
+  `WorldPartitionChangelistValidator` and produces the message format you see
+  (`CL1957467 - ... returned with errors`).
+- **Locally, without P4 (fast iteration):** run the World Partition error check via the
+  commandlet:
+
+```
+UnrealEditor-Cmd.exe "<Path>\Your.uproject" -run=WorldPartitionBuilderCommandlet -Builder=WorldPartitionCheckForErrorsBuilder
+```
+
+  The same error handler is used and will surface `OnInvalidReferenceGridPlacement`.
+
+### Confirming the cause
+
+Move `BP_PerformTasks` back to `MainGrid` (same grid as `STN_Target`), save and
+re-validate: the error disappears. Put it back on `SecondGrid`: the error returns. This
+confirms the runtime-grid difference between referencer and referee is what triggers it.
+
 ## Usage
 
 ```

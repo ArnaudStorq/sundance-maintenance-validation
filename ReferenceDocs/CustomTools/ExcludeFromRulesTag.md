@@ -69,6 +69,16 @@ directly in the Scene Outliner.
 - Registered right after the **"DL Rules"** column, **hidden by default**, and toggleable
   from the outliner header's **right-click** column menu.
 
+> **Note — `Excluded` is not always the tag.** The column shows `Excluded` for **any**
+> exclusion reason, including the per-domain **type ignore lists** in `DefaultEditor.ini`:
+> `ActorTypesIgnoredByDataLayerRules`, `ActorTypesIgnoredByRuntimeGridRules` and
+> `ActorTypesIgnoredByHLODLayerRules`. Engine-managed singletons such as
+> `WorldDataLayers` (`/Script/Engine.WorldDataLayers`) and `WorldPartitionMiniMap`
+> (`/Script/Engine.WorldPartitionMiniMap`) are listed there, so they read `Excluded`
+> **by type — never because they carry the `ExcludeFromRules` tag**. Don't mistake a
+> type-ignored system actor for one you (or the fixup tool) tagged: to confirm a real
+> tag, check the actor's **Details → Actor → Tags** for `ExcludeFromRules`.
+
 ## See also
 
 - [`Editor.FixRuntimeGridReferenceErrors`](FixRuntimeGridReferenceErrors.md) — batch tool that applies this tag from a validator log
