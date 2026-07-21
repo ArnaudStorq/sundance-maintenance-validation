@@ -52,11 +52,18 @@ level open. See [Custom Tools](ReferenceDocs/CustomTools.md) for the full list.
   referee's `RuntimeGrid` to its referencer, tags both with `ExcludeFromRules`, saves +
   checks out into a described Perforce changelist, and reverts a couple's files if either
   actor fails.
-- [Delete World Event](ReferenceDocs/CustomTools.md#delete-world-event-world-events-editor-mode)
+- [Delete World Event](ReferenceDocs/CustomTools/DeleteWorldEvent.md)
   — a guided World Events Editor Mode dialog that fully deletes a World Event (locator,
   level instance(s), data layer instance(s) and data layer asset(s)) from the Overland,
   with live per-step progress, a detailed log, an up-front plan, and a one-click rollback
   on failure. Moves changes to a described Perforce changelist; never submits.
+- [Exclude From Rules tag](ReferenceDocs/CustomTools/ExcludeFromRulesTag.md)
+  — the `ExcludeFromRules` actor tag that freezes an actor against the World Partition
+  rule system, plus the "Rule Exclusion" outliner column to audit which actors are
+  excluded.
+- [World Partition Batch Converter](ReferenceDocs/CustomTools/WorldPartitionBatchConverter.md)
+  — an editor-mode UI that batch-converts non-partitioned Content Browser levels to World
+  Partition, with per-level changelists and post-conversion validation.
 
 ## Tools
 
