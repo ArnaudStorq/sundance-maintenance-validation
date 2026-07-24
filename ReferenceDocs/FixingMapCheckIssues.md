@@ -104,13 +104,61 @@ detail: [Reference: streaming properties](WorldPartitionStreamingProperties.md).
   2. **Align the HLOD layer rule** to the bounds/partitions `DA_SmallGrid_Rules`
      targets, and add **min-bounds guards** so tiny meshes are excluded.
   3. **Force-exclude from HLOD** where the actor should never have had a layer.
+  4. **Exclude the actor from the RuntimeGrid rules** by adding the
+     `ExcludeFromRuntimeGridRules` actor tag — the rule system stops re-assigning its
+     RuntimeGrid, so the actor keeps its current (manually set) grid and the mutator no
+     longer tries the refused override. Use this when the actor's grid is intentional and
+     you just want the rules to leave it alone.
 - **Rules link**: this warning *is* rule processing telling you the data is
   contradictory. Full detail:
   [Reference: rules/SmallGrid](WorldPartitionRules.md).
+- **Reference**: a captured list of these warnings —
+  [Skipped RuntimeGrid override warnings — snapshot 2026-07-23](SkippedRuntimeGridOverrideWarnings-2026-07-23.md)
+  (52 warnings across 6 levels).
 - **History**:
   [Apply WP rules to 404 actors — SmallGrid (CL 1959722)](../WorkDoneByChangelists/P4-History/2026-07-07-06-46-wp-rules-404-actors-smallgrid.md) ·
   [Add `DA_SmallGrid_Rules` on save (CL 1959020)](../WorkDoneByChangelists/P4-History/2026-07-06-16-14-add-smallgrid-to-runtime-grid-rules.md) ·
   [Remove it after the pass (CL 1960226)](../WorkDoneByChangelists/P4-History/2026-07-07-12-03-remove-smallgrid-from-runtime-grid-rules.md)
+
+#### Example — manual fix with the `ExcludeFromRuntimeGridRules` tag
+
+Concrete walkthrough for one actor hit by this warning:
+
+```
+[2026.07.22-17.30.31:215][100]LogAvaStreamingGeneration: Warning: Skipped RuntimeGrid override ('None' -> 'SmallGrid') for actor 'BP_Forageable_Horklump' in level '/Game/Experimental/Levels/Overland/Ruins/LI_HV_A02_Ruins_Redcaps': rule 'DA_SmallGrid_Rules' cannot use HLOD layer 'LV_Overland_HLODLayer_Near' on that partition
+```
+
+- **Actor**: `BP_Forageable_Horklump`
+- **Level**: `LI_HV_A02_Ruins_Redcaps`
+- **What happens**: rule `DA_SmallGrid_Rules` wants `RuntimeGrid None -> SmallGrid`, but
+  HLOD layer `LV_Overland_HLODLayer_Near` is not allowed on the SmallGrid partition, so
+  the override is refused. Tagging the actor with `ExcludeFromRuntimeGridRules` stops the
+  RuntimeGrid rules from re-assigning it, so it keeps its current grid.
+
+Steps in the UE5 editor:
+
+1. **Open the level**: in the Content Browser, go to
+   `/Game/Experimental/Levels/Overland/Ruins/` and double-click `LI_HV_A02_Ruins_Redcaps`.
+2. **Select the actor**: in the World Outliner, search `BP_Forageable_Horklump` and click it.
+3. **Add the tag** in the Details panel:
+   - Section **Actor** (expand the **Advanced** properties with the ⌄ chevron if needed).
+   - Property **Tags** (`AActor::Tags` array) → click `+` → set the value to exactly
+     `ExcludeFromRuntimeGridRules`.
+4. *(Optional)* If you want a specific RuntimeGrid rather than `None`, set it under
+   **World Partition → Runtime Grid** **before** saving; the tag then locks that value.
+5. **Save** (`Ctrl+S`). As an external (OFPA) actor, UE marks the actor's package for
+   checkout/add in Perforce — accept it.
+
+Verification:
+
+- Re-run the AVA streaming generation / validation: the
+  `Skipped RuntimeGrid override ... for actor 'BP_Forageable_Horklump'` warning is gone.
+- In the World Outliner, the **WP Rule Exclusion** column shows
+  `ExcludeFromRuntimeGridRules` for the actor.
+
+> The tag must be **exactly** `ExcludeFromRuntimeGridRules` (the default of
+> `ActorTagExcludedFromRuntimeGridRules` in the WorldPartition Rule Settings). If that
+> default was changed in the project settings, use the configured value instead.
 
 ### A4 — Invalid HLOD layer on non-partitioned inner actors
 
