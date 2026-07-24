@@ -115,6 +115,49 @@ generation to get a fresh list.
 - `BP_BRK_Crate_13`
 - `BP_AMT_Crate_3`
 
+## Manual fix walkthrough
+
+### Warning context
+
+- **Actor**: `BP_Forageable_Horklump`
+- **Level**: `LI_HV_A02_Ruins_Redcaps`
+- **What happens**: the rule `DA_SmallGrid_Rules` wanted to change the `RuntimeGrid` from
+  `None` to `SmallGrid`, but this is refused because the HLOD layer
+  `LV_Overland_HLODLayer_Near` is incompatible with that partition. The
+  `ExcludeFromRuntimeGridRules` tag prevents the rule system from re-assigning the
+  RuntimeGrid, so the actor keeps its current grid.
+
+### Steps
+
+1. **Open the level** containing the actor: in the Content Browser, go to
+   `/Game/Experimental/Levels/Overland/Ruins/` and double-click `LI_HV_A02_Ruins_Redcaps`
+   to open it.
+2. **Select the actor**: in the World Outliner, type `BP_Forageable_Horklump` in the
+   search bar, then click it.
+3. **Add the tag** in the Details panel:
+   - Section **Actor** (expand the **Advanced** properties with the small ⌄ chevron on the
+     right of the category if needed).
+   - Property **Tags** (`AActor::Tags` array).
+   - Click the `+` to add an element.
+   - Enter exactly: `ExcludeFromRuntimeGridRules`
+4. *(Optional but recommended)* If you want a specific RuntimeGrid rather than `None`: in
+   **World Partition → Runtime Grid**, set the desired value **before** saving. The tag
+   will lock that value.
+5. **Save**: `Ctrl+S`. Since it is an external actor (World Partition), UE will mark the
+   actor's file for checkout/add in Perforce — accept it.
+
+### Verification
+
+- Reopen the level and re-run your validation / the AVA process: the
+  `Skipped RuntimeGrid override ... for actor 'BP_Forageable_Horklump'` warning must no
+  longer appear (the actor is now ignored by the RuntimeGrid rules).
+- In the World Outliner, the **WP Rule Exclusion** column must show
+  `ExcludeFromRuntimeGridRules` for this actor.
+
+> **Caution**: the tag must be exactly `ExcludeFromRuntimeGridRules` (the default value of
+> `ActorTagExcludedFromRuntimeGridRules` in the WorldPartition Rule Settings). If it was
+> changed in the project settings, use the configured value instead.
+
 ## See also
 
 - [A3 — "Skipped RuntimeGrid override" (the conflict signal)](FixingMapCheckIssues.md#a3--skipped-runtimegrid-override-the-conflict-signal)
