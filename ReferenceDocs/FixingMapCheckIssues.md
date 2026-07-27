@@ -113,8 +113,8 @@ detail: [Reference: streaming properties](WorldPartitionStreamingProperties.md).
   contradictory. Full detail:
   [Reference: rules/SmallGrid](WorldPartitionRules.md).
 - **Reference**: a captured list of these warnings —
-  [Skipped RuntimeGrid override warnings — snapshot 2026-07-23](SkippedRuntimeGridOverrideWarnings-2026-07-23.md)
-  (52 warnings across 6 levels).
+  [Skipped RuntimeGrid override warnings — snapshot 2026-07-27](SkippedRuntimeGridOverrideWarnings-2026-07-27.md)
+  (39 warnings across 5 levels).
 - **History**:
   [Apply WP rules to 404 actors — SmallGrid (CL 1959722)](../WorkDoneByChangelists/P4-History/2026-07-07-06-46-wp-rules-404-actors-smallgrid.md) ·
   [Add `DA_SmallGrid_Rules` on save (CL 1959020)](../WorkDoneByChangelists/P4-History/2026-07-06-16-14-add-smallgrid-to-runtime-grid-rules.md) ·

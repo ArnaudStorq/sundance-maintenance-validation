@@ -1,12 +1,12 @@
 Parent: [Fixing MapCheck errors & warnings](FixingMapCheckIssues.md)
 
-# "Skipped RuntimeGrid override" warnings — snapshot 2026-07-23
+# "Skipped RuntimeGrid override" warnings — snapshot 2026-07-27
 
 ## Context
 
 This document is a **point-in-time snapshot** of the
 `Skipped RuntimeGrid override` warnings captured from an **AVA streaming generation**
-run on **July 23, 2026** (log timestamps are from `2026.07.22-17.30`). It complements
+run on **July 27, 2026** (log timestamps are from `2026.07.27-10.21`). It complements
 [section A3 of the MapCheck playbook](FixingMapCheckIssues.md#a3--skipped-runtimegrid-override-the-conflict-signal),
 which explains the cause and the fixes.
 
@@ -29,8 +29,8 @@ generation to get a fresh list.
 
 ## Summary
 
-- **Total warnings**: 52
-- **Distinct levels**: 6
+- **Total warnings**: 39
+- **Distinct levels**: 5
 - **Rule**: `DA_SmallGrid_Rules` · **HLOD layer**: `LV_Overland_HLODLayer_Near` ·
   **Override**: `None -> SmallGrid`
 
@@ -38,10 +38,9 @@ generation to get a fresh list.
 | --- | ---: |
 | `/Game/Experimental/Levels/Overland/Ruins/LI_HV_A02_Ruins_Redcaps` | 3 |
 | `/Game/Experimental/Levels/Vault/Vault_Resource_Platforming_01/LI_Resource_Horklump_01` | 10 |
-| `/Game/Experimental/Levels/Vault/Vault_Resource_Cave_MoonStone_01/LI_Vault_Resource_Cave_Moon_A` | 1 |
 | `/Game/Levels/Overland/Ruins/Castle_Saints/LI_Castle_Saints_A` | 7 |
 | `/Game/Experimental/Levels/Overland/EnemyLair/LI_EnemyLair_Cusith_A` | 3 |
-| `/Game/Experimental/Levels/Vault/Vault_UnderwaterTunnel/LI_Vault_UnderwaterTunnel` | 28 |
+| `/Game/Experimental/Levels/Vault/Vault_UnderwaterTunnel/LI_Vault_UnderwaterTunnel` | 16 |
 
 ## Warnings by level
 
@@ -58,15 +57,11 @@ generation to get a fresh list.
 - `BP_Horklump13`
 - `BP_Horklump2`
 - `BP_Horklump16`
-- `BP_Horklump5`
 - `BP_Horklump11`
+- `BP_Horklump5`
 - `BP_Horklump12`
 - `BP_Horklump9`
 - `BP_Horklump17`
-
-### `/Game/Experimental/Levels/Vault/Vault_Resource_Cave_MoonStone_01/LI_Vault_Resource_Cave_Moon_A` (1)
-
-- `BP_Loot_Moonstone-Blue-LG_HVA05_H`
 
 ### `/Game/Levels/Overland/Ruins/Castle_Saints/LI_Castle_Saints_A` (7)
 
@@ -84,20 +79,14 @@ generation to get a fresh list.
 - `BP_Forageable_Horklump3`
 - `BP_Forageable_Horklump`
 
-### `/Game/Experimental/Levels/Vault/Vault_UnderwaterTunnel/LI_Vault_UnderwaterTunnel` (28)
+### `/Game/Experimental/Levels/Vault/Vault_UnderwaterTunnel/LI_Vault_UnderwaterTunnel` (16)
 
 - `BP_Lantern_D`
 - `SM_InkBottle_Quills_D`
 - `SM_Stool_Short_B`
-- `BP_BRK_Crate_7`
 - `SM_Rolled_Parchment_Pile_D`
-- `BP_AMT_Crate_01`
 - `SM_HM_OwlPost_Package_G`
-- `BP_AMT_OilTorch_01`
-- `BP_BRK_Pot_5`
 - `SM_HW_Book_JournalOpen_C`
-- `BP_AMT_Barrel`
-- `BP_AMT_ExplosiveBarrel2`
 - `SM_PictureFrame_Trim_1X1_A`
 - `BP_Lantern_D3`
 - `BP_Light_GEN_Table_Lamp_F`
@@ -106,14 +95,8 @@ generation to get a fresh list.
 - `SM_PictureFrame_Trim_4X3_G`
 - `BP_Horklump2`
 - `BP_Horklump`
-- `BP_AMT_OilTorch_2`
-- `BP_AMT_Rock_01`
 - `SM_HM_OwlPost_Package_N`
 - `BP_Lantern_D2`
-- `BP_BRK_Pot_03`
-- `BP_AMT_ExplosiveBarrel`
-- `BP_BRK_Crate_13`
-- `BP_AMT_Crate_3`
 
 ## Manual fix walkthrough
 
