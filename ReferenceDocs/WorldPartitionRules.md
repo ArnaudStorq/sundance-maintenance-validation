@@ -15,6 +15,10 @@ asset** and the precise precedence model, see the
 [processing order & priority](WorldPartitionRulesAnalysis/ProcessingOrderAndPriority.md) and the
 [data asset inventory](WorldPartitionRulesAnalysis/DataAssetInventory.md).
 
+For a flat, exhaustive `if … then …` decision table of **every** registered rule as it matches
+today (RuntimeGrid, HLOD and all 56 DataLayer rules), see the
+[rule decision flow charts](WorldPartitionRulesFlowCharts.md).
+
 ---
 
 ## Overview
@@ -314,6 +318,7 @@ keeping it permanently in the on-save rules would reassign grids on every future
 ## See also
 
 - [World Partition rule data-asset analysis](WorldPartitionRulesAnalysis.md) — the deep, per-asset breakdown.
+- [World Partition rules decision flow charts](WorldPartitionRulesFlowCharts.md) — flat `if … then …` decision tables for every registered rule (live-read from the editor).
 - [Streaming properties](WorldPartitionStreamingProperties.md) — the three properties and the invalid-HLOD-layer gate.
 - [Builders & commandlets](BuildersAndCommandlets.md) — the `WorldPartitionRuleBuilder`.
 - [Fixing MapCheck issues](FixingMapCheckIssues.md) — cause → fix playbook these rules feed into.

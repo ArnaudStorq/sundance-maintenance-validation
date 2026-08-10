@@ -189,3 +189,6 @@ Approximate, **documented** values (confirm against the map hash before quoting)
 **In this series:** [Rule engine mechanics](RuleEngineMechanics.md) | **Runtime Grid rules** | [HLOD Layer rules](HLODLayerRules.md) | [HLOD Layer target assets](HLODLayerTargetAssets.md) | [Processing order & priority](ProcessingOrderAndPriority.md) | [Data asset inventory](DataAssetInventory.md)
 
 Back to the [analysis overview](../WorldPartitionRulesAnalysis.md).
+
+See also the [rule decision flow charts](../WorldPartitionRulesFlowCharts.md) for the flat
+`if … then …` table of every registered RuntimeGrid rule as it matches today.

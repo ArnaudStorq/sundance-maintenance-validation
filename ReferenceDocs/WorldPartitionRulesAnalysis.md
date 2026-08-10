@@ -44,6 +44,7 @@ independent — read them in any order.
 | [HLOD Layer target assets](WorldPartitionRulesAnalysis/HLODLayerTargetAssets.md) | The `UHLODLayer` assets the rules assign (builders, parent chains). |
 | [Processing order & priority](WorldPartitionRulesAnalysis/ProcessingOrderAndPriority.md) | The precise precedence model + worked examples. |
 | [Data asset inventory](WorldPartitionRulesAnalysis/DataAssetInventory.md) | Appendix: every asset with its extracted fields. |
+| [Rule decision flow charts](WorldPartitionRulesFlowCharts.md) | Flat `if … then …` decision tables for every registered rule as it matches today (live-read from the editor). |
 
 ## Executive summary
 
@@ -124,6 +125,7 @@ Get-ChildItem -Recurse "D:\Sun\Sundance\Content\Data\WorldPartition" -Filter *.u
 
 ## See also
 
+- [Rule decision flow charts](WorldPartitionRulesFlowCharts.md) — flat `if … then …` decision tables for every registered rule as it matches today.
 - [Streaming properties](WorldPartitionStreamingProperties.md) — the three streaming properties and the invalid-HLOD-layer gate.
 - [World Partition rules](WorldPartitionRules.md) — the practitioner how-to plus the rule subsystem internals and the SmallGrid toggle.
 - [Fixing MapCheck issues](FixingMapCheckIssues.md) — cause → fix playbook that these rules feed into.

@@ -191,3 +191,6 @@ ordering + `*RulesToExclude` produce a single deterministic outcome per actor.
 **In this series:** [Rule engine mechanics](RuleEngineMechanics.md) | [Runtime Grid rules](RuntimeGridRules.md) | **HLOD Layer rules** | [HLOD Layer target assets](HLODLayerTargetAssets.md) | [Processing order & priority](ProcessingOrderAndPriority.md) | [Data asset inventory](DataAssetInventory.md)
 
 Back to the [analysis overview](../WorldPartitionRulesAnalysis.md).
+
+See also the [rule decision flow charts](../WorldPartitionRulesFlowCharts.md) for the flat
+`if … then …` table of all 14 registered HLOD rules as they match today.
