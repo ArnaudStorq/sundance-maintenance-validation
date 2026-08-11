@@ -298,6 +298,7 @@ FINAL DataLayers = layers          # the union
 
 ## See also
 
+- [World Partition rules consistency audit](WorldPartitionRulesConsistencyAudit.md) — validator + manual audit for cycles, overlaps and mishandled cases.
 - [World Partition rules](WorldPartitionRules.md) — practitioner how-to, rule subsystem internals, the SmallGrid toggle.
 - [World Partition rule data-asset analysis](WorldPartitionRulesAnalysis.md) — the deep, per-asset breakdown.
 - [Runtime Grid rules](WorldPartitionRulesAnalysis/RuntimeGridRules.md) · [HLOD Layer rules](WorldPartitionRulesAnalysis/HLODLayerRules.md) · [Processing order & priority](WorldPartitionRulesAnalysis/ProcessingOrderAndPriority.md) · [Data asset inventory](WorldPartitionRulesAnalysis/DataAssetInventory.md).
