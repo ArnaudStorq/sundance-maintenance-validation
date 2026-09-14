@@ -15,6 +15,10 @@ fixed on `LV_Overland`, grounded in the changelist history
 > Map Check messages (assets, lighting, collision, navigation, foliage…), see the
 > generic catalog in [appendix G](#g-generic-engine-mapcheck-messages-catalog).
 
+> Not seeing a warning you expected on level load? Several of the custom checks below are
+> gated behind `wp.editor.MapCheck.*` console variables, two of them **off by default** —
+> see [MapCheck validation CVars](MapCheckValidationCVars.md).
+
 ---
 
 ## The mental model: MapCheck ⇄ World Partition rules
@@ -220,6 +224,12 @@ Verification:
 
 These are raised by the Sundance `UWorldPartitionMapCheckValidator` (runs on
 `FEditorDelegates::OnGameMapChecked`), most with an in-editor **"Fix It!"** action.
+
+> Since CL 2064105, **B1 and B2 are disabled by default** for load-time performance and
+> no longer appear when you open a level. To reproduce them, enable
+> `wp.editor.MapCheck.CheckForMissingDataLayers` /
+> `wp.editor.MapCheck.CheckForNonRelevantDataLayers` —
+> see [MapCheck validation CVars](MapCheckValidationCVars.md).
 
 ### B1 — Actor assigned to a Data Layer that doesn't exist
 
@@ -556,6 +566,8 @@ them — so a clean triage has a single home.
 
 ## See also
 
+- [MapCheck validation CVars](MapCheckValidationCVars.md) — enabling/disabling the custom
+  checks (`wp.editor.MapCheck.*`) and persisting the value
 - [Reference — streaming properties](WorldPartitionStreamingProperties.md),
   [rules/SmallGrid/IncludeInHLOD](WorldPartitionRules.md),
   [builders](BuildersAndCommandlets.md)

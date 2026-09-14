@@ -37,6 +37,7 @@ scripts.
 | Topic | Read when… |
 |-------|------------|
 | [Fixing MapCheck issues](FixingMapCheckIssues.md) | the project playbook (cause → solution per warning actually hit on `LV_Overland`), plus a generic stock-engine MapCheck catalog in appendix G |
+| [MapCheck validation CVars](MapCheckValidationCVars.md) | a MapCheck warning stopped appearing on level load, or you want to re-enable the checks disabled for performance (`wp.editor.MapCheck.*`) and persist the value |
 
 ### World Partition streaming
 
