@@ -81,6 +81,33 @@ the opening time.
 
 > The builder has **no `-DryRun`** switch — the dry-run mechanism is `-ReportOnly`.
 
+### The command line behind the job
+
+The same invocation is shipped as a local script,
+`D:\Sun\Sundance\Tools\Scripts\WorldGeneration\ApplyWorldPartitionRules.bat` — the
+reference for what the job actually passes:
+
+```bat
+UnrealEditor-Cmd.exe Sundance ^
+ -stdout -FullStdOutLogOutput -SCCProvider=Perforce ^
+ -run=WorldPartitionBuilderCommandlet ^
+ -Builder=WorldPartitionRuleBuilder ^
+ -DataLayerRules -HLODLayerRules -RuntimeGridRules ^
+ -AutoSubmit -AllowFailedSave ^
+ -AutoSubmitTags="@AUTOMATION $OVERLAND" ^
+ -AllowCommandletRendering -Verbose ^
+ <LevelPath>
+```
+
+| Script flag | Adds | Meaning |
+|-------------|------|---------|
+| `-Submit` | `-AutoSubmit -AllowFailedSave -AutoSubmitTags="@AUTOMATION $OVERLAND"` | Submit the changelist automatically, tagged `@AUTOMATION $OVERLAND` — this is the tag to search for in Perforce when hunting down an automated content change. |
+| `-StayPending` | the same, plus `-StayPending` | Create the changelist but **leave it pending** for review. The safe mode when validating a rule change. |
+| `-Test` | — | Print the command line without running it. |
+
+Run it locally with `-StayPending` to reproduce a nightly build on one level before
+asking for a farm run.
+
 ### When it runs
 
 - **Nightly**, triggered in the evening; long passes now finish the following morning
@@ -145,6 +172,28 @@ produce mixed HLOD data.
 | `-AllowCommandletRendering` | Required for the build step: `RequiresCommandletRendering() == true`. |
 | `-AllowFailedSave`, `-AllowFailedWorkloadValidation`, `-ModifyFilesWithoutCheckout`, `-ForceDistributeHLODs` | AVA additions: tolerate save/validation failures on the farm, write without checkout, and push every HLOD actor through `HLODTemp` even when unmodified. |
 
+### The command line behind the job
+
+The non-distributed equivalent is
+`D:\Sun\Sundance\Tools\Scripts\WorldGeneration\WorldPartitionBuildHLODs.bat` (single
+machine: Setup and Build in one process, Finalize folded into `-Submit`):
+
+```bat
+UnrealEditor-Cmd.exe Sundance ^
+ -stdout -FullStdOutLogOutput -SCCProvider=Perforce ^
+ -run=WorldPartitionBuilderCommandlet ^
+ -Builder=WorldPartitionHLODsBuilder ^
+ -SetupHLODs -BuildHLODs ^
+ -AutoSubmit -FinalizeHLODs -AllowFailedSave ^
+ -AutoSubmitTags="@AUTOMATION $OVERLAND" ^
+ -AllowCommandletRendering -Verbose ^
+ [-BuildHLODLayer=<Layer>] <LevelPath>
+```
+
+Sibling scripts in the same folder: `WorldPartitionRebuildHLODs.bat` (`-RebuildHLODs`,
+force) and `WorldPartitionDeleteHLODs.bat`. Same `-Submit` / `-StayPending` / `-Test`
+flags and the same `@AUTOMATION $OVERLAND` submit tag as the rule script.
+
 ### When it runs
 
 - **Nightly**, in the same evening window as the rule pass, and manually on demand after
@@ -175,6 +224,26 @@ produce mixed HLOD data.
 - The **report hub** (`WorldStreamingHub.html`, `HLODTrend.html`,
   `WorldPartitionRulesSnapshot.html`, `StreamingGenerationSnapshot.html`) is the
   human-facing view of both jobs and updates once per day.
+
+### The reporting pipeline
+
+Two Python scripts in `D:\Sun\Sundance\Source\WorldBuildingEditor\WorldPartition\Report\`
+turn a build's output into the hub's data. Both take a `--build-id` precisely so a
+TeamCity build number or changelist can be stamped on the data point:
+
+| Script | Input → output | Feeds |
+|--------|----------------|-------|
+| `CurateWorldPartitionRulesData.py` | `Sundance.log` → `WorldPartitionRules-CL*.json` (pre-parsed findings) + appends to `WorldPartitionRulesTrendData.json` | `WorldPartitionRulesSnapshot.html`, `WorldPartitionRulesTrend.html` |
+| `GenerateHLODTrendData.py` | `HLODTrendData/HLODStats-CL*.csv` → `HLODTrendData.json` | `HLODTrend.html`, `HLODSnapshot.html` |
+
+The curator parses the exact log lines the rule builder emits — `Applied HLODLayer '...'
+to actor '...'`, `Applied DataLayer`, `Applied RuntimeGrid`, `Missing DataLayer`,
+`matches multiple HLODLayer rules (N)`, and the `Skipping rule application for actor
+[...]: package cannot be checked out (Checked out by: <user> @ <workspace>)` line. That
+last one is why the reports can attribute a skipped actor to the person holding the file.
+
+> This is also the contract to respect when adding a new warning: if the message does not
+> match one of these patterns, it shows up in the log but **not** in the dashboard.
 
 ## Operating notes
 
