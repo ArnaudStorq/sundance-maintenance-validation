@@ -1,0 +1,39 @@
+---
+description: Keep the Changelog section of the root README.md up to date on every commit
+alwaysApply: true
+---
+
+# README Changelog
+
+The root [`README.md`](../../README.md) has a **Changelog** section. Every time you create
+a commit in this repository, add its entry there **in the same commit**.
+
+## Rules
+
+- **One row per commit**, inserted at the **top** of the table (newest first).
+- Columns: `Date` (ISO `YYYY-MM-DD`), `Change` (one sentence, English, past tense, linking
+  the documents touched), `Commit` (short SHA).
+- The commit link is
+  `https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/<shortSha>`.
+- **Skip pure housekeeping**: renames, folder moves, formatting or typo passes. Only log
+  changes to what the documentation actually says.
+
+## Procedure
+
+The SHA does not exist before the commit, so commit first, then amend:
+
+```powershell
+git commit -m "Docs: <subject>"
+# read the short SHA, add the row to the README Changelog table, then:
+git add README.md
+git commit --amend --no-edit
+```
+
+Amend only while the commit is **not yet pushed**. If it is already pushed, add the row in
+the next commit instead of rewriting history.
+
+## Example row
+
+```markdown
+| 2026-09-16 | Added [TeamCity jobs](ReferenceDocs/TeamCityJobs.md) — the nightly rule pass and the distributed HLOD generation, their parameters and their schedule | [`ee39f69`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/ee39f69) |
+```

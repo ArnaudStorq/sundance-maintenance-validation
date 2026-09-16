@@ -74,6 +74,33 @@ level open. See [Custom Tools](ReferenceDocs/CustomTools.md) for the full list.
 - [ProcessLevelInstances](Tools/ProcessLevelInstances/README.md) — runs the
   `WorldPartitionRuleBuilder` commandlet over a list of Level Instances.
 
+## Changelog
+
+Newest first, one entry per commit that changes what the documentation says. Pure
+housekeeping (renames, folder moves, typo passes) is left out.
+
+| Date | Change | Commit |
+|------|--------|--------|
+| 2026-09-16 | Added this Changelog section, populated from the relevant history, and the rule that keeps it updated on every commit | [`0bda162`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/0bda162) |
+| 2026-09-16 | Grounded the TeamCity jobs page in the shipped `WorldGeneration` scripts: real commandlet command lines, the `@AUTOMATION $OVERLAND` submit tag, and the reporting pipeline that feeds the HTML hub | [`af4f33c`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/af4f33c) |
+| 2026-09-16 | Added [TeamCity jobs](ReferenceDocs/TeamCityJobs.md) — the nightly rule pass and the distributed HLOD generation, their parameters and their schedule | [`ee39f69`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/ee39f69) |
+| 2026-09-14 | Documented the [MapCheck validation CVars](ReferenceDocs/MapCheckValidationCVars.md) (`wp.editor.MapCheck.*`) disabled for load-time performance (CL 2064105) | [`3dfaff9`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/3dfaff9) |
+| 2026-08-18 | Added the [QA test plan](Share/WorldPartitionConversion-QA-TestPlan-2026-08-18.md) for the 650-level World Partition conversion batch | [`261b578`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/261b578) |
+| 2026-08-11 | Added the World Partition conversion test plan written for Mark Lento | [`c37c763`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/c37c763) |
+| 2026-08-11 | Added the [rules consistency audit](ReferenceDocs/WorldPartitionRulesConsistencyAudit.md) — every registered rule checked against the configured arrays | [`bfacb9d`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/bfacb9d) |
+| 2026-08-10 | Added the [rule decision flow charts](ReferenceDocs/WorldPartitionRulesFlowCharts.md) for Data Layer, HLOD and RuntimeGrid resolution | [`21d12b7`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/21d12b7) |
+| 2026-07-27 | Refreshed the [skipped RuntimeGrid override warnings](ReferenceDocs/SkippedRuntimeGridOverrideWarnings-2026-07-27.md) snapshot | [`5f87a40`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/5f87a40) |
+| 2026-07-24 | Documented `ExcludeFromRuntimeGridRules` with a worked example, plus the manual fix walkthrough for the warning snapshot | [`d474699`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/d474699) |
+| 2026-07-20 | Documented the [Runtime Grid Reference Tools](ReferenceDocs/CustomTools/RuntimeGridReferenceTools.md) — the scan and fix console commands, with repro steps | [`ef2772e`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/ef2772e) |
+| 2026-07-20 | Documented the [World Partition Batch Converter](ReferenceDocs/CustomTools/WorldPartitionBatchConverter.md) editor-mode tool | [`23e9d60`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/23e9d60) |
+| 2026-07-20 | Documented the [`ExcludeFromRules` tag](ReferenceDocs/CustomTools/ExcludeFromRulesTag.md) and the "Rule Exclusion" outliner column | [`5fe796c`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/5fe796c) |
+| 2026-07-16 | Documented the [Delete World Event](ReferenceDocs/CustomTools/DeleteWorldEvent.md) editor-mode dialog | [`1cb592a`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/1cb592a) |
+| 2026-07-15 | Opened the [Custom Tools](ReferenceDocs/CustomTools.md) section for in-editor console commands | [`d7ba823`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/d7ba823) |
+| 2026-07-09 | Reorganized the documentation into the current hierarchy: `Docs/` merged into `ReferenceDocs/`, `Parent:` breadcrumbs everywhere, harmonized naming | [`e2962a2`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/e2962a2) |
+| 2026-07-09 | Added the [rule data-asset analysis series](ReferenceDocs/WorldPartitionRulesAnalysis.md) — per-asset breakdown of the rule system | [`a74cfa3`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/a74cfa3) |
+| 2026-07-09 | Added the [World Partition builders catalog](ReferenceDocs/WorldPartitionBuildersCatalog.md) — every engine and custom builder with its switches | [`1376cf0`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/1376cf0) |
+| 2026-07-09 | Added the [MapCheck fix playbook](ReferenceDocs/FixingMapCheckIssues.md) linking each warning to its World Partition rule cause | [`956b6e9`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/956b6e9) |
+
 ## Contributing
 
 - Write everything (docs, code comments, commit messages) in English.
@@ -82,3 +109,5 @@ level open. See [Custom Tools](ReferenceDocs/CustomTools.md) for the full list.
   [`ReferenceDocs/README.md`](ReferenceDocs/README.md).
 - Every Markdown file should start with a `Parent:` link to the index (or document)
   one level up, so the documentation hierarchy stays traversable.
+- Add an entry at the top of the [Changelog](#changelog) in the same commit that changes
+  the documentation (see [`.cursor/rules/readme-changelog.mdc`](.cursor/rules/readme-changelog.mdc)).
