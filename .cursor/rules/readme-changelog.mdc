@@ -20,17 +20,19 @@ a commit in this repository, add its entry there **in the same commit**.
 
 ## Procedure
 
-The SHA does not exist before the commit, so commit first, then amend:
+A commit cannot contain its own SHA, and amending to insert it only produces a new SHA.
+So **the Changelog trails one commit behind**: record commit *N* in commit *N+1*.
 
 ```powershell
-git commit -m "Docs: <subject>"
-# read the short SHA, add the row to the README Changelog table, then:
-git add README.md
-git commit --amend --no-edit
+git commit -m "Docs: <subject>"   # the documentation change
+git log --oneline -1              # read its short SHA
+# add the row for that SHA at the top of the README Changelog table, then:
+git commit -am "Changelog: record <shortSha>"
+git push
 ```
 
-Amend only while the commit is **not yet pushed**. If it is already pushed, add the row in
-the next commit instead of rewriting history.
+The `Changelog: record ...` commit is housekeeping, so it gets no row of its own — the
+table never chases itself. Both commits can be pushed together.
 
 ## Example row
 

@@ -81,7 +81,7 @@ housekeeping (renames, folder moves, typo passes) is left out.
 
 | Date | Change | Commit |
 |------|--------|--------|
-| 2026-09-16 | Added this Changelog section, populated from the relevant history, and the rule that keeps it updated on every commit | [`0bda162`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/0bda162) |
+| 2026-09-16 | Added this Changelog section, populated from the relevant history, and the rule that keeps it updated on every commit | [`a4383be`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/a4383be) |
 | 2026-09-16 | Grounded the TeamCity jobs page in the shipped `WorldGeneration` scripts: real commandlet command lines, the `@AUTOMATION $OVERLAND` submit tag, and the reporting pipeline that feeds the HTML hub | [`af4f33c`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/af4f33c) |
 | 2026-09-16 | Added [TeamCity jobs](ReferenceDocs/TeamCityJobs.md) — the nightly rule pass and the distributed HLOD generation, their parameters and their schedule | [`ee39f69`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/ee39f69) |
 | 2026-09-14 | Documented the [MapCheck validation CVars](ReferenceDocs/MapCheckValidationCVars.md) (`wp.editor.MapCheck.*`) disabled for load-time performance (CL 2064105) | [`3dfaff9`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/3dfaff9) |
