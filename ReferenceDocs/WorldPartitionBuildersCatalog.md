@@ -416,6 +416,7 @@ plus the base `-AllowCommandletRendering [-AutoSubmit]`.
 ## See also
 
 - [Builders & commandlets](BuildersAndCommandlets.md) (the maintenance subset, with line-level code)
+- [TeamCity jobs](TeamCityJobs.md) (how the rule and HLOD builders are driven on the farm)
 - [World Partition streaming properties](WorldPartitionStreamingProperties.md)
 - [Converting levels to World Partition](ConvertingLevelsToWorldPartition.md)
 - [Perforce source control](PerforceSourceControl.md)

@@ -38,6 +38,10 @@ here, and down again through the section indexes below.
 - [Fixing MapCheck issues](ReferenceDocs/FixingMapCheckIssues.md)
 - [Outliner management](ReferenceDocs/OutlinerManagement.md)
 - [Builders & commandlets](ReferenceDocs/BuildersAndCommandlets.md)
+- [TeamCity jobs](ReferenceDocs/TeamCityJobs.md) — the nightly
+  [Apply World Partition Rules](https://slc-teamcity.wbiegames.com/buildConfiguration/Sundance_Dev_Tools_ApplyWorldPartitionRules#all-projects)
+  and [Generate HLODs (distributed)](https://slc-teamcity.wbiegames.com/buildConfiguration/Sundance_Dev_Tools_HLODs_Distributed_GenerateHLODs#all-projects)
+  build configurations
 - [Custom Tools (editor console commands)](ReferenceDocs/CustomTools.md)
 
 ## Custom Tools

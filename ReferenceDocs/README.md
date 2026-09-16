@@ -72,6 +72,12 @@ set of independent documents:
 | [World Partition builders catalog](WorldPartitionBuildersCatalog.md) | the full list of every engine + custom WP builder/commandlet and its switches |
 | [Custom Tools](CustomTools.md) | in-editor console commands (e.g. `Editor.FixRuntimeGridReferenceErrors`) run interactively with the level open |
 
+### Automation on TeamCity
+
+| Topic | Read when… |
+|-------|------------|
+| [TeamCity jobs](TeamCityJobs.md) | you need the two build farm jobs — [Apply World Partition Rules](https://slc-teamcity.wbiegames.com/buildConfiguration/Sundance_Dev_Tools_ApplyWorldPartitionRules#all-projects) and [Generate HLODs (distributed)](https://slc-teamcity.wbiegames.com/buildConfiguration/Sundance_Dev_Tools_HLODs_Distributed_GenerateHLODs#all-projects) — their parameters, their nightly schedule, and where their logs and reports land |
+
 ### Organization, source control & tooling
 
 | Topic | Read when… |

@@ -216,6 +216,7 @@ disk-writing MapCheck auto-fixer (`WorldPartitionHLODFixup::FixupOne`) is **disa
 
 ## See also
 
+- [TeamCity jobs](TeamCityJobs.md) (the build configurations that run these builders nightly)
 - [Transform drift](TransformDrift.md) (why `PackagesToSave` is transient)
 - [Perforce source control](PerforceSourceControl.md)
 - [Auxiliary tools (`process_li.bat`)](AuxiliaryToolsAndWorkflow.md)
