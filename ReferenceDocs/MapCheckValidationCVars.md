@@ -14,6 +14,17 @@ Source: `D:\Sun\Sundance\Source\WorldBuildingEditor\WorldPartition\WorldPartitio
 `PerformMapCheckValidation`). Introduced by changelist **2064105**
 (jira **SUNDANCE-77766**).
 
+## Contents
+
+- [Why the gating exists](#why-the-gating-exists)
+- [The CVars](#the-cvars)
+- [Reproducing the pre-2064105 warnings](#reproducing-the-pre-2064105-warnings)
+- [Making a value permanent](#making-a-value-permanent)
+  - [1. Your machine only — `ConsoleVariables.ini`](#1-your-machine-only--consolevariablesini)
+  - [2. Per-session — command line](#2-per-session--command-line)
+  - [3. Whole project — `DefaultEngine.ini`](#3-whole-project--defaultengineini)
+- [See also](#see-also)
+
 ## Why the gating exists
 
 `PerformMapCheckValidation` is bound to `FEditorDelegates::OnGameMapChecked`, so the

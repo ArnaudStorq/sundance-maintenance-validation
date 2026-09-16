@@ -6,6 +6,15 @@ To give a Level Instance's inner actors their own streaming properties, the leve
 first be partitioned. This is the "open the box" step; applying rules
 ([World Partition rules](WorldPartitionRules.md)) is the "label each item" step.
 
+## Contents
+
+- [The manual paths (editor UI)](#the-manual-paths-editor-ui)
+- [The headless / batch path (built for this project)](#the-headless--batch-path-built-for-this-project)
+- [The Nanite crash gotcha (important)](#the-nanite-crash-gotcha-important)
+- [Rollout & practical notes](#rollout--practical-notes)
+- [Related changelists](#related-changelists)
+- [See also](#see-also)
+
 ---
 
 ## The manual paths (editor UI)

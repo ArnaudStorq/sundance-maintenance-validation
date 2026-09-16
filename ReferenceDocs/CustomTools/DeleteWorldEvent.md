@@ -13,6 +13,17 @@ Source: `D:\Sun\Sundance\Source\SundanceEditor\WorldEvents\EditorMode\Deletion\`
 `WorldEventEditorModeToolkit.cpp` · log category `LogWorldEventEditorMode`
 (lines prefixed `[WE Delete]`). Jira: **SUNDANCE-40173**.
 
+## Contents
+
+- [Why it exists](#why-it-exists)
+- [How to open it](#how-to-open-it)
+- [The dialog](#the-dialog)
+- [What it does (steps)](#what-it-does-steps)
+- [Error handling & rollback](#error-handling--rollback)
+- [Source control](#source-control)
+- [Scope & notes](#scope--notes)
+- [See also](#see-also)
+
 ## Why it exists
 
 Deleting a World Event by hand is tedious and error-prone because placing one creates a

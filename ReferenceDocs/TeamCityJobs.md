@@ -22,6 +22,25 @@ permissions that the World Building team asks Philippe St-Jean for.
 > times** are what the team observes in practice. Confirm a value in
 > *Build Configuration → Parameters / Triggers* before relying on it.
 
+## Contents
+
+- [Apply World Partition Rules](#apply-world-partition-rules)
+  - [What it does](#what-it-does)
+  - [Parameters](#parameters)
+  - [The command line behind the job](#the-command-line-behind-the-job)
+  - [When it runs](#when-it-runs)
+  - [Outputs](#outputs)
+- [Generate HLODs (distributed)](#generate-hlods-distributed)
+  - [What it does](#what-it-does-1)
+  - [Parameters](#parameters-1)
+  - [The command line behind the job](#the-command-line-behind-the-job-1)
+  - [When it runs](#when-it-runs-1)
+  - [Outputs](#outputs-1)
+- [Reading the results](#reading-the-results)
+  - [The reporting pipeline](#the-reporting-pipeline)
+- [Operating notes](#operating-notes)
+- [See also](#see-also)
+
 ---
 
 ## Apply World Partition Rules

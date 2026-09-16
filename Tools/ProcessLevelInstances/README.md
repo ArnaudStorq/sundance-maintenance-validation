@@ -10,6 +10,12 @@ For each Level Instance in the list, the script launches the Unreal editor in
 command-line mode with the build rules (DataLayer, HLOD, RuntimeGrid) and prints
 an `[OK]` / `[ERROR]` status for each run.
 
+## Contents
+
+- [Configuration](#configuration)
+- [Usage](#usage)
+- [Related documentation](#related-documentation)
+
 ## Configuration
 
 Adjust these at the top of `process_li.bat`:

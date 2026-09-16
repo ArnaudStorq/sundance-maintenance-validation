@@ -19,6 +19,44 @@ fixed on `LV_Overland`, grounded in the changelist history
 > gated behind `wp.editor.MapCheck.*` console variables, two of them **off by default** —
 > see [MapCheck validation CVars](MapCheckValidationCVars.md).
 
+## Contents
+
+- [The mental model: MapCheck ⇄ World Partition rules](#the-mental-model-mapcheck--world-partition-rules)
+- [A. HLOD layer & runtime grid (the core streaming MapChecks)](#a-hlod-layer--runtime-grid-the-core-streaming-mapchecks)
+  - [A1 — Actor has an invalid HLOD layer](#a1--actor-has-an-invalid-hlod-layer)
+  - [A2 — Actor has an invalid runtime grid](#a2--actor-has-an-invalid-runtime-grid)
+  - [A3 — "Skipped RuntimeGrid override" (the conflict signal)](#a3--skipped-runtimegrid-override-the-conflict-signal)
+  - [A4 — Invalid HLOD layer on non-partitioned inner actors](#a4--invalid-hlod-layer-on-non-partitioned-inner-actors)
+  - [A5 — Tiny meshes wrongly treated as HLOD candidates](#a5--tiny-meshes-wrongly-treated-as-hlod-candidates)
+  - [A6 — Unexpected HLOD chaining (Foliage Near)](#a6--unexpected-hlod-chaining-foliage-near)
+  - [A7 — Rule matched nothing (naming) / wrong actor class handling](#a7--rule-matched-nothing-naming--wrong-actor-class-handling)
+- [B. Data Layers](#b-data-layers)
+  - [B1 — Actor assigned to a Data Layer that doesn't exist](#b1--actor-assigned-to-a-data-layer-that-doesnt-exist)
+  - [B2 — Actor has a Data Layer that violates the rules](#b2--actor-has-a-data-layer-that-violates-the-rules)
+  - [B3 — Data Layer hierarchy mismatch](#b3--data-layer-hierarchy-mismatch)
+  - [B4 — Editing shared Data Layers safely (prevention)](#b4--editing-shared-data-layers-safely-prevention)
+- [C. Level Instances & partitioning](#c-level-instances--partitioning)
+  - [C1 — LevelInstance is not using World Partition](#c1--levelinstance-is-not-using-world-partition)
+  - [C2 — LevelInstance world does not support World Partition streaming](#c2--levelinstance-world-does-not-support-world-partition-streaming)
+- [D. Placement, bounds & references](#d-placement-bounds--references)
+  - [D1 — Actor has an invalid reference](#d1--actor-has-an-invalid-reference)
+  - [D2 — Oversized streaming bounds](#d2--oversized-streaming-bounds)
+  - [D3 — Brush far from the Level Instance pivot](#d3--brush-far-from-the-level-instance-pivot)
+  - [D4 — Spatially loaded actor references a non-spatially loaded actor](#d4--spatially-loaded-actor-references-a-non-spatially-loaded-actor)
+- [E. Components & references](#e-components--references)
+  - [E1 — Stale material overrides](#e1--stale-material-overrides)
+- [F. Actor descriptor maintenance](#f-actor-descriptor-maintenance)
+  - [F1 — Actor needs resave](#f1--actor-needs-resave)
+- [Workflow (triage order)](#workflow-triage-order)
+- [G. Generic engine MapCheck messages (catalog)](#g-generic-engine-mapcheck-messages-catalog)
+  - [References & assets](#references--assets)
+  - [Placement & duplicates](#placement--duplicates)
+  - [Lighting](#lighting)
+  - [World Partition & streaming](#world-partition--streaming)
+  - [Collision, physics & navigation](#collision-physics--navigation)
+  - [Foliage & landscape](#foliage--landscape)
+- [See also](#see-also)
+
 ---
 
 ## The mental model: MapCheck ⇄ World Partition rules

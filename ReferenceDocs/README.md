@@ -22,6 +22,18 @@ For plain-language, *why-it-was-done* narratives, see
 > (`D:\Sun\Sundance\Source\WorldBuildingEditor\`); engine modifications are tagged
 > `@third party code - AVA` in `D:\Sun\Engine\Source\`.
 
+## Contents
+
+- [The one-sentence goal](#the-one-sentence-goal)
+- [Topics](#topics)
+  - [MapCheck](#mapcheck)
+  - [World Partition streaming](#world-partition-streaming)
+  - [The rule system](#the-rule-system)
+  - [Builders & commandlets](#builders--commandlets)
+  - [Automation on TeamCity](#automation-on-teamcity)
+  - [Organization, source control & tooling](#organization-source-control--tooling)
+- [Conventions](#conventions)
+
 ## The one-sentence goal
 
 Cleanly eliminate the `mapcheck` "invalid HLOD layer / RuntimeGrid" warnings on

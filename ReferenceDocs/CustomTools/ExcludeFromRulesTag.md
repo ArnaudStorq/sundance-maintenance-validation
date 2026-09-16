@@ -18,6 +18,14 @@ Source:
 
 Changelist: **1972540**.
 
+## Contents
+
+- [Why it exists](#why-it-exists)
+- [The `ExcludeFromRules` tag](#the-excludefromrules-tag)
+- [Cook-time stripping](#cook-time-stripping)
+- [The "Rule Exclusion" outliner column](#the-rule-exclusion-outliner-column)
+- [See also](#see-also)
+
 ## Why it exists
 
 The [World Partition rule system](../WorldPartitionRules.md) reassigns `RuntimeGrid`,

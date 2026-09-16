@@ -13,6 +13,35 @@ console `~`) that together find and repair `WorldPartitionChangelistValidator`
 
 Both live in `D:\Sun\Sundance\Source\WorldBuildingEditor\WorldPartition\`.
 
+## Contents
+
+- [Typical workflow (scan → fix)](#typical-workflow-scan--fix)
+- [Why they exist](#why-they-exist)
+- [Reproducing the error](#reproducing-the-error)
+  - [Step 1 — Define a second runtime grid](#step-1--define-a-second-runtime-grid)
+  - [Step 2 — Create the referenced actor (the `STN...`)](#step-2--create-the-referenced-actor-the-stn)
+  - [Step 3 — Create the referencing Blueprint (`BPPerformTasks`)](#step-3--create-the-referencing-blueprint-bpperformtasks)
+  - [Step 4 — Save](#step-4--save)
+  - [Step 5 — Trigger the validation](#step-5--trigger-the-validation)
+- [`Editor.ScanRuntimeGridReferenceErrors` — find the conflicts](#editorscanruntimegridreferenceerrors--find-the-conflicts)
+  - [Usage](#usage)
+  - [How detection works](#how-detection-works)
+  - [Mutator-gate diagnostics](#mutator-gate-diagnostics)
+  - [Performance](#performance)
+  - [Output](#output)
+  - [Registration](#registration)
+- [`Editor.FixRuntimeGridReferenceErrors` — fix the conflicts](#editorfixruntimegridreferenceerrors--fix-the-conflicts)
+  - [Usage](#usage-1)
+  - [Automatic level opening](#automatic-level-opening)
+  - [Accepted log formats](#accepted-log-formats)
+  - [What it does per couple](#what-it-does-per-couple)
+  - [Level Instance recursion](#level-instance-recursion)
+  - [Atomic per-couple processing (revert on failure)](#atomic-per-couple-processing-revert-on-failure)
+  - [Source control](#source-control)
+  - [Report](#report)
+  - [Registration](#registration-1)
+- [See also](#see-also)
+
 ## Typical workflow (scan → fix)
 
 1. Open the target World Partition world (e.g. `LV_Overland`).

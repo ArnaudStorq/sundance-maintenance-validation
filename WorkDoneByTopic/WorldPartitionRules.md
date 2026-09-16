@@ -5,6 +5,20 @@ Parent: [Work Done By Topic](README.md)
 *A plain-language guide to the World Partition rule system, the rule builder, and
 the fixes made to it in 2026.*
 
+## Contents
+
+- [Background: what is World Partition?](#background-what-is-world-partition)
+- [What are "World Partition Rules" here?](#what-are-world-partition-rules-here)
+- [Why work was needed](#why-work-was-needed)
+- [Fixing the "cook" (the rule builder)](#fixing-the-cook-the-rule-builder)
+  - [The revert](#the-revert)
+- [Repairing the damage (relative transforms)](#repairing-the-damage-relative-transforms)
+- [Tuning the "recipe" (rule data assets)](#tuning-the-recipe-rule-data-assets)
+- [A helpful diagnostic tool](#a-helpful-diagnostic-tool)
+- [Mental model / cheat-sheet](#mental-model--cheat-sheet)
+- [Related changelists](#related-changelists)
+- [See also](#see-also)
+
 ---
 
 ## Background: what is World Partition?

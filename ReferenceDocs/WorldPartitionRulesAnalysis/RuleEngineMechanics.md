@@ -14,6 +14,22 @@ All rule classes live in the editor-only module `WorldBuildingEditor`
 | `UHLODLayerRuleAsset` | Assign an actor's **HLODLayer** + `IncludeInHLOD` | 12 (`HLOD/*_Rules`) |
 | `UDataLayerRuleAsset` | Assign **Data Layers** | *(outside this folder, `/Game/Data/DataLayers/`)* |
 
+## Contents
+
+- [Where the settings live](#where-the-settings-live)
+- [The two (three) execution paths](#the-two-three-execution-paths)
+  - [A. On manual actor save — the rule subsystems](#a-on-manual-actor-save--the-rule-subsystems)
+  - [B. During streaming generation — the mutator](#b-during-streaming-generation--the-mutator)
+  - [C. In batch — the builder](#c-in-batch--the-builder)
+- [Anatomy of a rule asset](#anatomy-of-a-rule-asset)
+  - [`FWorldPartitionRuleCondition` (a matching condition)](#fworldpartitionrulecondition-a-matching-condition)
+  - [`FWorldPartitionRuleExclusion` (the exclusion criteria)](#fworldpartitionruleexclusion-the-exclusion-criteria)
+  - [Specialised fields](#specialised-fields)
+- [What "applying a rule" does to the data](#what-applying-a-rule-does-to-the-data)
+  - [Grid rule application](#grid-rule-application)
+  - [HLOD rule application](#hlod-rule-application)
+- [Evaluation model (per actor)](#evaluation-model-per-actor)
+
 ---
 
 ## Where the settings live

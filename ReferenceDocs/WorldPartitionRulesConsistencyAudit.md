@@ -19,6 +19,25 @@ Source: read live from the editor via Unreal MCP (`WorldPartitionRuleAuditToolse
 > catalog), the [rule how-to](WorldPartitionRules.md), and the
 > [data-asset analysis](WorldPartitionRulesAnalysis.md).
 
+## Contents
+
+- [1. Method](#1-method)
+  - [System snapshot (step 1)](#system-snapshot-step-1)
+- [2. Results overview](#2-results-overview)
+- [3. Findings from `AuditRuleSetup` (all `Info`)](#3-findings-from-auditrulesetup-all-info)
+  - [3.1 `RuleOverlap` — DataLayer: `DAMISSIONSCHILD` vs `DAMISSIONS`](#31-ruleoverlap--datalayer-damissionschild-vs-damissions)
+  - [3.2 `RuleOverlap` — HLOD: `NoneExclude` vs `NoneInclude` (Hogwarts and Hogsmeade)](#32-ruleoverlap--hlod-noneexclude-vs-noneinclude-hogwarts-and-hogsmeade)
+  - [3.3 `NoTargetLayer` — HLOD (5 rules)](#33-notargetlayer--hlod-5-rules)
+- [4. Manual cross-reference analysis](#4-manual-cross-reference-analysis)
+  - [4.1 DataLayer exclusion graph](#41-datalayer-exclusion-graph)
+  - [4.2 RuntimeGrid exclusion graph](#42-runtimegrid-exclusion-graph)
+  - [4.3 "Match nothing" / "match everything"](#43-match-nothing--match-everything)
+  - [4.4 Unhandled use cases](#44-unhandled-use-cases)
+  - [4.5 `StreamingGenerationRules` empty](#45-streaminggenerationrules-empty)
+- [5. Risk summary and recommendations](#5-risk-summary-and-recommendations)
+- [6. How to reproduce this audit](#6-how-to-reproduce-this-audit)
+- [See also](#see-also)
+
 ---
 
 ## 1. Method

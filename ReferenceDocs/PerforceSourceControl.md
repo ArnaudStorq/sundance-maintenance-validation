@@ -5,6 +5,17 @@ Parent: [Reference Docs](README.md)
 How the builders and validators interact with Perforce: checkout-before-save,
 diagnosing locked files, and changelist-level validation.
 
+## Contents
+
+- [Checkout before save](#checkout-before-save)
+- [Diagnosing locked files](#diagnosing-locked-files)
+- [Changelists](#changelists)
+- [Changelist-level validation](#changelist-level-validation)
+  - [`UDataValidationChangelist::IsDataValid`](#udatavalidationchangelistisdatavalid)
+  - [`UWorldPartitionChangelistValidator`](#uworldpartitionchangelistvalidator)
+- [Related changelists](#related-changelists)
+- [See also](#see-also)
+
 ---
 
 ## Checkout before save

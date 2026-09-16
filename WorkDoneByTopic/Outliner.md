@@ -4,6 +4,19 @@ Parent: [Work Done By Topic](README.md)
 
 *A plain-language guide to the work done on the `LV_Overland` Outliner in 2026.*
 
+## Contents
+
+- [What is the Outliner? (the basics)](#what-is-the-outliner-the-basics)
+- [Why did this work need to happen?](#why-did-this-work-need-to-happen)
+- [How the work was carried out](#how-the-work-was-carried-out)
+  - [3a. Custom tooling first](#3a-custom-tooling-first)
+  - [3b. Cleanup passes](#3b-cleanup-passes)
+- [Real examples from the work](#real-examples-from-the-work)
+- [The loose end that had to be cleaned up](#the-loose-end-that-had-to-be-cleaned-up)
+- [Cheat-sheet of the folder categories created](#cheat-sheet-of-the-folder-categories-created)
+- [Related changelists](#related-changelists)
+- [See also](#see-also)
+
 ---
 
 ## What is the Outliner? (the basics)

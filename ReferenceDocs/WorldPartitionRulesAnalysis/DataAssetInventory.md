@@ -10,6 +10,16 @@ as the lookup table behind [Runtime Grid rules](RuntimeGridRules.md),
 Local root: `D:\Sun\Sundance\Content\Data\WorldPartition\`
 (Perforce: `//sun/Dev/Sundance/Content/Data/WorldPartition/`).
 
+## Contents
+
+- [File tree (45 assets)](#file-tree-45-assets)
+- [RuntimeGrid rules](#runtimegrid-rules)
+- [HLOD Layer rules](#hlod-layer-rules)
+- [HLOD Layer target assets](#hlod-layer-target-assets)
+- [Config arrays](#config-arrays)
+- [Grid ↔ HLOD allowlist (`DefaultPlugins.ini`)](#grid--hlod-allowlist-defaultpluginsini)
+- [Notes on provenance & confidence](#notes-on-provenance--confidence)
+
 ## File tree (45 assets)
 
 ```

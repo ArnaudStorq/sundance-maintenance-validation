@@ -15,6 +15,20 @@ Recall the two "None" patterns from
 Only the `NoneExclude` rules carry a serialized `IncludeInHLOD = false`; every other
 HLOD rule leaves it at its default of `true`.
 
+## Contents
+
+- [Overland HLOD rules](#overland-hlod-rules)
+  - [`DAOverlandHLODLayerNoneIncludeRules`](#daoverlandhlodlayernoneincluderules)
+  - [`DAOverlandHLODLayerNoneExcludeRules`](#daoverlandhlodlayernoneexcluderules)
+  - [`DAOverlandHLODLayerNearRules`](#daoverlandhlodlayernearrules)
+  - [`DAOverlandHLODLayerFoliageNearRules`](#daoverlandhlodlayerfoliagenearrules)
+  - [`DAOverlandHLODLayerLandscapeNearRules`](#daoverlandhlodlayerlandscapenearrules)
+  - [`DAOverlandHLODLayerWaterNearRules`](#daoverlandhlodlayerwaternearrules)
+  - [`DAOverlandHLODLayerRoadNearRules`](#daoverlandhlodlayerroadnearrules)
+- [Hogwarts HLOD rules](#hogwarts-hlod-rules)
+- [Hogsmeade HLOD rules](#hogsmeade-hlod-rules)
+- [Cross-region observations](#cross-region-observations)
+
 ---
 
 ## Overland HLOD rules

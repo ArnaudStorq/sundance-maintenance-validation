@@ -16,6 +16,18 @@ Source: `D:\Sun\Sundance\Plugins\EditorImprovements\Source\WEditorImprovements\.
 — menu & settings registration). Log category `LogWPBatchConverter`. Jira: **SUNDANCE-69603**.
 Implemented in changelist **1972620**.
 
+## Contents
+
+- [Why it exists](#why-it-exists)
+- [How to open it](#how-to-open-it)
+- [The window](#the-window)
+- [Settings](#settings)
+- [What it does (per run)](#what-it-does-per-run)
+- [Source control](#source-control)
+- [Threading & responsiveness](#threading--responsiveness)
+- [Backend & commandlet reuse](#backend--commandlet-reuse)
+- [See also](#see-also)
+
 ## Why it exists
 
 Converting a level to World Partition by hand means opening it, running *"Add Partitioned

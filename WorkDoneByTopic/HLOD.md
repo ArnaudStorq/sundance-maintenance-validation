@@ -5,6 +5,19 @@ Parent: [Work Done By Topic](README.md)
 *A plain-language guide to HLOD layers, the warnings they produced, and the cleanup
 done in 2026.*
 
+## Contents
+
+- [What is HLOD?](#what-is-hlod)
+- [What is MapCheck?](#what-is-mapcheck)
+- [The problems that were fixed](#the-problems-that-were-fixed)
+  - [Invalid HLOD layer warnings](#invalid-hlod-layer-warnings)
+  - [HLOD data on levels that shouldn't have it](#hlod-data-on-levels-that-shouldnt-have-it)
+  - [Tuning the HLOD rules](#tuning-the-hlod-rules)
+- [Why this connects to the bigger picture](#why-this-connects-to-the-bigger-picture)
+- [Cheat-sheet](#cheat-sheet)
+- [Related changelists](#related-changelists)
+- [See also](#see-also)
+
 ---
 
 ## What is HLOD?

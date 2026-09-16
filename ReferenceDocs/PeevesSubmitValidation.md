@@ -13,6 +13,15 @@ plugin** that wraps Unreal's Data Validation stack and the Perforce submit UI.
 > error, to match how we validate in Peeves") is tagged `[davjones]` — i.e. the Peeves
 > owner keeps the engine Data Validation behaviour aligned with Peeves.
 
+## Contents
+
+- [Where it lives](#where-it-lives)
+- [Submit-time flow](#submit-time-flow)
+- [What Peeves validates (high level)](#what-peeves-validates-high-level)
+- [Non-partitioned levels at submit (the objective and the decision)](#non-partitioned-levels-at-submit-the-objective-and-the-decision)
+- [Related changelists](#related-changelists)
+- [See also](#see-also)
+
 ---
 
 ## Where it lives

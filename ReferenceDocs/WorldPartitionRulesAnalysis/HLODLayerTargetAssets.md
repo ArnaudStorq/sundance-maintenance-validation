@@ -14,6 +14,17 @@ each other via `ParentLayer`.
 > imposter config**. Numeric distances are noted as "on the asset / map hash" and are
 > not quoted.
 
+## Contents
+
+- [HLOD builder classes seen in the project](#hlod-builder-classes-seen-in-the-project)
+- [Overland layers](#overland-layers)
+- [Hogsmeade layers](#hogsmeade-layers)
+- [Hogwarts layers](#hogwarts-layers)
+- [The LandscapeFar redirector](#the-landscapefar-redirector)
+- [The `Dummy` layers and the foliage split](#the-dummy-layers-and-the-foliage-split)
+- [FarFoliage layers and imposter config](#farfoliage-layers-and-imposter-config)
+- [Rule → target-layer map (quick reference)](#rule--target-layer-map-quick-reference)
+
 ## HLOD builder classes seen in the project
 
 | Builder class | Produces |

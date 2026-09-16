@@ -15,6 +15,16 @@ On unloaded actors these same values are read from the actor descriptor:
 `FWorldPartitionActorDescInstance::GetRuntimeGrid()`, `GetHLODLayer()` (returns a
 `FSoftObjectPath`), `GetActorIsHLODRelevant()`, `GetDataLayerAssets(bIncludeExternalDataLayerAsset)`.
 
+## Contents
+
+- [The HLOD-relevance rule (the heart of the "invalid HLOD layer" warning)](#the-hlod-relevance-rule-the-heart-of-the-invalid-hlod-layer-warning)
+  - [The gate: "require explicit HLOD layer partition assignation"](#the-gate-require-explicit-hlod-layer-partition-assignation)
+- [Parent inheritance & "Include In HLOD without an explicit layer"](#parent-inheritance--include-in-hlod-without-an-explicit-layer)
+- [The MapCheck / streaming-generation warning strings (verbatim)](#the-mapcheck--streaming-generation-warning-strings-verbatim)
+- [Two-pass validation model](#two-pass-validation-model)
+- [Related changelists](#related-changelists)
+- [See also](#see-also)
+
 ---
 
 ## The HLOD-relevance rule (the heart of the "invalid HLOD layer" warning)

@@ -10,6 +10,19 @@ Runtime grids decide **which streaming cell** an actor belongs to (and therefore
 cell size, loading range and HLOD behaviour). The rule only ever stores a grid
 **name** (`TargetRuntimeGrid`); the physical numbers live on the map's runtime hash.
 
+## Contents
+
+- [The two-stage grid architecture](#the-two-stage-grid-architecture)
+- [On-save grid rules (order as configured)](#on-save-grid-rules-order-as-configured)
+  - [1. `DAHogsmeadeGridRules` → `HogsmeadeGrid`](#1-dahogsmeadegridrules--hogsmeadegrid)
+  - [2. `DAHogwartsGridRules` → `HogwartsGrid`](#2-dahogwartsgridrules--hogwartsgrid)
+  - [3. `DAHogwartsInteriorGridRules` → `SmallGrid`](#3-dahogwartsinteriorgridrules--smallgrid)
+  - [4. `DANoneGridRules` → `None` (catch-all)](#4-danonegridrules--none-catch-all)
+- [Streaming-generation grid rule](#streaming-generation-grid-rule)
+  - [5. `DASmallGridRules` → `SmallGrid` (generation-time, view-only)](#5-dasmallgridrules--smallgrid-generation-time-view-only)
+- [Grid physical parameters (not stored in the rules)](#grid-physical-parameters-not-stored-in-the-rules)
+- [Summary table](#summary-table)
+
 ---
 
 ## The two-stage grid architecture

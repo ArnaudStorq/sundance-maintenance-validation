@@ -14,6 +14,19 @@ applied in this order of authority:
 4. **Global force lists** (`*ForceExcludeFromHLOD`, `*ClearRuntimeGrid`,
    `*ClearDataLayers`) — applied outside the rule assets and override "keep" outcomes.
 
+## Contents
+
+- [Layer 1 — ignore lists (hard skip)](#layer-1--ignore-lists-hard-skip)
+- [Layer 2 — config array order (first match wins)](#layer-2--config-array-order-first-match-wins)
+  - [HLOD (`HLODLayerRulesForActorSave`)](#hlod-hlodlayerrulesforactorsave)
+  - [RuntimeGrid on-save (`RuntimeGridRulesForActorSave`)](#runtimegrid-on-save-runtimegridrulesforactorsave)
+  - [RuntimeGrid streaming-generation (`RuntimeGridRulesForStreamingGeneration`)](#runtimegrid-streaming-generation-runtimegridrulesforstreaminggeneration)
+- [Layer 3 — `RulesToExclude` (the real precedence)](#layer-3--rulestoexclude-the-real-precedence)
+- [Layer 4 — global force lists (override)](#layer-4--global-force-lists-override)
+- [Worked example — a Level Instance in Overland](#worked-example--a-level-instance-in-overland)
+- [Worked example — a river in Overland](#worked-example--a-river-in-overland)
+- [Decision checklist (per actor, per family)](#decision-checklist-per-actor-per-family)
+
 ---
 
 ## Layer 1 — ignore lists (hard skip)

@@ -5,6 +5,12 @@ Parent: [Reference Docs](README.md)
 Cross-cutting environment, build-infra, and engine-format notes that surfaced during
 the work but aren't specific to World Partition rules.
 
+## Contents
+
+- [Actor Folders — the format & the engine patches](#actor-folders--the-format--the-engine-patches)
+- [Related changelists](#related-changelists)
+- [See also](#see-also)
+
 ---
 
 ## Actor Folders — the format & the engine patches

@@ -5,6 +5,25 @@
 **Build:** Latest build including changelists listed below
 **Related changelists:** 2011901, 2011902, 2011903, 2011904, 2011905, 2011906, 2011907, 2011909, 2011910, 2011911
 
+## Contents
+
+- [Context](#context)
+- [Goal](#goal)
+- [General Test Steps (apply to each level)](#general-test-steps-apply-to-each-level)
+- [Pass / Fail Criteria](#pass--fail-criteria)
+- [Levels to Test](#levels-to-test)
+  - [Batch 1/10 — CL 2011901](#batch-110--cl-2011901)
+  - [Batch 2/10 — CL 2011902](#batch-210--cl-2011902)
+  - [Batch 3/10 — CL 2011903](#batch-310--cl-2011903)
+  - [Batch 4/10 — CL 2011904](#batch-410--cl-2011904)
+  - [Batch 5/10 — CL 2011905](#batch-510--cl-2011905)
+  - [Batch 6/10 — CL 2011906](#batch-610--cl-2011906)
+  - [Batch 7/10 — CL 2011907](#batch-710--cl-2011907)
+  - [Batch 8/10 — CL 2011909](#batch-810--cl-2011909)
+  - [Batch 9/10 — CL 2011910](#batch-910--cl-2011910)
+  - [Batch 10/10 — CL 2011911](#batch-1010--cl-2011911)
+- [Summary](#summary)
+
 ## Context
 
 An automated batch conversion (World Partition Batch Converter, equivalent to "Add Partitioned Streaming Support") was run on 92 levels across 10 changelists. This conversion changes how the levels stream, so we need to confirm that nothing shifted, broke, or became unplayable.

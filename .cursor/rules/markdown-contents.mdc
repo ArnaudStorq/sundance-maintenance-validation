@@ -1,0 +1,58 @@
+---
+description: Every Markdown document starts with a Contents section listing its own sections
+globs: **/*.md
+alwaysApply: false
+---
+
+# Markdown Contents Section
+
+Each Markdown document carries its own navigation index, named `## Contents`, so a reader
+can jump straight to a section.
+
+## Rules
+
+- **Name**: `## Contents`. Do **not** call it `Summary` — the per-changelist reports under
+  `WorkDoneByChangelists/P4-History/` already use `## Summary` for a prose summary of the
+  changelist.
+- **Position**: after the `Parent:` line, the `#` title and the intro paragraph, and
+  **before** the first `##` section (above the horizontal rule when there is one).
+- **Depth**: list `##` and `###` headings, `###` indented by two spaces. Ignore `####` and
+  deeper, and ignore `#` lines inside fenced code blocks.
+- **Skip short documents**: fewer than three `##` sections means nothing to navigate — no
+  Contents section. This is why the per-changelist reports have none.
+- **Keep it in sync**: when you add, rename, remove or reorder a heading, update the
+  Contents list of that document in the same commit.
+
+## Anchor format
+
+GitHub slugs: drop the markup (backticks, bold, link syntax), delete punctuation
+**without replacing it**, lowercase, then turn every remaining space into a hyphen. A
+deleted `—`, `&` or `/` between two spaces therefore leaves a **double** hyphen. Repeated
+headings get `-1`, `-2`, … suffixes.
+
+| Heading | Anchor |
+|---------|--------|
+| `## Builders & commandlets` | `#builders--commandlets` |
+| `## Pass / Fail Criteria` | `#pass--fail-criteria` |
+| `### Config location & key settings` | `#config-location--key-settings` |
+| second `### Parameters` in the file | `#parameters-1` |
+
+## Example
+
+```markdown
+Parent: [Reference Docs](README.md)
+
+# Environment & infrastructure
+
+Cross-cutting environment and build-infra notes.
+
+## Contents
+
+- [Actor Folders — the format & the engine patches](#actor-folders--the-format--the-engine-patches)
+- [Related changelists](#related-changelists)
+- [See also](#see-also)
+
+---
+
+## Actor Folders — the format & the engine patches
+```

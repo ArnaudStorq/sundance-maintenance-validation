@@ -19,6 +19,30 @@ For a flat, exhaustive `if … then …` decision table of **every** registered 
 today (RuntimeGrid, HLOD and all 56 DataLayer rules), see the
 [rule decision flow charts](WorldPartitionRulesFlowCharts.md).
 
+## Contents
+
+- [Overview](#overview)
+  - [Runtime Grid](#runtime-grid)
+  - [Data Layers](#data-layers)
+  - [HLOD Layers](#hlod-layers)
+- [Where and how rules run](#where-and-how-rules-run)
+  - [Config location & key settings](#config-location--key-settings)
+  - [On-save reapplication](#on-save-reapplication)
+- [Rule data assets (the "recipe")](#rule-data-assets-the-recipe)
+  - [IncludeInHLOD & TargetHLODLayer application](#includeinhlod--targethlodlayer-application)
+- [The rule builder (batch)](#the-rule-builder-batch)
+  - [Running the rule builder in batch](#running-the-rule-builder-in-batch)
+  - [Reading the logs](#reading-the-logs)
+- [SmallGrid vs HogsmeadeGrid (and where the sizes live)](#smallgrid-vs-hogsmeadegrid-and-where-the-sizes-live)
+- [The mutator & the "Skipped RuntimeGrid override" warning](#the-mutator--the-skipped-runtimegrid-override-warning)
+  - [Ways to resolve a grid/HLOD conflict](#ways-to-resolve-a-gridhlod-conflict)
+  - [The SmallGrid on-save toggle (one-shot migration pattern)](#the-smallgrid-on-save-toggle-one-shot-migration-pattern)
+- [Recommended workflow](#recommended-workflow)
+  - [Common pitfalls](#common-pitfalls)
+- [Rule-tuning changes made (examples)](#rule-tuning-changes-made-examples)
+- [Related changelists](#related-changelists)
+- [See also](#see-also)
+
 ---
 
 ## Overview

@@ -4,6 +4,15 @@ Parent: [Work Done By Topic](README.md)
 
 *A plain-language guide to the Scriptable Tools editor mode work in 2026.*
 
+## Contents
+
+- [What are Scriptable Tools?](#what-are-scriptable-tools)
+- [The problem](#the-problem)
+- [The fix](#the-fix)
+- [Why it matters](#why-it-matters)
+- [Related changelists](#related-changelists)
+- [See also](#see-also)
+
 ---
 
 ## What are Scriptable Tools?

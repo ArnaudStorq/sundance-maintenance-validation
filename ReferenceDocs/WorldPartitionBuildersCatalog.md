@@ -15,6 +15,39 @@ maintenance builders used on `LV_Overland`, see
 - Engine commandlets: `D:\Sun\Engine\Source\Editor\UnrealEd\Classes\Commandlets\`
 - Custom builders: `D:\Sun\Sundance\Source\WorldBuildingEditor\WorldPartition\`
 
+## Contents
+
+- [Architecture](#architecture)
+  - [`UWorldPartitionBuilder` base class](#uworldpartitionbuilder-base-class)
+  - [`UWorldPartitionBuilderCommandlet` (the host)](#uworldpartitionbuildercommandlet-the-host)
+  - [Canonical invocation shape](#canonical-invocation-shape)
+- [Engine builders (`UWorldPartitionBuilder` subclasses)](#engine-builders-uworldpartitionbuilder-subclasses)
+  - [`WorldPartitionHLODsBuilder`](#worldpartitionhlodsbuilder)
+  - [`WorldPartitionNavigationDataBuilder`](#worldpartitionnavigationdatabuilder)
+  - [`WorldPartitionMiniMapBuilder`](#worldpartitionminimapbuilder)
+  - [`WorldPartitionResaveActorsBuilder`](#worldpartitionresaveactorsbuilder)
+  - [`WorldPartitionFoliageBuilder`](#worldpartitionfoliagebuilder)
+  - [`WorldPartitionLandscapeBuilder`](#worldpartitionlandscapebuilder)
+  - [`WorldPartitionLandscapeSplineMeshesBuilder`](#worldpartitionlandscapesplinemeshesbuilder)
+  - [`WorldPartitionRuntimeVirtualTextureBuilder`](#worldpartitionruntimevirtualtexturebuilder)
+  - [`WorldPartitionStaticLightingBuilder`](#worldpartitionstaticlightingbuilder)
+  - [`WorldPartitionRenameDuplicateBuilder`](#worldpartitionrenameduplicatebuilder)
+- [Engine commandlets (not builders)](#engine-commandlets-not-builders)
+  - [`WorldPartitionConvertCommandlet`](#worldpartitionconvertcommandlet)
+  - [`WorldPartitionDataLayerToAssetCommandlet` (`DataLayerToAssetCommandlet`)](#worldpartitiondatalayertoassetcommandlet-datalayertoassetcommandlet)
+- [Custom builders (`WorldBuildingEditor` module)](#custom-builders-worldbuildingeditor-module)
+  - [`UWorldPartitionRuleBuilder`](#uworldpartitionrulebuilder)
+  - [`UWorldPartitionFixupNonPartitionedActorsBuilder`](#uworldpartitionfixupnonpartitionedactorsbuilder)
+  - [`UWorldPartitionFixupActorFoldersBuilder`](#uworldpartitionfixupactorfoldersbuilder)
+  - [`UWorldPartitionResaveActorsRecursiveBuilder`](#uworldpartitionresaveactorsrecursivebuilder)
+  - [`UForceHLODExcludeFromLogBuilder`](#uforcehlodexcludefromlogbuilder)
+  - [`UWorldPartitionInvalidNativeClassBuilder`](#uworldpartitioninvalidnativeclassbuilder)
+  - [`UWorldPartitionLandscapeProxyDataBuilder`](#uworldpartitionlandscapeproxydatabuilder)
+  - [`UAvaWorldPartitionRuntimeVirtualTextureBuilder`](#uavaworldpartitionruntimevirtualtexturebuilder)
+- [Quick decision guide](#quick-decision-guide)
+- [Operating principles (observed across all custom builders)](#operating-principles-observed-across-all-custom-builders)
+- [See also](#see-also)
+
 ---
 
 ## Architecture

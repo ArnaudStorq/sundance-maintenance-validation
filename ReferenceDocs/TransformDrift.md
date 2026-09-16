@@ -7,6 +7,15 @@ supposed to touch streaming properties silently changed an actor's
 `RelativeLocation`, `RelativeRotation`, or `RelativeScale3D` — i.e. it **moved
 content**. This is unacceptable, because it corrupts art with no visible cause.
 
+## Contents
+
+- [What happened](#what-happened)
+- [Root cause](#root-cause)
+- [The immediate response: revert](#the-immediate-response-revert)
+- [The standing policy (how drift is handled now)](#the-standing-policy-how-drift-is-handled-now)
+- [Related changelists](#related-changelists)
+- [See also](#see-also)
+
 ---
 
 ## What happened

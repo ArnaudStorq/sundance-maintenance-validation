@@ -9,6 +9,14 @@ Where `WorkDoneByChangelists/P4-History/` is a factual, one-file-per-changelist 
 tells the story by topic**: it groups the ~80 changelists into themes and explains
 each theme so that someone new to the project can understand it.
 
+## Contents
+
+- [How to read this folder](#how-to-read-this-folder)
+- [The topics](#the-topics)
+- [The one-paragraph summary](#the-one-paragraph-summary)
+- [Recurring engineering principles (visible across every topic)](#recurring-engineering-principles-visible-across-every-topic)
+- [Provenance](#provenance)
+
 ## How to read this folder
 
 - Start here for the big picture.

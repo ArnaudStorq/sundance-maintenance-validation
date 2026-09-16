@@ -14,6 +14,23 @@ Source: read live from the editor via Unreal MCP (`WorldPartitionRuleAuditToolse
 > [World Partition rules how-to](WorldPartitionRules.md). Those explain the engine and the *why*;
 > this doc is the flat, exhaustive decision table for *what actually matches today*.
 
+## Contents
+
+- [How to read this document](#how-to-read-this-document)
+- [0. Global gates (evaluated first, per type)](#0-global-gates-evaluated-first-per-type)
+- [1. RuntimeGrid assignment (single-valued — last match wins)](#1-runtimegrid-assignment-single-valued--last-match-wins)
+  - [1.1 Catalog (5 rules, in precedence order)](#11-catalog-5-rules-in-precedence-order)
+  - [1.2 Decision logic](#12-decision-logic)
+  - [1.3 So how does an actor get `SmallGrid`?](#13-so-how-does-an-actor-get-smallgrid)
+- [2. HLOD Layer assignment (single-valued — last match wins)](#2-hlod-layer-assignment-single-valued--last-match-wins)
+  - [2.1 Catalog (14 rules, in precedence order)](#21-catalog-14-rules-in-precedence-order)
+  - [2.2 Decision logic](#22-decision-logic)
+- [3. DataLayers assignment (multi-valued — union of all matches)](#3-datalayers-assignment-multi-valued--union-of-all-matches)
+  - [3.1 Decision logic](#31-decision-logic)
+  - [3.2 Full catalog (57 rules)](#32-full-catalog-57-rules)
+- [How to verify on a real actor](#how-to-verify-on-a-real-actor)
+- [See also](#see-also)
+
 ---
 
 ## How to read this document

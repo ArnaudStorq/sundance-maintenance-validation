@@ -6,6 +6,13 @@ The "keep up with what the experts said" workstream: faithfully capturing knowle
 from talks, screen-shares, and conference notes so it can be searched and acted on
 later.
 
+## Contents
+
+- [Local transcription tooling](#local-transcription-tooling)
+- [Phil / William videos (World Partition, HLOD, rules)](#phil--william-videos-world-partition-hlod-rules)
+- [Why this is a "reference" topic](#why-this-is-a-reference-topic)
+- [See also](#see-also)
+
 ---
 
 ## Local transcription tooling

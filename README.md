@@ -8,6 +8,16 @@ This file is the root of the documentation. Every other Markdown file links back
 its parent (a `Parent:` line at the top), so you can always walk up the hierarchy to
 here, and down again through the section indexes below.
 
+## Contents
+
+- [Repository structure](#repository-structure)
+- [Section indexes](#section-indexes)
+- [Documentation — jump to a topic](#documentation--jump-to-a-topic)
+- [Custom Tools](#custom-tools)
+- [Tools](#tools)
+- [Changelog](#changelog)
+- [Contributing](#contributing)
+
 ## Repository structure
 
 ```
@@ -109,5 +119,7 @@ housekeeping (renames, folder moves, typo passes) is left out.
   [`ReferenceDocs/README.md`](ReferenceDocs/README.md).
 - Every Markdown file should start with a `Parent:` link to the index (or document)
   one level up, so the documentation hierarchy stays traversable.
+- Give each document a `## Contents` navigation list of its own sections, kept in sync with
+  its headings (see [`.cursor/rules/markdown-contents.mdc`](.cursor/rules/markdown-contents.mdc)).
 - Add an entry at the top of the [Changelog](#changelog) in the same commit that changes
   the documentation (see [`.cursor/rules/readme-changelog.mdc`](.cursor/rules/readme-changelog.mdc)).

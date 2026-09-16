@@ -5,6 +5,19 @@ Parent: [Work Done By Topic](README.md)
 *A plain-language guide to the crash fixes, startup-warning cleanups, and robustness
 improvements made in 2026.*
 
+## Contents
+
+- [Why this topic exists](#why-this-topic-exists)
+- [Crash & correctness fixes](#crash--correctness-fixes)
+  - [Crash on "Update Redirector References"](#crash-on-update-redirector-references)
+- [Startup-warning cleanups](#startup-warning-cleanups)
+  - [Deprecated viewport toolbar extensions](#deprecated-viewport-toolbar-extensions)
+  - [Python name-collision (World Events)](#python-name-collision-world-events)
+- [Non-partitioned parent hints in the Outliner (usability)](#non-partitioned-parent-hints-in-the-outliner-usability)
+- [The common thread](#the-common-thread)
+- [Related changelists](#related-changelists)
+- [See also](#see-also)
+
 ---
 
 ## Why this topic exists

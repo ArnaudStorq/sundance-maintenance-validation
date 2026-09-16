@@ -7,6 +7,16 @@ A **Level Instance** (`ALevelInstance`) places the contents of another level (a
 Level Instances. Whether an instance is *partitioned* decides where its inner actors
 are stored and whether they can be given per-actor streaming properties.
 
+## Contents
+
+- [Partitioned vs non-partitioned](#partitioned-vs-non-partitioned)
+- [OFPA (One File Per Actor)](#ofpa-one-file-per-actor)
+- [The `Level` property of an `ALevelInstance`](#the-level-property-of-an-alevelinstance)
+- [Traversing the hierarchy recursively from `LVOverland`](#traversing-the-hierarchy-recursively-from-lvoverland)
+  - [Listing what is still non-partitioned](#listing-what-is-still-non-partitioned)
+- [Related changelists](#related-changelists)
+- [See also](#see-also)
+
 ---
 
 ## Partitioned vs non-partitioned

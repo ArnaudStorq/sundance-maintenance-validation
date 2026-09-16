@@ -6,6 +6,18 @@ All custom builders derive from `UWorldPartitionBuilder` and run through the eng
 `UWorldPartitionBuilderCommandlet`. They live in the `WorldBuildingEditor` module
 (`D:\Sun\Sundance\Source\WorldBuildingEditor\WorldPartition\`).
 
+## Contents
+
+- [Invocation shape](#invocation-shape)
+- [`UWorldPartitionRuleBuilder`](#uworldpartitionrulebuilder)
+- [`UWorldPartitionFixupNonPartitionedActorsBuilder`](#uworldpartitionfixupnonpartitionedactorsbuilder)
+- [`UWorldPartitionFixupActorFoldersBuilder`](#uworldpartitionfixupactorfoldersbuilder)
+- [Supporting builders](#supporting-builders)
+- [Engine hooks (context, not custom builders)](#engine-hooks-context-not-custom-builders)
+- [Operating principles (observed across every builder)](#operating-principles-observed-across-every-builder)
+- [Related changelists](#related-changelists)
+- [See also](#see-also)
+
 ## Invocation shape
 
 ```bat

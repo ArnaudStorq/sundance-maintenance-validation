@@ -5,6 +5,21 @@ Parent: [Reference Docs](README.md)
 The supporting tools, editor extensions, scripts and dev-workflow details that make
 the World Partition cleanup practical.
 
+## Contents
+
+- [Outliner columns (inspection)](#outliner-columns-inspection)
+- [`processli.bat` (batch rule runner)](#processlibat-batch-rule-runner)
+- [Blueprint / Editor Utility surfaces](#blueprint--editor-utility-surfaces)
+- [Recurring log extraction](#recurring-log-extraction)
+- [Commandlet setup](#commandlet-setup)
+  - [Filtering logs](#filtering-logs)
+- [Validation checklist (before submitting)](#validation-checklist-before-submitting)
+- [Troubleshooting](#troubleshooting)
+- [The documentation repo itself](#the-documentation-repo-itself)
+- [UE compilation errors resolved (reference)](#ue-compilation-errors-resolved-reference)
+- [Related changelists](#related-changelists)
+- [See also](#see-also)
+
 ---
 
 ## Outliner columns (inspection)

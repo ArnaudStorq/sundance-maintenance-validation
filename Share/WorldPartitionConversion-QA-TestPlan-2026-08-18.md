@@ -15,6 +15,25 @@ the **parent maps that instance them**, not in the converted levels themselves.
 | Levels converted | **650** |
 | Tool used | [World Partition Batch Converter](../ReferenceDocs/CustomTools/WorldPartitionBatchConverter.md) |
 
+## Contents
+
+- [What changed and why it matters for QA](#what-changed-and-why-it-matters-for-qa)
+- [Scope — dominant area per changelist](#scope--dominant-area-per-changelist)
+- [Area rollup](#area-rollup)
+- [Test priorities](#test-priorities)
+  - [P1 — `LVOverland`](#p1--lvoverland)
+  - [P2 — London / Diagon Alley](#p2--london--diagon-alley)
+  - [P3 — Cairn dungeon kit](#p3--cairn-dungeon-kit)
+  - [P4 — Hogwarts castle](#p4--hogwarts-castle)
+  - [P5 — Secondary areas](#p5--secondary-areas)
+  - [P6 — Non-gameplay scenes (smoke test only)](#p6--non-gameplay-scenes-smoke-test-only)
+- [Pass criteria](#pass-criteria)
+- [Appendix A — London / Diagon Alley levels (44)](#appendix-a--london--diagon-alley-levels-44)
+- [Appendix B — Dungeon levels (72)](#appendix-b--dungeon-levels-72)
+- [Appendix C — Hogwarts levels (19, CL 2024228)](#appendix-c--hogwarts-levels-19-cl-2024228)
+- [Appendix D — Environment kit families](#appendix-d--environment-kit-families)
+- [See also](#see-also)
+
 ## What changed and why it matters for QA
 
 Every changelist is an automated batch run of the World Partition Batch Converter, the

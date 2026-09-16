@@ -5,6 +5,18 @@ Parent: [Work Done By Topic](README.md)
 *A plain-language guide to converting non-partitioned levels so their actors can be
 streamed and rule-managed.*
 
+## Contents
+
+- [The core idea](#the-core-idea)
+- [Why this matters (the concrete bug it fixes)](#why-this-matters-the-concrete-bug-it-fixes)
+- [The two-step recipe (important!)](#the-two-step-recipe-important)
+- [How it was rolled out](#how-it-was-rolled-out)
+- [The on/off switch for the SmallGrid rule](#the-onoff-switch-for-the-smallgrid-rule)
+- [How levels to migrate were found](#how-levels-to-migrate-were-found)
+- [Cheat-sheet](#cheat-sheet)
+- [Related changelists](#related-changelists)
+- [See also](#see-also)
+
 ---
 
 ## The core idea

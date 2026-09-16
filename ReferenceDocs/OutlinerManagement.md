@@ -5,6 +5,14 @@ Parent: [Reference Docs](README.md)
 This section documents how the **World Outliner** is organized in Sundance and
 why that organization matters for World Partition and automated tooling.
 
+## Contents
+
+- [Why the Outliner matters](#why-the-outliner-matters)
+- [Naming and folder conventions](#naming-and-folder-conventions)
+- [Common problems](#common-problems)
+- [Workflow](#workflow)
+- [See also](#see-also)
+
 ## Why the Outliner matters
 
 Beyond being a convenience for artists, the Outliner **path** of an actor is

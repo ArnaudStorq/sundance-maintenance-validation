@@ -5,6 +5,22 @@ Parent: [Work Done By Topic](README.md)
 *A plain-language guide to what Actor Folders are, the problems they caused, and the
 tooling built to fix them in 2026.*
 
+## Contents
+
+- [What is an Actor Folder?](#what-is-an-actor-folder)
+- [The two problems](#the-two-problems)
+  - [Problem A — Orphaned and duplicated folders](#problem-a--orphaned-and-duplicated-folders)
+  - [Problem B — "Ghost" folders being created](#problem-b--ghost-folders-being-created)
+  - [Problem C — Stale folders nagging everyone](#problem-c--stale-folders-nagging-everyone)
+- [How each problem was solved](#how-each-problem-was-solved)
+  - [Fix the leak at the source (engine)](#fix-the-leak-at-the-source-engine)
+  - [Build a repeatable repair tool](#build-a-repeatable-repair-tool)
+  - [Clean up the stale folders](#clean-up-the-stale-folders)
+- [Why build a commandlet instead of clicking in the editor?](#why-build-a-commandlet-instead-of-clicking-in-the-editor)
+- [The order of operations (why it matters)](#the-order-of-operations-why-it-matters)
+- [Related changelists](#related-changelists)
+- [See also](#see-also)
+
 ---
 
 ## What is an Actor Folder?

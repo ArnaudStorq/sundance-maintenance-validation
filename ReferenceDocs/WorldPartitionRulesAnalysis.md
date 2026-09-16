@@ -16,6 +16,14 @@ local: `D:\Sun\Sundance\Content\Data\WorldPartition\`).
 > The companion Confluence page *"HLODs & Grids Setup"* was not reachable without
 > authentication and was therefore **not** relied upon; the assets are authoritative.
 
+## Contents
+
+- [What this documents](#what-this-documents)
+- [Index](#index)
+- [Executive summary](#executive-summary)
+- [How to reproduce the extraction](#how-to-reproduce-the-extraction)
+- [See also](#see-also)
+
 ## What this documents
 
 - **How the rule engine works** — the two execution paths (on-save subsystems and

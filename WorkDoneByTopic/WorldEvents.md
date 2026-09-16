@@ -4,6 +4,16 @@ Parent: [Work Done By Topic](README.md)
 
 *A plain-language guide to the World Events system changes made in 2026.*
 
+## Contents
+
+- [What are World Events?](#what-are-world-events)
+- [The two changes](#the-two-changes)
+  - [A. Safe check-out before editing a Possible World Event](#a-safe-check-out-before-editing-a-possible-world-event)
+  - [B. Fix a Python name-collision startup warning](#b-fix-a-python-name-collision-startup-warning)
+- [Why these matter](#why-these-matter)
+- [Related changelists](#related-changelists)
+- [See also](#see-also)
+
 ---
 
 ## What are World Events?
