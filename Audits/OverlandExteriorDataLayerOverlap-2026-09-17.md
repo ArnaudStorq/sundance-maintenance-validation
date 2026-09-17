@@ -26,6 +26,7 @@ layer is redundant at runtime and splits streaming cells in two, which costs per
   - [Counting actors, not placements](#counting-actors-not-placements)
 - [Overview — Hogwarts](#overview--hogwarts)
 - [Overview — Hogsmeade River](#overview--hogsmeade-river)
+  - [The 391 nested Level Instances](#the-391-nested-level-instances)
 - [Combined impact](#combined-impact)
 - [The actor lists](#the-actor-lists)
 - [Suggested fix](#suggested-fix)
@@ -236,7 +237,7 @@ LV_Overland
 | | |
 | --- | --- |
 | Actors to fix | **705** |
-| Actors affected in total | 800 (3352 placements) |
+| Actors affected in total | 800 (3376 placements) |
 | Container | `LI_Hogsmeade_River` (top-level, `bMismatch: false` — it is correct) |
 | Split HLOD cells | 15, across **two** runtime grids |
 
@@ -270,6 +271,58 @@ Split cells, spanning both the Hogsmeade grid and the main grid:
 
 For scale: the same footprint holds 31 HLOD actors on `DL_OVERLAND` alone, so roughly a third of
 the river's Overland HLOD cells are split by this.
+
+### The 391 nested Level Instances
+
+These are 391 **`LevelInstance` actors**, all stored in the single level asset
+`/Game/Environment/River/LI_Hogsmeade_River`, each carrying `DL_HOGSMEADE` + `DL_OVERLAND` on
+itself. They are not 391 distinct pieces of content: they are 391 **placements of 10 reusable
+river-bank assets**.
+
+| Referenced asset | Placements | Actors inside |
+| --- | --- | --- |
+| `LA_WaterFall_A01` | 70 | 3 |
+| `LA_RiverBank_LargeStones_A06` | 68 | 10 |
+| `LA_RiverBank_LargeStones_A04_noplants` | 66 | 9 |
+| `LA_River_LargeStones_A07` | 55 | 3 |
+| `LA_RiverBank_LargeStones_A04` | 54 | 6 |
+| `LA_RiverBank_LargeStones_A05` | 36 | 10 |
+| `LA_RiverBank_Verticle_A01` | 26 | 6 |
+| `LA_RiverBank_SmallSharpRocks_A01` | 12 | 6 |
+| `LA_Heather_Cluster_Medium_B` | 2 | 33 |
+| `LA_RiverBank_LargeStones_A01` | 2 | 11 |
+
+The right-hand column is what makes this shape different from Hogwarts. Those 97
+distinct child actors carry no `DL_OVERLAND` of their own — they **inherit** it from the
+container they sit in, once per placement, which is 2649 inherited copies.
+They are the reason 705 actors to fix add up to 800 actors affected.
+
+So the cascade runs the useful way here: **clearing `DL_OVERLAND` from the 391 containers also
+clears it from the 97 children**, and none of them has to be opened. The two
+exceptions are `RiverBank_LargeStones_A92` and `SM_RockPile_LI_A01`, which carry `DL_OVERLAND`
+on themselves inside `LA_RiverBank_SmallSharpRocks_A01` — hence the second checkout.
+
+This is also why the 10 assets must **not** be edited to fix the containers. The same
+97 actors are placed 1272 more times under river containers that carry no
+`DL_OVERLAND` at all; those placements are already correct, and stripping a layer inside a shared
+asset would hit them too.
+
+The rules do not merely object to the extra layer, they also expect a layer that is missing.
+`ExplainActorAssignment` on `RiverBank_LargeStones_A102`:
+
+```
+currentValue  : DL_HOGSMEADE, DL_OVERLAND
+expectedValue : DL_HOGSMEADE, DL_HM_EXT
+winningRule   : DA_HM_EXT_Rules  (condition 2)
+notes         : DA_OVERLAND_Rules: excluded by OutlinerPathsToExclude entry 'LI_Hogsmeade'.
+                Non-compliant DataLayers: DL_OVERLAND.
+```
+
+`DA_HM_EXT_Rules` matches them and wants `DL_HM_EXT` **on the actor**, so each of the 391 needs
+two edits: drop `DL_OVERLAND`, add `DL_HM_EXT`. Adding it changes nothing at runtime — the
+container `LI_Hogsmeade_River` already provides it by inheritance — but it is what stops the rule
+audit reporting them as mismatched. Their `DL_HOGSMEADE` is equally redundant for the same
+reason, and equally what the rules ask for, so leave it alone.
 
 ## Combined impact
 
