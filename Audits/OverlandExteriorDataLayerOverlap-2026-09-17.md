@@ -20,6 +20,7 @@ layer is redundant at runtime and splits streaming cells in two, which costs per
   - [Runtime data layers are additive](#runtime-data-layers-are-additive)
   - [The exterior layers are shut down together](#the-exterior-layers-are-shut-down-together)
   - [The cost: one streaming cell per data layer set](#the-cost-one-streaming-cell-per-data-layer-set)
+  - [Which actor actually carries the layer](#which-actor-actually-carries-the-layer)
   - [What the rule system says](#what-the-rule-system-says)
 - [How this audit was run](#how-this-audit-was-run)
   - [Counting actors, not placements](#counting-actors-not-placements)
@@ -80,6 +81,37 @@ cell B : { DL_HW_EXT }                <- the actors that are correct
 Both cells load and unload at the same time, since the layers are shut down together. The split
 buys nothing and costs an extra cell, extra HLOD actors, and extra streaming work. This is the
 concrete reason the redundant layer has to go — it is a performance issue, not a tidiness one.
+
+### Which actor actually carries the layer
+
+An actor's effective set is its **own** layers plus those of **every Level Instance above it**,
+and only the own ones can be edited on the actor. So the two areas need opposite fixes, and it is
+worth reading the descriptors rather than the effective set.
+
+Hogwarts — the exterior layer is inherited, the offending one is own:
+
+```
+LI_Hogwarts                 own: DL_HOGWARTS
+  └─ LI_EntranceHall_EXT    own: DL_HW_EXT
+       └─ SM_HW_Column_*    own: DL_RENDER + DL_OVERLAND   <- fix here, on the leaf
+```
+
+Hogsmeade River — the offending layer is on the containers, so it reaches the children by
+inheritance:
+
+```
+LI_Hogsmeade_River          own: DL_HM_EXT + DL_HOGSMEADE
+  ├─ RiverBank_*            own: DL_HOGSMEADE + DL_OVERLAND  <- fix here, on the container
+  │    └─ its children             inherit DL_OVERLAND from it
+  └─ SM_Juniper_*           own: DL_OVERLAND + DL_RENDER     <- and here, on the leaf
+```
+
+`ExplainActorAssignment` confirms it for a Hogwarts leaf: `currentValue` lists two data layers,
+`DL_RENDER` and `DL_OVERLAND`, and closes on `Non-compliant DataLayers: DL_OVERLAND`.
+`DL_HW_EXT` never appears there, because it is not on the actor.
+
+This is why the CSVs separate `OwnDataLayers` from `InheritedDataLayers`: touching a leaf that
+merely inherits the layer would achieve nothing.
 
 ### What the rule system says
 
@@ -286,8 +318,9 @@ on the actor, it has to be changed on the container that provides it.
 
 ## Suggested fix
 
-1. **Remove `DL_OVERLAND`** from the 1480 actors in the two CSVs. They live in three level
-   assets, so this is three checkouts rather than 1480.
+1. **Remove `DL_OVERLAND`** from the 1480 actors in the two CSVs — always from the row's own
+   actor, since `DL_OVERLAND` is in its `OwnDataLayers` in every single row. They live in three
+   level assets, so this is three checkouts rather than 1480.
 2. On the 391 nested Level Instances of the river, consider also **adding `DL_HM_EXT`** so they
    match the `expectedValue` the rules report. At runtime this changes nothing — the container
    already provides the layer — it only makes the rule audit report them as compliant.
