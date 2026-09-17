@@ -27,7 +27,7 @@ only valid until someone fixes them.
 
 | Audit | Scope | Found |
 |---|---|---|
-| [Overland exterior data layer overlap](OverlandExteriorDataLayerOverlap-2026-09-17.md) | `LI_Hogwarts` and `LI_Hogsmeade_River`, recursive | 1502 actors carrying `DL_OVERLAND` on top of `DL_HW_EXT` / `DL_HM_EXT`, splitting 23 streaming cells |
+| [Overland exterior data layer overlap](OverlandExteriorDataLayerOverlap-2026-09-17.md) | `LI_Hogwarts` and `LI_Hogsmeade_River`, recursive | 1480 actors carrying `DL_OVERLAND` on top of `DL_HW_EXT` / `DL_HM_EXT`, splitting 23 streaming cells |
 
 ## Writing a new audit
 
