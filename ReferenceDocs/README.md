@@ -30,6 +30,7 @@ For plain-language, *why-it-was-done* narratives, see
   - [World Partition streaming](#world-partition-streaming)
   - [The rule system](#the-rule-system)
   - [Builders & commandlets](#builders--commandlets)
+  - [Development plans](#development-plans)
   - [Automation on TeamCity](#automation-on-teamcity)
   - [Organization, source control & tooling](#organization-source-control--tooling)
 - [Conventions](#conventions)
@@ -83,6 +84,14 @@ set of independent documents:
 | [Builders & commandlets](BuildersAndCommandlets.md) | the maintenance builders used on `LV_Overland`, with line-level code |
 | [World Partition builders catalog](WorldPartitionBuildersCatalog.md) | the full list of every engine + custom WP builder/commandlet and its switches |
 | [Custom Tools](CustomTools.md) | in-editor console commands (e.g. `Editor.FixRuntimeGridReferenceErrors`) run interactively with the level open |
+
+### Development plans
+
+| Topic | Read when… |
+|-------|------------|
+| [Manual runtime Data Layer cleanup](DevelopmentPlan-ManualRuntimeDataLayerCleanup.md) | hunting the hand-assigned runtime Data Layers (`DL_Overland` in Hogwarts) that split streaming cells — why the CL 2049874 warning misses them and why `-ReportOnly` is the detection path |
+| [World Events MCP toolsets](DevelopmentPlan-WorldEventsMCPToolset.md) | planning the exposition of the World Events system (Locators, Possible World Event Definitions, Conditions, deletion, runtime state) to AI agents through `ToolsetRegistry` / `ModelContextProtocol` |
+| [World Events MCP toolset demo script](Demo-WorldEventsMCPToolset.md) | presenting the World Events toolsets live in two minutes: a read-only, four-prompt run rehearsed on the Bell Tower house-elf event |
 
 ### Automation on TeamCity
 

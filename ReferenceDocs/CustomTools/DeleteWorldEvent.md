@@ -4,20 +4,23 @@ Parent: [Custom Tools](../CustomTools.md)
 
 An editor-mode UI tool: buttons and dialogs surfaced inside a dedicated editor mode.
 
-**A one-click, guided dialog that fully deletes a World Event and every asset it created
+**A one-click, guided dialog that deletes a World Event and every asset it created
 (locator, level instance(s), data layer instance(s) and data layer asset(s)) from the
-Overland, with live per-step progress and a full rollback on failure.**
+Overland — or just the World Events you pick on a multi-event Locator — with live per-step
+progress and a full rollback on failure.**
 
 Source: `D:\Sun\Sundance\Source\SundanceEditor\WorldEvents\EditorMode\Deletion\`
 (`WorldEventDeleter.h/.cpp`, `SWorldEventDeleteDialog.h/.cpp`) · entry point in
 `WorldEventEditorModeToolkit.cpp` · log category `LogWorldEventEditorMode`
-(lines prefixed `[WE Delete]`). Jira: **SUNDANCE-40173**.
+(lines prefixed `[WE Delete]`). Jira: **SUNDANCE-40173** (the tool),
+**SUNDANCE-77885** (selective deletion).
 
 ## Contents
 
 - [Why it exists](#why-it-exists)
 - [How to open it](#how-to-open-it)
 - [The dialog](#the-dialog)
+- [Selective deletion](#selective-deletion)
 - [What it does (steps)](#what-it-does-steps)
 - [Error handling & rollback](#error-handling--rollback)
 - [Source control](#source-control)
@@ -50,28 +53,71 @@ Nothing is modified until you press **Begin deletion**.
 A polished, self-explanatory modal wizard:
 
 - **Header** — warning icon, the World Event name, and a plain-language summary.
+- **"Which World Events to delete"** — only shown when the Locator carries more than one
+  World Event. See [Selective deletion](#selective-deletion) below.
 - **"What will be deleted"** — a transparent, up-front inventory of every actor, data
   layer instance, data layer asset, and the number of Perforce files that will be touched.
+  On a selective deletion it is followed by **"What will be preserved"**.
 - **Steps** — the ordered list below; each row shows a live **spinner → green tick ✓ /
   red cross ✗** plus a status message.
 - **Detailed log** — a collapsible, scrollable log of everything that happened.
 - **Buttons** — `Begin deletion` (explicit confirmation), `Cancel`, and — only after a
   failure — `Undo everything`.
 
+## Selective deletion
+
+A Locator can list several possible World Events, and removing one of them — to swap an
+event for another, for instance — used to mean deleting the Locator and rebuilding it.
+
+When the Locator has more than one World Event, the dialog opens on a checkbox list: one
+row per possible World Event, showing the Level Instance and data layer that row owns, plus
+`All` / `None` shortcuts and a separate **"Also delete the Locator actor itself"**
+checkbox. Everything below the list — the plan, the preserved list, the step list and the
+changelist description — is rebuilt live from the selection, so what you confirm is exactly
+what runs. The default selection is every World Event plus the Locator, which is the
+whole-locator deletion described above.
+
+Three rules make a partial deletion safe:
+
+- **The Locator can only be deleted when every World Event is selected.** Uncheck one event
+  and the Locator checkbox is disabled and forced off: a Locator whose remaining World
+  Events are preserved has to be preserved with them.
+- **A preserved Locator is modified, not deleted.** Its actor package is checked out and
+  saved instead of being marked for delete, and its conditions, bounds, tags and remaining
+  World Events are left untouched.
+- **A data layer asset still referenced by a preserved World Event is kept**, along with
+  its data layer instance(s), and listed under "What will be preserved". Deleting it would
+  leave the surviving World Event pointing at a missing asset.
+
+A selective deletion inserts one extra step, *"Remove the selected World Events from the
+Locator"*, between the data layer removal and the actor deletion. The entries are taken out
+of `PossibleWorldEvents` directly rather than through `PostEditChangeProperty`, because that
+path destroys the orphaned Level Instances outside the plan — their packages would never be
+marked for delete and their World Partition descriptors would linger as "(Unloaded)". The
+step refuses to run if the array changed since the plan was built.
+
+The changelist description reflects the scope: `Removed 1 of 3 World Event(s) from locator
+'X'`, with the removed entries, the deleted assets, and what was preserved.
+
 ## What it does (steps)
 
-The steps map 1:1 onto the manual confluence procedure:
+The steps map onto the manual confluence procedure, with step 4 present only on a
+selective deletion:
 
 1. **Validate references & Perforce state** — every impacted file must be source
    controlled, up to date, and not checked out by someone else. Nothing is modified.
-2. **Check out the World Data Layers** (and level).
+2. **Check out the World Data Layers** (and level), plus the Locator actor package when the
+   Locator is preserved.
 3. **Remove the World Event data layers** — deletes the data layer instance(s) from the
    `DL_World_Events` hierarchy (and the Level Instance hierarchy when applicable).
-4. **Delete the World Event actors** — the Level Instance(s) and the Locator.
-5. **Save & mark deletions in Perforce** — saves the modified `WorldDataLayers` and marks
-   the deleted actor packages for delete.
-6. **Delete the Data Layer assets** — from the Content Browser, now unreferenced.
-7. **Move changes to a described changelist** — all impacted files are moved into a new
+4. **Remove the selected World Events from the Locator** — *selective deletion only*: takes
+   the selected entries out of `PossibleWorldEvents`.
+5. **Delete the World Event actors** — the Level Instance(s) and, unless it is preserved,
+   the Locator.
+6. **Save & mark deletions in Perforce** — saves the modified `WorldDataLayers` (and the
+   preserved Locator) and marks the deleted actor packages for delete.
+7. **Delete the Data Layer assets** — from the Content Browser, now unreferenced.
+8. **Move changes to a described changelist** — all impacted files are moved into a new
    Perforce changelist whose description lists exactly what was deleted and why.
 
 ## Error handling & rollback
@@ -94,7 +140,8 @@ The design is **atomic**: if any step fails, nothing is left half-done.
 
 ## Scope & notes
 
-- Granularity is the **whole Locator**: it deletes the locator and everything it created.
+- Granularity is either the **whole Locator** (locator + everything it created) or a
+  **subset of its World Events** — see [Selective deletion](#selective-deletion).
 - The reusable `WorldEventDefinition` data asset is **not** deleted (it is shared).
 - Failure to move files to the described changelist (step 7) is treated as a **non-fatal
   warning** — the deletion still succeeded and the files remain in the default changelist.
