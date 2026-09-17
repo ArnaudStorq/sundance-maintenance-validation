@@ -94,6 +94,7 @@ housekeeping (renames, folder moves, typo passes) is left out.
 
 | Date | Change | Commit |
 |------|--------|--------|
+| 2026-09-17 | Gave every actor in the [exterior data layer overlap audit](Audits/OverlandExteriorDataLayerOverlap-2026-09-17.md) its Outliner path, and corrected the totals to count unique actors rather than Level Instance placements (1502 → 1480) | [`8abb2e5`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/8abb2e5) |
 | 2026-09-17 | Opened the [Audits](Audits/README.md) section with the [Overland exterior data layer overlap](Audits/OverlandExteriorDataLayerOverlap-2026-09-17.md) audit — why `DL_OVERLAND` on top of `DL_HW_EXT` / `DL_HM_EXT` splits streaming cells, and the actors carrying it | [`a527465`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/a527465) |
 | 2026-09-16 | Gave every document a `## Contents` navigation list of its own sections, and the rule that keeps it in sync with the headings | [`b984b00`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/b984b00) |
 | 2026-09-16 | Added this Changelog section, populated from the relevant history, and the rule that keeps it updated on every commit | [`a4383be`](https://github.com/ArnaudStorq/sundance-maintenance-validation/commit/a4383be) |
