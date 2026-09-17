@@ -24,6 +24,7 @@ here, and down again through the section indexes below.
 .
 ├── ReferenceDocs/              Technical knowledge base (one file per topic)
 │   └── WorldPartitionRulesAnalysis/   Deep, per-asset rule-system analysis series
+├── Audits/                     Dated content sweeps of LV_Overland, with actor lists
 ├── WorkDoneByTopic/            Plain-language, why-it-was-done narratives
 ├── WorkDoneByChangelists/      Per-changelist history
 │   └── P4-History/             One report per submitted Perforce changelist
@@ -36,6 +37,8 @@ here, and down again through the section indexes below.
 - [**Reference Docs**](ReferenceDocs/README.md) — the technical knowledge base
   (exact classes, methods, log strings) plus the
   [World Partition rule data-asset analysis](ReferenceDocs/WorldPartitionRulesAnalysis.md).
+- [**Audits**](Audits/README.md) — dated sweeps of the level's content: the problem, what was
+  scanned, and the exact list of actors to fix.
 - [**Work Done By Topic**](WorkDoneByTopic/README.md) — plain-language, per-topic
   explanations of the 2026 engineering work.
 - [**Work Done By Changelists**](WorkDoneByChangelists/README.md) — one factual report
