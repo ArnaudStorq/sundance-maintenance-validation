@@ -13,6 +13,7 @@ Derived from [Pass 2](DataLayerOverlap-Overland-Pass2-2026-09-22.md). Machine-re
 - [How to read this](#how-to-read-this)
 - [Summary](#summary)
 - [How the captures were made](#how-the-captures-were-made)
+  - [Why a capture can look like an open exterior view](#why-a-capture-can-look-like-an-open-exterior-view)
 - [Confirmed — Hogwarts](#confirmed--hogwarts)
 - [No geometry — Hogwarts](#no-geometry--hogwarts)
 - [Provisional — Hogsmeade](#provisional--hogsmeade)
@@ -53,6 +54,16 @@ Every capture is the whole Unreal editor window at native resolution, taken thro
 - The viewport is set to `Unlit`, because these spaces receive no light and a lit capture is unreadable.
 
 The Outliner row and the viewport therefore carry different evidence: the row proves the layer assignment, the viewport shows the actor is walled in.
+
+### Why a capture can look like an open exterior view
+
+Read the captures knowing this, or the list will look wrong. Most of these actors are not standing in a room — they are buried in the thickness of a wall. `SM_HW_EH_DoorFrame_ColumnDecor_B_114` sits 23 uu under the outer surface of `SM_HW_EH_Entrance_Porch_A`. The camera is therefore inside the porch mesh, and that geometry is single-sided: seen from within, the enclosure disappears, the shot looks wide open, and the carved panels on screen are the inner face of the porch viewed from behind.
+
+The verdict does not rest on that view. For `B_114`, 0 of the 1 470 rays cast outward from the actor escape, and all 1 470 hit the porch. Traced the other way, from 4 000 uu out and aimed at the actor, 0 of 600 directions reach it — with simple and with complex collision alike — and the blockers vary: the porch, the landscape, `SM_HW_EH_Roof_A`, `SM_HW_GST_Wall_A`, several columns. The result is therefore not an artefact of one coarse collision box. Seen from outside with the actor tinted bright orange, it simply does not appear:
+
+<a href="images/OverlandDataLayerRemoval-2026-09-22/full/SM_HW_EH_DoorFrame_ColumnDecor_B_114_exterior.jpg"><img src="images/OverlandDataLayerRemoval-2026-09-22/thumbs/SM_HW_EH_DoorFrame_ColumnDecor_B_114_exterior.jpg" width="640" alt="Exterior view: the actor is nowhere to be seen"></a>
+
+The arrow marks where the actor is. Nothing orange shows through the facade.
 
 ## Confirmed — Hogwarts
 
