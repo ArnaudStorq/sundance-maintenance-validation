@@ -2,7 +2,8 @@ Parent: [Audits](README.md)
 
 # Hand-placed `DL_OVERLAND` under Hogwarts and Hogsmeade — 2026-09-23
 
-Data: [`ManualOverlandDataLayer-Hogwarts-Hogsmeade-2026-09-23.csv`](ManualOverlandDataLayer-Hogwarts-Hogsmeade-2026-09-23.csv) — 3047 rows, one per actor.
+Data: [`ManualOverlandDataLayer-Hogwarts-Hogsmeade-2026-09-23.csv`](ManualOverlandDataLayer-Hogwarts-Hogsmeade-2026-09-23.csv) — 3047 rows, one per actor, with a `Verdict` column separating the
+2682 findings from the 365 actors the rule system never processes.
 
 ## The problem
 
@@ -26,15 +27,14 @@ A hand-placed `DL_OVERLAND` under an interior Level Instance (`_INT`) is the sam
 with a worse consequence: interior content is deliberately kept out of the Overland
 streaming set, and the manual layer drags it back in.
 
-## Why every actor listed here is hand-placed and matched by no rule
+## The criterion: no rule, and a rule that disagrees
 
-This is the criterion that decides whether an actor belongs in this list at all. An actor
-that carries `DL_OVERLAND` *because a rule assigns it* is compliant and uninteresting —
-the rule is the source of truth and re-running it would put the layer straight back.
-Only actors that no rule touches are real findings.
+`DL_OVERLAND` is the fallback of the whole level. **Anything the rule system does not
+process ends up there**, so the mere presence of the layer proves nothing. Two separate
+questions have to be answered before an actor is a finding.
 
-`GetRuleSystemOverview` reports 57 registered DataLayer rules. Exactly one of them targets
-`DL_OVERLAND`:
+**Could a rule have put the layer there?** `GetRuleSystemOverview` reports 57 registered
+DataLayer rules, and exactly one of them targets `DL_OVERLAND`:
 
 ```
 [28] /Game/Levels/Overland/DataLayers/DA_OVERLAND_Rules.DA_OVERLAND_Rules
@@ -52,18 +52,52 @@ Only actors that no rule touches are real findings.
 ```
 
 `OutlinerPathsToExclude` is matched as a case-insensitive substring of the full Outliner
-path, and it short-circuits the rule before any of its conditions are evaluated. Every
-actor under `LI_Hogwarts` or `LI_Hogsmeade` therefore has a path containing one of those
-two entries, so rule 28 can never fire on it. No other rule assigns `DL_OVERLAND`.
+path and short-circuits the rule before any condition is evaluated. Every actor under
+`LI_Hogwarts` or `LI_Hogsmeade` matches one of those two entries, so rule 28 can never fire
+on it, and no other rule assigns the layer. Nothing in this document was put there by a
+rule, and no rule will reassert it after a save.
 
-The conclusion is structural rather than per-actor: **inside these two Level Instances, a
-`DL_OVERLAND` on an actor descriptor can only have been placed by hand, and no rule will
-ever reassert it.** That is why this list needs no per-actor rule evaluation, and why
-nothing legitimately covered by a rule can have slipped into it.
+**Does a rule want something else?** This is the question that separates a real finding
+from the default. An actor the rules do process has an expected assignment, and the manual
+`DL_OVERLAND` contradicts it. An actor the rules do *not* process has no expected
+assignment at all, and `DL_OVERLAND` is simply where everything unprocessed lands — that is
+not a hand-placed mistake, it is a gap in the rules.
 
-`LI_Hogsmeade_River` is included: its Outliner path contains the substring `LI_Hogsmeade`,
-so rule 28 excludes it too, while `DA_HM_EXT_Rules` (index 21, condition 2) is the rule
-that legitimately drives it to `DL_HM_EXT`.
+`ExplainActorAssignment` answers it directly, so one actor was pinned and explained per
+actor type and containing Level Instance:
+
+| Actor type | Containing Level Instance | Probed actor | Rules matched | Winning rule |
+|---|---|---|---|---|
+| `StaticMeshActor` | `LI_EntranceHall_EXT` | `SM_WallMount_B` | [8] DA_LIGHTHING_Rules, [11] DA_RENDER_Rules | `DA_RENDER_Rules` |
+| `StaticMeshActor` | `LI_ViaductEntrance_INT` | `SM_HM_Doorway_GenericSingle_D_1M3` | [11] DA_RENDER_Rules | `DA_RENDER_Rules` |
+| `StaticMeshActor` | `LI_PotionsClassroom_INT` | `SM_Crate_Wood_Open_A2` | [11] DA_RENDER_Rules | `DA_RENDER_Rules` |
+| `StaticMeshActor` | `LI_OwlHall_INT` | `SM_HW_PictureFrame_Gold_Sq_C176` | [11] DA_RENDER_Rules | `DA_RENDER_Rules` |
+| `StaticMeshActor` | `LI_HistoryHall_INT` | `Cube41` | [11] DA_RENDER_Rules | `DA_RENDER_Rules` |
+| `StaticMeshActor` | `LI_LibraryAirlocks_INT` | `SM_HW_Book_JournalOpen_A` | [11] DA_RENDER_Rules | `DA_RENDER_Rules` |
+| `LevelInstance` | `LI_LibraryAirlocks_INT` | `LI_HW_Book_Stack_Small_C` | [25] DA_HW_INT_Rules | `DA_HW_INT_Rules` |
+| `StaticMeshActor` | `LI_HM_Streets_EXT` | `SM_CobbleStreet_Block_A1026` | [11] DA_RENDER_Rules | `DA_RENDER_Rules` |
+| `StaticMeshActor` | `LI_Camp_Crate_Food_A` | `SM_Crate_Wood_Open_A5` | [11] DA_RENDER_Rules | `DA_RENDER_Rules` |
+| `StaticMeshActor` | `LI_HM_StreetDressing_EXT` | `SM_StoneWallFormal_EndPost_A12` | [11] DA_RENDER_Rules | `DA_RENDER_Rules` |
+| `StaticMeshActor` | `LI_HM_StreetDressing_WPV_Trashed_EXT` | `SM_Bench_C22` | [11] DA_RENDER_Rules | `DA_RENDER_Rules` |
+| `StaticMeshActor` | `LI_Hogsmeade_River` | `Cube12` | [11] DA_RENDER_Rules | `DA_RENDER_Rules` |
+| `StaticMeshActor` | `LI_Tomes_POP` | `SM_Candle_Skinny_B9` | [11] DA_RENDER_Rules | `DA_RENDER_Rules` |
+| `PlacedFoliageSkinnedNaniteAssembly` | `LI_HM_StreetDressing_EXT` | `SM_Juniper_Manicured_Hedge_A10` | none | **none** |
+| `PlacedFoliageSkinnedNaniteAssembly` | `LI_Hogsmeade_River` | `SM_BogTree_Oak_LargeA_Master2` | none | **none** |
+
+The split is clean and follows the actor type. `StaticMeshActor` is matched unconditionally
+by `DA_RENDER_Rules` (index 11) and `LevelInstance` by the `DA_HW_*` / `DA_HM_*` rules, so
+both are processed and both disagree with `DL_OVERLAND`.
+`PlacedFoliageSkinnedNaniteAssembly` appears in no rule's actor types, matches no
+path-only rule, and is not in `ActorTypesIgnoredByDataLayerRules` either — it simply falls
+through all 57 rules, which is why `ExplainActorAssignment` returns an empty match list and
+no winning rule for it.
+
+Two clusters could not be brought into the editor to be probed —
+`LevelInstance` under `LI_Hogsmeade_River` and under `LI_Hogwarts`, 393 actors between them.
+They are classified from the rule definitions: `DA_HM_EXT_Rules` (index 21, condition 2)
+matches a `LevelInstance` whose path contains `LI_Hogsmeade_River`, and `DA_HW_INT_Rules`
+(index 25) matches a `LevelInstance` under `LI_Hogwarts/LevelInstances` whose path contains
+`_INT`. Both are processed, so both are counted as findings.
 
 ## How the sweep was run
 
@@ -74,9 +108,10 @@ level regardless of what the editor had streamed in.
 |---|---|---|
 | Inventory every actor and its own Data Layers | `WorldPartitionToolset.GetActorDescInfo` | 667 859 descriptors |
 | Keep those whose own layers include `DL_OVERLAND` | — | 159 322 |
-| Keep those whose Level Instance chain is under `LI_Hogwarts` or `LI_Hogsmeade` | — | **3047** |
+| Keep those whose Level Instance chain is under `LI_Hogwarts` or `LI_Hogsmeade` | — | 3047 |
 | Resolve the full Outliner path of each | `WorldPartitionRuleAuditToolset.FindActorsByOutlinerPath` | 3047 resolved, 0 missing |
 | Confirm no rule can assign the layer there | `WorldPartitionRuleAuthoringToolset.GetRuleAsset` | 1 rule targets `DL_OVERLAND`, both areas excluded |
+| Establish whether the rules process the actor at all | `WorldPartitionToolset.PinActors` + `ExplainActorAssignment` | 15 probes, **2682** findings and 365 out of scope |
 
 The layer reported is the one written on the actor's **own** descriptor. Layers inherited
 from a parent Level Instance are reported separately, in the *Inherited layer* column, and
@@ -84,40 +119,40 @@ are what the manual `DL_OVERLAND` is colliding with.
 
 ## What was found
 
-| Area | Enclosure | Actors |
-|---|---|---:|
-| Hogwarts | EXT | 775 |
-| Hogwarts | INT | 177 |
-| Hogsmeade | EXT | 2094 |
-| Hogsmeade | INT | 1 |
-| **Total** | | **3047** |
+| Area | Enclosure | Findings | Outside rule processing |
+|---|---|---:|---:|
+| Hogwarts | EXT | 775 | 0 |
+| Hogwarts | INT | 177 | 0 |
+| Hogsmeade | EXT | 1729 | 365 |
+| Hogsmeade | INT | 1 | 0 |
+| **Total** | | **2682** | **365** |
 
 By actor type:
 
-| Actor type | Actors |
-|---|---:|
-| `StaticMeshActor` | 2288 |
-| `LevelInstance` | 394 |
-| `PlacedFoliageSkinnedNaniteAssembly` | 365 |
+| Actor type | Actors | Verdict |
+|---|---:|---|
+| `StaticMeshActor` | 2288 | rules disagree — finding |
+| `LevelInstance` | 394 | rules disagree — finding |
+| `PlacedFoliageSkinnedNaniteAssembly` | 365 | no rule matches — default, not a finding |
 
 By containing Level Instance — this is the shape of the problem, a handful of Level
 Instances account for nearly all of it:
 
-| Area | Enclosure | Containing Level Instance | Inherited layer | Actors |
-|---|---|---|---|---:|
-| Hogwarts | EXT | `LI_EntranceHall_EXT` | `DL_HW_EXT` | 775 |
-| Hogwarts | INT | `LI_ViaductEntrance_INT` | `DL_HW_ViaductEntrance_INT` | 127 |
-| Hogwarts | INT | `LI_PotionsClassroom_INT` | `DL_HW_PotionsClassroom_INT` | 42 |
-| Hogwarts | INT | `LI_Hogwarts` | — | 2 |
-| Hogwarts | INT | `LI_LibraryAirlocks_INT` | `DL_HW_LibraryAirlocks_INT` | 2 |
-| Hogwarts | INT | `LI_OwlHall_INT` | `DL_HW_OwlHall_INT` | 2 |
-| Hogwarts | INT | `LI_HistoryHall_INT` | `DL_HW_HistoryHall_INT` | 2 |
-| Hogsmeade | EXT | `LI_HM_Streets_EXT` | `DL_HM_EXT` | 1114 |
-| Hogsmeade | EXT | `LI_Hogsmeade_River` | `DL_HM_EXT` | 727 |
-| Hogsmeade | EXT | `LI_Camp_Crate_Food_A` | `DL_HM_EXT` | 149 |
-| Hogsmeade | EXT | `LI_HM_StreetDressing_EXT` | `DL_HM_EXT` | 90 |
-| Hogsmeade | EXT | `LI_HM_StreetDressing_WPV_Trashed_EXT` | `DL_HM_EXT` | 14 |
-| Hogsmeade | INT | `LI_Tomes_POP` | `DL_HM_TOMES_POP` | 1 |
+| Area | Enclosure | Containing Level Instance | Inherited layer | Findings | Outside |
+|---|---|---|---|---:|---:|
+| Hogwarts | EXT | `LI_EntranceHall_EXT` | `DL_HW_EXT` | 775 | 0 |
+| Hogwarts | INT | `LI_ViaductEntrance_INT` | `DL_HW_ViaductEntrance_INT` | 127 | 0 |
+| Hogwarts | INT | `LI_PotionsClassroom_INT` | `DL_HW_PotionsClassroom_INT` | 42 | 0 |
+| Hogwarts | INT | `LI_LibraryAirlocks_INT` | `DL_HW_LibraryAirlocks_INT` | 2 | 0 |
+| Hogwarts | INT | `LI_Hogwarts` | — | 2 | 0 |
+| Hogwarts | INT | `LI_HistoryHall_INT` | `DL_HW_HistoryHall_INT` | 2 | 0 |
+| Hogwarts | INT | `LI_OwlHall_INT` | `DL_HW_OwlHall_INT` | 2 | 0 |
+| Hogsmeade | EXT | `LI_HM_Streets_EXT` | `DL_HM_EXT` | 1114 | 0 |
+| Hogsmeade | EXT | `LI_Hogsmeade_River` | `DL_HM_EXT` | 439 | 288 |
+| Hogsmeade | EXT | `LI_Camp_Crate_Food_A` | `DL_HM_EXT` | 149 | 0 |
+| Hogsmeade | EXT | `LI_HM_StreetDressing_EXT` | `DL_HM_EXT` | 13 | 77 |
+| Hogsmeade | EXT | `LI_HM_StreetDressing_WPV_Trashed_EXT` | `DL_HM_EXT` | 14 | 0 |
+| Hogsmeade | INT | `LI_Tomes_POP` | `DL_HM_TOMES_POP` | 1 | 0 |
 
 ## What to decide
 
@@ -136,6 +171,12 @@ The `LevelInstance` rows deserve attention first. A Level Instance that carries 
 own `_INT` layer and a manual `DL_OVERLAND` pushes the combination onto everything inside
 it, so a single row there is worth hundreds of leaf actors.
 
+The 365 `PlacedFoliageSkinnedNaniteAssembly` actors are a different conversation. Stripping
+the layer from them would be wrong on its own terms — with no rule to process them they
+would fall straight back to `DL_OVERLAND`, which is the fallback for everything the rule
+system does not touch. They still split the streaming cell, so the fix is to give the type
+a rule, not to edit the actors. They are listed separately at the end of this document.
+
 ## Out of scope
 
 Other runtime Data Layers placed by hand — Phil's second question, whether a missing rule
@@ -144,12 +185,13 @@ rules that run inside Hogwarts, so ruling out a rule match needs a per-actor eva
 rather than the structural argument used above. That is a separate pass, best served by
 `WorldPartitionRuleBuilder -ReportOnly` over the closed level.
 
-## Full actor list
+## Full actor list — findings
 
-Ordered by area (Hogwarts, then Hogsmeade), then by enclosure (`EXT`, then `INT`), then by
-actor type, then by path. Each group states the full Outliner path of its containing Level
-Instance once; the path on every row below it continues from there. The CSV carries the
-whole path, the Soft Object Path and the GUID on every row.
+The 2682 actors a rule processes and disagrees with. Ordered by area (Hogwarts, then
+Hogsmeade), then by enclosure (`EXT`, then `INT`), then by actor type, then by path. Each
+group states the full Outliner path of its containing Level Instance once; the path on
+every row below it continues from there. The CSV carries the whole path, the Soft Object
+Path and the GUID on every row.
 
 <details>
 <summary><b>Hogwarts / EXT / LI_EntranceHall_EXT</b> — 775 actors, inherited layer <code>DL_HW_EXT</code></summary>
@@ -1184,7 +1226,7 @@ Paths below continue from `LV_Overland/Hogwarts/LI_Hogwarts/LevelInstances/Libra
 </details>
 
 <details>
-<summary><b>Hogsmeade / EXT / LI_Hogsmeade_River</b> — 727 actors, inherited layer <code>DL_HM_EXT</code></summary>
+<summary><b>Hogsmeade / EXT / LI_Hogsmeade_River</b> — 439 actors, inherited layer <code>DL_HM_EXT</code></summary>
 
 Paths below continue from `LV_Overland/Region/Hogwarts Valley/Hogsmeade_RiverBlockout/LI_Hogsmeade_River/`
 
@@ -1585,392 +1627,7 @@ Paths below continue from `LV_Overland/Region/Hogwarts Valley/Hogsmeade_RiverBlo
 </details>
 
 <details>
-<summary><b>Hogsmeade / EXT / LI_HM_StreetDressing_EXT</b> — 90 actors, inherited layer <code>DL_HM_EXT</code></summary>
-
-Paths below continue from `LV_Overland/Hogsmeade/LI_Hogsmeade/LI_Hogsmeade/Streets/LI_HM_StreetDressing_EXT/`
-
-| Actor type | Actor | Outliner path |
-|---|---|---|
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_Manicured_Hedge_A10 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Juniper_Manicured_Hedge_A10` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_Manicured_Hedge_A11 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Juniper_Manicured_Hedge_A11` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_Manicured_Hedge_A12 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Juniper_Manicured_Hedge_A12` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_Manicured_Hedge_A13 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Juniper_Manicured_Hedge_A13` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_Manicured_Hedge_A14 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Juniper_Manicured_Hedge_A14` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_Manicured_Hedge_A15 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Juniper_Manicured_Hedge_A15` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_Manicured_Hedge_A16 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Juniper_Manicured_Hedge_A16` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_Manicured_Hedge_A17 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Juniper_Manicured_Hedge_A17` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_Manicured_Hedge_A8 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Juniper_Manicured_Hedge_A8` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_Manicured_Hedge_A9 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Juniper_Manicured_Hedge_A9` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A11 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A11` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A12 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A12` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A58 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A58` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A59 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A59` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A60 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A60` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A61 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A61` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A62 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A62` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A63 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A63` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A64 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A64` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A65 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A65` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A66 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A66` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A67 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A67` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A68 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A68` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A69 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A69` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A70 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A70` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Large_A | `SM_Alder_Large_A` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Large_A10 | `SM_Alder_Large_A10` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Large_A11 | `SM_Alder_Large_A11` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Large_A12 | `SM_Alder_Large_A12` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Large_A13 | `SM_Alder_Large_A13` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Large_A4 | `SM_Alder_Large_A4` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Large_A6 | `SM_Alder_Large_A6` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Large_A7 | `SM_Alder_Large_A7` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Large_A8 | `SM_Alder_Large_A8` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Large_A9 | `SM_Alder_Large_A9` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_B10 | `SM_Alder_Medium_B10` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_B11 | `SM_Alder_Medium_B11` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_B12 | `SM_Alder_Medium_B12` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_B13 | `SM_Alder_Medium_B13` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_B6 | `SM_Alder_Medium_B6` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_B7 | `SM_Alder_Medium_B7` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_B8 | `SM_Alder_Medium_B8` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_B9 | `SM_Alder_Medium_B9` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_C10 | `SM_Alder_Medium_C10` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_C11 | `SM_Alder_Medium_C11` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_C12 | `SM_Alder_Medium_C12` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_C13 | `SM_Alder_Medium_C13` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_C14 | `SM_Alder_Medium_C14` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_C15 | `SM_Alder_Medium_C15` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_C16 | `SM_Alder_Medium_C16` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_C17 | `SM_Alder_Medium_C17` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_C18 | `SM_Alder_Medium_C18` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_C19 | `SM_Alder_Medium_C19` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_C7 | `SM_Alder_Medium_C7` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_C9 | `SM_Alder_Medium_C9` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Sapling_A10 | `SM_Alder_Sapling_A10` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Sapling_A11 | `SM_Alder_Sapling_A11` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Sapling_A12 | `SM_Alder_Sapling_A12` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Small_A10 | `SM_Alder_Small_A10` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Small_A11 | `SM_Alder_Small_A11` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Small_A12 | `SM_Alder_Small_A12` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Small_A13 | `SM_Alder_Small_A13` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Small_A14 | `SM_Alder_Small_A14` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Small_A15 | `SM_Alder_Small_A15` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Small_A16 | `SM_Alder_Small_A16` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Small_A17 | `SM_Alder_Small_A17` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Small_A18 | `SM_Alder_Small_A18` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Small_A19 | `SM_Alder_Small_A19` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Small_A20 | `SM_Alder_Small_A20` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Small_A7 | `SM_Alder_Small_A7` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Small_A9 | `SM_Alder_Small_A9` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Larch_Inner_Large_A10 | `SM_Larch_Inner_Large_A10` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Larch_Inner_Large_A11 | `SM_Larch_Inner_Large_A11` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Larch_Inner_Large_A12 | `SM_Larch_Inner_Large_A12` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Larch_Inner_Large_A13 | `SM_Larch_Inner_Large_A13` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Larch_Inner_Large_A14 | `SM_Larch_Inner_Large_A14` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Larch_Inner_Large_A3 | `SM_Larch_Inner_Large_A3` |
-
-</details>
-
-<details>
-<summary><b>Hogsmeade / EXT / LI_Hogsmeade_River</b> — 727 actors, inherited layer <code>DL_HM_EXT</code></summary>
-
-Paths below continue from `LV_Overland/Region/Hogwarts Valley/Hogsmeade_RiverBlockout/LI_Hogsmeade_River/`
-
-| Actor type | Actor | Outliner path |
-|---|---|---|
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_BogTree_Oak_LargeA_Master2 | `Hogsmeade_RiverBlockout/SM_BogTree_Oak_LargeA_Master2` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_AshTree_Med_B2 | `SM_AshTree_Med_B2` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A14 | `SM_Birch_Sapling_A14` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A15 | `SM_Birch_Sapling_A15` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A18 | `SM_Birch_Sapling_A18` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A19 | `SM_Birch_Sapling_A19` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A23 | `SM_Birch_Sapling_A23` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A25 | `SM_Birch_Sapling_A25` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A26 | `SM_Birch_Sapling_A26` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A27 | `SM_Birch_Sapling_A27` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A28 | `SM_Birch_Sapling_A28` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A29 | `SM_Birch_Sapling_A29` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A30 | `SM_Birch_Sapling_A30` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A4 | `SM_Birch_Sapling_A4` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A5 | `SM_Birch_Sapling_A5` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A7 | `SM_Birch_Sapling_A7` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A8 | `SM_Birch_Sapling_A8` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A9 | `SM_Birch_Sapling_A9` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_B12 | `SM_Birch_Sapling_B12` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_B13 | `SM_Birch_Sapling_B13` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_B15 | `SM_Birch_Sapling_B15` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_B16 | `SM_Birch_Sapling_B16` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_B17 | `SM_Birch_Sapling_B17` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_B20 | `SM_Birch_Sapling_B20` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_B21 | `SM_Birch_Sapling_B21` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_B5 | `SM_Birch_Sapling_B5` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_B6 | `SM_Birch_Sapling_B6` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_B7 | `SM_Birch_Sapling_B7` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_B8 | `SM_Birch_Sapling_B8` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_B9 | `SM_Birch_Sapling_B9` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Small_A4 | `SM_Birch_Small_A4` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Small_A7 | `SM_Birch_Small_A7` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_A10 | `SM_Bracken_A10` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_A11 | `SM_Bracken_A11` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_A12 | `SM_Bracken_A12` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_A15 | `SM_Bracken_A15` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_A16 | `SM_Bracken_A16` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_A17 | `SM_Bracken_A17` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_A20 | `SM_Bracken_A20` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_A21 | `SM_Bracken_A21` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_A5 | `SM_Bracken_A5` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_A6 | `SM_Bracken_A6` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_A7 | `SM_Bracken_A7` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_A8 | `SM_Bracken_A8` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_B12 | `SM_Bracken_B12` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_B13 | `SM_Bracken_B13` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_B15 | `SM_Bracken_B15` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_B17 | `SM_Bracken_B17` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_B18 | `SM_Bracken_B18` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_B19 | `SM_Bracken_B19` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_B6 | `SM_Bracken_B6` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_B7 | `SM_Bracken_B7` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_B8 | `SM_Bracken_B8` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_B9 | `SM_Bracken_B9` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_C11 | `SM_Bracken_C11` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_C12 | `SM_Bracken_C12` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_C13 | `SM_Bracken_C13` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_C5 | `SM_Bracken_C5` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_C6 | `SM_Bracken_C6` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_C7 | `SM_Bracken_C7` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_C8 | `SM_Bracken_C8` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_D11 | `SM_Bracken_D11` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_D12 | `SM_Bracken_D12` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_D13 | `SM_Bracken_D13` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_D14 | `SM_Bracken_D14` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_D15 | `SM_Bracken_D15` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_D16 | `SM_Bracken_D16` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_D17 | `SM_Bracken_D17` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_D18 | `SM_Bracken_D18` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_E15 | `SM_Bracken_E15` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_E16 | `SM_Bracken_E16` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_E17 | `SM_Bracken_E17` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_E18 | `SM_Bracken_E18` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_E19 | `SM_Bracken_E19` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_E20 | `SM_Bracken_E20` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_E21 | `SM_Bracken_E21` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_E23 | `SM_Bracken_E23` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_10 | `SM_Bulrush_Reeds_10` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_100 | `SM_Bulrush_Reeds_100` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_101 | `SM_Bulrush_Reeds_101` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_102 | `SM_Bulrush_Reeds_102` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_103 | `SM_Bulrush_Reeds_103` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_104 | `SM_Bulrush_Reeds_104` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_105 | `SM_Bulrush_Reeds_105` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_106 | `SM_Bulrush_Reeds_106` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_107 | `SM_Bulrush_Reeds_107` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_108 | `SM_Bulrush_Reeds_108` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_109 | `SM_Bulrush_Reeds_109` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_110 | `SM_Bulrush_Reeds_110` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_111 | `SM_Bulrush_Reeds_111` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_112 | `SM_Bulrush_Reeds_112` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_113 | `SM_Bulrush_Reeds_113` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_114 | `SM_Bulrush_Reeds_114` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_116 | `SM_Bulrush_Reeds_116` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_12 | `SM_Bulrush_Reeds_12` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_125 | `SM_Bulrush_Reeds_125` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_127 | `SM_Bulrush_Reeds_127` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_129 | `SM_Bulrush_Reeds_129` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_13 | `SM_Bulrush_Reeds_13` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_130 | `SM_Bulrush_Reeds_130` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_131 | `SM_Bulrush_Reeds_131` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_132 | `SM_Bulrush_Reeds_132` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_134 | `SM_Bulrush_Reeds_134` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_14 | `SM_Bulrush_Reeds_14` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_140 | `SM_Bulrush_Reeds_140` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_141 | `SM_Bulrush_Reeds_141` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_142 | `SM_Bulrush_Reeds_142` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_143 | `SM_Bulrush_Reeds_143` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_144 | `SM_Bulrush_Reeds_144` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_145 | `SM_Bulrush_Reeds_145` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_147 | `SM_Bulrush_Reeds_147` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_15 | `SM_Bulrush_Reeds_15` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_151 | `SM_Bulrush_Reeds_151` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_152 | `SM_Bulrush_Reeds_152` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_153 | `SM_Bulrush_Reeds_153` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_154 | `SM_Bulrush_Reeds_154` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_155 | `SM_Bulrush_Reeds_155` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_156 | `SM_Bulrush_Reeds_156` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_157 | `SM_Bulrush_Reeds_157` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_158 | `SM_Bulrush_Reeds_158` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_159 | `SM_Bulrush_Reeds_159` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_16 | `SM_Bulrush_Reeds_16` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_160 | `SM_Bulrush_Reeds_160` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_161 | `SM_Bulrush_Reeds_161` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_164 | `SM_Bulrush_Reeds_164` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_165 | `SM_Bulrush_Reeds_165` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_167 | `SM_Bulrush_Reeds_167` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_17 | `SM_Bulrush_Reeds_17` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_173 | `SM_Bulrush_Reeds_173` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_174 | `SM_Bulrush_Reeds_174` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_175 | `SM_Bulrush_Reeds_175` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_176 | `SM_Bulrush_Reeds_176` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_177 | `SM_Bulrush_Reeds_177` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_178 | `SM_Bulrush_Reeds_178` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_18 | `SM_Bulrush_Reeds_18` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_19 | `SM_Bulrush_Reeds_19` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_22 | `SM_Bulrush_Reeds_22` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_23 | `SM_Bulrush_Reeds_23` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_26 | `SM_Bulrush_Reeds_26` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_27 | `SM_Bulrush_Reeds_27` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_28 | `SM_Bulrush_Reeds_28` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_29 | `SM_Bulrush_Reeds_29` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_30 | `SM_Bulrush_Reeds_30` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_32 | `SM_Bulrush_Reeds_32` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_33 | `SM_Bulrush_Reeds_33` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_34 | `SM_Bulrush_Reeds_34` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_35 | `SM_Bulrush_Reeds_35` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_4 | `SM_Bulrush_Reeds_4` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_48 | `SM_Bulrush_Reeds_48` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_49 | `SM_Bulrush_Reeds_49` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_5 | `SM_Bulrush_Reeds_5` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_50 | `SM_Bulrush_Reeds_50` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_51 | `SM_Bulrush_Reeds_51` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_52 | `SM_Bulrush_Reeds_52` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_55 | `SM_Bulrush_Reeds_55` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_56 | `SM_Bulrush_Reeds_56` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_57 | `SM_Bulrush_Reeds_57` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_6 | `SM_Bulrush_Reeds_6` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_61 | `SM_Bulrush_Reeds_61` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_68 | `SM_Bulrush_Reeds_68` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_69 | `SM_Bulrush_Reeds_69` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_7 | `SM_Bulrush_Reeds_7` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_70 | `SM_Bulrush_Reeds_70` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_71 | `SM_Bulrush_Reeds_71` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_72 | `SM_Bulrush_Reeds_72` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_73 | `SM_Bulrush_Reeds_73` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_8 | `SM_Bulrush_Reeds_8` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_83 | `SM_Bulrush_Reeds_83` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_84 | `SM_Bulrush_Reeds_84` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_85 | `SM_Bulrush_Reeds_85` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_86 | `SM_Bulrush_Reeds_86` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_87 | `SM_Bulrush_Reeds_87` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_88 | `SM_Bulrush_Reeds_88` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_89 | `SM_Bulrush_Reeds_89` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_9 | `SM_Bulrush_Reeds_9` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_90 | `SM_Bulrush_Reeds_90` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_91 | `SM_Bulrush_Reeds_91` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_92 | `SM_Bulrush_Reeds_92` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_93 | `SM_Bulrush_Reeds_93` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_94 | `SM_Bulrush_Reeds_94` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_95 | `SM_Bulrush_Reeds_95` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_96 | `SM_Bulrush_Reeds_96` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_97 | `SM_Bulrush_Reeds_97` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_98 | `SM_Bulrush_Reeds_98` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_99 | `SM_Bulrush_Reeds_99` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Foxglove_A10 | `SM_Foxglove_A10` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Foxglove_A11 | `SM_Foxglove_A11` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Foxglove_A5 | `SM_Foxglove_A5` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Foxglove_A6 | `SM_Foxglove_A6` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Foxglove_A7 | `SM_Foxglove_A7` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Foxglove_B6 | `SM_Foxglove_B6` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Foxglove_B7 | `SM_Foxglove_B7` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Foxglove_B9 | `SM_Foxglove_B9` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Foxglove_C3 | `SM_Foxglove_C3` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Foxglove_C4 | `SM_Foxglove_C4` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Foxglove_C6 | `SM_Foxglove_C6` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_A17 | `SM_Gorse_A17` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_A18 | `SM_Gorse_A18` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_A2 | `SM_Gorse_A2` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_A3 | `SM_Gorse_A3` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_A6 | `SM_Gorse_A6` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_A62 | `SM_Gorse_A62` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_A63 | `SM_Gorse_A63` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_A7 | `SM_Gorse_A7` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_A8 | `SM_Gorse_A8` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_A9 | `SM_Gorse_A9` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_B2 | `SM_Gorse_B2` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_B26 | `SM_Gorse_B26` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_B27 | `SM_Gorse_B27` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_B28 | `SM_Gorse_B28` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_B29 | `SM_Gorse_B29` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_B3 | `SM_Gorse_B3` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_B30 | `SM_Gorse_B30` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_B4 | `SM_Gorse_B4` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_B8 | `SM_Gorse_B8` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_B9 | `SM_Gorse_B9` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_C | `SM_Gorse_C` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_C10 | `SM_Gorse_C10` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_C11 | `SM_Gorse_C11` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_C2 | `SM_Gorse_C2` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_C21 | `SM_Gorse_C21` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_C22 | `SM_Gorse_C22` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_D10 | `SM_Gorse_D10` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_D11 | `SM_Gorse_D11` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_D16 | `SM_Gorse_D16` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_D17 | `SM_Gorse_D17` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_D19 | `SM_Gorse_D19` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_D20 | `SM_Gorse_D20` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_D21 | `SM_Gorse_D21` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_D22 | `SM_Gorse_D22` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_D23 | `SM_Gorse_D23` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_D5 | `SM_Gorse_D5` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_D6 | `SM_Gorse_D6` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_D7 | `SM_Gorse_D7` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_D9 | `SM_Gorse_D9` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_E18 | `SM_Gorse_E18` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_E19 | `SM_Gorse_E19` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_E2 | `SM_Gorse_E2` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_E23 | `SM_Gorse_E23` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_E24 | `SM_Gorse_E24` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_E25 | `SM_Gorse_E25` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_E26 | `SM_Gorse_E26` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_E27 | `SM_Gorse_E27` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_E28 | `SM_Gorse_E28` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_E3 | `SM_Gorse_E3` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_E4 | `SM_Gorse_E4` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_E7 | `SM_Gorse_E7` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_E8 | `SM_Gorse_E8` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_F3 | `SM_Gorse_F3` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_G | `SM_Gorse_G` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_Hedge_A | `SM_Gorse_Hedge_A` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_HardFern_A2 | `SM_HardFern_A2` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_HardFern_A3 | `SM_HardFern_A3` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_HardFern_A4 | `SM_HardFern_A4` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_HardFern_A6 | `SM_HardFern_A6` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_HardFern_B2 | `SM_HardFern_B2` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_HardFern_B3 | `SM_HardFern_B3` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_HardFern_B4 | `SM_HardFern_B4` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_HardFern_C | `SM_HardFern_C` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Holly_B3 | `SM_Holly_B3` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Holly_B4 | `SM_Holly_B4` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Holly_B5 | `SM_Holly_B5` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_A2 | `SM_Juniper_A2` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_A3 | `SM_Juniper_A3` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_B | `SM_Juniper_B` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_B2 | `SM_Juniper_B2` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_B3 | `SM_Juniper_B3` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_B4 | `SM_Juniper_B4` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C10 | `SM_Juniper_C10` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C11 | `SM_Juniper_C11` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C12 | `SM_Juniper_C12` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C13 | `SM_Juniper_C13` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C14 | `SM_Juniper_C14` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C17 | `SM_Juniper_C17` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C18 | `SM_Juniper_C18` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C19 | `SM_Juniper_C19` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C2 | `SM_Juniper_C2` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C20 | `SM_Juniper_C20` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C25 | `SM_Juniper_C25` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C29 | `SM_Juniper_C29` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C3 | `SM_Juniper_C3` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C4 | `SM_Juniper_C4` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C6 | `SM_Juniper_C6` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C9 | `SM_Juniper_C9` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_D | `SM_Juniper_D` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_Manicured_Hedge_A | `SM_Juniper_Manicured_Hedge_A` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_Manicured_Hedge_A2 | `SM_Juniper_Manicured_Hedge_A2` |
-| `PlacedFoliageSkinnedNaniteAssembly` | SM_WildCherry_Med_A4 | `SM_WildCherry_Med_A4` |
-
-</details>
-
-<details>
-<summary><b>Hogsmeade / EXT / LI_HM_StreetDressing_EXT</b> — 90 actors, inherited layer <code>DL_HM_EXT</code></summary>
+<summary><b>Hogsmeade / EXT / LI_HM_StreetDressing_EXT</b> — 13 actors, inherited layer <code>DL_HM_EXT</code></summary>
 
 Paths below continue from `LV_Overland/Hogsmeade/LI_Hogsmeade/LI_Hogsmeade/Streets/LI_HM_StreetDressing_EXT/`
 
@@ -3300,7 +2957,7 @@ Paths below continue from `LV_Overland/Hogsmeade/LI_Hogsmeade/LI_Hogsmeade/Stree
 </details>
 
 <details>
-<summary><b>Hogsmeade / EXT / LI_Hogsmeade_River</b> — 727 actors, inherited layer <code>DL_HM_EXT</code></summary>
+<summary><b>Hogsmeade / EXT / LI_Hogsmeade_River</b> — 439 actors, inherited layer <code>DL_HM_EXT</code></summary>
 
 Paths below continue from `LV_Overland/Region/Hogwarts Valley/Hogsmeade_RiverBlockout/LI_Hogsmeade_River/`
 
@@ -3365,5 +3022,396 @@ Paths below continue from `LV_Overland/Hogsmeade/LI_Hogsmeade/LI_Hogsmeade/Shops
 | Actor type | Actor | Outliner path |
 |---|---|---|
 | `StaticMeshActor` | SM_Candle_Skinny_B9 | `SM_Candle_Skinny_B9` |
+
+</details>
+
+## Full actor list — outside rule processing
+
+The 365 actors no rule matches. They carry `DL_OVERLAND` because that is where everything
+unprocessed lands, so they are listed for the missing-rule discussion rather than for
+removal.
+
+<details>
+<summary><b>Hogsmeade / EXT / LI_HM_StreetDressing_EXT</b> — 77 actors, inherited layer <code>DL_HM_EXT</code></summary>
+
+Paths below continue from `LV_Overland/Hogsmeade/LI_Hogsmeade/LI_Hogsmeade/Streets/LI_HM_StreetDressing_EXT/`
+
+| Actor type | Actor | Outliner path |
+|---|---|---|
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_Manicured_Hedge_A10 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Juniper_Manicured_Hedge_A10` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_Manicured_Hedge_A11 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Juniper_Manicured_Hedge_A11` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_Manicured_Hedge_A12 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Juniper_Manicured_Hedge_A12` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_Manicured_Hedge_A13 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Juniper_Manicured_Hedge_A13` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_Manicured_Hedge_A14 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Juniper_Manicured_Hedge_A14` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_Manicured_Hedge_A15 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Juniper_Manicured_Hedge_A15` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_Manicured_Hedge_A16 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Juniper_Manicured_Hedge_A16` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_Manicured_Hedge_A17 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Juniper_Manicured_Hedge_A17` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_Manicured_Hedge_A8 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Juniper_Manicured_Hedge_A8` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_Manicured_Hedge_A9 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Juniper_Manicured_Hedge_A9` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A11 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A11` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A12 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A12` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A58 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A58` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A59 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A59` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A60 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A60` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A61 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A61` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A62 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A62` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A63 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A63` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A64 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A64` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A65 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A65` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A66 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A66` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A67 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A67` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A68 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A68` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A69 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A69` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Spruce_Med_A70 | `HM_StreetDressing_General/HM_StreetDressing_Foliage/SM_Spruce_Med_A70` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Large_A | `SM_Alder_Large_A` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Large_A10 | `SM_Alder_Large_A10` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Large_A11 | `SM_Alder_Large_A11` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Large_A12 | `SM_Alder_Large_A12` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Large_A13 | `SM_Alder_Large_A13` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Large_A4 | `SM_Alder_Large_A4` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Large_A6 | `SM_Alder_Large_A6` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Large_A7 | `SM_Alder_Large_A7` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Large_A8 | `SM_Alder_Large_A8` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Large_A9 | `SM_Alder_Large_A9` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_B10 | `SM_Alder_Medium_B10` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_B11 | `SM_Alder_Medium_B11` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_B12 | `SM_Alder_Medium_B12` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_B13 | `SM_Alder_Medium_B13` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_B6 | `SM_Alder_Medium_B6` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_B7 | `SM_Alder_Medium_B7` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_B8 | `SM_Alder_Medium_B8` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_B9 | `SM_Alder_Medium_B9` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_C10 | `SM_Alder_Medium_C10` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_C11 | `SM_Alder_Medium_C11` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_C12 | `SM_Alder_Medium_C12` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_C13 | `SM_Alder_Medium_C13` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_C14 | `SM_Alder_Medium_C14` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_C15 | `SM_Alder_Medium_C15` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_C16 | `SM_Alder_Medium_C16` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_C17 | `SM_Alder_Medium_C17` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_C18 | `SM_Alder_Medium_C18` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_C19 | `SM_Alder_Medium_C19` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_C7 | `SM_Alder_Medium_C7` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Medium_C9 | `SM_Alder_Medium_C9` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Sapling_A10 | `SM_Alder_Sapling_A10` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Sapling_A11 | `SM_Alder_Sapling_A11` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Sapling_A12 | `SM_Alder_Sapling_A12` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Small_A10 | `SM_Alder_Small_A10` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Small_A11 | `SM_Alder_Small_A11` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Small_A12 | `SM_Alder_Small_A12` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Small_A13 | `SM_Alder_Small_A13` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Small_A14 | `SM_Alder_Small_A14` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Small_A15 | `SM_Alder_Small_A15` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Small_A16 | `SM_Alder_Small_A16` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Small_A17 | `SM_Alder_Small_A17` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Small_A18 | `SM_Alder_Small_A18` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Small_A19 | `SM_Alder_Small_A19` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Small_A20 | `SM_Alder_Small_A20` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Small_A7 | `SM_Alder_Small_A7` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Alder_Small_A9 | `SM_Alder_Small_A9` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Larch_Inner_Large_A10 | `SM_Larch_Inner_Large_A10` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Larch_Inner_Large_A11 | `SM_Larch_Inner_Large_A11` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Larch_Inner_Large_A12 | `SM_Larch_Inner_Large_A12` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Larch_Inner_Large_A13 | `SM_Larch_Inner_Large_A13` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Larch_Inner_Large_A14 | `SM_Larch_Inner_Large_A14` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Larch_Inner_Large_A3 | `SM_Larch_Inner_Large_A3` |
+
+</details>
+
+<details>
+<summary><b>Hogsmeade / EXT / LI_Hogsmeade_River</b> — 288 actors, inherited layer <code>DL_HM_EXT</code></summary>
+
+Paths below continue from `LV_Overland/Region/Hogwarts Valley/Hogsmeade_RiverBlockout/LI_Hogsmeade_River/`
+
+| Actor type | Actor | Outliner path |
+|---|---|---|
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_BogTree_Oak_LargeA_Master2 | `Hogsmeade_RiverBlockout/SM_BogTree_Oak_LargeA_Master2` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_AshTree_Med_B2 | `SM_AshTree_Med_B2` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A14 | `SM_Birch_Sapling_A14` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A15 | `SM_Birch_Sapling_A15` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A18 | `SM_Birch_Sapling_A18` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A19 | `SM_Birch_Sapling_A19` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A23 | `SM_Birch_Sapling_A23` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A25 | `SM_Birch_Sapling_A25` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A26 | `SM_Birch_Sapling_A26` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A27 | `SM_Birch_Sapling_A27` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A28 | `SM_Birch_Sapling_A28` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A29 | `SM_Birch_Sapling_A29` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A30 | `SM_Birch_Sapling_A30` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A4 | `SM_Birch_Sapling_A4` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A5 | `SM_Birch_Sapling_A5` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A7 | `SM_Birch_Sapling_A7` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A8 | `SM_Birch_Sapling_A8` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_A9 | `SM_Birch_Sapling_A9` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_B12 | `SM_Birch_Sapling_B12` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_B13 | `SM_Birch_Sapling_B13` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_B15 | `SM_Birch_Sapling_B15` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_B16 | `SM_Birch_Sapling_B16` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_B17 | `SM_Birch_Sapling_B17` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_B20 | `SM_Birch_Sapling_B20` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_B21 | `SM_Birch_Sapling_B21` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_B5 | `SM_Birch_Sapling_B5` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_B6 | `SM_Birch_Sapling_B6` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_B7 | `SM_Birch_Sapling_B7` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_B8 | `SM_Birch_Sapling_B8` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Sapling_B9 | `SM_Birch_Sapling_B9` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Small_A4 | `SM_Birch_Small_A4` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Birch_Small_A7 | `SM_Birch_Small_A7` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_A10 | `SM_Bracken_A10` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_A11 | `SM_Bracken_A11` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_A12 | `SM_Bracken_A12` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_A15 | `SM_Bracken_A15` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_A16 | `SM_Bracken_A16` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_A17 | `SM_Bracken_A17` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_A20 | `SM_Bracken_A20` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_A21 | `SM_Bracken_A21` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_A5 | `SM_Bracken_A5` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_A6 | `SM_Bracken_A6` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_A7 | `SM_Bracken_A7` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_A8 | `SM_Bracken_A8` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_B12 | `SM_Bracken_B12` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_B13 | `SM_Bracken_B13` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_B15 | `SM_Bracken_B15` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_B17 | `SM_Bracken_B17` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_B18 | `SM_Bracken_B18` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_B19 | `SM_Bracken_B19` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_B6 | `SM_Bracken_B6` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_B7 | `SM_Bracken_B7` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_B8 | `SM_Bracken_B8` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_B9 | `SM_Bracken_B9` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_C11 | `SM_Bracken_C11` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_C12 | `SM_Bracken_C12` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_C13 | `SM_Bracken_C13` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_C5 | `SM_Bracken_C5` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_C6 | `SM_Bracken_C6` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_C7 | `SM_Bracken_C7` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_C8 | `SM_Bracken_C8` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_D11 | `SM_Bracken_D11` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_D12 | `SM_Bracken_D12` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_D13 | `SM_Bracken_D13` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_D14 | `SM_Bracken_D14` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_D15 | `SM_Bracken_D15` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_D16 | `SM_Bracken_D16` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_D17 | `SM_Bracken_D17` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_D18 | `SM_Bracken_D18` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_E15 | `SM_Bracken_E15` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_E16 | `SM_Bracken_E16` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_E17 | `SM_Bracken_E17` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_E18 | `SM_Bracken_E18` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_E19 | `SM_Bracken_E19` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_E20 | `SM_Bracken_E20` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_E21 | `SM_Bracken_E21` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bracken_E23 | `SM_Bracken_E23` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_10 | `SM_Bulrush_Reeds_10` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_100 | `SM_Bulrush_Reeds_100` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_101 | `SM_Bulrush_Reeds_101` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_102 | `SM_Bulrush_Reeds_102` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_103 | `SM_Bulrush_Reeds_103` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_104 | `SM_Bulrush_Reeds_104` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_105 | `SM_Bulrush_Reeds_105` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_106 | `SM_Bulrush_Reeds_106` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_107 | `SM_Bulrush_Reeds_107` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_108 | `SM_Bulrush_Reeds_108` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_109 | `SM_Bulrush_Reeds_109` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_110 | `SM_Bulrush_Reeds_110` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_111 | `SM_Bulrush_Reeds_111` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_112 | `SM_Bulrush_Reeds_112` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_113 | `SM_Bulrush_Reeds_113` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_114 | `SM_Bulrush_Reeds_114` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_116 | `SM_Bulrush_Reeds_116` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_12 | `SM_Bulrush_Reeds_12` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_125 | `SM_Bulrush_Reeds_125` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_127 | `SM_Bulrush_Reeds_127` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_129 | `SM_Bulrush_Reeds_129` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_13 | `SM_Bulrush_Reeds_13` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_130 | `SM_Bulrush_Reeds_130` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_131 | `SM_Bulrush_Reeds_131` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_132 | `SM_Bulrush_Reeds_132` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_134 | `SM_Bulrush_Reeds_134` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_14 | `SM_Bulrush_Reeds_14` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_140 | `SM_Bulrush_Reeds_140` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_141 | `SM_Bulrush_Reeds_141` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_142 | `SM_Bulrush_Reeds_142` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_143 | `SM_Bulrush_Reeds_143` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_144 | `SM_Bulrush_Reeds_144` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_145 | `SM_Bulrush_Reeds_145` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_147 | `SM_Bulrush_Reeds_147` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_15 | `SM_Bulrush_Reeds_15` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_151 | `SM_Bulrush_Reeds_151` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_152 | `SM_Bulrush_Reeds_152` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_153 | `SM_Bulrush_Reeds_153` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_154 | `SM_Bulrush_Reeds_154` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_155 | `SM_Bulrush_Reeds_155` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_156 | `SM_Bulrush_Reeds_156` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_157 | `SM_Bulrush_Reeds_157` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_158 | `SM_Bulrush_Reeds_158` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_159 | `SM_Bulrush_Reeds_159` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_16 | `SM_Bulrush_Reeds_16` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_160 | `SM_Bulrush_Reeds_160` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_161 | `SM_Bulrush_Reeds_161` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_164 | `SM_Bulrush_Reeds_164` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_165 | `SM_Bulrush_Reeds_165` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_167 | `SM_Bulrush_Reeds_167` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_17 | `SM_Bulrush_Reeds_17` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_173 | `SM_Bulrush_Reeds_173` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_174 | `SM_Bulrush_Reeds_174` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_175 | `SM_Bulrush_Reeds_175` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_176 | `SM_Bulrush_Reeds_176` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_177 | `SM_Bulrush_Reeds_177` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_178 | `SM_Bulrush_Reeds_178` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_18 | `SM_Bulrush_Reeds_18` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_19 | `SM_Bulrush_Reeds_19` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_22 | `SM_Bulrush_Reeds_22` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_23 | `SM_Bulrush_Reeds_23` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_26 | `SM_Bulrush_Reeds_26` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_27 | `SM_Bulrush_Reeds_27` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_28 | `SM_Bulrush_Reeds_28` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_29 | `SM_Bulrush_Reeds_29` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_30 | `SM_Bulrush_Reeds_30` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_32 | `SM_Bulrush_Reeds_32` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_33 | `SM_Bulrush_Reeds_33` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_34 | `SM_Bulrush_Reeds_34` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_35 | `SM_Bulrush_Reeds_35` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_4 | `SM_Bulrush_Reeds_4` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_48 | `SM_Bulrush_Reeds_48` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_49 | `SM_Bulrush_Reeds_49` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_5 | `SM_Bulrush_Reeds_5` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_50 | `SM_Bulrush_Reeds_50` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_51 | `SM_Bulrush_Reeds_51` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_52 | `SM_Bulrush_Reeds_52` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_55 | `SM_Bulrush_Reeds_55` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_56 | `SM_Bulrush_Reeds_56` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_57 | `SM_Bulrush_Reeds_57` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_6 | `SM_Bulrush_Reeds_6` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_61 | `SM_Bulrush_Reeds_61` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_68 | `SM_Bulrush_Reeds_68` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_69 | `SM_Bulrush_Reeds_69` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_7 | `SM_Bulrush_Reeds_7` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_70 | `SM_Bulrush_Reeds_70` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_71 | `SM_Bulrush_Reeds_71` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_72 | `SM_Bulrush_Reeds_72` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_73 | `SM_Bulrush_Reeds_73` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_8 | `SM_Bulrush_Reeds_8` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_83 | `SM_Bulrush_Reeds_83` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_84 | `SM_Bulrush_Reeds_84` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_85 | `SM_Bulrush_Reeds_85` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_86 | `SM_Bulrush_Reeds_86` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_87 | `SM_Bulrush_Reeds_87` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_88 | `SM_Bulrush_Reeds_88` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_89 | `SM_Bulrush_Reeds_89` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_9 | `SM_Bulrush_Reeds_9` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_90 | `SM_Bulrush_Reeds_90` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_91 | `SM_Bulrush_Reeds_91` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_92 | `SM_Bulrush_Reeds_92` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_93 | `SM_Bulrush_Reeds_93` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_94 | `SM_Bulrush_Reeds_94` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_95 | `SM_Bulrush_Reeds_95` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_96 | `SM_Bulrush_Reeds_96` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_97 | `SM_Bulrush_Reeds_97` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_98 | `SM_Bulrush_Reeds_98` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Bulrush_Reeds_99 | `SM_Bulrush_Reeds_99` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Foxglove_A10 | `SM_Foxglove_A10` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Foxglove_A11 | `SM_Foxglove_A11` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Foxglove_A5 | `SM_Foxglove_A5` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Foxglove_A6 | `SM_Foxglove_A6` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Foxglove_A7 | `SM_Foxglove_A7` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Foxglove_B6 | `SM_Foxglove_B6` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Foxglove_B7 | `SM_Foxglove_B7` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Foxglove_B9 | `SM_Foxglove_B9` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Foxglove_C3 | `SM_Foxglove_C3` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Foxglove_C4 | `SM_Foxglove_C4` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Foxglove_C6 | `SM_Foxglove_C6` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_A17 | `SM_Gorse_A17` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_A18 | `SM_Gorse_A18` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_A2 | `SM_Gorse_A2` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_A3 | `SM_Gorse_A3` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_A6 | `SM_Gorse_A6` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_A62 | `SM_Gorse_A62` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_A63 | `SM_Gorse_A63` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_A7 | `SM_Gorse_A7` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_A8 | `SM_Gorse_A8` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_A9 | `SM_Gorse_A9` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_B2 | `SM_Gorse_B2` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_B26 | `SM_Gorse_B26` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_B27 | `SM_Gorse_B27` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_B28 | `SM_Gorse_B28` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_B29 | `SM_Gorse_B29` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_B3 | `SM_Gorse_B3` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_B30 | `SM_Gorse_B30` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_B4 | `SM_Gorse_B4` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_B8 | `SM_Gorse_B8` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_B9 | `SM_Gorse_B9` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_C | `SM_Gorse_C` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_C10 | `SM_Gorse_C10` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_C11 | `SM_Gorse_C11` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_C2 | `SM_Gorse_C2` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_C21 | `SM_Gorse_C21` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_C22 | `SM_Gorse_C22` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_D10 | `SM_Gorse_D10` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_D11 | `SM_Gorse_D11` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_D16 | `SM_Gorse_D16` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_D17 | `SM_Gorse_D17` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_D19 | `SM_Gorse_D19` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_D20 | `SM_Gorse_D20` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_D21 | `SM_Gorse_D21` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_D22 | `SM_Gorse_D22` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_D23 | `SM_Gorse_D23` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_D5 | `SM_Gorse_D5` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_D6 | `SM_Gorse_D6` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_D7 | `SM_Gorse_D7` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_D9 | `SM_Gorse_D9` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_E18 | `SM_Gorse_E18` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_E19 | `SM_Gorse_E19` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_E2 | `SM_Gorse_E2` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_E23 | `SM_Gorse_E23` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_E24 | `SM_Gorse_E24` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_E25 | `SM_Gorse_E25` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_E26 | `SM_Gorse_E26` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_E27 | `SM_Gorse_E27` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_E28 | `SM_Gorse_E28` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_E3 | `SM_Gorse_E3` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_E4 | `SM_Gorse_E4` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_E7 | `SM_Gorse_E7` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_E8 | `SM_Gorse_E8` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_F3 | `SM_Gorse_F3` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_G | `SM_Gorse_G` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Gorse_Hedge_A | `SM_Gorse_Hedge_A` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_HardFern_A2 | `SM_HardFern_A2` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_HardFern_A3 | `SM_HardFern_A3` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_HardFern_A4 | `SM_HardFern_A4` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_HardFern_A6 | `SM_HardFern_A6` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_HardFern_B2 | `SM_HardFern_B2` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_HardFern_B3 | `SM_HardFern_B3` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_HardFern_B4 | `SM_HardFern_B4` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_HardFern_C | `SM_HardFern_C` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Holly_B3 | `SM_Holly_B3` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Holly_B4 | `SM_Holly_B4` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Holly_B5 | `SM_Holly_B5` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_A2 | `SM_Juniper_A2` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_A3 | `SM_Juniper_A3` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_B | `SM_Juniper_B` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_B2 | `SM_Juniper_B2` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_B3 | `SM_Juniper_B3` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_B4 | `SM_Juniper_B4` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C10 | `SM_Juniper_C10` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C11 | `SM_Juniper_C11` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C12 | `SM_Juniper_C12` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C13 | `SM_Juniper_C13` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C14 | `SM_Juniper_C14` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C17 | `SM_Juniper_C17` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C18 | `SM_Juniper_C18` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C19 | `SM_Juniper_C19` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C2 | `SM_Juniper_C2` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C20 | `SM_Juniper_C20` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C25 | `SM_Juniper_C25` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C29 | `SM_Juniper_C29` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C3 | `SM_Juniper_C3` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C4 | `SM_Juniper_C4` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C6 | `SM_Juniper_C6` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_C9 | `SM_Juniper_C9` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_D | `SM_Juniper_D` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_Manicured_Hedge_A | `SM_Juniper_Manicured_Hedge_A` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_Juniper_Manicured_Hedge_A2 | `SM_Juniper_Manicured_Hedge_A2` |
+| `PlacedFoliageSkinnedNaniteAssembly` | SM_WildCherry_Med_A4 | `SM_WildCherry_Med_A4` |
 
 </details>
