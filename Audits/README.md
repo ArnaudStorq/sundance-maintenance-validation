@@ -32,6 +32,7 @@ only valid until someone fixes them.
 | [Pass 2 — interior actors hidden from the exterior](DataLayerOverlap-Overland-Pass2-2026-09-22.md) | The Pass 1 carriers, where geometry is resident; calibrated on `LI_EntranceHall_EXT` (775 carriers) | 25 actors fully enclosed by collision geometry yet tagged exterior, plus 5 with empty bounds; Hogsmeade still provisional | [Hidden](DataLayerOverlap-Overland-Pass2-Hidden-2026-09-22.csv) |
 | [`DL_OVERLAND` removal candidates](OverlandDataLayerRemoval-2026-09-22.md) | The Pass 2 enclosed actors that assign `DL_OVERLAND` themselves, Hogwarts and Hogsmeade | 69 actors to strip the layer from — 25 confirmed, 5 with no geometry, 39 provisional | [Removal list](OverlandDataLayerRemoval-2026-09-22.csv) |
 | [`DL_OVERLAND` removal candidates — visual verification](OverlandDataLayerRemoval-Captures-2026-09-22.md) | The same 69 candidates, with an editor capture per actor | 30 Hogwarts actors shown selected, walled in, next to their Outliner Data Layer row; the 39 Hogsmeade ones await the region reload | [Removal list](OverlandDataLayerRemoval-2026-09-22.csv) |
+| [Hand-placed `DL_OVERLAND` under Hogwarts and Hogsmeade](ManualOverlandDataLayer-Hogwarts-Hogsmeade-2026-09-23.md) | Whole world, 667 859 actor descriptors, kept under `LI_Hogwarts` and `LI_Hogsmeade` | 3047 actors carrying a `DL_OVERLAND` that no rule can assign, in 13 Level Instances | [Actor list](ManualOverlandDataLayer-Hogwarts-Hogsmeade-2026-09-23.csv) |
 
 ## Writing a new audit
 
