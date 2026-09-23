@@ -154,6 +154,6 @@ The design is **atomic**: if any step fails, nothing is left half-done.
 
 ---
 
-**In this section:** [Runtime Grid Reference Tools](RuntimeGridReferenceTools.md) | **Delete World Event** | [Exclude From Rules tag](ExcludeFromRulesTag.md) | [World Partition Batch Converter](WorldPartitionBatchConverter.md)
+**In this section:** [Runtime Grid Reference Tools](RuntimeGridReferenceTools.md) | **Delete World Event** | [Rename World Event Locator](RenameWorldEventLocator.md) | [Exclude From Rules tag](ExcludeFromRulesTag.md) | [World Partition Batch Converter](WorldPartitionBatchConverter.md)
 
 Back to [Custom Tools](../CustomTools.md).

@@ -363,6 +363,6 @@ backend can therefore be driven headless from a future commandlet without any UI
 
 ---
 
-**In this section:** [Runtime Grid Reference Tools](RuntimeGridReferenceTools.md) | [Delete World Event](DeleteWorldEvent.md) | **World Partition Batch Converter**
+**In this section:** [Runtime Grid Reference Tools](RuntimeGridReferenceTools.md) | [Delete World Event](DeleteWorldEvent.md) | [Rename World Event Locator](RenameWorldEventLocator.md) | **World Partition Batch Converter**
 
 Back to [Custom Tools](../CustomTools.md).

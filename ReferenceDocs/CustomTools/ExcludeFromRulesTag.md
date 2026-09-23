@@ -97,6 +97,6 @@ directly in the Scene Outliner.
 
 ---
 
-**In this section:** [Runtime Grid Reference Tools](RuntimeGridReferenceTools.md) | [Delete World Event](DeleteWorldEvent.md) | **Exclude From Rules tag**
+**In this section:** [Runtime Grid Reference Tools](RuntimeGridReferenceTools.md) | [Delete World Event](DeleteWorldEvent.md) | [Rename World Event Locator](RenameWorldEventLocator.md) | **Exclude From Rules tag**
 
 Back to [Custom Tools](../CustomTools.md).

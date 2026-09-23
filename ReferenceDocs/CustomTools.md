@@ -24,6 +24,7 @@ independent — read them in any order.
 |------|------|---------|
 | [Runtime Grid Reference Tools](CustomTools/RuntimeGridReferenceTools.md) | Console commands | Find (`Editor.ScanRuntimeGridReferenceErrors`) and fix (`Editor.FixRuntimeGridReferenceErrors`) `WorldPartitionChangelistValidator` "different runtime grid" reference errors |
 | [Delete World Event](CustomTools/DeleteWorldEvent.md) | Editor-mode UI | Fully delete a World Event (locator + level instances + data layers) from the Overland with live progress and rollback |
+| [Rename World Event Locator](CustomTools/RenameWorldEventLocator.md) | Editor-mode UI | Rename a World Event Locator and the whole cascade its name produced (Auto DB row, level instances, data layer assets, referencing actors) with rollback |
 | [Exclude From Rules tag](CustomTools/ExcludeFromRulesTag.md) | Actor tag + Outliner column | Freeze an actor against the WorldPartition rule system with the `ExcludeFromRules` tag, and audit excluded actors via the "Rule Exclusion" outliner column |
 | [World Partition Batch Converter](CustomTools/WorldPartitionBatchConverter.md) | Editor-mode UI | Batch-convert non-partitioned Content Browser levels to World Partition, with per-level changelists and post-conversion validation |
 | [World Events MCP Toolsets](CustomTools/WorldEventsMCPToolsets.md) | MCP toolsets | Expose the whole World Events system (locators, possible events, definitions, conditions, data layers, deletion, runtime state) to AI agents |
