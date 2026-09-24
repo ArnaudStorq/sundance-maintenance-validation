@@ -96,8 +96,8 @@ Step 0 is only present when the Locator lives inside a Level Instance.
    in-context editing, then re-resolves the whole plan (the reload invalidates every
    pointer resolved before it).
 1. **Validate the new name & the Perforce state** — the name must be free in the level and
-   in the database, the asset registry must be done discovering assets, and no data layer
-   asset may already exist at a target path. Every impacted file must exist on disk, be at
+   in the database, the asset registry must be done discovering assets, the level must have
+   no unsaved changes, and no data layer asset may already exist at a target path. Every impacted file must exist on disk, be at
    the latest revision, be neither checked out by someone else, unresolved nor already
    marked for delete, and be openable for edit. No rename target may exist in Perforce.
    Nothing is modified.
@@ -200,6 +200,19 @@ enough: the reopened level would still show the renamed labels and data layers. 
 rollback closes the level, reverts, rescans the touched files
 (`IAssetRegistry::ScanModifiedAssetFiles`), and only then reopens the level.
 
+**The undo reloads the level, so unsaved work has to be saved first.** Closing the level
+without a save prompt is what makes the undo exact, and it would silently throw away any
+unsaved change, including changes unrelated to the rename. Step 1 therefore refuses to start
+while the level has dirty packages, or while a file of the plan has unsaved changes, and
+lists them (by actor label for OFPA packages). For a Locator inside a Level Instance, step 0
+runs the check instead, before entering the edit, since a failure from that point on already
+reloads the level.
+
+**A failed validation must not undo anything.** The dialog offers the undo as soon as a step
+has failed, step 1 included, and step 1 fails precisely when something already sits at a
+target path. The files at the new asset paths are therefore only reverted and deleted once
+the asset move has started: before that, they are not the tool's.
+
 **Undoing from the dialog ends the editor mode that opened it.** Reopening the level exits
 the World Events editor mode, and the dialog is opened from that mode's button handler.
 Undoing from inside that handler would destroy the mode under its own call stack, so the
@@ -238,9 +251,9 @@ The design is **atomic**: if any step fails, nothing is left half-done.
 
 When the in-editor world was already modified, the rollback runs in this order:
 
-1. **Close the level**, without a save prompt.
+1. **Close the level**, without a save prompt — step 1 made sure nothing unsaved is lost.
 2. **Revert the Perforce files this run opened** — both ends of each asset move — through
-   the provider's `FRevert`, and delete the files written at the new asset paths. The
+   the provider's `FRevert`, and delete the files the move wrote at the new asset paths. The
    engine's `USourceControlHelpers::ApplyOperationAndReloadPackages` wraps this, so the data
    layer assets still in memory are reloaded from disk and the ones left without a file are
    unloaded.
@@ -298,9 +311,10 @@ path gets the full cascade too.
   success message in the dialog says so explicitly.
 - Failure to move files to the described changelist (step 8) is treated as a **non-fatal
   warning** — the rename still succeeded and the files remain in the default changelist.
-- **A rollback discards unsaved changes.** It closes the level without a save prompt, so any
-  unsaved change in the level is lost, including changes unrelated to the rename. Save your
-  work before renaming.
+- **The View Changes window keeps the old names** for the files it listed before the rename.
+  It names each file once, when it first lists it (here at the checkout, before the rename),
+  and **Refresh** does not update that name. The changelist itself is right; close and
+  reopen the window to see the new labels.
 - **A rollback reopens the level with no region loaded**, because Sundance sets
   `bDisableLoadingOfLastLoadedRegions`. Load the region again in the World Partition editor.
 - The rollback of a Locator placed inside a Level Instance (the step 0 path) has not been
