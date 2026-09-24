@@ -26,6 +26,7 @@ Source: `D:\Sun\Sundance\Source\SundanceEditor\WorldEvents\EditorMode\Renaming\`
 - [Source control](#source-control)
 - [Preventing direct label renames](#preventing-direct-label-renames)
 - [Scope & known limitations](#scope--known-limitations)
+- [Testing it from Python or MCP](#testing-it-from-python-or-mcp)
 - [See also](#see-also)
 
 ## Why it exists
@@ -95,18 +96,22 @@ Step 0 is only present when the Locator lives inside a Level Instance.
    in-context editing, then re-resolves the whole plan (the reload invalidates every
    pointer resolved before it).
 1. **Validate the new name & the Perforce state** — the name must be free in the level and
-   in the database; every impacted file must be source controlled, up to date, and not
-   checked out by someone else. Nothing is modified.
+   in the database, the asset registry must be done discovering assets, and no data layer
+   asset may already exist at a target path. Every impacted file must exist on disk, be at
+   the latest revision, be neither checked out by someone else, unresolved nor already
+   marked for delete, and be openable for edit. No rename target may exist in Perforce.
+   Nothing is modified.
 2. **Check out every impacted file** — the Locator, its Level Instances, the data layer
-   assets and every package referencing them, so the rename is one revertable set.
+   assets and every package referencing them, so the rename is one revertable set. Files
+   you already have open are copied aside first (see [Source control](#source-control)).
 3. **Rename the Locator & reset its database identity** — clears the Auto DB identifier
    *before* `SetActorLabel`, so that the save in step 6 registers the new name instead of
    carrying the old row forward.
 4. **Rename the World Event Level Instances** — each to the name the creation flow would
    have given it under the new Locator name.
 5. **Rename the Data Layer assets & repoint their actors** — re-asks the rule subsystem for
-   the expected name, renames through `IAssetTools::RenameAssets`, and fails if a
-   redirector was left behind.
+   the expected name, renames through `IAssetTools::RenameAssets`, then fixes up and deletes
+   the redirectors the move leaves behind. It fails if one of them cannot be deleted.
 6. **Save the renamed actors & assets** — plain package save, or commit of the in-context
    edit followed by a separate save of the root world's share.
 7. **Deprecate the previous database identifier** — marks the old `DEV_AutoDbAuthIds` row
@@ -142,10 +147,21 @@ therefore pre-computes exactly the same set with
 `AssetRegistry.GetReferencers(..., EDependencyCategory::Package)`, which also covers soft
 references, so AssetTools can never reach outside the plan.
 
-**A leftover redirector is a failure, not a warning.** `RenameAssets` creates a redirector
-when it cannot fix a referencer — which is precisely the "one actor stayed unloaded" case.
-The step checks `FPackageName::DoesPackageExist(OldPackageName)` afterwards and fails hard
-rather than shipping a half-renamed layer.
+**Source controlled assets are always moved with a redirector.** `LoadReferencingPackages()`
+flags every source controlled asset as "not local", and `RenameAssets` never moves a
+non-local asset without leaving a redirector, however well it fixed the referencers. Step 5
+therefore does what the Content Browser's **Fix Up Redirectors** does afterwards: resave the
+referencers against the new path, then delete the redirectors and their now empty packages.
+It reimplements that sequence rather than calling `IAssetTools::FixupReferencers`, which
+ends on a modal report where every answer except the delete button leaves the redirectors
+behind. A redirector that cannot be deleted means a referencer still points at the old
+path — the half-renamed state this tool exists to prevent — so the step fails and the
+rename rolls back. An old file the cleanup skipped is marked for delete, so the changelist
+stays complete.
+
+**The asset registry must be done discovering assets.** The referencers come from the
+registry, and the editor silently skips deleting redirectors while discovery is running.
+Step 1 refuses to start until it is finished.
 
 **The Auto DB identifier is keyed by the label, and clearing it takes three calls.**
 `RemoveUserDataOfClass(UDbPersistentIdUserData::StaticClass())` on the root component,
@@ -155,10 +171,39 @@ on its own. The old row is retired separately in step 7.
 
 **The deprecation marker must not contain the Locator's package name.** PEEVES submit
 validation (`AutoDbAuthoringUserDataConsistent`) scans `UserEdits.sql` for lines mentioning
-the actor's package and requires the *last* one to be a `Version <N>` line. A `DEPRECATED`
-line naming the package would fail the submit. The markers are written with the
-*identifiers* only. OFPA package names are GUID-based, so a label can never appear in one —
-this is safe by construction, not by luck.
+the actor's package and requires the *last* one to be a `Version <N>` line matching the
+actor's `UAutoDbAuthoringMetadata::VersionNumber`. A `DEPRECATED` line naming the package
+would fail the submit. The markers are written with the *identifiers* only. OFPA package
+names are GUID-based, so a label can never appear in one — this is safe by construction,
+not by luck.
+
+**A rollback leaves the journal ahead of the disk.** Saving the renamed Locator journals its
+new identity under its package, with the version count restarted by the identity reset
+(`Version 2` where the Locator on disk is at `Version 6`, for instance). Once the files are
+reverted, that last entry no longer matches the Locator on disk, and PEEVES would reject the
+next submit. The rollback therefore appends the block that saving the reverted Locator
+would write: its old identifier, live again, under the same package and with the version it
+has on disk. This also brings the old identifier back if step 7 had already deprecated it.
+
+**Reverting through `USourceControlHelpers` skips deleted files.** `RevertFiles()` and
+`RevertFile()` only revert files that pass `CanRevert()`, and the Perforce provider excludes
+files marked for delete unless `RevisionControl.Perforce.AllowRevertingDeletedFiles` is on.
+The asset move marks each data layer asset at its old path for delete, so a rollback built
+on those helpers left the assets deleted, and the reverted actors pointed at missing
+packages (MapCheck: *"Data layer … Does not have Data Layer Asset"*). The rollback runs
+`FRevert` through the provider instead.
+
+**World Partition reads the actors back from the asset registry, not from the disk.** The
+actor descriptors are built from the registry, which keeps describing a loaded asset as it
+was last saved and ignores its file. Reverting the files and reloading the map is not
+enough: the reopened level would still show the renamed labels and data layers. The
+rollback closes the level, reverts, rescans the touched files
+(`IAssetRegistry::ScanModifiedAssetFiles`), and only then reopens the level.
+
+**Undoing from the dialog ends the editor mode that opened it.** Reopening the level exits
+the World Events editor mode, and the dialog is opened from that mode's button handler.
+Undoing from inside that handler would destroy the mode under its own call stack, so the
+dialog runs the undo on the next editor tick, once its window is closed.
 
 **The database identifier prefix is not ours to guess.** The new identifier is derived as
 `OldId.LeftChop(OldLabel.Len()) + NewLabel`, which preserves whatever prefix the Auto DB
@@ -184,14 +229,34 @@ worse than none. Rollback is explicit instead.
 The design is **atomic**: if any step fails, nothing is left half-done.
 
 - All fallible preconditions are checked in step 1, **before** any change.
-- On failure the dialog turns red, names the failing step and the reason, and offers a
-  single **"Undo everything"** button.
-- Rollback reverts **every** touched Perforce file (`USourceControlHelpers::RevertFiles`)
-  and — if the in-editor world was already mutated — **reloads the level** so the editor
-  returns exactly to its pre-rename state.
-- Pinned actors are unpinned and force-loaded data layers restored even when the user
-  simply cancels the wizard (the renamer's destructor handles it), so the editor is never
-  left with actors loaded that were not.
+- On failure the dialog turns red, names the failing step and the reason, and offers
+  **"Undo everything"**. Closing the window after a failure undoes the rename as well, so a
+  half-renamed Locator is never left behind.
+- The undo runs once the dialog is closed (see the traps above). It reports through a
+  notification, or through a message box when part of it could not be undone.
+- The MCP `RenameWorldEventLocator` tool rolls back on its own when a step fails.
+
+When the in-editor world was already modified, the rollback runs in this order:
+
+1. **Close the level**, without a save prompt.
+2. **Revert the Perforce files this run opened** — both ends of each asset move — through
+   the provider's `FRevert`, and delete the files written at the new asset paths. The
+   engine's `USourceControlHelpers::ApplyOperationAndReloadPackages` wraps this, so the data
+   layer assets still in memory are reloaded from disk and the ones left without a file are
+   unloaded.
+3. **Put back the files you already had open**, from the copies taken before the checkout
+   (see [Source control](#source-control)).
+4. **Rescan the touched files** in the asset registry, then **reopen the level**, so World
+   Partition rebuilds its actor descriptors from what is on disk.
+5. **Release the new database identifier** registered by the aborted save (marked
+   `DEPRECATED`), and **journal the old identity again** (see the traps above).
+
+When nothing had been modified in memory yet, only the Perforce part runs: the revert and
+the files put back.
+
+Pinned actors are unpinned and force-loaded data layers restored even when the user simply
+cancels the wizard (the renamer's destructor handles it), so the editor is never left with
+actors loaded that were not.
 
 ## Source control
 
@@ -201,6 +266,14 @@ The design is **atomic**: if any step fails, nothing is left half-done.
 - Success moves all files into a new **described** changelist (`FNewChangelist`).
 - **Nothing is ever submitted automatically** — you review and submit the changelist
   yourself.
+- **Files you already have open are accepted, and their pending work is protected.** A plain
+  revert would throw that work away, so step 2 copies each of them to
+  `Saved/WorldEventRename/<timestamp>/` before touching anything, and a rollback only
+  reverts the files the run opened itself. The others are opened again and get their
+  content back from the copy. The copies are deleted with the renamer, unless one could not
+  be put back: the rollback summary then gives their location. A data layer asset you had
+  open comes back in the default changelist, since the cleanup of the old asset reverts the
+  file before marking it for delete.
 
 ## Preventing direct label renames
 
@@ -225,6 +298,38 @@ path gets the full cascade too.
   success message in the dialog says so explicitly.
 - Failure to move files to the described changelist (step 8) is treated as a **non-fatal
   warning** — the rename still succeeded and the files remain in the default changelist.
+- **A rollback discards unsaved changes.** It closes the level without a save prompt, so any
+  unsaved change in the level is lost, including changes unrelated to the rename. Save your
+  work before renaming.
+- **A rollback reopens the level with no region loaded**, because Sundance sets
+  `bDisableLoadingOfLastLoadedRegions`. Load the region again in the World Partition editor.
+- The rollback of a Locator placed inside a Level Instance (the step 0 path) has not been
+  exercised end to end yet.
+
+## Testing it from Python or MCP
+
+- **Load the Locator first.** The MCP tool resolves it among the loaded actors, so pin it:
+  find its GUID in `unreal.WorldPartitionBlueprintLibrary.get_actor_descs()` and pass it to
+  `pin_actors()`.
+- **Hold no world reference across a rename.** A failing rename reloads the level, and a
+  `UWorld` or actor reference still held by the script trips the fatal
+  `CheckForWorldGCLeaks` error. Keep each script inside a function.
+- **Give `MAP CHECK` a world.** `unreal.SystemLibrary.execute_console_command(None, "MAP CHECK")`
+  crashes the editor, since `Map_Check` then runs on a null world. Pass the editor world, or
+  read the map check that loading the map already runs.
+- **What a clean rollback looks like.** After a failed rename:
+  - nothing is left open in the default changelist;
+  - `p4 diff -se` and `p4 diff -sd` report nothing on the data layer and external actor
+    folders;
+  - the actor descriptors and data layer assets carry their old names, and none of the
+    assets is a redirector;
+  - the new identifier is `DEPRECATED` and the old one is live;
+  - the last journal block for the Locator's package carries its on-disk version;
+  - the map check reports 0 errors.
+
+  These checks all passed on 2026-09-24 for a failure forced after step 7, both with
+  nothing open beforehand and with the Locator and one data layer asset already open for
+  edit. Those two files came back open, byte-identical to their state before the rename.
 
 ## See also
 
