@@ -96,9 +96,10 @@ Step 0 is only present when the Locator lives inside a Level Instance.
    in-context editing, then re-resolves the whole plan (the reload invalidates every
    pointer resolved before it).
 1. **Validate the new name & the Perforce state** — the name must be free in the level and
-   in the database, the asset registry must be done discovering assets and still list the
-   referencers the plan was built with, the level must have no unsaved changes, and no data
-   layer asset may already exist at a target path. Every impacted file must exist on disk,
+   in the database, which must answer the query, the asset registry must be done
+   discovering assets and still list the referencers the plan was built with, the level
+   must have no unsaved changes, and no data layer asset may already exist at a target
+   path. Every impacted file must exist on disk,
    be at the latest revision, be neither checked out by someone else, unresolved nor
    already marked for delete, be openable for edit, and not be open in one of your numbered
    changelists, unless it is the changelist of an earlier rename (see
@@ -245,6 +246,13 @@ dialog runs the undo on the next editor tick, once its window is closed.
 system used. If the old identifier does not end with the old label, the step warns and
 skips instead of inventing a name.
 
+**An unreachable database blocks the rename.** The Auto DB save path takes a database it
+cannot query for a free identifier (`UAutoDbAuthoringComponent::IsIdentifierUnique`). The
+tool cannot: the undo releases the new identifier when step 1 found it free, and a wrong
+"free" would have it deprecate the identifier of another actor. So the naming prompt, the
+analysis and step 1 refuse the rename when the query fails, and the undo leaves the new
+identifier alone, with a warning, when it cannot query it.
+
 **A shared data layer blocks the rename.** If the asset is also listed by a World Event of
 another Locator, renaming it would silently rename someone else's layer, and keeping it
 would leave this World Event half renamed, with a data layer named after the old Locator
@@ -291,7 +299,8 @@ When the in-editor world was already modified, the rollback runs in this order:
 4. **Rescan the touched files** in the asset registry, then **reopen the level**, so World
    Partition rebuilds its actor descriptors from what is on disk.
 5. **Release the new database identifier** registered by the aborted save (marked
-   `DEPRECATED`), and **journal the old identity again** (see the traps above).
+   `DEPRECATED`), only if step 1 found it free, and **journal the old identity again** (see
+   the traps above).
 
 When nothing had been modified in memory yet, only the Perforce part runs: the revert and
 the files put back.
