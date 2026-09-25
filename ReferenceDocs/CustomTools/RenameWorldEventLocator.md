@@ -96,11 +96,14 @@ Step 0 is only present when the Locator lives inside a Level Instance.
    in-context editing, then re-resolves the whole plan (the reload invalidates every
    pointer resolved before it).
 1. **Validate the new name & the Perforce state** — the name must be free in the level and
-   in the database, the asset registry must be done discovering assets, the level must have
-   no unsaved changes, and no data layer asset may already exist at a target path. Every impacted file must exist on disk, be at
-   the latest revision, be neither checked out by someone else, unresolved nor already
-   marked for delete, and be openable for edit. No rename target may exist in Perforce.
-   Nothing is modified.
+   in the database, the asset registry must be done discovering assets and still list the
+   referencers the plan was built with, the level must have no unsaved changes, and no data
+   layer asset may already exist at a target path. Every impacted file must exist on disk,
+   be at the latest revision, be neither checked out by someone else, unresolved nor
+   already marked for delete, be openable for edit, and not be open in one of your numbered
+   changelists, unless it is the changelist of an earlier rename (see
+   [Source control](#source-control)). No rename target may exist in Perforce. Nothing is
+   modified.
 2. **Check out every impacted file** — the Locator, its Level Instances, the data layer
    assets and every package referencing them, so the rename is one revertable set. Files
    you already have open are copied aside first (see [Source control](#source-control)).
@@ -115,7 +118,8 @@ Step 0 is only present when the Locator lives inside a Level Instance.
 6. **Save the renamed actors & assets** — plain package save, or commit of the in-context
    edit followed by a separate save of the root world's share.
 7. **Deprecate the previous database identifier** — marks the old `DEV_AutoDbAuthIds` row
-   `DEPRECATED`.
+   `DEPRECATED`. If that fails, the rename fails and is undone like at any other step: both
+   identifiers would otherwise stay live.
 8. **Move changes to a described changelist** — every impacted file still open moves into a
    new Perforce changelist describing exactly what was renamed, or into the changelist of an
    earlier rename that is not submitted yet (see [Source control](#source-control)). It is
@@ -145,6 +149,14 @@ before the tool ran. This covers every actor on the layer, not just the Level In
 actor added to a World Event's data layer by hand, such as a Trigger Volume, is repointed and
 saved the same way, and ends up in the same changelist.
 
+**A World Event Level Instance can be unloaded too.** Turning its data layer on is not
+enough when it lies outside the loaded region. Renaming its data layer without it would
+leave the Locator, the Level Instance and the data layer out of sync, so the plan pins the
+unloaded Level Instances before resolving them, and refuses to run if one still cannot be
+loaded. A Level Instance whose actor no longer exists in the level only gets a warning,
+since there is nothing left to rename. Inside a Level Instance, the check waits for the
+in-context edit of step 0, which loads its actors.
+
 **`IAssetTools::RenameAssets` checks out and saves referencing packages behind your back.**
 A file it touched but the plan did not know about would survive a rollback. The plan
 therefore pre-computes exactly the same set with
@@ -165,7 +177,11 @@ stays complete.
 
 **The asset registry must be done discovering assets.** The referencers come from the
 registry, and the editor silently skips deleting redirectors while discovery is running.
-Step 1 refuses to start until it is finished.
+With an incomplete list, the asset rename would rewrite files the tool never checked out,
+copied aside or reverted. The analysis therefore refuses to build a plan until discovery is
+finished. Step 1 checks it again, and queries the referencers again: if a package started
+referencing a data layer since the plan was built, the plan is out of date and step 1 asks
+you to run the rename again.
 
 **The Auto DB identifier is keyed by the label, and clearing it takes three calls.**
 `RemoveUserDataOfClass(UDbPersistentIdUserData::StaticClass())` on the root component,
@@ -261,8 +277,8 @@ When the in-editor world was already modified, the rollback runs in this order:
    engine's `USourceControlHelpers::ApplyOperationAndReloadPackages` wraps this, so the data
    layer assets still in memory are reloaded from disk and the ones left without a file are
    unloaded.
-3. **Put back the files you already had open**, from the copies taken before the checkout
-   (see [Source control](#source-control)).
+3. **Put back the files you already had open**, from the copies taken before the checkout,
+   in the changelist they were in (see [Source control](#source-control)).
 4. **Rescan the touched files** in the asset registry, then **reopen the level**, so World
    Partition rebuilds its actor descriptors from what is on disk.
 5. **Release the new database identifier** registered by the aborted save (marked
@@ -292,14 +308,22 @@ actors loaded that were not.
   `FEditChangelist`.
 - **Nothing is ever submitted automatically** — you review and submit the changelist
   yourself.
-- **Files you already have open are accepted, and their pending work is protected.** A plain
-  revert would throw that work away, so step 2 copies each of them to
+- **A file already open in one of your numbered changelists blocks the rename.** It holds
+  work of yours, and step 8 would mix that work with the rename. Step 1 lists each such file
+  with its changelist: submit or shelve that changelist, or move the file to the default
+  changelist, then run the rename again. The changelist of an earlier rename is the
+  exception, since this rename joins it.
+- **Files you already have open in the default changelist are accepted.** Step 8 moves
+  them into the rename's changelist with the rest, and its message lists them, as does the
+  result of the MCP tool, so you can review those changes before submitting.
+- **The pending work in files you already have open is protected.** A plain revert would
+  throw that work away, so step 2 copies each of them to
   `Saved/WorldEventRename/<timestamp>/` before touching anything, and a rollback only
-  reverts the files the run opened itself. The others are opened again and get their
-  content back from the copy. The copies are deleted with the renamer, unless one could not
-  be put back: the rollback summary then gives their location. A data layer asset you had
-  open comes back in the default changelist, since the cleanup of the old asset reverts the
-  file before marking it for delete.
+  reverts the files the run opened itself. The others are opened again, get their content
+  back from the copy, and are moved back to the changelist they were in: the cleanup of an
+  old data layer asset reverts its file, and opening it again would land it in the default
+  changelist. The copies are deleted with the renamer, unless one could not be put back: the
+  rollback summary then gives their location.
 
 ## Preventing direct label renames
 
@@ -337,6 +361,9 @@ path gets the full cascade too.
   `bDisableLoadingOfLastLoadedRegions`. Load the region again in the World Partition editor.
 - The rollback of a Locator placed inside a Level Instance (the step 0 path) has not been
   exercised end to end yet.
+- Two paths have not been exercised end to end either: the pin of a World Event Level
+  Instance outside the loaded region, and a rollback moving a file back to the changelist of
+  an earlier rename.
 
 ## Testing it from Python or MCP
 
@@ -371,6 +398,16 @@ path gets the full cascade too.
 - **Unloading a freshly placed actor takes a pin and an unpin.** Turning its data layer off
   in the editor left it loaded; `pin_actors()` then `unpin_actors()` unloaded it, once its
   data layer was off.
+- **A file open in another numbered changelist blocks the rename.** On 2026-09-25, one file
+  of the rename's changelist was moved to a new changelist: step 1 failed, listed only that
+  file, and nothing was modified. With the Trigger Volume moved to the default changelist
+  instead, the next rename succeeded, joined the earlier rename's changelist, listed the
+  Trigger Volume among the files taken from the default changelist, and the map check
+  reported 0 errors.
+- **Dry runs resolve the unloaded Level Instances.** On 2026-09-25, a dry run (`bApply`
+  false) on each of the 7 other Locators of `Holo_WorldEvent_EnemyEncounter`, whose Level
+  Instances were all unloaded, built a valid plan. Each Level Instance loaded as soon as its
+  data layer was on, so none needed a pin.
 
 ## See also
 
