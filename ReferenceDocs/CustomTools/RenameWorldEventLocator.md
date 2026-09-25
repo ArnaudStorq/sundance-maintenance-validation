@@ -245,9 +245,16 @@ dialog runs the undo on the next editor tick, once its window is closed.
 system used. If the old identifier does not end with the old label, the step warns and
 skips instead of inventing a name.
 
-**A shared data layer is left alone.** If the asset is also listed by a World Event of
-another Locator, renaming it would silently rename someone else's layer. It is skipped and
-reported in the plan.
+**A shared data layer blocks the rename.** If the asset is also listed by a World Event of
+another Locator, renaming it would silently rename someone else's layer, and keeping it
+would leave this World Event half renamed, with a data layer named after the old Locator
+name. The analysis therefore refuses the rename and names the other Locator: give each
+Locator its own data layer first. A loaded Locator is checked directly. An unloaded one is
+found among the layer's referencers, since listing a data layer references its asset: once
+the actors assigned to the layer are loaded, an unloaded Locator still referencing it is
+taken for one that lists it. For the same reason, the analysis refuses the rename when the
+data layer rules cannot derive the new data layer name (their rule asset is missing or not
+name pattern based).
 
 **Inside a Level Instance, a plain save writes to the wrong file.** Actors of a Level
 Instance belong to its level, which only persists through an in-context edit commit. The
