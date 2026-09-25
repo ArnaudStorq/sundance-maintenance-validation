@@ -153,9 +153,11 @@ saved the same way, and ends up in the same changelist.
 enough when it lies outside the loaded region. Renaming its data layer without it would
 leave the Locator, the Level Instance and the data layer out of sync, so the plan pins the
 unloaded Level Instances before resolving them, and refuses to run if one still cannot be
-loaded. A Level Instance whose actor no longer exists in the level only gets a warning,
-since there is nothing left to rename. Inside a Level Instance, the check waits for the
-in-context edit of step 0, which loads its actors.
+loaded. Step 4 does not trust the pointers taken by the plan either: it looks each resolved
+Level Instance up again by GUID, and fails, which undoes the rename, if one is gone. A Level
+Instance whose actor no longer exists in the level only gets a warning, since there is
+nothing left to rename. Inside a Level Instance, the check waits for the in-context edit of
+step 0, which loads its actors.
 
 **`IAssetTools::RenameAssets` checks out and saves referencing packages behind your back.**
 A file it touched but the plan did not know about would survive a rollback. The plan
