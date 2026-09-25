@@ -116,8 +116,10 @@ Step 0 is only present when the Locator lives inside a Level Instance.
    edit followed by a separate save of the root world's share.
 7. **Deprecate the previous database identifier** — marks the old `DEV_AutoDbAuthIds` row
    `DEPRECATED`.
-8. **Move changes to a described changelist** — every impacted file moves into a new
-   Perforce changelist describing exactly what was renamed. It is **not** submitted.
+8. **Move changes to a described changelist** — every impacted file still open moves into a
+   new Perforce changelist describing exactly what was renamed, or into the changelist of an
+   earlier rename that is not submitted yet (see [Source control](#source-control)). It is
+   **not** submitted.
 
 ## The traps, and how each one is handled
 
@@ -139,7 +141,9 @@ that is not loaded cannot have its reference fixed in memory, and the asset rena
 leave it pointing at a package that no longer exists. The plan finds them through the actor
 descriptors (`GetDataLayerInstanceNames()`), force-loads their data layers in the editor,
 pins the actors, and restores both afterwards — including for actors that were `(Unloaded)`
-before the tool ran.
+before the tool ran. This covers every actor on the layer, not just the Level Instances: an
+actor added to a World Event's data layer by hand, such as a Trigger Volume, is repointed and
+saved the same way, and ends up in the same changelist.
 
 **`IAssetTools::RenameAssets` checks out and saves referencing packages behind your back.**
 A file it touched but the plan did not know about would survive a rollback. The plan
@@ -276,7 +280,16 @@ actors loaded that were not.
 - Checkout is automatic and silent (`USourceControlHelpers::CheckOutOrAddFiles`).
 - The data layer rename produces both a *delete* at the old path and an *add* at the new
   one; both are tracked in the plan and both end up in the changelist.
-- Success moves all files into a new **described** changelist (`FNewChangelist`).
+- Success moves the files into a new **described** changelist (`FNewChangelist`), leaving
+  out the ones that are no longer open: deleting a data layer asset that an earlier rename
+  created, and so is only marked for add, just reverts the add.
+- **A rename joins the changelist of an earlier rename that is not submitted yet.** The two
+  share files, at least the level's World Data Layers, and a file can only be in one
+  changelist. A new changelist would leave part of the earlier rename behind, and neither
+  could then be submitted without the other. Step 8 recognises such a changelist by its
+  description, which starts with `[World Events] Renamed World Event Locator`, moves the
+  files there with `FMoveToChangelist`, and appends this rename to the description with
+  `FEditChangelist`.
 - **Nothing is ever submitted automatically** — you review and submit the changelist
   yourself.
 - **Files you already have open are accepted, and their pending work is protected.** A plain
@@ -310,7 +323,12 @@ path gets the full cascade too.
   `DbGateway` plugin. The file follows the standard AutoDbAuthoring flow instead; the
   success message in the dialog says so explicitly.
 - Failure to move files to the described changelist (step 8) is treated as a **non-fatal
-  warning** — the rename still succeeded and the files remain in the default changelist.
+  warning** — the rename still succeeded and the files stay in the changelist they were in.
+- **Renaming a Locator again before submitting logs an asset registry warning** for each of
+  its old data layer assets: `package was marked as deleted in editor, but has been modified
+  on disk`. Those assets were only marked for add, and the registry sees their file change
+  after the editor deleted the package. The warning is harmless: the files are gone and the
+  registry no longer lists them.
 - **The View Changes window keeps the old names** for the files it listed before the rename.
   It names each file once, when it first lists it (here at the checkout, before the rename),
   and **Refresh** does not update that name. The changelist itself is right; close and
@@ -344,6 +362,15 @@ path gets the full cascade too.
   These checks all passed on 2026-09-24 for a failure forced after step 7, both with
   nothing open beforehand and with the Locator and one data layer asset already open for
   edit. Those two files came back open, byte-identical to their state before the rename.
+- **An actor added to a data layer by hand follows the rename.** On 2026-09-25, a Trigger
+  Volume was added to one of the Locator's data layers, saved, and unloaded. The plan
+  listed its file (15 files instead of 14) and counted it among the layer's referencers.
+  After the rename, its actor descriptor and its file on disk referenced the renamed
+  asset, it was in the rename's changelist, and the map check reported 0 errors. Renaming
+  the same Locator again before submitting joined that changelist, with no Perforce error.
+- **Unloading a freshly placed actor takes a pin and an unpin.** Turning its data layer off
+  in the editor left it loaded; `pin_actors()` then `unpin_actors()` unloaded it, once its
+  data layer was off.
 
 ## See also
 
