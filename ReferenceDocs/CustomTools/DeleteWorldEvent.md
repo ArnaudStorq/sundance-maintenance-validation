@@ -10,7 +10,9 @@ Overland — or just the World Events you pick on a multi-event Locator — with
 progress and a full rollback on failure.**
 
 Source: `D:\Sun\Sundance\Source\SundanceEditor\WorldEvents\EditorMode\Deletion\`
-(`WorldEventDeleter.h/.cpp`, `SWorldEventDeleteDialog.h/.cpp`) · entry point in
+(`WorldEventDeleter.h/.cpp`, `SWorldEventDeleteDialog.h/.cpp`) · actor and package
+lookups shared with [Rename World Event Locator](RenameWorldEventLocator.md) in
+`EditorMode/WorldEventEditorHelpers.h/.cpp` · entry point in
 `WorldEventEditorModeToolkit.cpp` · log category `LogWorldEventEditorMode`
 (lines prefixed `[WE Delete]`). Jira: **SUNDANCE-40173** (the tool),
 **SUNDANCE-77885** (selective deletion).

@@ -107,7 +107,7 @@ Source of truth for the plan below.
 | --- | --- | --- |
 | `UWorldEventEditorSettings` | `WorldEventEditorSettings.h` | `DataLayerRuleAsset`, `WorldEventParentDataLayerName`, prefixes (`WEL_`, `LI_WE_`, `DL_WE_`, `WEDA_`), `LevelDataLayerPaths`, `DefaultLocatorActorSoftPath`, `LinkedActorClassesToIgnore`. |
 | `FWorldEventEditorMode` / `FWorldEventEditorModeToolkit` | `EditorMode/` | The mode, its Locators / Tools tabs, overlay toggles, `ValidateAllLocators`. |
-| `FWorldEventEditorHelpers` | `EditorMode/WorldEventEditorHelpers.h` | Data layer resolution, `GetAllWorldEventDefinitionAssets`. |
+| `FWorldEventEditorHelpers` | `EditorMode/WorldEventEditorHelpers.h` | Data layer resolution, `GetAllWorldEventDefinitionAssets`, and the actor and package lookups the delete and rename tools share: `GetActorSavePackage`, `GetPackageDepotFilename`, `FindLoadedActorByGuid`, `AddUniqueFile`. |
 | `FWorldEventEditorMenuExtender` | `EditorMode/WorldEventEditorMenuExtender.h` | `AddWorldEventDefinitionToSelectedLocators`, `SetDataLayerToSelectedActors`. |
 | `FWorldEventDeleter` / `FWorldEventDeletionPlan` | `EditorMode/Deletion/WorldEventDeleter.h` | Plan + 9 ordered steps + `Rollback` + changelist. Slate-free. |
 | `UWorldEventExportCommandlet` | `Commandlets/` | JSON inventory of locators for a map, recursing into Level Instances. |

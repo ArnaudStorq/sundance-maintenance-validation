@@ -10,7 +10,9 @@ actor referencing them — in one atomic, Perforce-tracked, reversible operation
 label editing on the Locator is disabled so this tool is the only way in.**
 
 Source: `D:\Sun\Sundance\Source\SundanceEditor\WorldEvents\EditorMode\Renaming\`
-(`WorldEventLocatorRenamer.h/.cpp`, `SWorldEventRenameDialog.h/.cpp`) · entry point in
+(`WorldEventLocatorRenamer.h/.cpp`, `SWorldEventRenameDialog.h/.cpp`) · actor and package
+lookups shared with [Delete World Event](DeleteWorldEvent.md) in
+`EditorMode/WorldEventEditorHelpers.h/.cpp` · entry point in
 `WorldEventEditorModeToolkit.cpp` · log category `LogWorldEventEditorMode`
 (lines prefixed `[WE Rename]`). Jira: **SUNDANCE-77888**.
 
