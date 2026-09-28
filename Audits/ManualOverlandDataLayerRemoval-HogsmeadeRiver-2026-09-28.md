@@ -10,7 +10,7 @@ after [`LI_EntranceHall_EXT`](ManualOverlandDataLayerRemoval-EntranceHall-2026-0
 the Hogsmeade river cluster: the 439 findings under `LI_Hogsmeade_River`, which resolve to 417
 distinct actors.
 
-Pending in Perforce changelist **2097633**, not submitted. All 417 actors were written.
+Submitted as Perforce changelist **2097647** on 2026-09-28 — all 417 actors, no exception.
 
 ## Contents
 
@@ -87,9 +87,9 @@ CL 2086801 on 2026-09-24, a rule pass that ran after the audit was taken. `DL_RE
 Editor data layer and drives editor loading rather than streaming; it was preserved.
 
 One external actor package per actor was dirtied and saved — 417 files, all in changelist
-**2097633**. No level, no `WorldDataLayers` actor and no rule asset was modified.
+**2097647**. No level, no `WorldDataLayers` actor and no rule asset was modified.
 
-The changelist description:
+The submitted description:
 
 ```
 @MINOR $TOOLS
@@ -118,6 +118,7 @@ Remove hand-placed DL_OVERLAND from LI_Hogsmeade_River actors
    modified.
 8. A random sample of saved packages was reloaded from disk and re-read to confirm the layer set
    on disk, not merely in memory.
+9. The changelist was submitted, and renumbered to 2097647 on submit.
 
 The actors live in `/Game/Environment/River/LI_Hogsmeade_River`, a partitioned level referenced
 as a Level Instance from `LV_Overland`. The editor cannot stream them in from the outer world —
@@ -138,7 +139,6 @@ only see loaded actors, could not give a per-actor live verdict.
 
 ## Follow-up
 
-- Review and submit changelist 2097633.
 - Reopen the river area and confirm nothing disappeared from the Overland view.
 - Re-run the streaming generation snapshot and check that the
   `DL_HM_EXT + DL_OVERLAND` cell for the river is gone.
