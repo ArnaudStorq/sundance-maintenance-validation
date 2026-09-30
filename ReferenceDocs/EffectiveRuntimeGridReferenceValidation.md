@@ -125,13 +125,13 @@ The resolution, which is only called when the names differ:
 ```cpp
 auto IsResolvedNoneRuntimeGridReferenceValid = [this, &ContainerCollectionInstanceDescriptor](const FStreamingGenerationActorDescView& RefererActorDescView, const FStreamingGenerationActorDescView& ReferenceActorDescView)
 {
-	const FName RefererRuntimeGrid = RefererActorDescView.GetRuntimeGrid();
-	const FName ReferenceRuntimeGrid = ReferenceActorDescView.GetRuntimeGrid();
+	const FName ReferencerRuntimeGrid = RefererActorDescView.GetRuntimeGrid();
+	const FName ReferencedRuntimeGrid = ReferenceActorDescView.GetRuntimeGrid();
 
 	// Inside a Level Instance with a RuntimeGrid, the reference clusters both actors so neither may override the inherited grid
 	const bool bIsSameEffectiveRuntimeGrid = (!ContainerCollectionInstanceDescriptor.ID.IsMainContainer() && !ContainerCollectionInstanceDescriptor.ContainerCombinedData.RuntimeGrid.IsNone())
-		|| (RefererRuntimeGrid.IsNone() && ReferenceRuntimeGrid == DefaultGrid)
-		|| (ReferenceRuntimeGrid.IsNone() && RefererRuntimeGrid == DefaultGrid);
+		|| (ReferencerRuntimeGrid.IsNone() && ReferencedRuntimeGrid == DefaultGrid)
+		|| (ReferencedRuntimeGrid.IsNone() && ReferencerRuntimeGrid == DefaultGrid);
 
 	// A Custom HLOD actor takes its grid from its HLOD layer, which is not resolved yet
 	return bIsSameEffectiveRuntimeGrid
