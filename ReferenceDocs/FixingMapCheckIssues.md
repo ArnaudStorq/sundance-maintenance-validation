@@ -414,20 +414,20 @@ These are raised by the Sundance `UWorldPartitionMapCheckValidator` (runs on
   submit, the `WorldPartitionChangelistValidator` reports the same pair as
   `<referencer> (<pkg>) is referencing <referee> (<pkg>) but both actors are using a different runtime grid.`
 - **Severity**: **Error**.
-- **Cause**: streaming generation requires a reference to link two actors with the
-  **same RuntimeGrid name** (`IsReferenceRuntimeGridValid`). The names are compared
-  **before** `None` is resolved and before the Level Instance grid is inherited. So
-  `None` vs `MainGrid` is reported on `LV_Overland` even though `None` streams on
-  `MainGrid`, the first runtime partition. The 2026-09-30 case: `BP_ReassembleToTarget3`
-  (`None`) references `SK_CherryTree_Small_A_Nanite`, which `DA_MainGrid_Rules` puts on
-  `MainGrid`.
+- **Cause**: streaming generation requires a reference to link two actors on the
+  **same RuntimeGrid** (`IsReferenceRuntimeGridValid`). Until CL 2102948 it compared the
+  raw names, **before** `None` is resolved and before the Level Instance grid is
+  inherited. So `None` vs `MainGrid` was reported on `LV_Overland` even though `None`
+  streams on `MainGrid`, the first runtime partition. The 2026-09-30 case:
+  `BP_ReassembleToTarget3` (`None`) references `SK_CherryTree_Small_A_Nanite`, which
+  `DA_MainGrid_Rules` puts on `MainGrid`.
 - **Consequence**: outside the reporting pass, the generator forces **both** actors to
   `None` (`SetForcedNoRuntimeGrid`), so the pair streams on the default grid, or on the
   Level Instance grid when it inherits one.
 - **Solution**:
-  1. **False positive** (the two actors really stream on the same grid): turn on
-     `wp.RuntimeGrid.ValidateReferencesOnEffectiveGrid` (CL 2102948). Only real
-     conflicts are reported then —
+  1. **False positive** (the two actors really stream on the same grid): fixed by
+     CL 2102948, which compares the effective grids. Such pairs are no longer reported,
+     and there is nothing to do on the actors —
      [Effective RuntimeGrid reference validation](EffectiveRuntimeGridReferenceValidation.md).
   2. **Real conflict** (the effective grids differ): bring the referee onto the
      referencer's grid and freeze both actors with

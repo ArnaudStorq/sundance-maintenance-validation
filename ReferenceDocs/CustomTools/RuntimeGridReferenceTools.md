@@ -13,11 +13,11 @@ console `~`) that together find and repair `WorldPartitionChangelistValidator`
 
 Both live in `D:\Sun\Sundance\Source\WorldBuildingEditor\WorldPartition\`.
 
-> Not every couple is a real conflict. The engine compares the RuntimeGrid **names**, so an
-> actor on `None` referencing an actor on the default grid (`None` vs `MainGrid` on
-> `LV_Overland`) is reported although both stream on `MainGrid`. With
-> `wp.RuntimeGrid.ValidateReferencesOnEffectiveGrid 1` (CL 2102948), the validator and
-> this scan only list couples whose effective grids differ. See
+> Not every couple was a real conflict. Before CL 2102948 the engine compared the
+> RuntimeGrid **names**, so an actor on `None` referencing an actor on the default grid
+> (`None` vs `MainGrid` on `LV_Overland`) was reported although both stream on `MainGrid`.
+> With CL 2102948, the validator and this scan only list couples whose effective grids
+> differ. See
 > [Effective RuntimeGrid reference validation](../EffectiveRuntimeGridReferenceValidation.md).
 
 ## Contents

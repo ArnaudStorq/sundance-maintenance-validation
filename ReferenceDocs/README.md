@@ -51,7 +51,7 @@ scripts.
 |-------|------------|
 | [Fixing MapCheck issues](FixingMapCheckIssues.md) | the project playbook (cause → solution per warning actually hit on `LV_Overland`), plus a generic stock-engine MapCheck catalog in appendix G |
 | [MapCheck validation CVars](MapCheckValidationCVars.md) | a MapCheck warning stopped appearing on level load, or you want to re-enable the checks disabled for performance (`wp.editor.MapCheck.*`) and persist the value |
-| [Effective RuntimeGrid reference validation](EffectiveRuntimeGridReferenceValidation.md) | a "references an actor in a different runtime grid" error pairs `None` with the default grid (`None` vs `MainGrid`), or you need the `wp.RuntimeGrid.ValidateReferencesOnEffectiveGrid` switch (CL 2102948) and its A/B test |
+| [Effective RuntimeGrid reference validation](EffectiveRuntimeGridReferenceValidation.md) | a "references an actor in a different runtime grid" error pairs `None` with the default grid (`None` vs `MainGrid`), or you need the effective-grid rule of CL 2102948 and its A/B test |
 
 ### World Partition streaming
 
