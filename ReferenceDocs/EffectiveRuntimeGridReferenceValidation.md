@@ -102,7 +102,7 @@ Identical names are therefore still valid, as before.
 ### What does not change
 
 - **Only the report is skipped.** The fixup pass still runs for the pair and forces both
-  actors to `None` (`SetForcedNoRuntimeGrid`, line 1900), which streams on the same
+  actors to `None` (`SetForcedNoRuntimeGrid`, line 1899), which streams on the same
   effective grid. The generated streaming (cells, actor sets, HLODs) is the same as before
   the CL, so it needs **no HLOD rebuild**.
 - The other reference checks (spatial loading, Data Layers, External Data Layer) are
@@ -111,13 +111,14 @@ Identical names are therefore still valid, as before.
 
 ## Implementation
 
-Two hunks in `WorldPartitionStreamingGeneration.cpp`. Each one is wrapped in AVA markers,
-and the replaced line is kept commented out:
+Two hunks in `WorldPartitionStreamingGeneration.cpp`, each one wrapped in AVA markers. The
+stock `OnInvalidReferenceRuntimeGrid` call is kept unchanged inside the new condition, so
+no commented-out copy of it is needed:
 
 | Lines | Hunk |
 |-------|------|
 | 1723–1740 | `IsReferenceEffectiveRuntimeGridValid`, next to the unchanged `IsReferenceRuntimeGridValid` |
-| 1889–1896 | The report call, now conditioned on the effective grids |
+| 1889–1895 | The report call, now conditioned on the effective grids |
 
 The resolution, which is only called when the names differ:
 
