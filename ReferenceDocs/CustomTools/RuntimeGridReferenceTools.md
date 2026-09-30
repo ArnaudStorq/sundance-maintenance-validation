@@ -13,14 +13,21 @@ console `~`) that together find and repair `WorldPartitionChangelistValidator`
 
 Both live in `D:\Sun\Sundance\Source\WorldBuildingEditor\WorldPartition\`.
 
+> Not every couple is a real conflict. The engine compares the RuntimeGrid **names**, so an
+> actor on `None` referencing an actor on the default grid (`None` vs `MainGrid` on
+> `LV_Overland`) is reported although both stream on `MainGrid`. With
+> `wp.RuntimeGrid.ValidateReferencesOnEffectiveGrid 1` (CL 2102948), the validator and
+> this scan only list couples whose effective grids differ. See
+> [Effective RuntimeGrid reference validation](../EffectiveRuntimeGridReferenceValidation.md).
+
 ## Contents
 
 - [Typical workflow (scan → fix)](#typical-workflow-scan--fix)
 - [Why they exist](#why-they-exist)
 - [Reproducing the error](#reproducing-the-error)
   - [Step 1 — Define a second runtime grid](#step-1--define-a-second-runtime-grid)
-  - [Step 2 — Create the referenced actor (the `STN...`)](#step-2--create-the-referenced-actor-the-stn)
-  - [Step 3 — Create the referencing Blueprint (`BPPerformTasks`)](#step-3--create-the-referencing-blueprint-bpperformtasks)
+  - [Step 2 — Create the referenced actor (the `STN...`)](#step-2--create-the-referenced-actor-the-stn_)
+  - [Step 3 — Create the referencing Blueprint (`BPPerformTasks`)](#step-3--create-the-referencing-blueprint-bp_performtasks)
   - [Step 4 — Save](#step-4--save)
   - [Step 5 — Trigger the validation](#step-5--trigger-the-validation)
 - [`Editor.ScanRuntimeGridReferenceErrors` — find the conflicts](#editorscanruntimegridreferenceerrors--find-the-conflicts)

@@ -43,6 +43,7 @@ fixed on `LV_Overland`, grounded in the changelist history
   - [D2 — Oversized streaming bounds](#d2--oversized-streaming-bounds)
   - [D3 — Brush far from the Level Instance pivot](#d3--brush-far-from-the-level-instance-pivot)
   - [D4 — Spatially loaded actor references a non-spatially loaded actor](#d4--spatially-loaded-actor-references-a-non-spatially-loaded-actor)
+  - [D5 — Actor references an actor in a different runtime grid](#d5--actor-references-an-actor-in-a-different-runtime-grid)
 - [E. Components & references](#e-components--references)
   - [E1 — Stale material overrides](#e1--stale-material-overrides)
 - [F. Actor descriptor maintenance](#f-actor-descriptor-maintenance)
@@ -405,6 +406,37 @@ These are raised by the Sundance `UWorldPartitionMapCheckValidator` (runs on
 - **Rules link**: indirect — the rules set grids/HLOD/DataLayers, but the spatial state
   behind this warning is an authored per-actor property; the fix is a level/mission
   data cleanup, not a rule assignment.
+
+### D5 — Actor references an actor in a different runtime grid
+
+- **Message**: `Actor <referencer> references an actor in a different runtime grid <referee>`
+  (token `WorldPartition_ActorReferenceActorInAnotherRuntimeGrid_CheckForErrors`). At
+  submit, the `WorldPartitionChangelistValidator` reports the same pair as
+  `<referencer> (<pkg>) is referencing <referee> (<pkg>) but both actors are using a different runtime grid.`
+- **Severity**: **Error**.
+- **Cause**: streaming generation requires a reference to link two actors with the
+  **same RuntimeGrid name** (`IsReferenceRuntimeGridValid`). The names are compared
+  **before** `None` is resolved and before the Level Instance grid is inherited. So
+  `None` vs `MainGrid` is reported on `LV_Overland` even though `None` streams on
+  `MainGrid`, the first runtime partition. The 2026-09-30 case: `BP_ReassembleToTarget3`
+  (`None`) references `SK_CherryTree_Small_A_Nanite`, which `DA_MainGrid_Rules` puts on
+  `MainGrid`.
+- **Consequence**: outside the reporting pass, the generator forces **both** actors to
+  `None` (`SetForcedNoRuntimeGrid`), so the pair streams on the default grid, or on the
+  Level Instance grid when it inherits one.
+- **Solution**:
+  1. **False positive** (the two actors really stream on the same grid): turn on
+     `wp.RuntimeGrid.ValidateReferencesOnEffectiveGrid` (CL 2102948). Only real
+     conflicts are reported then —
+     [Effective RuntimeGrid reference validation](EffectiveRuntimeGridReferenceValidation.md).
+  2. **Real conflict** (the effective grids differ): bring the referee onto the
+     referencer's grid and freeze both actors with
+     [`Editor.ScanRuntimeGridReferenceErrors` / `Editor.FixRuntimeGridReferenceErrors`](CustomTools/RuntimeGridReferenceTools.md).
+  3. **Per-actor exception**: set the referee back to `None` and tag it
+     `ExcludeFromRuntimeGridRules` so the rules stop rewriting it. It is fast, but it is a
+     one-off fix that nobody sees later.
+- **Rules link**: direct when a RuntimeGrid rule wrote one of the two grids — here
+  `DA_MainGrid_Rules`, see [Runtime Grid rules](WorldPartitionRulesAnalysis/RuntimeGridRules.md).
 
 ---
 

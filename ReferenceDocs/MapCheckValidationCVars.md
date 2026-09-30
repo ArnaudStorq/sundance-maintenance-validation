@@ -169,3 +169,6 @@ project-wide should be a deliberate, reviewed decision rather than a convenience
 - [Peeves submit validation](PeevesSubmitValidation.md) — the validation path that is
   **not** gated by these CVars
 - [Custom Tools](CustomTools.md) — the other in-editor console commands of this project
+- [Effective RuntimeGrid reference validation](EffectiveRuntimeGridReferenceValidation.md) —
+  the engine-side `wp.RuntimeGrid.ValidateReferencesOnEffectiveGrid` switch, which stops the
+  `None` vs default-grid "different runtime grid" false positives
