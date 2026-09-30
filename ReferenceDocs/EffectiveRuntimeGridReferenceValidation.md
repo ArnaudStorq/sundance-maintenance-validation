@@ -117,13 +117,13 @@ no commented-out copy of it is needed:
 
 | Lines | Hunk |
 |-------|------|
-| 1723–1740 | `IsReferenceEffectiveRuntimeGridValid`, next to the unchanged `IsReferenceRuntimeGridValid` |
+| 1723–1740 | `IsResolvedNoneRuntimeGridReferenceValid`, next to the unchanged `IsReferenceRuntimeGridValid` |
 | 1889–1895 | The report call, now conditioned on the effective grids |
 
 The resolution, which is only called when the names differ:
 
 ```cpp
-auto IsReferenceEffectiveRuntimeGridValid = [this, &ContainerCollectionInstanceDescriptor](const FStreamingGenerationActorDescView& RefererActorDescView, const FStreamingGenerationActorDescView& ReferenceActorDescView)
+auto IsResolvedNoneRuntimeGridReferenceValid = [this, &ContainerCollectionInstanceDescriptor](const FStreamingGenerationActorDescView& RefererActorDescView, const FStreamingGenerationActorDescView& ReferenceActorDescView)
 {
 	const FName RefererRuntimeGrid = RefererActorDescView.GetRuntimeGrid();
 	const FName ReferenceRuntimeGrid = ReferenceActorDescView.GetRuntimeGrid();
@@ -147,7 +147,7 @@ if (!IsReferenceRuntimeGridValid(*RefererActorDescView, *ReferenceActorDescView)
 {
 	if (PassType == EPassType::ErrorReporting)
 	{
-		if (!IsReferenceEffectiveRuntimeGridValid(*RefererActorDescView, *ReferenceActorDescView))
+		if (!IsResolvedNoneRuntimeGridReferenceValid(*RefererActorDescView, *ReferenceActorDescView))
 		{
 			ErrorHandler->OnInvalidReferenceRuntimeGrid(*RefererActorDescView, *ReferenceActorDescView);
 		}
