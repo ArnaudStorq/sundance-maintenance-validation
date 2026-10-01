@@ -9,10 +9,15 @@ An audit is dated and **does not age well** — it describes the level as it was
 the *problem* sections for lasting knowledge, and treat the actor lists as a work order that is
 only valid until someone fixes them.
 
+Some audits read the level directly, others read the log of an automated pass over it. When one
+run yields several unrelated findings, they are kept together as an [audit tree](#audit-trees)
+rather than scattered across this folder.
+
 ## Contents
 
 - [How an audit differs from a reference doc](#how-an-audit-differs-from-a-reference-doc)
 - [The audits](#the-audits)
+- [Audit trees](#audit-trees)
 - [Writing a new audit](#writing-a-new-audit)
 
 ## How an audit differs from a reference doc
@@ -37,9 +42,36 @@ only valid until someone fixes them.
 | [`DL_OVERLAND` removal — `LI_Hogsmeade_River`](ManualOverlandDataLayerRemoval-HogsmeadeRiver-2026-09-28.md) | The 439 hand-tagged findings of the Hogsmeade river cluster, which resolve to 417 distinct actors | All 417 stripped of `DL_OVERLAND`, submitted as changelist 2097647; the hand-placed verdict re-checked against the rule assets first | [Removed actors](ManualOverlandDataLayerRemoval-HogsmeadeRiver-2026-09-28.csv) |
 | [`DL_OVERLAND` removal — `LI_HM_Streets_EXT`](ManualOverlandDataLayerRemoval-HogsmeadeStreets-2026-09-29.md) | The 1114 hand-tagged static meshes of the Hogsmeade streets exterior | 1109 stripped of `DL_OVERLAND`, pending as changelist 2099933; 2 locked by another user, 3 deleted since the audit; the hand-placed verdict checked live and in Perforce history for every actor | [Removed, skipped and missing](ManualOverlandDataLayerRemoval-HogsmeadeStreets-2026-09-29.csv) |
 
+## Audit trees
+
+Most audits above stand alone: one sweep, one question, one document. Some work splits the other
+way — a **single automated run** produces one log, and that log holds several unrelated warning
+families, each deserving its own deep dive. Writing those as six sibling files in this folder would
+lose the one fact that matters most about them: they share a source, so their counts are slices of
+the same total and their root causes cross-reference each other.
+
+Such work goes in a **sub-folder named after the run**, with a `README.md` at its root that carries
+the source build, the totals, and the tree of families below it. One folder is one run; one file
+inside it is one warning family.
+
+```
+Audits/
+└── <Pass>-<World>-<YYYY-MM-DD>/     the run
+    ├── README.md                    the build, the totals, the tree, the reading order
+    ├── <WarningFamily>.md           one deep dive per family
+    └── data/                        one inventory CSV per family
+```
+
+| Tree | Source run | Families | Rows |
+|---|---|---:|---:|
+| [Validate World Partition Rules — `LV_Overland`, 2026-09-27](ValidateWorldPartitionRules-LV_Overland-2026-09-27/README.md) | [Validate WP Rules build `#18264425`](https://slc-teamcity.wbiegames.com/buildConfiguration/Sundance_Dev_Tools_ContentTools_ValidateWorldPartitionRules/18264425), `-ValidateOnly`, September 27, 2026 | 6 | 90 761 of the 92 452 warnings |
+
 ## Writing a new audit
 
-- Name the file `<Topic>-<YYYY-MM-DD>.md` and add a row to [The audits](#the-audits).
+- Name the file `<Topic>-<YYYY-MM-DD>.md` and add a row to [The audits](#the-audits). When the work
+  is several warning families of one automated run, make it an
+  [audit tree](#audit-trees) instead: a `<Pass>-<World>-<YYYY-MM-DD>/` folder whose `README.md`
+  holds the source build and the tree, one document per family, and a shared `data/`.
 - Open with **the problem** — why the finding matters — before any numbers. The explanation
   outlives the data.
 - State **how the audit was run** (tools, queries, what was loaded) so it can be re-run and

@@ -5,11 +5,14 @@ Parent: [Reference Docs](README.md)
 The two automated jobs that maintain `LV_Overland` streaming data on the build farm:
 the **World Partition rule pass** and the **distributed HLOD generation**. Both are
 `WorldPartitionBuilderCommandlet` runs wrapped in a TeamCity build configuration, both
-commit their results to Perforce, and both feed the daily HTML report hub.
+commit their results to Perforce, and both feed the daily HTML report hub. A third
+configuration runs the same rule builder **read-only**, to report what the rules would
+change without writing anything.
 
 | Job | Build configuration | Builder it runs |
 |-----|---------------------|-----------------|
 | **Apply World Partition Rules** | [`Sundance_Dev_Tools_ApplyWorldPartitionRules`](https://slc-teamcity.wbiegames.com/buildConfiguration/Sundance_Dev_Tools_ApplyWorldPartitionRules#all-projects) | `UWorldPartitionRuleBuilder` (project builder, `WorldBuildingEditor`) |
+| **Validate World Partition Rules** | [`Sundance_Dev_Tools_ContentTools_ValidateWorldPartitionRules`](https://slc-teamcity.wbiegames.com/buildConfiguration/Sundance_Dev_Tools_ContentTools_ValidateWorldPartitionRules) | the same builder with `-ValidateOnly` — submits nothing |
 | **Generate HLODs (distributed)** | [`Sundance_Dev_Tools_HLODs_Distributed_GenerateHLODs`](https://slc-teamcity.wbiegames.com/buildConfiguration/Sundance_Dev_Tools_HLODs_Distributed_GenerateHLODs#all-projects) | `UWorldPartitionHLODsBuilder` (engine builder, distributed mode) |
 
 Server: `https://slc-teamcity.wbiegames.com`. Read access is enough to inspect builds,
@@ -30,6 +33,7 @@ permissions that the World Building team asks Philippe St-Jean for.
   - [The command line behind the job](#the-command-line-behind-the-job)
   - [When it runs](#when-it-runs)
   - [Outputs](#outputs)
+  - [The validation build](#the-validation-build)
 - [Generate HLODs (distributed)](#generate-hlods-distributed)
   - [What it does](#what-it-does-1)
   - [Parameters](#parameters-1)
@@ -86,6 +90,7 @@ The TeamCity parameters map one-to-one onto the builder switches
 | `-DiscardOutlinerPathSubstrings=x,y` | Scope **out**: skip actors whose Outliner path contains one of the substrings. |
 | `-ActorClassNames=A,B` | Scope by **native class name**, OR semantics, substring match — so a base class also catches its subclasses (`PlacedFoliage` matches `PlacedFoliage_*`). Added 2026-09-15 to make the Far Foliage passes affordable. |
 | `-ReportOnly` | Dry run: answers from descriptors, loads/checks out/saves **nothing**, and writes a JSON report of what the rules *would* change. |
+| `-ValidateOnly` | The switch the [validation build](#the-validation-build) runs on: evaluate the rules and log what they would assign, submit nothing. |
 | `-ReportFile=<path>` | Override the report path (default `Saved/Logs/WorldPartition/WorldPartitionRulesReport-<Level>.json`). |
 | `-InvokeAvaSavePackageDelegates` | Run the AVA save delegates (AutoDb authoring bridge) during the save. |
 | `-BuildMachine -Unattended` | Non-interactive mode. Always set on the farm. |
@@ -149,6 +154,26 @@ asking for a farm run.
 - A submitted Perforce changelist per build.
 - The warning/finding counts that feed `WorldPartitionRulesSnapshot.html` and the other
   pages of the report hub, refreshed once per day.
+
+### The validation build
+
+[`Sundance_Dev_Tools_ContentTools_ValidateWorldPartitionRules`](https://slc-teamcity.wbiegames.com/buildConfiguration/Sundance_Dev_Tools_ContentTools_ValidateWorldPartitionRules)
+runs the same `WorldPartitionRuleBuilder` with `-ValidateOnly` and the usual
+`-ContainOutlinerPathSubstrings` scoping. It produces a log artifact and **no changelist**,
+which makes it the pass to run before a rule change rather than after it.
+
+> ⚠ Note: `-ValidateOnly` is only trustworthy for three of the four assignment paths.
+> `HLODLayer`, `RuntimeGrid` and `IncludeInHLOD` log `Applied …` and report the dry run
+> correctly; the **DataLayer path calls the real assignment**, which cannot commit, and logs
+> `Failed to assign DataLayer` instead. On build
+> [`#18264425`](https://slc-teamcity.wbiegames.com/buildConfiguration/Sundance_Dev_Tools_ContentTools_ValidateWorldPartitionRules/18264425)
+> that was 85 490 warnings — 92.5 % of the whole log — for **zero** content defects. Read those
+> rows as the diff the builder *would* have applied, and see
+> [Failed to assign DataLayer](../Audits/ValidateWorldPartitionRules-LV_Overland-2026-09-27/FailedToAssignDataLayer.md)
+> for the proof and the proposed builder fix.
+
+The six warning families of that build are audited in
+[Validate World Partition Rules — `LV_Overland`, 2026-09-27](../Audits/ValidateWorldPartitionRules-LV_Overland-2026-09-27/README.md).
 
 ---
 
@@ -280,6 +305,9 @@ last one is why the reports can attribute a skipped actor to the person holding 
 - [World Partition builders catalog](WorldPartitionBuildersCatalog.md) — every builder and
   its switches
 - [World Partition rules](WorldPartitionRules.md) — the rules the nightly pass applies
+- [Validate World Partition Rules — `LV_Overland`, 2026-09-27](../Audits/ValidateWorldPartitionRules-LV_Overland-2026-09-27/README.md)
+  — the audit tree of one validation build: the six warning families it reported, and what
+  each one actually means
 - [Transform drift](TransformDrift.md) — what a bad automated run can do to content
 - [MapCheck validation CVars](MapCheckValidationCVars.md) — the checks that now rely on
   the nightly report instead of the per-load MapCheck

@@ -25,6 +25,8 @@ here, and down again through the section indexes below.
 ├── ReferenceDocs/              Technical knowledge base (one file per topic)
 │   └── WorldPartitionRulesAnalysis/   Deep, per-asset rule-system analysis series
 ├── Audits/                     Dated content sweeps of LV_Overland, with actor lists
+│   └── ValidateWorldPartitionRules-LV_Overland-2026-09-27/
+│                               Audit tree: the six warning families of one Validate WP Rules build
 ├── WorkDoneByTopic/            Plain-language, why-it-was-done narratives
 ├── WorkDoneByChangelists/      Per-changelist history
 │   └── P4-History/             One report per submitted Perforce changelist
@@ -38,7 +40,10 @@ here, and down again through the section indexes below.
   (exact classes, methods, log strings) plus the
   [World Partition rule data-asset analysis](ReferenceDocs/WorldPartitionRulesAnalysis.md).
 - [**Audits**](Audits/README.md) — dated sweeps of the level's content: the problem, what was
-  scanned, and the exact list of actors to fix.
+  scanned, and the exact list of actors to fix, plus the
+  [audit trees](Audits/README.md#audit-trees) that group the warning families of a single
+  automated run — currently the
+  [Validate World Partition Rules build of 2026-09-27](Audits/ValidateWorldPartitionRules-LV_Overland-2026-09-27/README.md).
 - [**Work Done By Topic**](WorkDoneByTopic/README.md) — plain-language, per-topic
   explanations of the 2026 engineering work.
 - [**Work Done By Changelists**](WorkDoneByChangelists/README.md) — one factual report
