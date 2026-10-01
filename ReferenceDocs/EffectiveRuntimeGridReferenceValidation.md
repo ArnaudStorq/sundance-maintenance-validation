@@ -230,7 +230,8 @@ Without a switch, the A/B test compares two builds:
   is empty.
 - **No runtime switch.** Getting the raw comparison back means backing out the CL.
 - **Where to submit.** Phil's RuntimeGrid engine CLs (2028633, 2051632) went through
-  `//sun/Dev-Engine` and were robomerged to `//sun/Dev`. CL 2102948 is in `//sun/Dev`.
+  `//sun/Dev-Engine` and were robomerged to `//sun/Dev`. CL 2102948 is in `//sun/Dev`; to move
+  it, see [Submitting an engine changelist](SubmittingEngineChangelists.md#worked-example-cl-2102948).
 - The CL description says `&TESTED Compile`. Switch it to `Editor` after the A/B test.
 
 ## See also
