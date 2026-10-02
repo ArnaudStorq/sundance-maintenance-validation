@@ -60,6 +60,7 @@ scripts.
 | [World Partition streaming properties](WorldPartitionStreamingProperties.md) | someone mentions HLODLayer / DataLayers / RuntimeGrid or "invalid HLOD layer" |
 | [Level Instances & OFPA](LevelInstancesAndOFPA.md) | partitioned vs non-partitioned, `__ExternalActors__`, the `Level` property |
 | [Converting levels to World Partition](ConvertingLevelsToWorldPartition.md) | migrating a non-partitioned level, headless conversion, Nanite crash |
+| [Launching the game standalone](LaunchingTheGameStandalone.md) | you need the cooked runtime rather than the editor: picking a UnrealGameSync package, `-skipintro`, the frontend developer menu, the ImGui debug menu and the `wp.Runtime.*` grid overlays |
 | [Transform drift](TransformDrift.md) | resave changed `RelativeLocation/Rotation/Scale3D` |
 
 ### The rule system

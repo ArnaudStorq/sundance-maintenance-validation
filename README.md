@@ -54,6 +54,8 @@ here, and down again through the section indexes below.
 - [World Partition rules](ReferenceDocs/WorldPartitionRules.md)
 - [World Partition streaming properties](ReferenceDocs/WorldPartitionStreamingProperties.md)
 - [Fixing MapCheck issues](ReferenceDocs/FixingMapCheckIssues.md)
+- [Launching the game standalone](ReferenceDocs/LaunchingTheGameStandalone.md) — the cooked
+  build, the frontend developer menu, the ImGui debug menu and the runtime grid overlays
 - [Outliner management](ReferenceDocs/OutlinerManagement.md)
 - [Builders & commandlets](ReferenceDocs/BuildersAndCommandlets.md)
 - [TeamCity jobs](ReferenceDocs/TeamCityJobs.md) — the nightly
