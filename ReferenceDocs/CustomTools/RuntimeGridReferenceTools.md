@@ -13,6 +13,15 @@ console `~`) that together find and repair `WorldPartitionChangelistValidator`
 
 Both live in `D:\Sun\Sundance\Source\WorldBuildingEditor\WorldPartition\`.
 
+> ⚠ **Not in the editor build as of 2026-10-05.** Neither command is registered: the console
+> accepts the line and silently does nothing, `RuntimeGridConflictScanner.cpp` is not in the
+> workspace, and neither command string is in
+> `Binaries/Win64/UnrealEditor-WorldBuildingEditor.dll`. Check before planning work around them;
+> the [2026-10-05 Vault audit](../../Audits/MapCheckRuntimeGridReferences-Vault-2026-10-05.md)
+> had to fix its couples by hand. Keep in mind too that the fixer aligns referee → referencer
+> **per log line**, so on a reference cluster of more than two actors the order of the lines
+> decides the outcome.
+
 > Not every couple was a real conflict. Before CL 2102948 the engine compared the
 > RuntimeGrid **names**, so an actor on `None` referencing an actor on the default grid
 > (`None` vs `MainGrid` on `LV_Overland`) was reported although both stream on `MainGrid`.

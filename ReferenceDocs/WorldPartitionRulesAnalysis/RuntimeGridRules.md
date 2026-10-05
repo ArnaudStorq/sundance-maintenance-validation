@@ -32,8 +32,19 @@ assignment happens in **two stages with different rule sets**:
 
 | Stage | Config field | Rules used | Writes to disk? |
 |-------|--------------|-----------|-----------------|
-| **On save / builder** | `RuntimeGridRulesForActorSave` | `DA_HogsmeadeGrid_Rules`, `DA_HogwartsGrid_Rules`, `DA_HogwartsInteriorGrid_Rules`, `DA_NoneGrid_Rules` | **Yes** — serialized onto the actor. |
-| **Streaming generation** | `RuntimeGridRulesForStreamingGeneration` | `DA_SmallGrid_Rules` | **No** — view-only override at generation time. |
+| **On save / builder** | `RuntimeGridRulesForActorSave` | `DA_HogsmeadeGrid_Rules`, `DA_HogwartsGrid_Rules`, `DA_HogwartsInteriorGrid_Rules`, `DA_NoneGrid_Rules`, `DA_SmallGrid_Rules`, `DA_MainGrid_Rules`, `DA_FarFoliageGrid_Rules` | **Yes** — serialized onto the actor. |
+| **Streaming generation** | `RuntimeGridRulesForStreamingGeneration` | *(empty)* | — |
+
+> ⚠ **`DA_SmallGrid_Rules` is now an on-save rule.** CL 1988317 moved it permanently into
+> `RuntimeGridRulesForActorSave`, where it sits at index 4 — after `DA_NoneGrid_Rules` (index 3),
+> so for an actor both rules match, `SmallGrid` is what the save writes. The
+> `RuntimeGridRulesForStreamingGeneration` array is now **empty**, which is not a
+> misconfiguration. Verified live on 2026-10-05 with `GetRuleSystemOverview`. The
+> generation-time/view-only description in [stage 5](#5-dasmallgridrules--smallgrid-generation-time-view-only)
+> below is history, not current behaviour — the consequence is that every sub-metre actor the
+> rule matches now carries `SmallGrid` **on disk**, which is how the
+> [Vault runtime-grid reference errors](../../Audits/MapCheckRuntimeGridReferences-Vault-2026-10-05.md)
+> were produced.
 
 Read together, the intent is:
 
@@ -125,10 +136,11 @@ exactly the state `DA_SmallGrid_Rules` then overrides at generation time).
 |--------|-------|
 | Class | `URuntimeGridRuleAsset` |
 | `TargetRuntimeGrid` | `SmallGrid` |
-| Config slot | `RuntimeGridRulesForStreamingGeneration` (**not** on save) |
-| Matches (type) | `Actor` (broad), conditions use both `AND` and `OR` operators |
-| Excludes (types) | `LandscapeSplineActor`, `PCGPartitionActor`, `WorldPartitionHLOD`, `ForageableBlueprint` |
-| Excludes (paths) | `Dungeon`, `Mission`, `LI_Sanctuary`, `LV_Overland/Hogsmeade/LI_Hogsmeade`, `LV_Overland/Hogwarts/LI_Hogwarts` |
+| Config slot | `RuntimeGridRulesForActorSave`, index 4 (**since CL 1988317**; the paragraphs below describe the earlier generation-only slot) |
+| Matches (`AND`) | `Actor` with `MaxBoundsDimension = 100` uu — **any actor under 1 m in its largest dimension** |
+| Matches (`OR`) | `ForageableBlueprint`, whatever its size |
+| Excludes (types) | `WorldPartitionHLOD`, `PCGPartitionActor`, `PCGFeaturesSplineInstancer`, `BP_PCGBiomeSetup`, `LandscapeSplineActor`, `AvaSpawnGraphSpawnLocation`, `MercunaNavSeed`, `MercunaNavOctree`, `AvaNoteActor`, `POINamedPoint`, `Station`, `NiagaraParticleLocator`, `StreamingDependencyGroupVolumeAggregateActor`, `SceneRigActor`, `BP_WE_SUN_WorldEvent_Base` |
+| Excludes (paths) | `Dungeon`, `Mission`, `LV_Overland/Hogsmeade/LI_Hogsmeade`, `LV_Overland/Hogwarts/LI_Hogwarts`, `LV_Overland/QuidditchPitch`, `LI_Sanctuary`, `LOC_OL_` |
 | Excludes (defer to Data Layer rules) | `DA_AUDIO_Rules`, `DA_AUTOMATION_Rules`, `DA_DEGUG_Rules`, `DA_WORLD_EVENTS_Rules`, `DA_MISSIONS_Rules` |
 
 This is the rule that puts the bulk of Overland's small objects onto `SmallGrid` at
@@ -195,7 +207,7 @@ Approximate, **documented** values (confirm against the map hash before quoting)
 | `DA_HogwartsGrid_Rules` | `HogwartsGrid` | `LevelInstance` in Hogwarts LI | interior rule; Global Sky; audio DL | on-save |
 | `DA_HogwartsInteriorGrid_Rules` | `SmallGrid` | `LevelInstance` in Hogwarts LI `_INT` | — | on-save |
 | `DA_NoneGrid_Rules` | `None` | any `Actor` | the 3 sub-world grid rules | on-save (catch-all) |
-| `DA_SmallGrid_Rules` | `SmallGrid` | any `Actor` (AND/OR) | splines, PCG, HLOD, forage; sub-worlds; dungeon/mission/sanctuary; audio/automation/debug/WE/missions DL | streaming-gen only |
+| `DA_SmallGrid_Rules` | `SmallGrid` | any `Actor` under 1 m, or any `ForageableBlueprint` | splines, PCG, HLOD, scene rigs, nav seeds, stations…; sub-worlds; dungeon/mission/sanctuary/Quidditch/`LOC_OL_`; audio/automation/debug/WE/missions DL | on-save, index 4 |
 
 ---
 

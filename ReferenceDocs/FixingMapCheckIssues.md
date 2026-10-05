@@ -435,6 +435,15 @@ These are raised by the Sundance `UWorldPartitionMapCheckValidator` (runs on
   3. **Per-actor exception**: set the referee back to `None` and tag it
      `ExcludeFromRuntimeGridRules` so the rules stop rewriting it. It is fast, but it is a
      one-off fix that nobody sees later.
+
+> ⚠ **Fix the reference cluster, not the reported edge.** The error is raised per reference,
+> but the grid has to be chosen for every actor the references connect. Aligning one reported
+> couple moves the boundary rather than removing it: on 2026-10-05, putting the single reported
+> `SmallGrid` actor onto `None` turned 3 errors into 8, because four sibling actors referencing
+> it were on `SmallGrid` too and had never been reported. List the whole cluster from the actor
+> data — MapCheck only shows the edges that currently diverge — pick one grid for all of it, then
+> write. Worked example, including why `None` was the right choice and the rule-level follow-up:
+> [MapCheck runtime-grid references — Vault Level Instances, 2026-10-05](../Audits/MapCheckRuntimeGridReferences-Vault-2026-10-05.md).
 - **Rules link**: direct when a RuntimeGrid rule wrote one of the two grids — here
   `DA_MainGrid_Rules`, see [Runtime Grid rules](WorldPartitionRulesAnalysis/RuntimeGridRules.md).
 
