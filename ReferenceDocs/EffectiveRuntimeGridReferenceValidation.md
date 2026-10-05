@@ -238,6 +238,8 @@ Without a switch, the A/B test compares two builds:
 
 - [Fixing MapCheck issues — D5](FixingMapCheckIssues.md#d5--actor-references-an-actor-in-a-different-runtime-grid)
   — the playbook entry for this message
+- [RuntimeGrid reference conflict resolution](RuntimeGridReferenceConflictResolution.md) — CL
+  2112721, the rule-builder pass that fixes the real conflicts this CL deliberately kept reporting
 - [Runtime Grid Reference Tools](CustomTools/RuntimeGridReferenceTools.md) — scan and fix
   the real conflicts that remain
 - [Exclude From Rules tag](CustomTools/ExcludeFromRulesTag.md) — the per-actor alternative

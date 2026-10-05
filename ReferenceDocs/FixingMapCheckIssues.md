@@ -435,6 +435,12 @@ These are raised by the Sundance `UWorldPartitionMapCheckValidator` (runs on
   3. **Per-actor exception**: set the referee back to `None` and tag it
      `ExcludeFromRuntimeGridRules` so the rules stop rewriting it. It is fast, but it is a
      one-off fix that nobody sees later.
+  4. **Let the rules fix it**: the CL 2112721 pass of the rule builder reads the descriptor
+     references and moves a whole diverging cluster onto `MainGrid`, which is the grid
+     generation already forces on it — see
+     [RuntimeGrid reference conflict resolution](RuntimeGridReferenceConflictResolution.md).
+     Hogwarts, Hogsmeade and the far-foliage grids are excluded from it, so a cluster touching
+     them is still case 2 or 3.
 
 > ⚠ **Fix the reference cluster, not the reported edge.** The error is raised per reference,
 > but the grid has to be chosen for every actor the references connect. Aligning one reported

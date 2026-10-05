@@ -200,6 +200,8 @@ become redundant and can be removed — the rule then leaves the actors on `None
   — the playbook entry for this message
 - [Effective RuntimeGrid reference validation](../ReferenceDocs/EffectiveRuntimeGridReferenceValidation.md)
   — CL 2102948, why `None` vs `MainGrid` is no longer reported
+- [RuntimeGrid reference conflict resolution](../ReferenceDocs/RuntimeGridReferenceConflictResolution.md)
+  — CL 2112721, the rule-builder pass that automates the cluster fix this audit did by hand
 - [Runtime Grid rules](../ReferenceDocs/WorldPartitionRulesAnalysis/RuntimeGridRules.md) — the rule
   that writes `SmallGrid`
 - [Runtime Grid Reference Tools](../ReferenceDocs/CustomTools/RuntimeGridReferenceTools.md) — the
