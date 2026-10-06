@@ -66,6 +66,7 @@ Audits/
 | Tree | Source run | Families | Rows |
 |---|---|---:|---:|
 | [Validate World Partition Rules — `LV_Overland`, 2026-09-27](ValidateWorldPartitionRules-LV_Overland-2026-09-27/README.md) | [Validate WP Rules build `#18264425`](https://slc-teamcity.wbiegames.com/buildConfiguration/Sundance_Dev_Tools_ContentTools_ValidateWorldPartitionRules/18264425), `-ValidateOnly`, September 27, 2026 | 6 | 90 761 of the 92 452 warnings |
+| [Validate World Partition Rules — Overland only, 2026-10-04](ValidateWorldPartitionRules-Overland-2026-10-04/README.md) | TeamCity job `#2111348` *validate Overland Only*, `-ValidateOnly` discarding Hogsmeade/Hogwarts/Mission/Dungeon, October 4, 2026 | 1 | 1 054 `Runtime DataLayer without rule` of 54 892 warnings |
 
 ## Writing a new audit
 
