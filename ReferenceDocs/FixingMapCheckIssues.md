@@ -436,8 +436,9 @@ These are raised by the Sundance `UWorldPartitionMapCheckValidator` (runs on
      `ExcludeFromRuntimeGridRules` so the rules stop rewriting it. It is fast, but it is a
      one-off fix that nobody sees later.
   4. **Let the rules fix it**: the CL 2112721 pass of the rule builder reads the descriptor
-     references and moves a whole diverging cluster onto `MainGrid`, which is the grid
-     generation already forces on it — see
+     references and clears a whole diverging cluster to `None`, so it inherits its grid — the
+     default grid in the main world, the sub-world grid inside a Level Instance — which is what
+     generation already forces on it, and what the manual Vault fix chose. See
      [RuntimeGrid reference conflict resolution](RuntimeGridReferenceConflictResolution.md).
      Hogwarts, Hogsmeade and the far-foliage grids are excluded from it, so a cluster touching
      them is still case 2 or 3.

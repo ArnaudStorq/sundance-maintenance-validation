@@ -52,7 +52,7 @@ scripts.
 | [Fixing MapCheck issues](FixingMapCheckIssues.md) | the project playbook (cause → solution per warning actually hit on `LV_Overland`), plus a generic stock-engine MapCheck catalog in appendix G |
 | [MapCheck validation CVars](MapCheckValidationCVars.md) | a MapCheck warning stopped appearing on level load, or you want to re-enable the checks disabled for performance (`wp.editor.MapCheck.*`) and persist the value |
 | [Effective RuntimeGrid reference validation](EffectiveRuntimeGridReferenceValidation.md) | a "references an actor in a different runtime grid" error pairs `None` with the default grid (`None` vs `MainGrid`), or you need the effective-grid rule of CL 2102948 and its A/B test |
-| [RuntimeGrid reference conflict resolution](RuntimeGridReferenceConflictResolution.md) | you want the rule system itself to fix the real "different runtime grid" divergences: the CL 2112721 pass that reads the descriptor references and moves a diverging reference cluster onto `MainGrid`, and why Hogwarts and Hogsmeade are protected from it |
+| [RuntimeGrid reference conflict resolution](RuntimeGridReferenceConflictResolution.md) | you want the rule system itself to fix the real "different runtime grid" divergences: the CL 2112721 pass that reads the descriptor references and clears a diverging reference cluster to `None` so it inherits its grid, and why Hogwarts and Hogsmeade are protected from it |
 
 ### World Partition streaming
 
