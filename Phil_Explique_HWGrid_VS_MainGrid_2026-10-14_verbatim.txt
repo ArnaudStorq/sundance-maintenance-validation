@@ -1,0 +1,171 @@
+[00:00:03,600 - 00:00:21,250] Salut bon matin, donc là je suis sur le gira depuis avant 8h, je suis à fond sur ça là,
+[00:00:21,250 - 00:00:28,350] c'est comme une énigme que j'avance progressivement, puis là ça j'avais comme une question parce
+[00:00:28,350 - 00:00:37,870] que là je me sens bloqué par mes connaissances, si je vois ici tu dis ok ce HLOD acteur
+[00:00:37,870 - 00:00:45,750] là, ici, ces sources acteurs tu dis qu'ils sont, dedans il y a le level instance quidditch ok,
+[00:00:45,750 - 00:00:53,230] mais comment tu fais le lien pour ça, moi quand je fais afficher les packages ici avec 2xpund,
+[00:00:53,230 - 00:01:00,190] tu sais que je suis limité par la vue, il me dit qu'il y a 442 packages, je m'attendrais à
+[00:01:00,190 - 00:01:07,190] voir notre level instance mais je le vois pas ici listé, comment fais-tu pour savoir qui
+[00:01:07,230 - 00:01:14,030] est listé là-dedans? Ben les level instances n'existent pas dans un runtime package, les
+[00:01:14,030 - 00:01:19,270] level instances c'est juste du editor only, quand t'arrives dans un package build c'est
+[00:01:19,270 - 00:01:25,990] juste des acteurs qui sont mis dans la grille, il n'y a plus de concepts de level instances.
+[00:01:25,990 - 00:01:35,350] Ok ça fait du sens, du coup comment t'as fait toi ton lien, tu sais quand tu dis ok le
+[00:01:35,350 - 00:01:45,110] warning que je veux c'est static match actor donc il est dans le quidditch, je sais que cet
+[00:01:45,110 - 00:01:50,590] acteur là son runtime grid par exemple c'est node donc par héritage on va prendre celui du
+[00:01:50,590 - 00:01:56,830] quidditch et ça va résolver en main grid donc ça ça fait du sens, le HLOD layer du
+[00:01:56,830 - 00:02:04,270] level instance c'est near donc sur oxwart donc ça ça fait du sens pour moi, c'est sûr
+[00:02:04,270 - 00:02:08,710] qu'il fait pas de sens, tu viens de dire il va être sur la main grid pis il va être dans le
+[00:02:08,710 - 00:02:17,870] Hogwarts layer c'est ça le problème ok mais va dans l'éditeur ou oublie le runtime, va dans
+[00:02:17,870 - 00:02:24,990] l'éditeur pis tu vas comprendre. Tu veux que j'arrête le paye? Oui oui ok je demande comme
+[00:02:24,990 - 00:02:30,550] je sais que ça prend des fois long à revenir à basculer de contexte là mais c'est ça tu sais
+[00:02:30,550 - 00:02:35,910] là c'est la première fois que je regarde vraiment c'est quoi un HLOD layer je comprends
+[00:02:35,910 - 00:02:42,950] qu'il est généré lors de la génération du streaming là et tiens on peut le voir dans
+[00:02:42,950 - 00:02:50,470] l'outliner et tout ça là tu sais. Va le je pense c'est lui le war setting c'est ce que
+[00:02:50,470 - 00:02:55,190] je veux dire. Fait que le collapse tout seul fait que fait un shift click pour tout
+[00:02:55,190 - 00:03:05,220] collapse et tout ça il expand. Pis tu veux que j'expand quoi lui? Ouais. Fait que là arrête
+[00:03:05,220 - 00:03:08,540] là fait que là dans le fond ici tu vois c'est toutes tes partitions, toutes tes grilles qui
+[00:03:08,540 - 00:03:15,500] sont toutes là. Toutes définies. Fait que là si tu ouvres lui le premier main grid
+[00:03:15,500 - 00:03:21,900] pardon. Oui. Pis si tu vas dans la HLOD partition, pis là si tu ouvres chacune,
+[00:03:21,900 - 00:03:27,540] tu l'as de near, far, pis always loaded là je sais pas comment il s'appelle dans l'espéciale
+[00:03:27,540 - 00:03:33,740] loaded. À l'intérieur duquel mettons j'ouvre lui les HLOD layer qui sont inclus dans near,
+[00:03:33,740 - 00:03:41,980] c'est ça. Fait que ça c'est les HLOD layer inclus dans near. Pour Overland. La même
+[00:03:41,980 - 00:03:46,620] manière là que si tu prends le deuxième ici là dans le far. Oui attends je vais
+[00:03:46,620 - 00:03:54,900] faire ça. Attends je vais scroller ici. On va en faire HLOD inclus. Fait que ces HLOD layer là
+[00:03:54,900 - 00:04:02,700] pis le sur là ici qui était là c'est toutes des HLOD layer qui sont disponibles dans main grid.
+[00:04:02,700 - 00:04:09,620] Ok. Fait qu'on a le même pattern partout où est-ce qu'on a des HLOD layers qui sont
+[00:04:09,620 - 00:04:16,420] disponibles pour chacune des grilles. Pis là la problématique c'est que j'ai un HLOD layer qui me
+[00:04:16,420 - 00:04:26,820] dit HW pis ma grille c'est main grid. Fait que là, là ça chiale mais ça fait en sorte que ça
+[00:04:26,820 - 00:04:33,700] donne le outcome. Le résultat de ça c'est que le HLOD acteur généré est toujours
+[00:04:33,700 - 00:04:42,340] loadé à cause d'un mismatch entre le HLOD layer qui était signé qui était HW pis la
+[00:04:42,340 - 00:04:48,940] grille qui était signée qui est à main grid. Ok. C'est ça le problème. Fait que là il y a deux
+[00:04:48,940 - 00:04:57,600] façons de fixer ça. Il y a trois affaires là. Faudrait fixer le data pis faire en
+[00:04:57,600 - 00:05:04,680] sorte que là pour le quidditch pitch qu'il soit bel et bien assigné à la bonne grille,
+[00:05:04,680 - 00:05:09,480] à Hogwarts grid parce qu'en ce moment il est à main grid. Fait que ça faudrait fixer ça. Si
+[00:05:09,480 - 00:05:16,400] je retourne ici, donc lui si je sélectionne, là on parle bien du Levenin-Sans quidditch A là,
+[00:05:16,400 - 00:05:24,040] je sais pas quoi. C'est ça. Ça c'est un exemple. C'est juste un des exemples parmi
+[00:05:24,040 - 00:05:28,400] d'autres là. Il y en a d'autres là. Fait que le Jira c'est pas juste à propos de celui-là
+[00:05:28,400 - 00:05:33,480] spécifiquement. C'est genre à les attraper tout pis les fixer. Tout à fait mais au moins
+[00:05:33,480 - 00:05:40,720] qu'on prend le use case sur un cas spécifique pis après étendre la connaissance. Fait que là si
+[00:05:40,720 - 00:05:48,320] t'enlèves ton string de ton outliner. J'essaye pis que là j'ai copié-collé le nom du Levenin-Sans.
+[00:05:48,320 - 00:06:07,580] Efface ça. Ok. Allez, t'es capable. Là j'ai cliqué sur la croix. Pis là sélectionne
+[00:06:07,780 - 00:06:13,180] ou peut-être fait enter je crois. Pour rafraîchir. Pis clique sur ton chose pour qu'il le
+[00:06:13,180 - 00:06:21,130] reselectionne dans l'outliner. Attends, il est comme... J'ai eu la première fois que je l'ai
+[00:06:21,130 - 00:06:25,770] ouvert. Il m'a compilé tous les shaders et tout ça. Il a été vraiment long à processer.
+[00:06:25,770 - 00:06:43,410] J'ai vu le thread sur ce lac là où... C'est ici. C'est ça là qu'il reste tout le temps
+[00:06:43,410 - 00:06:49,330] comme loadé même quand on est loin. Ouais mais je m'étais fait te pigner par Yuri là en plus.
+[00:06:49,330 - 00:06:57,330] C'est qui? Yuri? Ouais c'est qui Yuri? Ben c'est un gars de streaming là qui me disait j'ai des
+[00:06:57,330 - 00:07:03,770] HL de... Acteurs qui sont toujours loadés. Ça te dit tout de quoi. Pis là c'est là où est-ce
+[00:07:03,770 - 00:07:11,650] que j'ai investigué un peu. En fait c'est de là que viennent les images du Quidditch
+[00:07:11,650 - 00:07:18,610] Pitch. Je sais plus si c'était Quidditch Pitch ou un autre endroit. Mais les images dans le
+[00:07:18,610 - 00:07:24,250] Gira en tout cas c'est celles de Yuri. Pis là à matin il y avait Sam Seyrol qui reporte le
+[00:07:24,250 - 00:07:32,650] même problème. C'est pour ça que ça fait... C'est long hein, j'ai cliqué ok. Donc là,
+[00:07:32,650 - 00:07:46,190] il y a l'outliner qui s'affiche malgré lui. Ok j'y suis. Ben j'y suis. Là affiche
+[00:07:46,190 - 00:07:54,550] tes HL Runtime pour qu'on voit c'est quoi le setup là. C'est où pour ça? Excuse-moi. Ben dans
+[00:07:54,550 - 00:08:02,190] ton... tes outliner colonne. Ok oui. Sauf que là j'aurais pas mon résolve. Ça va afficher non
+[00:08:02,190 - 00:08:13,100] quand... Allez tout est long à manipuler là. Allez. Pis là je vais faire un clic droit. Ici...
+[00:08:13,100 - 00:08:20,900] Donc oui dans Runtime Grid ça y est. Mais ok il s'est réveillé finalement. Là il est en
+[00:08:20,900 - 00:08:29,100] forme. Donc on retourne sur notre... Donc là ici dans le outliner je tape le nombre du
+[00:08:29,100 - 00:08:34,860] levage de sens pour le filtrer. Non t'appareils. Tu l'as là dans le viewport. Faut juste cliquer
+[00:08:34,860 - 00:08:41,940] dessus. Bon là c'est bon ça marchait. Donc nous c'est notre section A mais j'imagine que
+[00:08:41,940 - 00:08:46,740] ça n'a pas d'importance. On peut prendre n'importe lequel. Pis là ici on a le Runtime Grid à
+[00:08:46,740 - 00:08:55,820] None. Ouais. Là je sais plus comment c'est structuré. Là c'est-tu lui c'est-tu le parent de
+[00:08:55,820 - 00:09:06,180] tout ça ou ils sont tous au même niveau? Bonne question écoute. Ah ok section A. Non on a bien fait de
+[00:09:06,180 - 00:09:13,060] monter tu vois. C'est une poupée russe pis ici on a notre... Clique là. Ok. Clique là pis fais
+[00:09:13,060 - 00:09:22,720] Shift-Clique sur le Collapse. Shift-Clique. Je suis appuyé sur Shift je clique. Ça fait quoi ça?
+[00:09:22,720 - 00:09:33,900] Ça collapse toutes tes affaires automatiques là. Shift-Clique. Ouais je fais Shift-Clique et ok
+[00:09:33,900 - 00:09:42,420] c'est juste long. D'accord. Shift-Clique. Là sur Expand. Là on devrait juste avoir les enfants dont notre
+[00:09:43,180 - 00:09:56,260] Ellie, Quidditch. C'est-tu le cas où ils sont là ici? Non. Non c'est pas le cas. Mais de toute façon c'est pas très grave.
+[00:09:56,260 - 00:10:05,900] Ce que je veux juste te montrer là c'est que le parent il est sur None. Fait que c'est de mémoire
+[00:10:05,900 - 00:10:13,820] là je pense que sa Runtime Grid est à None. Fait que ça ça va fall back sur Main Grid
+[00:10:13,820 - 00:10:22,860] pis ça c'est à HW. Pis tantôt on vient juste de voir que HW n'est pas un Layer dans Main Grid.
+[00:10:22,860 - 00:10:28,420] Fait que c'est là le problème c'est qu'il y a comme un inconsistance entre ces deux patentes là.
+[00:10:28,420 - 00:10:35,300] Pis c'est ça qu'il faut corriger. Ok. Fait que là le fix facile c'est d'aller modifier les
+[00:10:35,300 - 00:10:39,740] règles pour que lui prenne Hogwarts Grid. Ça ça va être fait tantôt mais lui il va falloir
+[00:10:39,740 - 00:10:46,180] traquer toute cette date là qui est cassée. Là ce que moi je te demande de faire c'est de mettre
+[00:10:46,180 - 00:10:52,460] en place de la validation pour les attraper. Toutes les endroits où il y a une discrépentie
+[00:10:52,460 - 00:10:58,580] entre le Runtime Grid pis le HW. Pis moi parallèlement à ça ce que je fais c'est
+[00:10:58,580 - 00:11:08,640] que je suis en train de fixer le truc à la dernière minute. Fait que le fix clean ça va
+[00:11:08,640 - 00:11:14,040] être d'aller modifier lui à travers les rules pour que lui soit seté à Hogwarts Grid.
+[00:11:14,040 - 00:11:21,920] Mais en attendant pour éviter ce problème là j'ai quand même l'option de dire ben quand
+[00:11:21,920 - 00:11:27,840] que le streaming la génération du streaming embarque c'est à dire quand je paye sur paye
+[00:11:27,840 - 00:11:34,720] ou quand je cook. Il y a comme trois étapes là j'ai comme l'étape 1 qui est les mutateurs
+[00:11:34,760 - 00:11:41,560] je vais y revenir. L'étape 2 qui est ben je pointe tous mes acteurs éparpillés pis je les
+[00:11:41,560 - 00:11:49,120] fous dans des cellules de différentes tailles. Le détail qui matche la grée avec la génération
+[00:11:49,120 - 00:11:55,200] du streaming en tant que tel. Pis l'étape 3 c'est les histoires de les cell transformers
+[00:11:55,200 - 00:11:59,480] en tout cas c'est pas super important là mais les trucs de face géo pis tout là. Fait
+[00:11:59,480 - 00:12:05,760] que ici ça se fait placer comme dans des blocs des cellules. Fait que chaque acteur est
+[00:12:05,760 - 00:12:10,360] placé dans des cellules. C'est comme ça. Fait que tous tes acteurs. Fait que ça c'est
+[00:12:10,360 - 00:12:15,760] les cellules que t'as vu dans ton. Le nom du hashtag layer là. Dans ton streaming profiler.
+[00:12:15,760 - 00:12:22,560] Ici c'est les mutateurs. Fait que je sais pas comment l'écrire là. Mutateur. Pis
+[00:12:22,560 - 00:12:27,520] mutateur dans le fond ce que ça fait c'est que c'est comme la dernière opportunité que
+[00:12:27,520 - 00:12:40,120] t'as pour overrider si tu veux la runtime grid d'un acteur ou le statut de specialty. Fait que
+[00:12:40,120 - 00:12:47,240] ici ça boucle sur tous les acteurs descripteurs. Pis là moi ce que je fais c'est si je rencontre
+[00:12:47,240 - 00:12:52,880] un acteur descripteur qui rentre dans ce cas de figure là. Ou s'il y a un mismatch entre ça
+[00:12:52,880 - 00:13:02,640] pis ça. Ben ce que je fais c'est je dis ben va modifier la grille ici pour qu'elle prenne la
+[00:13:02,640 - 00:13:09,480] grille dans laquelle appartient le HLOD layer. Fait que là ici j'ai cet HLOD layer là si tu
+[00:13:09,480 - 00:13:16,840] tirerais dans tes settings. Ben tu verrais que le HLOD layer appartient à Hogwarts grid. Fait
+[00:13:16,840 - 00:13:21,040] que là ce que je vais faire c'est je vais aller scraper les E. Fait que c'est expand là
+[00:13:21,040 - 00:13:32,960] tu peux le voir. Pis c'est dans lui, dans le near. Pis dans les include. Pis là tu vas voir
+[00:13:32,960 - 00:13:41,480] que LVHWNN est là. Attends excuse-moi. Parce que là c'est lent, lent, lent. Je ne sais pas ce qu'il fait.
+[00:13:41,480 - 00:13:53,960] Fait que là moi c'est ce que j'ai. Fait que là je dis que compte tenu de ça c'est quoi
+[00:13:53,960 - 00:14:03,760] sa grille par an. C'est ça. Fait que là ici quand je vois que j'ai un mismatch entre grille pis
+[00:14:03,760 - 00:14:11,240] HLOD layer. Ben je vais juste aller overrider la grille pour la bonne grille à la dernière minute.
+[00:14:11,240 - 00:14:14,280] Fait que là c'est ça que je suis en train de faire. Fait que ça devrait corriger le
+[00:14:14,280 - 00:14:23,590] problème. Mais le vrai fixe c'est ça. C'est d'aller le fixer dans le data. Pis pour
+[00:14:23,630 - 00:14:28,430] savoir lesquels qui sont pas bons. Ben là on va aller ajouter de la validation. Pis c'est là où
+[00:14:28,430 - 00:14:32,590] est-ce que toi tu entres en jeu. Fait que toi je veux que tu ailles faire une validation là.
+[00:14:32,590 - 00:14:40,950] La question c'est on l'a fait où cette validation là? Moi j'ai déjà fait un validate,
+[00:14:40,950 - 00:14:51,390] une job debicity qui valide à toutes les fins de semaine tous les acteurs. Fait que moi
+[00:14:51,430 - 00:14:58,670] ce que je pensais à froid peut-être que c'est pas bon. Mais j'aurais été sacré la validation dans
+[00:14:58,670 - 00:15:10,010] le World Partition Rule Come and Let Builder. Fait que si tu le load là. Au moins on aurait eu
+[00:15:10,010 - 00:15:28,870] un écran avec plein de dessins là. Le Road Builder. Pis là t'as un endroit dans lequel tu fais
+[00:15:28,870 - 00:15:37,510] qui s'appelle Apply Rules par acteur. Fait qu'il applique les rules sur un acteur donné à lui.
+[00:15:37,510 - 00:15:46,470] Fait que là c'est quoi le nom de ce fond? Là ici je suis dans own processator. Fait que là ici
+[00:15:46,470 - 00:15:51,310] dans le fond il applique les data layers je m'en fous. Il applique la runtime grid. Il applique
+[00:15:51,310 - 00:15:59,550] le HLOD. Fait que là à quelque part ici là où après avoir appliqué les runtime pis les HLOD,
+[00:15:59,550 - 00:16:07,070] là j'aurais fait une valide ici ou je sais pas trop où là mais en tout cas après qui check
+[00:16:07,070 - 00:16:13,750] si il y a un mismatch, un discrepancy, ben là tu log. Donc on aurait le warning pis au moins
+[00:16:13,750 - 00:16:20,350] en fait la liste on va la récupérer comme ça. Le validate par contre le validate c'est
+[00:16:20,350 - 00:16:27,310] juste une fois en fin de semaine qu'on lance ça. Ben oui mais tu peux le lancer n'importe
+[00:16:27,310 - 00:16:35,790] quand là parce que ça check out pas aucun acteur. Ok pis toi comment tu fais pour avoir
+[00:16:35,790 - 00:16:46,500] aujourd'hui ta liste des acteurs à corriger? Qu'est ce que tu veux dire? J'ai pas de liste. Le fixe que
+[00:16:46,500 - 00:16:56,580] tu t'apprêtes à faire aujourd'hui, toi tu, excuse-moi, est-ce que ton fixe se situe juste au niveau des
+[00:16:56,580 - 00:17:03,060] rules pour faire une bonne assignation ou est-ce que ça va plus loin que ça ce dont tu t'apprêtes
+[00:17:03,060 - 00:17:10,780] à faire? Il n'y a pas de rules impliqués. Moi je fais juste regarder un acteur descripteur
+[00:17:10,780 - 00:17:20,020] pis avec l'acteur descripteur j'ai sa runtime grid pis j'ai son HLOD layer. Avec ces deux
+[00:17:20,020 - 00:17:24,980] informations-là, je regarde, il y a-tu un mismatch entre les deux? Est-ce que le HLOD layer
+[00:17:24,980 - 00:17:32,660] appartient bel et bien à cette runtime grid-là? Oui, fine, non, ben override-là pour la bonne.
+[00:17:32,660 - 00:17:38,660] Je suis agnostique des rules, je suis agnostique de c'est-tu cet acteur-là ou l'autre? C'est
+[00:17:38,660 - 00:17:45,380] vraiment un truc générique. Je book sur tous les acteurs descripteurs. Ce que tu vois ici,
+[00:17:45,380 - 00:17:48,480] c'est que j'ai fait un dump en fait, j'ai découvert qu'il y avait une commande pour
+[00:17:48,480 - 00:17:55,300] «dumpé» tous les acteurs descripteurs. Je suis sûr que tu la connais, ce que j'ai
+[00:17:55,300 - 00:18:06,260] cherché ici, le static match actor 50 dont tu mentionnais ici dans le Gira. C'est un gros
+[00:18:06,260 - 00:18:14,540] topic. Ce n'est pas gros, Arnaud, juste comprendre. Y a-tu quelque chose qui est compliqué parce
+[00:18:14,540 - 00:18:21,260] que la problématique, c'est vraiment un mismatch. Qu'est-ce qui n'est pas clair?
+[00:18:21,260 - 00:18:26,580] Dis-moi-les, je vais essayer de l'expliquer du mieux que je peux. Moi, en connaissance,
+[00:18:26,580 - 00:18:33,260] c'est le runtime grid. Ce que j'ai appris, c'est qu'en fait, un runtime grid, ça
+[00:18:33,260 - 00:18:44,340] correspond à un tiers au niveau du runtime. Là où je me suis un petit peu perdu... Attends,
+[00:18:44,340 - 00:18:48,460] je suis avec toutes mes screenshots que j'ai pris ce matin. C'est ça, quand je me suis
+[00:18:48,460 - 00:18:55,820] retrouvé ce matin, on avait ici comme main grid avec tous les enfants, puis là,
+[00:18:55,820 - 00:19:00,740] j'ai pris conscience que ça c'est une selle. C'est une selle que je vois ici. Il y avait
+[00:19:00,740 - 00:19:07,420] comme les coordonnées. Donc, ok, l'acteur, une fois qu'il est dans le runtime, il appartient.
+[00:19:07,420 - 00:19:14,900] C'est le H-layer, en fait. Corrige-moi si je me trompe, je parle à Wout.
+[00:19:14,900 - 00:19:22,220] J'ai envie d'arrêter. Pourquoi là tu focuses sur le package build? Pourquoi qu'on parle
+[00:19:22,220 - 00:19:25,740] de selle en ce moment? C'est ça ma question. Oui, c'est vrai que c'est ce qu'il y avait
+[00:19:25,740 - 00:19:31,300] dans le Jira, puis le screenshot. Ça, c'est juste la résultante au bout du pipe.
+[00:19:31,300 - 00:19:37,780] Fait que t'as un problème, puis ça se traduit comme ça. Mais en ce moment, t'as même
+[00:19:37,780 - 00:19:42,460] pas besoin de comprendre ce parti-là. Tout ce que t'as à savoir, c'est dans l'éditeur,
+[00:19:42,460 - 00:19:49,620] t'as un mismatch entre H-layer, là, un H-layer en particulier, puis la grille
+[00:19:49,620 - 00:19:54,580] associée. Puis comment tu fais pour savoir ça? Dans les world settings, tu l'as le
+[00:19:54,580 - 00:20:00,540] breakdown. Ou si c'est pas dans les world settings, va dans la confluence. La page
+[00:20:00,540 - 00:20:03,820] confluence, c'est à l'image des world settings. C'est exactement pareil.
+[00:20:03,820 - 00:20:11,260] Fait que si t'ouvres la page confluence, t'as un breakdown par grille. À l'intérieur
+[00:20:11,260 - 00:20:15,100] duquel t'as un breakdown par H-layer. Fait que là, si tu vois un H-layer,
+[00:20:15,100 - 00:20:24,140] t'as exemple, là. Fait que là, ici, je suis dans main grille. Puis là, tout de
+[00:20:24,140 - 00:20:30,220] suite en dessous, si tu arrêtes, bouge pas. Tout ça, c'est tous les H-layer qui
+[00:20:30,220 - 00:20:36,610] font partie de main grille ou overland. La même affaire si tu descends un peu plus
+[00:20:36,610 - 00:20:46,290] bas. Fait que si je suis ici, j'ai tous les H-layer qui sont dans la grille
+[00:20:46,290 - 00:20:51,970] Hogwarts. Fait que toi, si t'as un H-layer qui est ici, qui est dans la grille, dans
+[00:20:51,970 - 00:20:57,290] haut, ça, ça marche pas. C'est ça le problème. Oui. C'est pas plus compliqué
+[00:20:57,290 - 00:21:02,810] que ça. Oui, en effet, en effet, en effet, en effet. Je comprends. Ok, écoute, je te
+[00:21:02,810 - 00:21:08,650] reviens avec des nouvelles sur ça. Je focus à fond. Ok?
+[00:21:08,650 - 00:21:12,130] Mais bon, je sais pas si t'as des questions. À plus, merci. Bye. Bye bye.
