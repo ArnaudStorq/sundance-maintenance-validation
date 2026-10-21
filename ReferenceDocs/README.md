@@ -96,6 +96,7 @@ set of independent documents:
 | [Manual runtime Data Layer cleanup](DevelopmentPlan-ManualRuntimeDataLayerCleanup.md) | hunting the hand-assigned runtime Data Layers (`DL_Overland` in Hogwarts) that split streaming cells — why the CL 2049874 warning misses them and why `-ReportOnly` is the detection path |
 | [World Events MCP toolsets](DevelopmentPlan-WorldEventsMCPToolset.md) | planning the exposition of the World Events system (Locators, Possible World Event Definitions, Conditions, deletion, runtime state) to AI agents through `ToolsetRegistry` / `ModelContextProtocol` |
 | [World Events MCP toolset demo script](Demo-WorldEventsMCPToolset.md) | presenting the World Events toolsets live in two minutes: a read-only, four-prompt run rehearsed on the Bell Tower house-elf event |
+| [Parallel processing for `WorldPartitionRuleBuilder`](DevelopmentPlan-ParallelWorldPartitionRuleBuilder.md) | the 10-hour nightly rule pass is the long pole: why the outliner-path split caps at 3-7x, what a *cell* and a *shard* are and why cells are interleaved rather than contiguous, why `GetLoadingMode()` stays `Custom`, the `-SplitWorld` / `-SplitWorldStartAt` parameters, and the TeamCity Matrix Build fan-out across the 13 compatible agents |
 
 ### Automation on TeamCity
 

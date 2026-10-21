@@ -305,6 +305,8 @@ last one is why the reports can attribute a skipped actor to the person holding 
 - [World Partition builders catalog](WorldPartitionBuildersCatalog.md) — every builder and
   its switches
 - [World Partition rules](WorldPartitionRules.md) — the rules the nightly pass applies
+- [Parallel processing for `WorldPartitionRuleBuilder`](DevelopmentPlan-ParallelWorldPartitionRuleBuilder.md)
+  — the proposal to split the 10-hour Apply run across several agents with a Matrix Build
 - [Validate World Partition Rules — `LV_Overland`, 2026-09-27](../Audits/ValidateWorldPartitionRules-LV_Overland-2026-09-27/README.md)
   — the audit tree of one validation build: the six warning families it reported, and what
   each one actually means
