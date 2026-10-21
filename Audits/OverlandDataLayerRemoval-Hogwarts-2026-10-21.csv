@@ -1,0 +1,160 @@
+OutlinerPath,Class,Status
+LI_Hogwarts > LI_EntranceHall_EXT > SM_HW_EH_DoorFrame_Arch_A_1,StaticMeshActor,Removed
+LI_Hogwarts > LI_EntranceHall_EXT > SM_HW_EH_DoorFrame_BaseColumn_A_1,StaticMeshActor,Removed
+LI_Hogwarts > LI_EntranceHall_EXT > SM_HW_EH_DoorFrame_BaseColumn_A_10,StaticMeshActor,Removed
+LI_Hogwarts > LI_EntranceHall_EXT > SM_WallMount_B,StaticMeshActor,Removed
+LI_Hogwarts > LI_EntranceHall_EXT > SM_WallMount_B2,StaticMeshActor,Removed
+LI_Hogwarts > LI_GryffindorTower_EXT > SM_HW_GT_CR_Entry_StainedGlass_A,StaticMeshActor,Removed
+LI_Hogwarts > LI_GryffindorTower_EXT > SM_HW_GT_CR_Entry_StainedGlass_A2,StaticMeshActor,Removed
+LI_Hogwarts > LI_GryffindorTower_EXT > SM_HW_GT_CR_Entry_StainedGlass_A3,StaticMeshActor,Removed
+LI_Hogwarts > LI_GryffindorTower_EXT > SM_HW_GT_CR_Entry_StainedGlass_A_Frame,StaticMeshActor,Removed
+LI_Hogwarts > LI_GryffindorTower_EXT > SM_HW_GT_CR_Entry_StainedGlass_A_Frame2,StaticMeshActor,Removed
+LI_Hogwarts > LI_GryffindorTower_EXT > SM_HW_GT_CR_Entry_StainedGlass_A_Frame3,StaticMeshActor,Removed
+LI_Hogwarts > LI_LibraryAirlocks_INT > LI_HW_Book_Stack_Small_C,LevelInstance,Removed
+LI_Hogwarts > LI_LibraryAirlocks_INT > SM_HW_Book_JournalOpen_A,StaticMeshActor,Removed
+LI_Hogwarts > LI_QuadHallBridge_EXT > SM_HW_EH_DoorFrame_Arch_A_2,StaticMeshActor,Removed
+LI_Hogwarts > LI_QuadHallBridge_EXT > SM_HW_EH_DoorFrame_Arch_A_3,StaticMeshActor,Removed
+LI_Hogwarts > LI_QuadHallBridge_EXT > SM_HW_EH_DoorFrame_Arch_A_4,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_EXT > SM_HW_VE_Window_A_Glass_17 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_EXT > SM_HW_VE_Window_A_Glass_31 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_EXT > SM_HW_VE_Window_A_Glass_32 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_EXT > SM_HW_VE_Window_A_Glass_33 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_EXT > SM_HW_VE_Window_A_Glass_34 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_EXT > SM_HW_VE_Window_A_Glass_35 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_EXT > SM_HW_VE_Window_A_Glass_36 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_EXT > SM_HW_VE_Window_A_Glass_37 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_EXT > SM_HW_VE_Window_A_Glass_38 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_EXT > SM_HW_VE_Window_A_Glass_39 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_EXT > SM_HW_VE_Window_A_Glass_40 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_EXT > SM_HW_VE_Window_A_Glass_41 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_EXT > SM_HW_VE_Window_A_Glass_43 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_EXT > SM_HW_VE_Window_A_Glass_44 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_EXT > SM_HW_VE_Window_A_Glass_45 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_EXT > SM_HW_VE_Window_A_Glass_46 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HM_Doorway_GenericSingle_D_1M3,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HM_Doorway_GenericSingle_D_1M4,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_BannerPole_Long,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_BannerPole_Long2,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_BannerPole_Long3,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_BannerPole_Long4,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_BannerPole_Long5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_BannerPole_Long6,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_PillarShort_10,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_PillarShort_9,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting53,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting54,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting55,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting56,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting57,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting58,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting59,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting62,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting63,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting64,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting69,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting74,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting75,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting76,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting77,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting78,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting79,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting80,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting81,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting82,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting83,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting84,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting85,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting86,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting87,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting88,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting89,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting90,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting91,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting92,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting93,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_CT_Wainscoting94,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_BalustradeStairsClosedBL_1,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_BalustradeStairsClosedBR_1,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_CeilingRaftersD_1,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_CeilingRaftersD_2,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_CeilingRaftersE_1,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_CeilingRaftersE_2,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_FloorCeiling_1Hx6Wx6D (HISMA)_3,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_FloorCeiling_1Hx6Wx6D (HISMA)_4,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_FloorCeiling_1Hx6Wx6D (HISMA)_5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_0,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_1,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_10,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_11,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_12,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_13,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_14,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_15,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_16,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_17,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_18,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_19,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_2,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_23,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_24,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_25,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_26,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_27,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_28,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_29,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_3,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_30,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_31,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_32,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_33,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_34,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_35,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_36,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_37,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_38,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_39,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_4,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_6,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_7,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_8,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Moulding_1Hx3W (HISMA)_9,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_PillarA_13H_1,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_PillarA_13H_2,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_PillarA_9H_1,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_PillarA_9H_2,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_PillarBaseCorner_15,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_PillarE_11H_1,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_PillarE_11H_3,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_PillarE_11H_5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_PillarE_11H_6,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_PillarE_7H_A,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_PillarE_7H_A2,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_PillarE_7H_A3,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_PillarE_7H_A4,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_StairSpiralLandingC_1,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_StairSpiralLandingC_2,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_StairSpiralLandingPillars_1,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_StairSpiralLandingPillars_2,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_TrimA_1,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_TrimA_2,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_TrimA_3,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_TrimA_4,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_TrimB_1,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_TrimB_2,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Window_A_Glass_1 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Window_A_Glass_10 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Window_A_Glass_11 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Window_A_Glass_12 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Window_A_Glass_13 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Window_A_Glass_14 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Window_A_Glass_16 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Window_A_Glass_18 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Window_A_Glass_2 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Window_A_Glass_3 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Window_A_Glass_4 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Window_A_Glass_5 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Window_A_Glass_6 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Window_A_Glass_7 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Window_A_Glass_8 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
+LI_Hogwarts > LI_ViaductEntrance_INT > SM_HW_VE_Window_A_Glass_9 > SM_HW_VE_Window_A_LeadingTile5,StaticMeshActor,Removed
