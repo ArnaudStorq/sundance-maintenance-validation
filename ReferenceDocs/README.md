@@ -86,6 +86,7 @@ set of independent documents:
 |-------|------------|
 | [Builders & commandlets](BuildersAndCommandlets.md) | the maintenance builders used on `LV_Overland`, with line-level code |
 | [World Partition builders catalog](WorldPartitionBuildersCatalog.md) | the full list of every engine + custom WP builder/commandlet and its switches |
+| [`-ReportOnly` vs `-ValidateOnly`](ReportOnlyVsValidateOnly.md) | you need the exact difference between the two read-only modes of `WorldPartitionRuleBuilder`: descriptor-only JSON report vs loading-and-exercising the apply path, and which one to run |
 | [Custom Tools](CustomTools.md) | in-editor console commands (e.g. `Editor.FixRuntimeGridReferenceErrors`) run interactively with the level open |
 
 ### Development plans
