@@ -1,0 +1,21 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='960' height='330' viewBox='0 0 960 330' font-family='Segoe UI, Helvetica, Arial, sans-serif'>
+<rect width='960' height='330' fill='white'/>
+<text x='20' y='28' font-size='18' font-weight='600' fill='#111'>Input vs output change, all layers (Oct 18 -&gt; Oct 22 builds)</text>
+<text x='20' y='48' font-size='12' fill='#555'>The builders receive +35% triangles, but the HLOD output geometry barely moves.</text>
+<line x1='300.0' x2='300.0' y1='64' y2='316' stroke='#9ca3af'/>
+<text x='290' y='91.0' font-size='13' text-anchor='end' fill='#111'>InputTriangleCount</text>
+<rect x='300.0' y='70' width='540.0' height='34' rx='3' fill='#dc2626'/>
+<text x='848.0' y='91.0' font-size='13' text-anchor='start' fill='#111' font-weight='600'>+35.0%</text>
+<text x='290' y='139.0' font-size='13' text-anchor='end' fill='#111'>MeshInstanceCount</text>
+<rect x='300.0' y='118' width='476.9' height='34' rx='3' fill='#f97316'/>
+<text x='784.9' y='139.0' font-size='13' text-anchor='start' fill='#111' font-weight='600'>+30.9%</text>
+<text x='290' y='187.0' font-size='13' text-anchor='end' fill='#111'>BuildTimeTotalMilliseconds</text>
+<rect x='300.0' y='166' width='139.3' height='34' rx='3' fill='#eab308'/>
+<text x='447.3' y='187.0' font-size='13' text-anchor='start' fill='#111' font-weight='600'>+9.0%</text>
+<text x='290' y='235.0' font-size='13' text-anchor='end' fill='#111'>MeshTriangleCount</text>
+<rect x='300.0' y='214' width='122.7' height='34' rx='3' fill='#2563eb'/>
+<text x='430.7' y='235.0' font-size='13' text-anchor='start' fill='#111' font-weight='600'>+8.0%</text>
+<text x='290' y='283.0' font-size='13' text-anchor='end' fill='#111'>MeshNaniteTriangleCount</text>
+<rect x='300.0' y='262' width='8.0' height='34' rx='3' fill='#16a34a'/>
+<text x='316.0' y='283.0' font-size='13' text-anchor='start' fill='#111' font-weight='600'>+0.5%</text>
+</svg>

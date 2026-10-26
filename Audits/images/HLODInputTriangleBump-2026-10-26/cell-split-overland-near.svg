@@ -1,0 +1,15 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='960' height='234' viewBox='0 0 960 234' font-family='Segoe UI, Helvetica, Arial, sans-serif'>
+<rect width='960' height='234' fill='white'/>
+<text x='20' y='28' font-size='18' font-weight='600' fill='#111'>Where the Overland_Near increase comes from (Oct 18 -&gt; Oct 22 builds)</text>
+<text x='20' y='48' font-size='12' fill='#555'>Net InputTriangleCount delta per group of HLOD cells. Most of it is in cells whose source actors did not change.</text>
+<line x1='391.1' x2='391.1' y1='64' y2='220' stroke='#9ca3af'/>
+<text x='290' y='91.0' font-size='13' text-anchor='end' fill='#111'>Cells with same actor count (1273)</text>
+<rect x='391.1' y='70' width='448.9' height='34' rx='3' fill='#dc2626'/>
+<text x='848.0' y='91.0' font-size='13' text-anchor='start' fill='#111' font-weight='600'>+5.83B</text>
+<text x='290' y='139.0' font-size='13' text-anchor='end' fill='#111'>Cells with actors added (85)</text>
+<rect x='391.1' y='118' width='209.3' height='34' rx='3' fill='#f97316'/>
+<text x='608.4' y='139.0' font-size='13' text-anchor='start' fill='#111' font-weight='600'>+2.72B</text>
+<text x='290' y='187.0' font-size='13' text-anchor='end' fill='#111'>Cells with actors removed (102)</text>
+<rect x='300.0' y='166' width='91.1' height='34' rx='3' fill='#16a34a'/>
+<text x='399.1' y='187.0' font-size='13' text-anchor='start' fill='#111' font-weight='600'>-1.18B</text>
+</svg>

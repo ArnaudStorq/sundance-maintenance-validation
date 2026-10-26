@@ -1,0 +1,67 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='960' height='420' viewBox='0 0 960 420' font-family='Segoe UI, Helvetica, Arial, sans-serif'>
+<rect width='960' height='420' fill='white'/>
+<text x='70' y='28' font-size='18' font-weight='600' fill='#111'>Overland HLOD mesh instances per build</text>
+<text x='70' y='48' font-size='12' fill='#555'>MeshInstanceCount. Grass ISM instances now reach the HLOD output.</text>
+<line x1='70' x2='940' y1='350.0' y2='350.0' stroke='#e5e7eb'/>
+<text x='62' y='354.0' font-size='11' text-anchor='end' fill='#555'>0K</text>
+<line x1='70' x2='940' y1='294.0' y2='294.0' stroke='#e5e7eb'/>
+<text x='62' y='298.0' font-size='11' text-anchor='end' fill='#555'>200K</text>
+<line x1='70' x2='940' y1='238.0' y2='238.0' stroke='#e5e7eb'/>
+<text x='62' y='242.0' font-size='11' text-anchor='end' fill='#555'>400K</text>
+<line x1='70' x2='940' y1='182.0' y2='182.0' stroke='#e5e7eb'/>
+<text x='62' y='186.0' font-size='11' text-anchor='end' fill='#555'>600K</text>
+<line x1='70' x2='940' y1='126.0' y2='126.0' stroke='#e5e7eb'/>
+<text x='62' y='130.0' font-size='11' text-anchor='end' fill='#555'>800K</text>
+<line x1='70' x2='940' y1='70.0' y2='70.0' stroke='#e5e7eb'/>
+<text x='62' y='74.0' font-size='11' text-anchor='end' fill='#555'>1000K</text>
+<text x='70.0' y='366' font-size='10' text-anchor='end' fill='#555' transform='rotate(-35 70.0 366)'>09-27</text>
+<text x='194.3' y='366' font-size='10' text-anchor='end' fill='#555' transform='rotate(-35 194.3 366)'>09-30</text>
+<text x='318.6' y='366' font-size='10' text-anchor='end' fill='#555' transform='rotate(-35 318.6 366)'>10-04</text>
+<text x='442.9' y='366' font-size='10' text-anchor='end' fill='#555' transform='rotate(-35 442.9 366)'>10-07</text>
+<text x='567.1' y='366' font-size='10' text-anchor='end' fill='#555' transform='rotate(-35 567.1 366)'>10-09</text>
+<text x='691.4' y='366' font-size='10' text-anchor='end' fill='#555' transform='rotate(-35 691.4 366)'>10-18</text>
+<text x='815.7' y='366' font-size='10' text-anchor='end' fill='#555' transform='rotate(-35 815.7 366)'>10-23</text>
+<text x='940.0' y='366' font-size='10' text-anchor='end' fill='#555' transform='rotate(-35 940.0 366)'>10-25</text>
+<line x1='660.4' x2='660.4' y1='70' y2='350' stroke='#b45309' stroke-dasharray='5,4' stroke-width='1.5'/>
+<text x='655.4' y='308' font-size='11' text-anchor='end' fill='#b45309' font-weight='600'>SK-&gt;SM grass CL 2132784</text>
+<line x1='722.5' x2='722.5' y1='70' y2='350' stroke='#7c3aed' stroke-dasharray='5,4' stroke-width='1.5'/>
+<text x='717.5' y='324' font-size='11' text-anchor='end' fill='#7c3aed' font-weight='600'>PCG Force Regen Oct 18-20</text>
+<line x1='784.6' x2='784.6' y1='70' y2='350' stroke='#0f766e' stroke-dasharray='5,4' stroke-width='1.5'/>
+<text x='779.6' y='340' font-size='11' text-anchor='end' fill='#0f766e' font-weight='600'>Rules CL 2148816</text>
+<polyline points='70.0,183.4 132.1,196.1 194.3,195.0 256.4,188.7 318.6,187.6 380.7,187.2 442.9,186.7 505.0,186.0 567.1,185.8 629.3,186.6 691.4,185.6 753.6,134.1 815.7,134.0 877.9,134.1 940.0,130.2' fill='none' stroke='#2563eb' stroke-width='2.5'/>
+<circle cx='70.0' cy='183.4' r='2.5' fill='#2563eb'/>
+<circle cx='132.1' cy='196.1' r='2.5' fill='#2563eb'/>
+<circle cx='194.3' cy='195.0' r='2.5' fill='#2563eb'/>
+<circle cx='256.4' cy='188.7' r='2.5' fill='#2563eb'/>
+<circle cx='318.6' cy='187.6' r='2.5' fill='#2563eb'/>
+<circle cx='380.7' cy='187.2' r='2.5' fill='#2563eb'/>
+<circle cx='442.9' cy='186.7' r='2.5' fill='#2563eb'/>
+<circle cx='505.0' cy='186.0' r='2.5' fill='#2563eb'/>
+<circle cx='567.1' cy='185.8' r='2.5' fill='#2563eb'/>
+<circle cx='629.3' cy='186.6' r='2.5' fill='#2563eb'/>
+<circle cx='691.4' cy='185.6' r='2.5' fill='#2563eb'/>
+<circle cx='753.6' cy='134.1' r='2.5' fill='#2563eb'/>
+<circle cx='815.7' cy='134.0' r='2.5' fill='#2563eb'/>
+<circle cx='877.9' cy='134.1' r='2.5' fill='#2563eb'/>
+<circle cx='940.0' cy='130.2' r='2.5' fill='#2563eb'/>
+<rect x='80' y='56' width='14' height='4' fill='#2563eb'/>
+<text x='100' y='61' font-size='12' fill='#111'>Overland_HLODLayer_Near</text>
+<polyline points='70.0,186.6 132.1,196.2 194.3,196.1 256.4,189.0 318.6,188.3 380.7,187.7 442.9,187.5 505.0,186.6 567.1,186.5 629.3,187.3 691.4,186.1 753.6,134.9 815.7,134.8 877.9,134.9 940.0,133.0' fill='none' stroke='#16a34a' stroke-width='2.5'/>
+<circle cx='70.0' cy='186.6' r='2.5' fill='#16a34a'/>
+<circle cx='132.1' cy='196.2' r='2.5' fill='#16a34a'/>
+<circle cx='194.3' cy='196.1' r='2.5' fill='#16a34a'/>
+<circle cx='256.4' cy='189.0' r='2.5' fill='#16a34a'/>
+<circle cx='318.6' cy='188.3' r='2.5' fill='#16a34a'/>
+<circle cx='380.7' cy='187.7' r='2.5' fill='#16a34a'/>
+<circle cx='442.9' cy='187.5' r='2.5' fill='#16a34a'/>
+<circle cx='505.0' cy='186.6' r='2.5' fill='#16a34a'/>
+<circle cx='567.1' cy='186.5' r='2.5' fill='#16a34a'/>
+<circle cx='629.3' cy='187.3' r='2.5' fill='#16a34a'/>
+<circle cx='691.4' cy='186.1' r='2.5' fill='#16a34a'/>
+<circle cx='753.6' cy='134.9' r='2.5' fill='#16a34a'/>
+<circle cx='815.7' cy='134.8' r='2.5' fill='#16a34a'/>
+<circle cx='877.9' cy='134.9' r='2.5' fill='#16a34a'/>
+<circle cx='940.0' cy='133.0' r='2.5' fill='#16a34a'/>
+<rect x='290' y='56' width='14' height='4' fill='#16a34a'/>
+<text x='310' y='61' font-size='12' fill='#111'>Overland_HLODLayer_Far</text>
+</svg>
