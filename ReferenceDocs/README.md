@@ -103,6 +103,7 @@ set of independent documents:
 | Topic | Read when… |
 |-------|------------|
 | [TeamCity jobs](TeamCityJobs.md) | you need the two build farm jobs — [Apply World Partition Rules](https://slc-teamcity.wbiegames.com/buildConfiguration/Sundance_Dev_Tools_ApplyWorldPartitionRules#all-projects) and [Generate HLODs (distributed)](https://slc-teamcity.wbiegames.com/buildConfiguration/Sundance_Dev_Tools_HLODs_Distributed_GenerateHLODs#all-projects) — their parameters, their nightly schedule, and where their logs and reports land |
+| [Apply World Partition Rules - TeamCity parameters](ApplyWorldPartitionRules-TeamCityParameters.md) | you are filling in the `wp-rules.*` parameters of a rule pass: what `currentMap`, `contain_outliner_path_substrings`, `discard_outliner_path_substrings`, `actor_class_names` and `label` do, how they match (comma-separated, case-insensitive substrings, discard wins), and why `actor_class_names` takes `LevelInstance` rather than a class path |
 
 ### Organization, source control & tooling
 

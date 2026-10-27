@@ -98,6 +98,11 @@ The TeamCity parameters map one-to-one onto the builder switches
 The target world (`LV_Overland`, `LI_Hogwarts`, `LI_Hogsmeade`, …) is the commandlet's
 positional argument, exposed as its own TeamCity parameter.
 
+The TeamCity-side names (`wp-rules.currentMap`, `wp-rules.contain_outliner_path_substrings`,
+`wp-rules.discard_outliner_path_substrings`, `wp-rules.actor_class_names`, `wp-rules.label`),
+their exact matching rules and worked examples are in
+[Apply World Partition Rules - TeamCity parameters](ApplyWorldPartitionRules-TeamCityParameters.md).
+
 Scoping is how the nightly load is split: one build per content area, with the Outliner
 substrings doing the partitioning. Because the builder still has to **open every Level
 Instance** to inspect its actors, class and path filters cut the *processing* time, not
