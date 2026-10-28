@@ -1,0 +1,7 @@
+[
+ {"toolset": "WorldBuildingEditor.HLODPartitionConfigToolset", "tool": "WorldBuildingEditor.HLODPartitionConfigToolset.GetHLODPartitionSetupAsMarkdown", "args": {}},
+ {"toolset": "WorldBuildingEditor.HLODPartitionConfigToolset", "tool": "WorldBuildingEditor.HLODPartitionConfigToolset.AuditHLODPartitionSetup", "args": {}},
+ {"toolset": "WorldBuildingEditor.WorldPartitionRuleAuditToolset", "tool": "WorldBuildingEditor.WorldPartitionRuleAuditToolset.ExplainActorAssignment", "args": {"actorNameOrPath": "LI_QuidditchPitch", "ruleType": "HLODLayer"}},
+ {"toolset": "WorldBuildingEditor.WorldPartitionRuleAuditToolset", "tool": "WorldBuildingEditor.WorldPartitionRuleAuditToolset.GetActorRuleFacts", "args": {"actorNameOrPath": "LI_QuidditchPitch"}},
+ {"toolset": "WorldBuildingEditor.HLODStatsToolset", "tool": "WorldBuildingEditor.HLODStatsToolset.CompareHLODLayers", "args": {"hLODLayerNamesOrPaths": ["HW_Near", "HW_Mid", "HW_Far"]}}
+]
