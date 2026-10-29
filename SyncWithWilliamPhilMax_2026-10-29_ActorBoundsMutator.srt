@@ -1,0 +1,7556 @@
+1
+00:00:00,000 --> 00:00:04,000
+On comprend bien et on voit bien les mêmes affaires.
+
+2
+00:00:04,000 --> 00:00:05,000
+D'accord.
+
+3
+00:00:05,000 --> 00:00:06,000
+D'accord.
+
+4
+00:00:06,000 --> 00:00:08,000
+Hum, ok.
+
+5
+00:00:08,000 --> 00:00:14,000
+Fait que là je suis dans le level de base, j'ai mis deux level instants qui utilisent le même level source.
+
+6
+00:00:14,000 --> 00:00:16,000
+Fait que ça, le concept ça va.
+
+7
+00:00:16,000 --> 00:00:18,000
+Fait que si j'ai un...
+
+8
+00:00:18,000 --> 00:00:20,000
+J'ai ce level-là, ce level-là...
+
+9
+00:00:20,000 --> 00:00:24,000
+J'ai quelqu'un qui a pété quelque chose quelque part, puis...
+
+10
+00:00:24,000 --> 00:00:25,000
+Quoi?
+
+11
+00:00:25,000 --> 00:00:26,000
+Ça sera pas long.
+
+12
+00:00:26,000 --> 00:00:27,000
+Ok, ok.
+
+13
+00:00:27,000 --> 00:00:30,000
+Faut juste que je dise oui à un...
+
+14
+00:00:30,000 --> 00:00:32,000
+...review ou être là.
+
+15
+00:00:32,000 --> 00:00:37,350
+Est-ce qu'il y a quelqu'un...
+
+16
+00:00:37,350 --> 00:00:41,350
+Les PS5 qui aient pété bord en bord partout.
+
+17
+00:00:41,350 --> 00:00:43,350
+Ok.
+
+18
+00:00:43,350 --> 00:00:44,350
+D'accord.
+
+19
+00:00:44,350 --> 00:00:45,350
+Excuse-moi, dis...
+
+20
+00:00:45,350 --> 00:00:46,350
+C'est bon, on est...
+
+21
+00:00:46,350 --> 00:00:47,350
+Je suis revenu, je suis revenu.
+
+22
+00:00:47,350 --> 00:00:49,350
+D'accord, moi aussi j'ai fait ça.
+
+23
+00:00:49,350 --> 00:00:50,350
+Parfait.
+
+24
+00:00:50,350 --> 00:00:54,350
+Fait que, dans ma scène, on a deux level instants qui utilisent le même level.
+
+25
+00:00:54,350 --> 00:00:59,350
+Donc, en principe, on a les mêmes acteurs qui se trouvent à l'intérieur.
+
+26
+00:00:59,350 --> 00:01:00,350
+Ouais.
+
+27
+00:01:00,350 --> 00:01:01,350
+Ok.
+
+28
+00:01:01,350 --> 00:01:02,350
+Et...
+
+29
+00:01:02,350 --> 00:01:07,350
+Un d'entre eux a les transforms de base, c'est-à-dire la location, whatever.
+
+30
+00:01:07,350 --> 00:01:10,350
+Clairement, il y en a un qui est pas dans la même orientation que l'autre.
+
+31
+00:01:10,350 --> 00:01:11,350
+Exact.
+
+32
+00:01:11,350 --> 00:01:13,350
+Puis là, lui, c'est la même chose, mais 70 degrés sur le côté.
+
+33
+00:01:13,350 --> 00:01:16,350
+Fait que là, ce qu'on veut regarder, ce qui est pertinent, dans le fond,
+
+34
+00:01:16,350 --> 00:01:20,350
+moi je regarde surtout le mesh de central mount, qui est comme la pièce qui est comme faite en long.
+
+35
+00:01:20,350 --> 00:01:23,350
+On regarde son bound, puis là, c'est vraiment dégueulasse.
+
+36
+00:01:23,350 --> 00:01:25,350
+Quand tu highlights, tu vois quasiment rien, mais...
+
+37
+00:01:25,350 --> 00:01:27,350
+235, 117...
+
+38
+00:01:28,350 --> 00:01:29,350
+80...
+
+39
+00:01:29,350 --> 00:01:30,350
+47.
+
+40
+00:01:30,350 --> 00:01:32,350
+C'est-à-dire que là, c'est les bounds, les runtime bounds.
+
+41
+00:01:32,350 --> 00:01:34,350
+Cette colonne-là, c'est nous qui l'avons ajoutée.
+
+42
+00:01:34,350 --> 00:01:35,350
+Fait que...
+
+43
+00:01:35,350 --> 00:01:37,350
+On va prendre avec un grain de sel si c'est accurate.
+
+44
+00:01:37,350 --> 00:01:40,350
+Mais ce que j'aimerais pointer, c'est surtout...
+
+45
+00:01:40,350 --> 00:01:43,350
+Le data qu'on pour d'ici, normalement, elle vient du actor descriptor.
+
+46
+00:01:43,350 --> 00:01:44,350
+Ah ouais.
+
+47
+00:01:44,350 --> 00:01:45,350
+De l'acteur.
+
+48
+00:01:45,350 --> 00:01:46,350
+Ah ouais.
+
+49
+00:01:46,350 --> 00:01:49,350
+Viens comparer ça avec celui-là.
+
+50
+00:01:49,350 --> 00:01:51,350
+Puis le bound est pas pareil.
+
+51
+00:01:51,350 --> 00:01:54,350
+190, 260 et 47.
+
+52
+00:01:54,350 --> 00:01:57,350
+Fait qu'il y a la même hauteur, mais il y a pas la même XY parce que l'orientation est pas pareille.
+
+53
+00:01:57,350 --> 00:01:58,350
+Ouais.
+
+54
+00:01:58,350 --> 00:02:00,350
+Parce que moi, je me suis dit...
+
+55
+00:02:00,350 --> 00:02:01,350
+C'est...
+
+56
+00:02:01,350 --> 00:02:02,350
+Coudonc.
+
+57
+00:02:02,350 --> 00:02:05,350
+Nous autres, on a des règles de runtime pis de HLOD...
+
+58
+00:02:05,350 --> 00:02:06,350
+Player.
+
+59
+00:02:06,350 --> 00:02:07,350
+Runtime Grid, pardon.
+
+60
+00:02:07,350 --> 00:02:10,350
+Qui viennent assigner nos affaires en se basant sur ça.
+
+61
+00:02:10,350 --> 00:02:13,350
+Pis ça fait que, par exemple, dans un threshold où est-ce que...
+
+62
+00:02:13,350 --> 00:02:15,350
+On est à...
+
+63
+00:02:15,350 --> 00:02:16,350
+Disons 200.
+
+64
+00:02:16,350 --> 00:02:17,350
+Ben...
+
+65
+00:02:17,350 --> 00:02:18,350
+Attends.
+
+66
+00:02:18,350 --> 00:02:19,350
+Je vais revenir à mon affaire, là.
+
+67
+00:02:19,350 --> 00:02:20,350
+Ouais, je comprends.
+
+68
+00:02:20,350 --> 00:02:21,350
+Tu dis...
+
+69
+00:02:21,350 --> 00:02:22,350
+Tout ce qui est dans une boîte de 200...
+
+70
+00:02:22,350 --> 00:02:23,350
+Ouais.
+
+71
+00:02:23,350 --> 00:02:25,350
+De moins de 200, tu le débarques.
+
+72
+00:02:25,350 --> 00:02:26,350
+Exact.
+
+73
+00:02:26,350 --> 00:02:27,350
+Fait que là, ben...
+
+74
+00:02:27,350 --> 00:02:28,350
+Tu le débarques.
+
+75
+00:02:28,350 --> 00:02:29,350
+Dans l'autre cas, on le débarque pas.
+
+76
+00:02:29,350 --> 00:02:31,350
+Tu sais que là, ici, c'est 235, le plus gros...
+
+77
+00:02:31,350 --> 00:02:32,350
+Plus gros side.
+
+78
+00:02:32,350 --> 00:02:34,350
+Pis lui, ici, ça devient 260.
+
+79
+00:02:34,350 --> 00:02:35,350
+Disons qu'on a mis 250.
+
+80
+00:02:35,350 --> 00:02:36,350
+Hum hum.
+
+81
+00:02:36,350 --> 00:02:37,350
+Dans ce cas-là, lui, il est inclus.
+
+82
+00:02:37,350 --> 00:02:38,350
+Dans l'autre cas, l'autre, il l'est pas.
+
+83
+00:02:38,350 --> 00:02:39,350
+Ouais, ouais.
+
+84
+00:02:39,350 --> 00:02:40,350
+Fait que...
+
+85
+00:02:40,350 --> 00:02:41,350
+Là, le problème, c'est que...
+
+86
+00:02:41,350 --> 00:02:42,350
+Moi, je me dis...
+
+87
+00:02:42,350 --> 00:02:43,350
+Ben, tabarouette.
+
+88
+00:02:43,350 --> 00:02:50,350
+C'est nice d'avoir une histoire du footprint de ton acteur pour assigner à une cell de
+
+89
+00:02:50,350 --> 00:02:56,350
+la Grid ou une cell du HLOD Layer, mais quand t'arrives pour assigner dans quel Layer, ça
+
+90
+00:02:56,350 --> 00:02:58,350
+serait le fun qu'on compare les pommes avec les pommes.
+
+91
+00:02:58,350 --> 00:02:59,350
+Bon, ouais.
+
+92
+00:02:59,350 --> 00:03:01,350
+Fait que là, ce qui devient comme...
+
+93
+00:03:01,350 --> 00:03:02,350
+Je te comprends.
+
+94
+00:03:02,350 --> 00:03:06,350
+De toute façon, là, tu sais, je veux dire, littéralement, tu pourrais dire, si tu déplaces
+
+95
+00:03:06,350 --> 00:03:10,350
+l'orientation de même, tout d'un coup, t'as plus le même visuel, ça se fait pas de
+
+96
+00:03:10,350 --> 00:03:11,350
+sens.
+
+97
+00:03:11,350 --> 00:03:12,350
+Ben, c'est ça.
+
+98
+00:03:12,350 --> 00:03:13,350
+C'est ça.
+
+99
+00:03:13,350 --> 00:03:18,350
+Pis là, quand je reviens ici, là, je t'ai pas laissé comme le plaisir de faire le AB,
+
+100
+00:03:18,350 --> 00:03:19,350
+mais comme...
+
+101
+00:03:19,350 --> 00:03:23,350
+Quand je fais mon edit, normalement, je vois l'acteur dans le Level Instance, pis lui,
+
+102
+00:03:23,350 --> 00:03:24,350
+encore une fois, son transform...
+
+103
+00:03:24,350 --> 00:03:25,350
+Yé...
+
+104
+00:03:25,350 --> 00:03:26,350
+Son...
+
+105
+00:03:26,350 --> 00:03:30,350
+Son Actor Bound, pardon, il tient compte du transform de l'acteur, de sa rotation aussi.
+
+106
+00:03:30,350 --> 00:03:31,350
+Yé.
+
+107
+00:03:31,350 --> 00:03:34,350
+Pis, dans l'autre cas, il le fait pas.
+
+108
+00:03:34,350 --> 00:03:36,350
+Pis là, mais moi, ce que...
+
+109
+00:03:36,350 --> 00:03:37,350
+Pis là, y'a un autre...
+
+110
+00:03:37,350 --> 00:03:38,350
+Euh...
+
+111
+00:03:38,350 --> 00:03:39,350
+Non, excuse, dans l'autre cas, il le fait aussi.
+
+112
+00:03:39,350 --> 00:03:40,350
+Pardon.
+
+113
+00:03:40,350 --> 00:03:42,350
+Ah, il le fait aussi, mais c'est juste que le transform, il est Identity, fait que c'est
+
+114
+00:03:42,350 --> 00:03:43,350
+en sac, c'est ça?
+
+115
+00:03:43,350 --> 00:03:44,350
+C'est ça.
+
+116
+00:03:44,350 --> 00:03:47,350
+Fait que là, ben là, lui aussi, son transform est pas pareil, mais comment ça se fait que
+
+117
+00:03:47,350 --> 00:03:53,350
+lorsque j'ai l'acteur en mode Edit, j'ai pas le même transform dans les deux, tu sais?
+
+118
+00:03:53,350 --> 00:03:54,350
+Fait qu'il se base vraiment sur...
+
+119
+00:03:55,350 --> 00:03:58,350
+L'acteur transformé par rapport au Level Instance.
+
+120
+00:03:58,350 --> 00:04:00,350
+C'est-à-dire, son transform, il change tout le temps.
+
+121
+00:04:00,350 --> 00:04:04,350
+Son Actor de Sculpture, il peut pas dire une seule valeur, c'est chez trois instances.
+
+122
+00:04:04,350 --> 00:04:06,350
+Là, dans ce cas-là, j'en ai deux, excuse.
+
+123
+00:04:06,350 --> 00:04:09,350
+Y'en a pas un qui est le même Actor de Sculpture, finalement, là.
+
+124
+00:04:09,350 --> 00:04:11,350
+Moi, c'est qui qui est le vrai Actor de Sculpture?
+
+125
+00:04:11,350 --> 00:04:13,350
+Si t'avais rotaté ton Level Instance, tu sais...
+
+126
+00:04:13,350 --> 00:04:14,350
+Non, mais...
+
+127
+00:04:14,350 --> 00:04:15,350
+Tu sais...
+
+128
+00:04:15,350 --> 00:04:16,350
+Je sais...
+
+129
+00:04:16,350 --> 00:04:19,350
+Là, comme tu dis, c'est toi qui as ajouté le Runtime Bound, ça, fait que ça, je sais
+
+130
+00:04:19,350 --> 00:04:20,350
+pas tout ce qu'il y a.
+
+131
+00:04:20,350 --> 00:04:21,350
+Ouais.
+
+132
+00:04:21,350 --> 00:04:22,350
+Peut-être qu'on le pull pas de la bonne valeur, ouais.
+
+133
+00:04:22,350 --> 00:04:23,350
+Ouais.
+
+134
+00:04:23,350 --> 00:04:24,350
+Mais...
+
+135
+00:04:24,350 --> 00:04:26,350
+Mais là, le but, dans le fond...
+
+136
+00:04:26,350 --> 00:04:28,350
+La question, en fait, c'est...
+
+137
+00:04:28,350 --> 00:04:30,350
+Nous, dans notre histoire de...
+
+138
+00:04:30,350 --> 00:04:31,350
+Euh...
+
+139
+00:04:31,350 --> 00:04:35,350
+Ben, clairement, faudrait que vous ayez un moyen qui soit plus...
+
+140
+00:04:35,350 --> 00:04:38,350
+Plus agnostique, là.
+
+141
+00:04:38,350 --> 00:04:39,350
+Ouais.
+
+142
+00:04:39,350 --> 00:04:41,350
+Mais, faut quand même tenir compte...
+
+143
+00:04:41,350 --> 00:04:43,350
+Faut quand même tenir compte du...
+
+144
+00:04:43,350 --> 00:04:45,350
+Ah, tu veux dire un autre genre...
+
+145
+00:04:45,350 --> 00:04:48,350
+Genre de Rule qui se tient pas compte du Bound?
+
+146
+00:04:48,350 --> 00:04:49,350
+De la Terre?
+
+147
+00:04:49,350 --> 00:04:50,350
+Non, non, mais...
+
+148
+00:04:50,350 --> 00:04:51,350
+Non, mais...
+
+149
+00:04:51,350 --> 00:04:53,350
+Parce qu'on s'entend que, là, un AABB...
+
+150
+00:04:53,350 --> 00:04:55,350
+C'est quoi un AABB, by the way?
+
+151
+00:04:55,350 --> 00:04:56,350
+C'est juste...
+
+152
+00:04:56,350 --> 00:04:57,350
+C'est genre le coin 1, coin 2, pis...
+
+153
+00:04:57,350 --> 00:04:58,350
+Access Aligned.
+
+154
+00:04:58,350 --> 00:04:59,350
+Access Aligned.
+
+155
+00:04:59,350 --> 00:05:00,350
+Access Aligned.
+
+156
+00:05:00,350 --> 00:05:01,350
+Sur les axes.
+
+157
+00:05:01,350 --> 00:05:02,350
+OK.
+
+158
+00:05:02,350 --> 00:05:04,350
+Fait que c'est exactement ce qu'on a ici, là.
+
+159
+00:05:04,350 --> 00:05:05,350
+Ouais, ouais.
+
+160
+00:05:05,350 --> 00:05:07,350
+Fait que c'est aligné sur le XY, là.
+
+161
+00:05:07,350 --> 00:05:09,350
+Genre, c'est aligné sur une coro, là.
+
+162
+00:05:09,350 --> 00:05:10,350
+C'est ça.
+
+163
+00:05:10,350 --> 00:05:11,350
+De même.
+
+164
+00:05:11,350 --> 00:05:12,350
+Pis là, lui, il est aligné de même.
+
+165
+00:05:12,350 --> 00:05:13,350
+Ouais.
+
+166
+00:05:13,350 --> 00:05:14,350
+Il y a d'autres options, là.
+
+167
+00:05:14,350 --> 00:05:15,350
+Tu peux faire un Oriented Bounded Box.
+
+168
+00:05:15,350 --> 00:05:16,350
+Ce qui fait que c'est un Bounded Box, mais que tu peux tourner.
+
+169
+00:05:16,350 --> 00:05:17,350
+Ouais.
+
+170
+00:05:17,350 --> 00:05:18,350
+Ouais.
+
+171
+00:05:18,350 --> 00:05:19,350
+Ouais.
+
+172
+00:05:19,350 --> 00:05:20,350
+Ouais.
+
+173
+00:05:20,350 --> 00:05:21,350
+Ouais.
+
+174
+00:05:21,350 --> 00:05:22,350
+Ouais.
+
+175
+00:05:22,350 --> 00:05:23,350
+Ouais.
+
+176
+00:05:23,350 --> 00:05:24,350
+Faut pas tourner.
+
+177
+00:05:24,350 --> 00:05:25,350
+Mais...
+
+178
+00:05:25,350 --> 00:05:27,350
+Dans ton cas, je pense que ça s'y aurait plus facile que ça, genre.
+
+179
+00:05:27,350 --> 00:05:28,350
+OK.
+
+180
+00:05:28,350 --> 00:05:33,350
+Tu pourrais carrément juste prendre le pivot pis faire du faire autour, pis that's it.
+
+181
+00:05:33,350 --> 00:05:34,350
+Done.
+
+182
+00:05:34,350 --> 00:05:35,350
+Son radius.
+
+183
+00:05:35,350 --> 00:05:38,070
+Ben, en fait, le radius, dans le fond, ça tombe le point le plus loin.
+
+184
+00:05:38,070 --> 00:05:39,070
+Ouais.
+
+185
+00:05:39,070 --> 00:05:42,350
+Pis peu importe son orientation, il y aurait le radius.
+
+186
+00:05:42,350 --> 00:05:43,350
+Hum hum.
+
+187
+00:05:43,350 --> 00:05:44,350
+Pis là, euh...
+
+188
+00:05:44,350 --> 00:05:47,550
+Qu'est-ce que tu fais, Deka, où est-ce que ce Level Instance-là, il est scalé deux
+
+189
+00:05:47,550 --> 00:05:48,550
+fois?
+
+190
+00:05:48,550 --> 00:05:49,550
+Hein?
+
+191
+00:05:49,550 --> 00:05:50,550
+Dans le fond, moi...
+
+192
+00:05:50,550 --> 00:05:51,550
+La façon que je le vois, c'est que je pars...
+
+193
+00:05:51,550 --> 00:05:52,050
+Ouais.
+
+194
+00:05:52,050 --> 00:05:54,050
+La façon que je le vois, c'est que je pars cet Instance-là, pis que je viens ici,
+
+195
+00:05:54,050 --> 00:05:55,050
+pis je fais...
+
+196
+00:05:55,050 --> 00:05:56,050
+Je vais aller bloquer les axes.
+
+197
+00:05:56,050 --> 00:05:57,050
+On va faire trois.
+
+198
+00:05:57,050 --> 00:05:58,050
+Fait que là, j'ai lui.
+
+199
+00:05:58,050 --> 00:05:59,050
+Ouais.
+
+200
+00:05:59,050 --> 00:06:00,050
+Fait que lui, je le veux pas nécessairement dans le même HLOD.
+
+201
+00:06:00,050 --> 00:06:01,050
+Non, mais juste après ça...
+
+202
+00:06:01,050 --> 00:06:02,050
+Dans le même HLOD.
+
+203
+00:06:02,050 --> 00:06:03,050
+Juste après ça, quand tu l'as...
+
+204
+00:06:03,050 --> 00:06:04,050
+Quand ton scale est changé, ton...
+
+205
+00:06:04,050 --> 00:06:05,050
+Ton...
+
+206
+00:06:05,050 --> 00:06:06,050
+Toute ta taille, aussi, va avoir changé, là.
+
+207
+00:06:06,050 --> 00:06:07,050
+OK.
+
+208
+00:06:07,050 --> 00:06:08,050
+Hum hum.
+
+209
+00:06:08,050 --> 00:06:09,050
+Fait que ça, ça...
+
+210
+00:06:09,050 --> 00:06:10,050
+Je pense que ça va se faire automatique, après.
+
+211
+00:06:10,050 --> 00:06:11,050
+Faut juste...
+
+212
+00:06:11,050 --> 00:06:12,050
+Dans le fond, faut juste trouver le bon mécanisme pour qu'il...
+
+213
+00:06:12,050 --> 00:06:13,050
+Faut juste...
+
+214
+00:06:13,050 --> 00:06:14,050
+Faut juste...
+
+215
+00:06:14,050 --> 00:06:23,450
+Dans le fond, faut juste trouver le bon mécanisme pour calculer c'est quoi la taille, pour
+
+216
+00:06:23,450 --> 00:06:27,550
+que ça soit de quoi d'agnostique, pis qu'il soit pas influencé par la rotation.
+
+217
+00:06:27,550 --> 00:06:30,550
+Donc, grosso modo, toi, tu dis...
+
+218
+00:06:30,550 --> 00:06:35,550
+Pas de boxe, utiliser une sphère, plutôt, puisque la sphère, de toute façon...
+
+219
+00:06:35,550 --> 00:06:36,550
+Peu importe l'orientation.
+
+220
+00:06:36,550 --> 00:06:37,550
+Sauf que ça...
+
+221
+00:06:37,550 --> 00:06:38,550
+Ça...
+
+222
+00:06:38,550 --> 00:06:39,550
+C'est pas vrai...
+
+223
+00:06:39,550 --> 00:06:41,550
+Si ton scale, il est pas uniforme, là.
+
+224
+00:06:41,550 --> 00:06:42,550
+Si t'as un axe...
+
+225
+00:06:42,550 --> 00:06:43,550
+C'est ça.
+
+226
+00:06:43,550 --> 00:06:44,550
+Y est beaucoup plus gros.
+
+227
+00:06:44,550 --> 00:06:45,550
+Non, je comprends, mais c'est juste...
+
+228
+00:06:45,550 --> 00:06:46,550
+Je comprends, là, mais je dirais...
+
+229
+00:06:46,550 --> 00:06:47,550
+En 2 levels instance, ta sphère...
+
+230
+00:06:47,550 --> 00:06:48,550
+Non, mais ta sphère...
+
+231
+00:06:48,550 --> 00:06:49,550
+A pu changer.
+
+232
+00:06:49,550 --> 00:06:50,550
+C'est ça.
+
+233
+00:06:50,550 --> 00:06:51,550
+Non, mais ton scale, qu'il soit uniforme ou pas, on s'en tabarnouche.
+
+234
+00:06:51,550 --> 00:06:52,550
+Ouais.
+
+235
+00:06:52,550 --> 00:06:53,550
+Parce que, dans le fond, la sphère...
+
+236
+00:06:53,550 --> 00:06:54,550
+La sphère, son radius, a d'être le plus...
+
+237
+00:06:54,550 --> 00:06:55,550
+Le plus loin.
+
+238
+00:06:55,550 --> 00:06:56,550
+Fait que, mettons, là, t'as...
+
+239
+00:06:56,550 --> 00:06:57,550
+Ouais, j'comprends pas.
+
+240
+00:06:57,550 --> 00:06:58,550
+T'as un objet qui est à...
+
+241
+00:06:58,550 --> 00:06:59,550
+À 3.
+
+242
+00:06:59,550 --> 00:07:00,550
+Mais ton radius va d'être de 3 à plus...
+
+243
+00:07:00,550 --> 00:07:01,550
+Ouais.
+
+244
+00:07:01,550 --> 00:07:02,550
+Ouais.
+
+245
+00:07:02,550 --> 00:07:03,550
+Ouais.
+
+246
+00:07:03,550 --> 00:07:04,550
+Ouais.
+
+247
+00:07:04,550 --> 00:07:05,550
+Ouais.
+
+248
+00:07:05,550 --> 00:07:06,550
+Ouais.
+
+249
+00:07:06,550 --> 00:07:07,550
+Ouais.
+
+250
+00:07:07,550 --> 00:07:14,430
+T'as un objet qui est à 3 mais ton radius va d'être de 3 à plus le petit bout de
+
+251
+00:07:14,430 --> 00:07:15,430
+l'objet.
+
+252
+00:07:15,430 --> 00:07:21,090
+Mais là, si tu décides que tu scales, ben, ça va d'être de 3 fois le scaling, pis...
+
+253
+00:07:21,090 --> 00:07:22,090
+Ouais.
+
+254
+00:07:22,090 --> 00:07:23,090
+Ouais.
+
+255
+00:07:23,090 --> 00:07:24,090
+Ouais.
+
+256
+00:07:24,090 --> 00:07:25,090
+OK.
+
+257
+00:07:25,090 --> 00:07:26,090
+Fait que 3 fois le maximum du scale.
+
+258
+00:07:26,090 --> 00:07:27,090
+Ouais.
+
+259
+00:07:27,090 --> 00:07:28,090
+En X, Y, Z.
+
+260
+00:07:28,090 --> 00:07:31,550
+Pis si tu me dis que t'as changé le scale pis que c'est pas un scale uniforme, ben,
+
+261
+00:07:31,550 --> 00:07:33,250
+moi, ça me change pas grand chose, t'sais.
+
+262
+00:07:33,250 --> 00:07:37,290
+Ça me change pas grand chose, parce que, dans le fond, ça va prendre le maximum de
+
+263
+00:07:37,290 --> 00:07:44,290
+le maximum de Y et le maximum de Z, puis ça va prendre le plus grand, puis après ça va le multiplier par le truc, puis ça va...
+
+264
+00:07:44,290 --> 00:07:47,290
+En fait, pas dans ce mode-là, mais en tout cas, on s'entend.
+
+265
+00:07:47,290 --> 00:07:49,290
+Mais toi, ça te...
+
+266
+00:07:49,290 --> 00:07:57,290
+Toi, ça te chicote pas que le même acteur de deux Level Instance, qui ont le même level, ils ont pas les mêmes...
+
+267
+00:07:57,290 --> 00:08:02,290
+Ok, ouais, mais ça serait pas prouvé, ça, que c'est pas le même acteur de script.
+
+268
+00:08:02,290 --> 00:08:11,290
+Non, mais c'est ça, parce que là, tu sais, tu me le montres dans le Hotliner, mais dans le Hotliner, il peut l'avoir déjà pré-calculé avec la Transform.
+
+269
+00:08:11,290 --> 00:08:12,290
+Ouais, c'est vrai.
+
+270
+00:08:12,290 --> 00:08:16,290
+Parce que dans le fond, le Hotliner, il te le montre comme tu le vois à l'écran.
+
+271
+00:08:16,290 --> 00:08:17,290
+Exact.
+
+272
+00:08:17,290 --> 00:08:23,290
+Fait que, tu sais, dans ce cas-là, ça devient compliqué. Si tu t'en vas en mode Edit...
+
+273
+00:08:23,290 --> 00:08:32,830
+Je pense qu'il y a un mode Bound comme ça, ouais. Fait que là, c'est comme si on voyait la box, une des box, là, dans le fond.
+
+274
+00:08:32,830 --> 00:08:33,830
+Ouais.
+
+275
+00:08:33,830 --> 00:08:39,830
+Mais ça, le jour où on l'applique, là, wow, ça va être un gros changement dans nos rules, là.
+
+276
+00:08:39,830 --> 00:08:47,830
+Ben, on va juste comme Clean-up, je pense. On va avoir beaucoup de Clean-up. On va devoir faire qu'on se ressorte de gris.
+
+277
+00:08:47,830 --> 00:08:55,830
+Ça dépend aussi, parce que si... Parce que c'est ça, si t'as l'acteur de script qui est disponible...
+
+278
+00:08:55,830 --> 00:08:58,830
+En fait, il y a deux affaires là-dedans. Il y a deux choses différentes, là.
+
+279
+00:08:58,830 --> 00:09:02,830
+De un, c'est si t'as l'acteur de script qui est disponible, normalement, ce qui arrive, c'est que...
+
+280
+00:09:02,830 --> 00:09:09,830
+Normalement, ce qui arrive, c'est qu'avec les acteurs de script, tu vas avoir un acteur de script qui va être assigné à un container,
+
+281
+00:09:09,830 --> 00:09:16,830
+pis c'est le container qui va avoir la transform.
+
+282
+00:09:16,830 --> 00:09:22,830
+Normalement, c'est ça qui va arriver. Fait qu'en théorie, tu devrais avoir le Runtime Bounding Box,
+
+283
+00:09:22,830 --> 00:09:30,830
+pis ça, ce Runtime Bounding Box va être modifié par whatever ce qui arrive dans le...
+
+284
+00:09:30,830 --> 00:09:35,830
+Dans le... Avec la transform du level.
+
+285
+00:09:35,830 --> 00:09:41,830
+Mais je sais pas comment c'est calculé, fait que je sais pas si lui, ils ont décidé qu'il prit calculé ou pas.
+
+286
+00:09:41,830 --> 00:09:44,830
+Mais il y a quand même un deuxième problème.
+
+287
+00:09:44,830 --> 00:09:47,830
+Le deuxième problème, c'est que...
+
+288
+00:09:47,830 --> 00:09:52,830
+Même si on décidait d'utiliser les Bounding Box, pis que...
+
+289
+00:09:52,830 --> 00:09:56,830
+On trouvait un moyen pour avoir le Bounding Box original, OK?
+
+290
+00:09:56,830 --> 00:09:58,830
+Même si on fait ça.
+
+291
+00:09:58,830 --> 00:10:03,830
+Ça veut quand même dire que pour deux objets similaires, mais pas le même,
+
+292
+00:10:03,830 --> 00:10:08,830
+qui auraient des orientations différentes, mais qu'autrement, toutes les tailles seraient les mêmes,
+
+293
+00:10:08,830 --> 00:10:12,830
+ils vont quand même être classés différemment.
+
+294
+00:10:12,830 --> 00:10:18,830
+Même s'ils ont exactement les mêmes tailles, pis que c'est juste parce qu'il y en a un qui a une fleur de plus, pis...
+
+295
+00:10:18,830 --> 00:10:21,830
+Pis l'autre, il peut pas être... Comment on dit ça?
+
+296
+00:10:21,830 --> 00:10:26,830
+L'autre, il peut pas être dans deux Runtime Grids, pis dans deux HDLayer.
+
+297
+00:10:26,830 --> 00:10:30,830
+Ça veut dire que moi, si je calcule lui en premier, là...
+
+298
+00:10:30,830 --> 00:10:32,830
+Lui, il fait...
+
+299
+00:10:32,830 --> 00:10:35,830
+Genre son radius, il va être genre 700... 800 keks.
+
+300
+00:10:35,830 --> 00:10:37,830
+Ouais, sure.
+
+301
+00:10:37,830 --> 00:10:42,830
+Pis là, je vais l'assigner à genre mon Main Grid, parce que ça rend trop gros pour Small Grid.
+
+302
+00:10:42,830 --> 00:10:44,830
+Pis là, lui, je vais aller le processer après.
+
+303
+00:10:44,830 --> 00:10:48,830
+Pis là, lui va être assez petit pour entrer dans Small Grid, pis il va tomber dans Small Grid.
+
+304
+00:10:48,830 --> 00:10:52,830
+Fait que là, en premier, il va être en Main, pis après ça, il va être en Small.
+
+305
+00:10:52,830 --> 00:10:54,830
+Mais tu sais, c'est le même acteur.
+
+306
+00:10:54,830 --> 00:10:58,830
+On va modifier l'acteur descripteur de ce Level Instance-là.
+
+307
+00:10:58,830 --> 00:11:00,830
+Fait qu'on va quand même se battre...
+
+308
+00:11:00,830 --> 00:11:02,830
+En ce moment, on a des problèmes de...
+
+309
+00:11:02,830 --> 00:11:06,830
+Un acteur dans un contexte, un Level Instance dans un contexte,
+
+310
+00:11:06,830 --> 00:11:10,830
+pis le même Level dans un autre Level Instance dans un autre contexte,
+
+311
+00:11:10,830 --> 00:11:13,830
+il rentre pas dans la même Rule.
+
+312
+00:11:13,830 --> 00:11:15,830
+Pis là, quand t'appliques les Rules,
+
+313
+00:11:15,830 --> 00:11:17,830
+ben, il le set une fois avec quelque chose,
+
+314
+00:11:17,830 --> 00:11:20,830
+pis il revient, pis il le set avec une autre chose une autre fois.
+
+315
+00:11:20,830 --> 00:11:23,830
+Fait que là, ben, indépendamment dans quelle ordre on a processé nos affaires,
+
+316
+00:11:23,830 --> 00:11:25,830
+on va avoir un résultat ou l'autre.
+
+317
+00:11:25,830 --> 00:11:28,830
+Fait que là, ça, c'est un autre souci aussi qu'on sait pas.
+
+318
+00:11:28,830 --> 00:11:30,830
+Ça, tu peux vérifier avec Phil.
+
+319
+00:11:30,830 --> 00:11:34,830
+Phil, lui, il s'était trouvé un moyen pour pouvoir les différencier.
+
+320
+00:11:34,830 --> 00:11:36,830
+Mais...
+
+321
+00:11:36,830 --> 00:11:39,830
+Indépendamment de ça,
+
+322
+00:11:39,830 --> 00:11:44,830
+tu sais, tu peux pas prendre un acteur descripteur tout seul, ça n'existe pas.
+
+323
+00:11:44,830 --> 00:11:50,830
+Un acteur descripteur va tout le temps exister avec un parent qui va être son container.
+
+324
+00:11:50,830 --> 00:11:51,830
+OK.
+
+325
+00:11:51,830 --> 00:11:52,830
+À part le...
+
+326
+00:11:52,830 --> 00:11:57,830
+Le seul qui existe tout seul, c'est genre le container root, là.
+
+327
+00:11:57,830 --> 00:12:00,830
+Le container de départ, là, qui a pas de transform.
+
+328
+00:12:00,830 --> 00:12:01,830
+OK.
+
+329
+00:12:01,830 --> 00:12:03,830
+Mais après ça, dès que tu vas avoir...
+
+330
+00:12:03,830 --> 00:12:05,830
+Mettons, là, tu prends ton CentralMount01,
+
+331
+00:12:05,830 --> 00:12:08,830
+lui, nécessairement, il va avoir un container.
+
+332
+00:12:08,830 --> 00:12:13,830
+Pis ce container-là va avoir le transform de whatever,
+
+333
+00:12:13,830 --> 00:12:17,830
+toute la liste de Level Instance qu'il y a entre les deux.
+
+334
+00:12:17,830 --> 00:12:18,830
+Ah ouais, OK.
+
+335
+00:12:18,830 --> 00:12:21,830
+Fait que lui, dans ce cas-là, ce serait son container, ce serait CentralMount02,
+
+336
+00:12:21,830 --> 00:12:24,830
+pis l'autre, ça serait CentralMount01?
+
+337
+00:12:24,830 --> 00:12:26,830
+Possiblement.
+
+338
+00:12:26,830 --> 00:12:30,160
+OK.
+
+339
+00:12:30,160 --> 00:12:31,160
+Non, mais...
+
+340
+00:12:31,160 --> 00:12:32,160
+Ben...
+
+341
+00:12:32,160 --> 00:12:33,160
+Ouais.
+
+342
+00:12:33,160 --> 00:12:35,160
+Quelque chose de ce genre-là.
+
+343
+00:12:35,160 --> 00:12:37,160
+Ça veut pas dire que ça va être...
+
+344
+00:12:37,160 --> 00:12:39,160
+Ça veut pas dire que ça va être exactement comme ça,
+
+345
+00:12:39,160 --> 00:12:41,160
+mais ce serait quelque chose de ce genre-là.
+
+346
+00:12:41,160 --> 00:12:43,160
+Pis ça veut dire qu'à chaque fois, il faut qu'on assume
+
+347
+00:12:43,160 --> 00:12:46,160
+que quand on analyse un acteur descripteur,
+
+348
+00:12:46,160 --> 00:12:49,160
+on va chercher aussi son parent,
+
+349
+00:12:49,160 --> 00:12:51,160
+son container,
+
+350
+00:12:51,160 --> 00:12:53,160
+pis son container, lui, va aller déterminer...
+
+351
+00:12:53,160 --> 00:12:55,160
+Ah, pis le inverse transform, genre?
+
+352
+00:12:55,160 --> 00:12:57,160
+Son container, lui, il a déjà...
+
+353
+00:12:57,160 --> 00:13:00,160
+Non, mais son container, lui, il a le transform.
+
+354
+00:13:00,160 --> 00:13:01,160
+OK.
+
+355
+00:13:01,160 --> 00:13:03,160
+Le transform pas appliqué, là.
+
+356
+00:13:03,160 --> 00:13:05,160
+Le transform à appliquer.
+
+357
+00:13:05,160 --> 00:13:08,160
+OK. Fait qu'on peut ignorer ce transform-là, peut-être,
+
+358
+00:13:08,160 --> 00:13:10,160
+pour analyser le mesh comme ça.
+
+359
+00:13:10,160 --> 00:13:14,160
+Disons CentralMount, il va être évalué de la même manière pour tout le monde,
+
+360
+00:13:14,160 --> 00:13:17,160
+parce qu'il va être détransformé du Level Instance,
+
+361
+00:13:17,160 --> 00:13:19,160
+pis ça va être le Level Instance qui va driver...
+
+362
+00:13:19,160 --> 00:13:21,160
+En théorie, oui, mais ça dépend comment le runtime...
+
+363
+00:13:21,160 --> 00:13:23,160
+ça dépend comment le runtime...
+
+364
+00:13:23,160 --> 00:13:26,160
+le runtime bounds que tu utilises,
+
+365
+00:13:26,160 --> 00:13:28,160
+ça dépend comment qu'il est calculé.
+
+366
+00:13:28,160 --> 00:13:30,160
+Ouais, là, on utilise le radius, par exemple.
+
+367
+00:13:30,160 --> 00:13:33,160
+Non, non, mais je veux dire, oublie le radius, là.
+
+368
+00:13:33,160 --> 00:13:36,160
+Si on prend déjà les valeurs qui existent, là...
+
+369
+00:13:36,160 --> 00:13:37,160
+Ouais.
+
+370
+00:13:37,160 --> 00:13:40,160
+Le runtime bounds, je sais pas comment qu'il est calculé.
+
+371
+00:13:40,160 --> 00:13:45,400
+Pis, tu sais, ce que je veux dire par là, c'est aussi que
+
+372
+00:13:45,400 --> 00:13:47,400
+tu vas avoir deux fois le même acteur,
+
+373
+00:13:47,400 --> 00:13:51,400
+mais si les deux acteurs descripteurs sortent des copies l'un de l'autre,
+
+374
+00:13:51,400 --> 00:13:53,400
+mais ils auront pas le même container.
+
+375
+00:13:53,400 --> 00:13:56,400
+OK. Fait que tu confirmes que
+
+376
+00:13:56,400 --> 00:13:59,400
+des acteurs d'un Level Instance, c'est pas le même acteur descripteur.
+
+377
+00:13:59,400 --> 00:14:07,080
+Oui, ça l'est, mais ça l'est pas en même temps.
+
+378
+00:14:07,080 --> 00:14:09,080
+Parce que quand on cook, là,
+
+379
+00:14:09,080 --> 00:14:11,080
+le Level Instance, c'est plus du Level Instance.
+
+380
+00:14:11,080 --> 00:14:13,080
+Le Level Instance, c'est un concept d'othering, right?
+
+381
+00:14:13,080 --> 00:14:15,080
+Toutes les acteurs, ils se trouvent...
+
+382
+00:14:15,080 --> 00:14:18,080
+Ah, ça dépend s'ils sont MBD ou pas, c'est ça.
+
+383
+00:14:18,080 --> 00:14:21,080
+OK. Pis là, nous autres, dans notre cas, ils sont MBD.
+
+384
+00:14:21,080 --> 00:14:23,080
+Ben, du coup, j'assume qu'ils sont tous MBD, là.
+
+385
+00:14:23,080 --> 00:14:24,080
+Ouais.
+
+386
+00:14:24,080 --> 00:14:26,080
+Dans le fond, ce qui arrive, c'est que quand tu vas...
+
+387
+00:14:26,080 --> 00:14:28,080
+Quand tu vas pogner ton level,
+
+388
+00:14:28,080 --> 00:14:30,080
+pis que là, il va aller, mettons, en LV,
+
+389
+00:14:30,080 --> 00:14:32,080
+holo ou whatever, mais...
+
+390
+00:14:32,080 --> 00:14:36,080
+Quand tu vas refaire le cook, lui, il va pogner
+
+391
+00:14:36,080 --> 00:14:39,080
+toutes tes L.E., blablabla...
+
+392
+00:14:39,080 --> 00:14:42,080
+Lui, il va considérer ça comme des containers.
+
+393
+00:14:42,080 --> 00:14:45,080
+Il va avoir tes acteurs descripteurs en-dessous.
+
+394
+00:14:45,080 --> 00:14:48,080
+Pis en-dessous, cet acteur descripteur-là,
+
+395
+00:14:48,080 --> 00:14:51,080
+lui, il va contenir l'information...
+
+396
+00:14:51,080 --> 00:14:54,080
+L'information juste pour sa version
+
+397
+00:14:54,080 --> 00:14:56,080
+dans le Level Instance.
+
+398
+00:14:56,080 --> 00:14:58,080
+Pis, comme je te disais,
+
+399
+00:14:58,080 --> 00:15:01,080
+il va avoir le Transform sur son container.
+
+400
+00:15:01,080 --> 00:15:03,080
+OK. Fait que c'est peut-être une bonne chose, finalement,
+
+401
+00:15:03,080 --> 00:15:05,080
+qu'on l'ait comme ça.
+
+402
+00:15:05,080 --> 00:15:07,080
+Et puis non, dans le sens où...
+
+403
+00:15:07,080 --> 00:15:09,080
+En théorie, ça va être le même acteur descripteur
+
+404
+00:15:09,080 --> 00:15:12,080
+qui va avoir deux containers, comme par exemple.
+
+405
+00:15:12,080 --> 00:15:13,080
+Une affaire de genre.
+
+406
+00:15:13,080 --> 00:15:15,080
+Faudrait que je vérifie c'est quoi la...
+
+407
+00:15:15,080 --> 00:15:18,080
+à quoi ça ressemble, parce que ça fait un petit bout, mettons.
+
+408
+00:15:18,080 --> 00:15:19,080
+Non, non, je comprends.
+
+409
+00:15:19,080 --> 00:15:21,080
+Mais moi, ce que je trouverais bizarre, par contre,
+
+410
+00:15:21,080 --> 00:15:24,080
+c'est que notre rule, elle considère, lui, dans Small Grid,
+
+411
+00:15:24,080 --> 00:15:26,080
+elle s'en va appliquer ça sur Small Grid.
+
+412
+00:15:26,080 --> 00:15:28,080
+Cette mesh-là, elle va le setter à Small Grid.
+
+413
+00:15:28,080 --> 00:15:30,080
+Fait que là, c'est une propriété de l'acteur
+
+414
+00:15:30,080 --> 00:15:32,080
+qui est pas dans l'acteur descripteur, nécessairement.
+
+415
+00:15:32,080 --> 00:15:34,080
+Tu sais, Runtime Grid, Aged Layer.
+
+416
+00:15:34,080 --> 00:15:36,080
+Ouais, mais pour chacun de tes...
+
+417
+00:15:36,080 --> 00:15:38,080
+Pour chacun de tes acteurs, tu peux faire Get Actor.
+
+418
+00:15:38,080 --> 00:15:40,080
+Pour chacun de tes acteurs descripteurs,
+
+419
+00:15:40,080 --> 00:15:42,080
+tu peux faire Get Actor, pis il va ramasser l'acteur
+
+420
+00:15:42,080 --> 00:15:44,080
+à la place...
+
+421
+00:15:44,080 --> 00:15:47,080
+On veut pas loader l'acteur, par exemple, quand on fait notre rule.
+
+422
+00:15:47,080 --> 00:15:49,080
+Non, je comprends, mais...
+
+423
+00:15:49,080 --> 00:15:51,080
+Mais tu peux pas le setter...
+
+424
+00:15:51,080 --> 00:15:53,080
+Tu vas pouvoir le setter dans le Transformer à la fin,
+
+425
+00:15:53,080 --> 00:15:57,080
+mais tu peux pas le setter avant de faire le Cook.
+
+426
+00:15:57,080 --> 00:16:00,590
+Je sais pas si c'est juste ma nuance.
+
+427
+00:16:00,590 --> 00:16:02,590
+Oui, mais là...
+
+428
+00:16:02,590 --> 00:16:04,590
+Nous, on le set avant de faire le Cook.
+
+429
+00:16:04,590 --> 00:16:07,590
+On n'a pas le choix, parce que c'est genre un process de...
+
+430
+00:16:07,590 --> 00:16:09,590
+d'authoring, là.
+
+431
+00:16:09,590 --> 00:16:11,590
+Non, je comprends, mais...
+
+432
+00:16:11,590 --> 00:16:13,590
+à cause de...
+
+433
+00:16:13,590 --> 00:16:15,590
+Si tu le switch,
+
+434
+00:16:15,590 --> 00:16:17,590
+tu sais, c'est comme ça, si t'en vas chercher...
+
+435
+00:16:17,590 --> 00:16:20,590
+Si t'en vas changer Generic, Grass, Medium, Scene à Night,
+
+436
+00:16:20,590 --> 00:16:23,590
+pis que tu le mets dans un autre Grid,
+
+437
+00:16:23,590 --> 00:16:29,590
+ben là, lui, il va se setter dans l'autre Grid pour toutes les...
+
+438
+00:16:29,590 --> 00:16:31,590
+Pour toutes ses instances.
+
+439
+00:16:31,590 --> 00:16:34,590
+Exact. C'est ça qu'on arrive comme problème.
+
+440
+00:16:34,590 --> 00:16:36,590
+Comme je te disais, c'est ça, dans le fond...
+
+441
+00:16:36,590 --> 00:16:41,590
+Parce que c'est le même level à ce moment-là, c'est encore le même level.
+
+442
+00:16:41,590 --> 00:16:43,590
+C'est ça. Parce que si moi, je m'en viens d'éditer lui, là...
+
+443
+00:16:43,590 --> 00:16:45,590
+Tu peux le mettre Central Mound,
+
+444
+00:16:45,590 --> 00:16:47,590
+lui, c'est un acteur de ton level au-dessus,
+
+445
+00:16:47,590 --> 00:16:51,590
+fait que lui, tu peux le mettre dans un autre...
+
+446
+00:16:51,590 --> 00:16:53,590
+Grid, mais pas comme ça.
+
+447
+00:16:53,590 --> 00:16:55,590
+OK, là, je suis pas en run...
+
+448
+00:16:55,590 --> 00:16:57,590
+Je suis pas en truc, là, mais...
+
+449
+00:16:57,590 --> 00:16:59,590
+Bon, le pull est pas partitionné, fait que je peux pas le setter.
+
+450
+00:16:59,590 --> 00:17:01,590
+Mais disons, si moi, je...
+
+451
+00:17:01,590 --> 00:17:03,590
+M'en venais, c'était un...
+
+452
+00:17:03,590 --> 00:17:06,590
+Ah, tabarouette. OK. Disons que je vais faire...
+
+453
+00:17:06,590 --> 00:17:08,590
+Non, mais peu importe ce que tu fais,
+
+454
+00:17:08,590 --> 00:17:10,590
+c'est ton level, il va...
+
+455
+00:17:10,590 --> 00:17:12,590
+Ton level, il va automatiquement être...
+
+456
+00:17:12,590 --> 00:17:14,590
+D'être...
+
+457
+00:17:14,590 --> 00:17:16,590
+Tu sais, peu importe ce que tu changes dans ce level-là,
+
+458
+00:17:16,590 --> 00:17:18,590
+il va automatiquement être changé aussi dans l'autre level.
+
+459
+00:17:18,590 --> 00:17:20,590
+Pour lui aussi. C'est ça.
+
+460
+00:17:21,590 --> 00:17:23,590
+Fait que là, qu'est-ce qu'on fait?
+
+461
+00:17:23,590 --> 00:17:26,590
+C'est pas tellement un problème, dans le sens où...
+
+462
+00:17:26,590 --> 00:17:28,590
+Si ton Central Mound, tu le calcules,
+
+463
+00:17:28,590 --> 00:17:31,590
+mettons, avec un Radius, quelque chose de ce genre-là,
+
+464
+00:17:31,590 --> 00:17:34,590
+peu importe l'orientation, il va toujours avoir le même Radius,
+
+465
+00:17:34,590 --> 00:17:37,590
+fait que si tu le changes dans un des Hellas Central Mound,
+
+466
+00:17:37,590 --> 00:17:40,590
+il devrait être correct dans tous les Hellas Central Mound après.
+
+467
+00:17:40,590 --> 00:17:43,590
+Ouais, mais qu'est-ce qui arrive si je le skill comme ça?
+
+468
+00:17:43,590 --> 00:17:47,590
+Là, tu peux pleurer un peu, là.
+
+469
+00:17:47,590 --> 00:17:49,590
+Comme je te disais, à ce moment-là,
+
+470
+00:17:49,590 --> 00:17:51,590
+t'auras pas le choix de faire un Transformer,
+
+471
+00:17:51,590 --> 00:17:54,590
+tu sais, ça peut être de même, ou ça peut être...
+
+472
+00:17:54,590 --> 00:17:56,590
+Ça peut être de même, ou ça peut être...
+
+473
+00:17:56,590 --> 00:17:58,590
+Ah, t'apprends à être facile.
+
+474
+00:17:58,590 --> 00:18:02,220
+Ça peut être comme ça aussi.
+
+475
+00:18:02,220 --> 00:18:04,220
+Ça peut être ça aussi, tu sais.
+
+476
+00:18:04,220 --> 00:18:06,220
+Mais t'as deux choix là-dedans.
+
+477
+00:18:06,220 --> 00:18:08,220
+Le premier choix, c'est...
+
+478
+00:18:08,220 --> 00:18:11,220
+Tu donnes une règle aux artistes qui peuvent pas scaler.
+
+479
+00:18:13,220 --> 00:18:15,220
+Pis là, ben tu peux mettre dans tes restrictions,
+
+480
+00:18:15,220 --> 00:18:20,220
+pis dans tes règles, que le scaling est à 1-1-1, nécessairement.
+
+481
+00:18:20,220 --> 00:18:22,220
+Pas idéal, mais ça se fait.
+
+482
+00:18:22,220 --> 00:18:25,220
+Ouais, on l'a fait sur Mercury, là.
+
+483
+00:18:25,220 --> 00:18:27,220
+Dans l'autre cas, c'est que là,
+
+484
+00:18:27,220 --> 00:18:29,220
+va falloir que tu trouves un moyen,
+
+485
+00:18:29,220 --> 00:18:35,220
+un moyen de setter les grids en dehors de...
+
+486
+00:18:35,220 --> 00:18:39,220
+Ben après, dans le fond, pendant le Cook, là.
+
+487
+00:18:39,220 --> 00:18:44,840
+Ouais.
+
+488
+00:18:44,840 --> 00:18:45,840
+Ça veut dire que c'est pendant le Cook,
+
+489
+00:18:45,840 --> 00:18:48,840
+mais là, tu peux pas valider que tes règles sont bonnes.
+
+490
+00:18:48,840 --> 00:18:50,840
+Tu peux appliquer tes règles localement, tu peux...
+
+491
+00:18:50,840 --> 00:18:52,840
+Pendant le Cook ou...
+
+492
+00:18:52,840 --> 00:18:53,840
+Un Transformer, ça roule...
+
+493
+00:18:53,840 --> 00:18:54,840
+Quand tu...
+
+494
+00:18:54,840 --> 00:18:55,840
+Ça roule...
+
+495
+00:18:55,840 --> 00:18:57,840
+Ça roule dans la paille, aussi, là.
+
+496
+00:18:57,840 --> 00:18:59,840
+Ouais, t'as-tu parlé de ça, là?
+
+497
+00:18:59,840 --> 00:19:02,080
+Euh...
+
+498
+00:19:02,080 --> 00:19:04,080
+Ouais, je parle pas de ça, moi, non plus.
+
+499
+00:19:04,080 --> 00:19:09,600
+Attends.
+
+500
+00:19:09,600 --> 00:19:10,600
+T'as-tu parlé de ça?
+
+501
+00:19:10,600 --> 00:19:13,940
+Transformer, ici?
+
+502
+00:19:13,940 --> 00:19:16,940
+OK, j'ai pas accès, je pense que c'est pas partition, ça se peut-tu?
+
+503
+00:19:16,940 --> 00:19:18,940
+Si c'était pas partition, ça se peut que ça soit compliqué.
+
+504
+00:19:18,940 --> 00:19:19,940
+Ouais.
+
+505
+00:19:19,940 --> 00:19:20,940
+OK.
+
+506
+00:19:20,940 --> 00:19:21,940
+Ben, c'te level-là, c'est pas grave, là.
+
+507
+00:19:21,940 --> 00:19:22,940
+C'était pas...
+
+508
+00:19:22,940 --> 00:19:23,940
+OK.
+
+509
+00:19:23,940 --> 00:19:24,940
+Fait que ça serait un...
+
+510
+00:19:24,940 --> 00:19:25,940
+Un Transformer qui appliquerait les...
+
+511
+00:19:25,940 --> 00:19:26,940
+Les...
+
+512
+00:19:26,940 --> 00:19:27,940
+Les rules.
+
+513
+00:19:27,940 --> 00:19:29,940
+Ben, c'est ça qui serait probablement le plus...
+
+514
+00:19:29,940 --> 00:19:30,940
+Le plus facile, entre guillemets, là.
+
+515
+00:19:31,940 --> 00:19:32,940
+Ouais.
+
+516
+00:19:32,940 --> 00:19:33,940
+Y'a déjà des...
+
+517
+00:19:33,940 --> 00:19:34,940
+Des trucs qui sont changés de...
+
+518
+00:19:34,940 --> 00:19:35,940
+De...
+
+519
+00:19:35,940 --> 00:19:36,940
+De rules, à ce moment-là.
+
+520
+00:19:36,940 --> 00:19:37,940
+Mais...
+
+521
+00:19:37,940 --> 00:19:38,940
+Le problème, c'est juste ça, c'est que...
+
+522
+00:19:38,940 --> 00:19:39,940
+Si tu...
+
+523
+00:19:39,940 --> 00:19:40,940
+Si t'es si...
+
+524
+00:19:40,940 --> 00:19:43,940
+Fait qu'y'aurait deux choses à faire, dans le fond.
+
+525
+00:19:43,940 --> 00:19:47,940
+Y'aurait un qu'on change la méthode pour analyser c'est quoi la taille d'un objet.
+
+526
+00:19:47,940 --> 00:19:50,940
+Fait que ça serait d'utiliser, genre, son sphere...
+
+527
+00:19:50,940 --> 00:19:51,940
+Son sphere radius.
+
+528
+00:19:51,940 --> 00:19:52,940
+Pis l'autre affaire...
+
+529
+00:19:52,940 --> 00:19:55,940
+Si y'a pas de possibilité, là, c'est pas...
+
+530
+00:19:55,940 --> 00:19:56,940
+Ça serait d'être...
+
+531
+00:19:56,940 --> 00:19:57,940
+De tra...
+
+532
+00:19:57,940 --> 00:19:59,940
+Traiter les acteurs à travers...
+
+533
+00:19:59,940 --> 00:20:00,940
+Pas...
+
+534
+00:20:00,940 --> 00:20:05,940
+Appliquer les rules des acteurs de level instance dans un cell transformer.
+
+535
+00:20:05,940 --> 00:20:06,940
+Ouais.
+
+536
+00:20:06,940 --> 00:20:10,940
+Fait que c'est comme le last second fix, là.
+
+537
+00:20:10,940 --> 00:20:13,940
+Mais ça veut dire que ça va prendre un méchant bout, là.
+
+538
+00:20:13,940 --> 00:20:19,940
+Imagine-toi partir pipe pis que ça commence à setter des bandes, pis des runtime grid, pis tout à la dernière seconde.
+
+539
+00:20:19,940 --> 00:20:21,940
+Non, pas nécessairement, non.
+
+540
+00:20:21,940 --> 00:20:24,940
+Mais c'est parce que nous autres, ça prend, genre...
+
+541
+00:20:24,940 --> 00:20:28,940
+Quelque chose, genre, 5-6 heures sur Team City pour setter ça.
+
+542
+00:20:28,940 --> 00:20:29,940
+T'es-tu malade?
+
+543
+00:20:29,940 --> 00:20:30,940
+Non.
+
+544
+00:20:30,940 --> 00:20:31,940
+Hein?
+
+545
+00:20:31,940 --> 00:20:32,940
+T'es-tu un malade?
+
+546
+00:20:32,940 --> 00:20:33,940
+Ben, je suis pas un malade.
+
+547
+00:20:33,940 --> 00:20:34,940
+C'est ça qui se passe en ce moment.
+
+548
+00:20:34,940 --> 00:20:38,940
+Non, non, mais en ce moment, c'est parce qu'il faut que tu ouvres un level, que tu le changes,
+
+549
+00:20:38,940 --> 00:20:40,940
+que tu saves le level, que tu...
+
+550
+00:20:40,940 --> 00:20:41,940
+Oui, oui, oui.
+
+551
+00:20:41,940 --> 00:20:42,940
+C'est sûr qu'il y a un processus, là.
+
+552
+00:20:42,940 --> 00:20:46,940
+Je sais pas c'est quoi qui prend le plus de temps dans tout ça, mais ça prend un paquet
+
+553
+00:20:46,940 --> 00:20:47,940
+de temps.
+
+554
+00:20:47,940 --> 00:20:48,940
+Quand tu fais...
+
+555
+00:20:48,940 --> 00:20:53,940
+Quand tu pognes un cell transformer, là, c'est littéralement, là, tu changes la grid,
+
+556
+00:20:53,940 --> 00:20:54,940
+pis tu passes à l'autre, là.
+
+557
+00:20:54,940 --> 00:20:55,940
+That's it, là.
+
+558
+00:20:55,940 --> 00:20:56,940
+Y'a même pas de...
+
+559
+00:20:56,940 --> 00:20:58,940
+Y'a même pas de saver quelque chose, de loader quelque chose.
+
+560
+00:20:58,940 --> 00:21:01,940
+Tout est loadé, tout est prêt, déjà.
+
+561
+00:21:01,940 --> 00:21:02,940
+OK.
+
+562
+00:21:02,940 --> 00:21:03,940
+Faudrait l'essayer.
+
+563
+00:21:03,940 --> 00:21:06,940
+Ça prend quoi de faire un cell transformer?
+
+564
+00:21:06,940 --> 00:21:08,940
+Une classe, pis that's it.
+
+565
+00:21:08,940 --> 00:21:09,940
+Ouais.
+
+566
+00:21:09,940 --> 00:21:10,940
+C'est du code, là.
+
+567
+00:21:10,940 --> 00:21:15,940
+Y'aura peut-être pas de magie, là, mais je te dirais que c'est probablement ça,
+
+568
+00:21:15,940 --> 00:21:17,940
+votre option la plus...
+
+569
+00:21:17,940 --> 00:21:26,250
+Fait que là, dans le fond, j'ai comme l'impression qu'on devrait setter...
+
+570
+00:21:26,250 --> 00:21:28,250
+On devrait exclure...
+
+571
+00:21:28,250 --> 00:21:30,250
+Dans nos rule processing, on exclut...
+
+572
+00:21:30,250 --> 00:21:32,250
+On exclut tous les acteurs...
+
+573
+00:21:32,250 --> 00:21:35,250
+On processe plus les acteurs dans les level instances.
+
+574
+00:21:35,250 --> 00:21:40,250
+Pis là, on laisse le cell transformer le faire à la dernière seconde.
+
+575
+00:21:40,250 --> 00:21:42,250
+Arnaud, il se gratte la tête.
+
+576
+00:21:42,250 --> 00:21:47,250
+Oui, parce que tout est basé sur l'ouverture récursive des level instances
+
+577
+00:21:47,250 --> 00:21:51,250
+pour faire processer les acteurs et tout ça, donc...
+
+578
+00:21:51,250 --> 00:21:52,250
+Exact.
+
+579
+00:21:52,250 --> 00:21:56,250
+En fait, on a une histoire aussi de les acteurs dans le level instance.
+
+580
+00:21:56,250 --> 00:21:58,250
+Ce que je te dis, c'est que...
+
+581
+00:21:58,250 --> 00:21:59,250
+Effectivement.
+
+582
+00:21:59,250 --> 00:22:01,250
+Effectivement, mais ça change ton process, mais...
+
+583
+00:22:01,250 --> 00:22:04,250
+Le transformer, c'est différent.
+
+584
+00:22:04,250 --> 00:22:11,250
+Le transformer va rouler automatiquement pour chacun des levels que t'as à loader,
+
+585
+00:22:11,250 --> 00:22:15,250
+pis quand tu roules un cell transformer, il te donne la liste d'acteurs,
+
+586
+00:22:15,250 --> 00:22:17,250
+pis tu fais ce que tu veux avec ces acteurs-là.
+
+587
+00:22:17,250 --> 00:22:22,250
+Fait que littéralement, toi, dans ton cas, c'est un cas facile,
+
+588
+00:22:22,250 --> 00:22:28,250
+parce que tu peux sacrer au vidange toute la partie de récursivité pis toute l'équipe.
+
+589
+00:22:28,250 --> 00:22:31,250
+Tout ce que t'as à faire, c'est que tu pognes chacun des acteurs.
+
+590
+00:22:31,250 --> 00:22:33,250
+C'est quoi sa grandeur?
+
+591
+00:22:33,250 --> 00:22:35,250
+Est-ce qu'il est plus grand, plus petit que blablabla?
+
+592
+00:22:35,250 --> 00:22:37,250
+S'il est plus grand, tu l'envoies dans le grid.
+
+593
+00:22:37,250 --> 00:22:41,250
+S'il n'est pas plus grand, tu le laisses dans le grid, pis done, that's it.
+
+594
+00:22:41,250 --> 00:22:43,250
+J'ai envie de checker dans Rooferland.
+
+595
+00:22:43,250 --> 00:22:45,250
+Je pense que c'est ça que Phil a fait, en fait.
+
+596
+00:22:45,250 --> 00:22:47,250
+J'ai une pensée à ça, là.
+
+597
+00:22:47,250 --> 00:22:49,250
+On a en fait deux trucs en parallèle.
+
+598
+00:22:49,250 --> 00:22:52,250
+On a les hash loads et les runtime grids.
+
+599
+00:22:52,250 --> 00:22:55,250
+Mais on les gère vraiment séparément.
+
+600
+00:22:55,250 --> 00:22:57,250
+C'est juste au niveau des rules qu'on mimique un peu.
+
+601
+00:22:57,250 --> 00:22:59,250
+Qu'on essaye de faire matcher.
+
+602
+00:22:59,250 --> 00:23:01,250
+Pour les hash loads, là, c'est plus compliqué.
+
+603
+00:23:01,250 --> 00:23:03,250
+Oui, parce qu'on ne peut pas utiliser le cell transformer.
+
+604
+00:23:03,250 --> 00:23:07,250
+Ah, c'est ça.
+
+605
+00:23:07,250 --> 00:23:09,250
+C'est là où ça nous brise, là.
+
+606
+00:23:09,250 --> 00:23:18,360
+Dans le fond, pour les hash loads, ça doit être au processing du hash load.
+
+607
+00:23:18,360 --> 00:23:25,360
+Mais c'est là qu'il faut que tu divises les trucs au bon endroit.
+
+608
+00:23:25,360 --> 00:23:30,200
+Ouais.
+
+609
+00:23:30,200 --> 00:23:32,200
+Là, on a les runtime partitions.
+
+610
+00:23:32,200 --> 00:23:34,200
+Runtime cell transformer stack.
+
+611
+00:23:34,200 --> 00:23:36,200
+À voir c'est quoi ces affaires-là.
+
+612
+00:23:36,200 --> 00:23:43,840
+Il n'y en a pas en ce moment pour ça.
+
+613
+00:23:43,840 --> 00:23:45,840
+Je ne sais plus. Il y a quelque chose que Phil faisait, là.
+
+614
+00:23:45,840 --> 00:23:47,840
+C'était des affaires de dernière seconde.
+
+615
+00:23:47,840 --> 00:23:49,840
+Les mutators?
+
+616
+00:23:49,840 --> 00:23:50,840
+Ah, c'est quoi, pardon?
+
+617
+00:23:50,840 --> 00:23:52,840
+C'est les mutators.
+
+618
+00:23:52,840 --> 00:23:53,840
+Oui, effectivement.
+
+619
+00:23:53,840 --> 00:23:54,840
+Ah oui?
+
+620
+00:23:54,840 --> 00:23:56,840
+Oui, oui, mais c'est...
+
+621
+00:23:56,840 --> 00:23:58,840
+Ça n'a pas rapport avec ce qu'on fait?
+
+622
+00:23:58,840 --> 00:24:00,840
+Ben, c'est comme si...
+
+623
+00:24:00,840 --> 00:24:06,840
+Parce que ça permet, en fait, de patcher dynamiquement ce que les rules n'ont pas été capables de faire de leur bord.
+
+624
+00:24:07,840 --> 00:24:08,840
+Ah oui.
+
+625
+00:24:08,840 --> 00:24:10,840
+Mais c'est juste pour ceux qui n'ont pas été settés.
+
+626
+00:24:10,840 --> 00:24:12,840
+C'est ça, puis on veut minimiser ça au maximum, là.
+
+627
+00:24:12,840 --> 00:24:13,840
+C'est comme...
+
+628
+00:24:13,840 --> 00:24:15,840
+Ouais, c'est ça.
+
+629
+00:24:15,840 --> 00:24:17,840
+OK.
+
+630
+00:24:17,840 --> 00:24:22,840
+OK, fait qu'on aurait comme une pseudo-solution pour les runtime grids, mais pour les hash loads, on est quand même pétés.
+
+631
+00:24:22,840 --> 00:24:28,840
+Quoique, lorsqu'on fait les hash loads, il pourrait techniquement y associer un hash load layer dernière seconde.
+
+632
+00:24:28,840 --> 00:24:32,840
+Builder son hash load. Non, mais ce n'est pas vrai, parce qu'il faut que tu fasses le setup.
+
+633
+00:24:32,840 --> 00:24:34,840
+Le setup, ce n'est pas la même étape que le build.
+
+634
+00:24:34,840 --> 00:24:39,460
+Parce que le setup, lui, va dire...
+
+635
+00:24:39,460 --> 00:24:49,460
+Ah, ben, finalement, ce serait le setup qui ferait ce processus-là, qui viendrait associer un hash load layer.
+
+636
+00:24:49,460 --> 00:24:52,460
+Mais ce serait le pseudo-acteur, ce serait l'acteur qui est...
+
+637
+00:24:52,460 --> 00:24:58,620
+Non, ça ne marche pas.
+
+638
+00:24:58,620 --> 00:24:59,620
+Ce ne serait pas persistant.
+
+639
+00:24:59,620 --> 00:25:07,320
+Ce sont des acteurs transients, quand tu fais play, ces acteurs-là, ils sont là, mais ils n'existent pas pour...
+
+640
+00:25:07,320 --> 00:25:13,480
+Ils ne sont pas sérialisés.
+
+641
+00:25:13,480 --> 00:25:17,480
+Mais ils ne sont pas persistants dans le sens que tu ne peux pas aller les rechercher après dans l'éditeur, dans un build.
+
+642
+00:25:17,480 --> 00:25:18,480
+Oui.
+
+643
+00:25:18,480 --> 00:25:20,480
+Pardon?
+
+644
+00:25:20,480 --> 00:25:24,480
+Oui, effectivement, ils ne sont pas...
+
+645
+00:25:24,480 --> 00:25:28,480
+Il faudrait que, dans le fond, le level instance puisse...
+
+646
+00:25:28,480 --> 00:25:33,480
+puisse sauvegarder ce que ces acteurs devraient recevoir comme propriété override.
+
+647
+00:25:33,480 --> 00:25:36,480
+Chaque instance de level instance.
+
+648
+00:25:36,480 --> 00:25:37,480
+Ah, ben non, oublie ça.
+
+649
+00:25:37,480 --> 00:25:41,460
+Pourquoi oublies-tu ça?
+
+650
+00:25:41,460 --> 00:25:46,460
+En théorie, tu peux peut-être faire ça avec, justement, les mutators, mais...
+
+651
+00:25:46,460 --> 00:25:49,460
+Parce que l'affaire qui arrive, et la raison pour laquelle je t'ai dit oublie ça, c'est...
+
+652
+00:25:50,460 --> 00:25:52,460
+Tu sais...
+
+653
+00:25:52,460 --> 00:25:54,460
+Les acteurs...
+
+654
+00:25:54,460 --> 00:25:57,460
+Les acteurs de Scripter, eux autres, ils n'ont pas de...
+
+655
+00:25:57,460 --> 00:25:59,460
+Ils n'ont pas de notion de...
+
+656
+00:25:59,460 --> 00:26:03,460
+Ils sont trois fois différents, trois petites grandes places.
+
+657
+00:26:03,460 --> 00:26:04,460
+Exact.
+
+658
+00:26:04,460 --> 00:26:07,460
+C'est un acteur de Scripter, puis Deadset, là, il faut...
+
+659
+00:26:07,460 --> 00:26:10,460
+Mais tu peux ajouter des propriétés aux acteurs de Scripter, right?
+
+660
+00:26:10,460 --> 00:26:11,460
+Oui.
+
+661
+00:26:11,460 --> 00:26:15,460
+Tu peux, mais c'est quoi que tu voudrais ajouter qui changerait quelque chose dans ton histoire?
+
+662
+00:26:15,460 --> 00:26:18,460
+Une espèce d'override pour dire, ah, ben, toi, ton instance, il fait ci...
+
+663
+00:26:18,460 --> 00:26:20,460
+Toi, ton instance, il fait ci, ou...
+
+664
+00:26:20,460 --> 00:26:21,460
+Tu sais, comme...
+
+665
+00:26:21,460 --> 00:26:23,460
+Instance, index, 0...
+
+666
+00:26:23,460 --> 00:26:24,460
+Je comprends, mais...
+
+667
+00:26:24,460 --> 00:26:25,460
+Je comprends, mais...
+
+668
+00:26:25,460 --> 00:26:29,460
+Moi, non, mais tu peux pas faire ça, parce que tu sais pas comment il y en a.
+
+669
+00:26:29,460 --> 00:26:32,460
+Ouais, chacun est dans son contexte, c'est ça.
+
+670
+00:26:32,460 --> 00:26:33,460
+Hum-hum.
+
+671
+00:26:33,460 --> 00:26:35,460
+Bon, on génère un hash avec...
+
+672
+00:26:35,460 --> 00:26:37,460
+Son patch, genre.
+
+673
+00:26:37,460 --> 00:26:39,460
+Puis c'est lui.
+
+674
+00:26:39,460 --> 00:26:40,460
+C'est son index.
+
+675
+00:26:40,460 --> 00:26:41,460
+Ah, non.
+
+676
+00:26:41,460 --> 00:26:42,460
+Ouais.
+
+677
+00:26:42,460 --> 00:26:44,460
+Ça va, là, on voit pas ça, cette histoire-là.
+
+678
+00:26:46,460 --> 00:26:47,460
+T'es optimiste, mon Max?
+
+679
+00:26:48,460 --> 00:26:50,460
+Tout se fait, là, mais...
+
+680
+00:26:50,460 --> 00:26:56,460
+Tout se fait, c'est juste qu'il y a des affaires que, des fois, tu veux pas faire comme ça, là.
+
+681
+00:26:56,460 --> 00:26:58,460
+Non, je t'ai compris.
+
+682
+00:26:58,460 --> 00:27:00,460
+Puis on a le...
+
+683
+00:27:00,460 --> 00:27:10,800
+Le système actuel, tu sais, on peut se permettre de le modifier un petit peu, mais c'est énorme si on veut faire des changements majeurs pour notre système actuel, tu sais.
+
+684
+00:27:10,800 --> 00:27:13,800
+Mais moi, je me dis, oui, mais...
+
+685
+00:27:13,800 --> 00:27:15,800
+Comment tu le ferais autrement?
+
+686
+00:27:15,800 --> 00:27:17,800
+Parce que t'acceptes que t'as des jeux comme ça, puis...
+
+687
+00:27:17,800 --> 00:27:19,800
+Non, figure-toi que c'est ça que je me demande.
+
+688
+00:27:19,800 --> 00:27:23,800
+Je me demande si, est-ce qu'il y a une contrepartie?
+
+689
+00:27:23,800 --> 00:27:26,800
+Qu'est-ce qu'on pourrait faire d'autre en alternative?
+
+690
+00:27:26,800 --> 00:27:29,800
+Est-ce qu'il y a un moyen de patcher du mauvais data?
+
+691
+00:27:29,800 --> 00:27:39,800
+Est-ce qu'on parle de juste 10 items qui sont pénibles et qu'on pourrait gérer à la main, tu sais, avec une notion d'override ou je sais pas quoi, là?
+
+692
+00:27:39,800 --> 00:27:45,800
+Est-ce que, tu vois, j'essaye de minimiser, d'être assez conservateur, finalement, avec ce qui a été fait jusqu'à présent, parce que...
+
+693
+00:27:45,800 --> 00:27:51,800
+Ce qu'on a fait jusqu'à présent, ça engueule quand même un bon 90-95% de tous les use cases.
+
+694
+00:27:51,800 --> 00:27:57,800
+C'est quand même pas si mal. C'est juste les edge cases qui nous... qui sont pénibles.
+
+695
+00:27:57,800 --> 00:28:01,800
+On sait peut-être pas, en fait, c'est quoi les edge cases.
+
+696
+00:28:01,800 --> 00:28:04,800
+Quoique, on le sait si c'est des rules qui ont été dupliquées.
+
+697
+00:28:04,800 --> 00:28:06,800
+Est-ce qu'on a des duplicats, là?
+
+698
+00:28:06,800 --> 00:28:10,800
+Tu sais, tout à l'heure, Maxime, il a utilisé le mot similaire, là.
+
+699
+00:28:10,800 --> 00:28:14,800
+Peut-être qu'on peut essayer de trouver des clusters d'acteurs qui sont similaires.
+
+700
+00:28:14,800 --> 00:28:25,800
+Et dans ce temps-là, en tant que groupe, ben, on décide d'un placement, mais par cluster, tu sais, on raisonne plus à l'acteur, mais par un groupe d'acteurs.
+
+701
+00:28:25,800 --> 00:28:31,800
+Tu voudrais trouver tous les acteurs de sculpture qui se ressemblent, du même type, qui se ressemblent?
+
+702
+00:28:31,800 --> 00:28:35,800
+Du même type, puis s'assurer de fournir le même type de h-load layer et compagnie.
+
+703
+00:28:35,800 --> 00:28:41,530
+Genre, par un average de son bound, puis là, ben...
+
+704
+00:28:41,530 --> 00:28:43,530
+Non, je parlais pas de...
+
+705
+00:28:43,530 --> 00:28:46,940
+C'est...
+
+706
+00:28:47,940 --> 00:28:51,940
+Imagine, c'est un buisson qui...
+
+707
+00:28:51,940 --> 00:28:54,940
+Notre truc de base, puis t'as plusieurs variantes.
+
+708
+00:28:54,940 --> 00:28:59,940
+Justement, c'est lui avec la feuille au-dessus, comme disait Maxime, ou les histoires de rotation et tout ça.
+
+709
+00:28:59,940 --> 00:29:03,940
+Mais bref, essayer de les trouver tous les mêmes, ensemble.
+
+710
+00:29:03,940 --> 00:29:05,940
+Donc, ça, c'est ce que j'appelle un cluster.
+
+711
+00:29:05,940 --> 00:29:12,940
+Puis ça, ben, pour tout cela, assigner le même type de h-load ou le même type de runtime grid, tu sais.
+
+712
+00:29:12,940 --> 00:29:15,940
+Pour éviter que, justement, il y en a un dans le lot qui commence à popper, qu'on ne comprenne pas.
+
+713
+00:29:15,940 --> 00:29:16,940
+Pour éviter que, justement, il y en a un dans le lot qui commence à popper, qu'on ne comprenne pas.
+
+714
+00:29:16,940 --> 00:29:17,940
+Pour éviter que, justement, il y en a un dans le lot qui commence à popper, qu'on ne comprenne pas.
+
+715
+00:29:17,940 --> 00:29:20,940
+Parce qu'il n'est pas sur le même h-load d'ailleurs.
+
+716
+00:29:20,940 --> 00:29:23,940
+C'est un peu l'idée que je pense.
+
+717
+00:29:23,940 --> 00:29:26,940
+Donc, tu te fuirais peut-être plus sur le bound, c'est ça?
+
+718
+00:29:26,940 --> 00:29:29,940
+De l'acteur, tu te fuirais peut-être plus au bound du h-load.
+
+719
+00:29:29,940 --> 00:29:31,940
+Je ferais un... En fait, je ferais comme un mix.
+
+720
+00:29:31,940 --> 00:29:34,940
+Alors, je dis ça, c'est vraiment du brainstorming, là.
+
+721
+00:29:34,940 --> 00:29:36,940
+Mais imagine, t'as un cluster, là, puis t'en as...
+
+722
+00:29:36,940 --> 00:29:38,940
+T'as 15 acteurs qui sont similaires.
+
+723
+00:29:38,940 --> 00:29:43,940
+Sur ces 15 acteurs, t'en as 3 qui sont candidats pour un h-load phare, là.
+
+724
+00:29:43,940 --> 00:29:47,940
+Puis, t'en as 12 qui sont candidats pour l'h-load mid.
+
+725
+00:29:47,940 --> 00:29:50,940
+Ben, le plus grand gagnerait, entre guillemets.
+
+726
+00:29:50,940 --> 00:29:53,940
+Puis, les 3 qui étaient en phare, ben, je les replacerais en mid.
+
+727
+00:29:53,940 --> 00:29:55,940
+Tu vois ce que je veux dire, là?
+
+728
+00:29:55,940 --> 00:29:58,940
+J'essaierais comme ça de regrouper, en fait.
+
+729
+00:29:58,940 --> 00:30:02,940
+Ton cluster, pardon, ça ressemblerait un petit peu genre un gris de World Partition?
+
+730
+00:30:02,940 --> 00:30:07,220
+Genre ça? Plus petit?
+
+731
+00:30:07,220 --> 00:30:09,220
+Non, non, non, il n'y a pas de...
+
+732
+00:30:09,220 --> 00:30:12,220
+Tu cherches les acteurs dans... C'est quoi ton cluster, dans ce fond?
+
+733
+00:30:12,220 --> 00:30:15,220
+C'est une liste d'acteurs, là.
+
+734
+00:30:15,220 --> 00:30:21,220
+Dans cette liste d'acteurs qui sont tous similaires, dans la rapproche, là.
+
+735
+00:30:21,220 --> 00:30:24,220
+Avec quelques variantes différentes.
+
+736
+00:30:24,220 --> 00:30:29,220
+Ben, là-dedans, OK, une fois que t'as l'installation des rules qui est faite,
+
+737
+00:30:29,220 --> 00:30:32,220
+faudrait faire une passe supplémentaire pour que, OK, dans ce cluster-là,
+
+738
+00:30:32,220 --> 00:30:39,220
+j'en ai 12 qui ont eu tel h-load layer et 3 qui ont eu les h-load layers comme un peu défaillants.
+
+739
+00:30:39,220 --> 00:30:43,220
+Ben, ces 3-là, j'irais, OK, ils sont dans le cluster.
+
+740
+00:30:43,220 --> 00:30:45,220
+Ben, on prend le truc qui gagne.
+
+741
+00:30:45,220 --> 00:30:47,220
+Qui remporte, donc, ce serait comme les 12.
+
+742
+00:30:47,220 --> 00:30:49,220
+Pis c'est ça que je signerais aux 3.
+
+743
+00:30:49,220 --> 00:30:51,220
+Mais je pense avoir autre, là.
+
+744
+00:30:51,220 --> 00:30:54,220
+Je sais pas, peut-être que Maxime peut me corriger, là, mais...
+
+745
+00:30:54,220 --> 00:30:59,220
+T'sais, j'essaie juste de trouver une alternative au truc toujours basé sur notre système
+
+746
+00:30:59,220 --> 00:31:01,220
+pour éviter de faire une révolution énorme.
+
+747
+00:31:01,220 --> 00:31:02,220
+Ouais.
+
+748
+00:31:02,220 --> 00:31:08,220
+Non, ben, c'est pas que... c'est pas que je veux... c'est pas que je veux... je veux pas...
+
+749
+00:31:08,220 --> 00:31:11,220
+Tu vois, ben... je vais essayer de formuler.
+
+750
+00:31:11,220 --> 00:31:13,220
+C'est pas que je veux... je veux faire... je veux faire une révolution de vos...
+
+751
+00:31:13,220 --> 00:31:16,220
+de vos systèmes qui existent déjà.
+
+752
+00:31:16,220 --> 00:31:23,220
+C'est juste que si... si ça prend déjà 5-6 heures pour changer le...
+
+753
+00:31:23,220 --> 00:31:24,220
+C'est trop long.
+
+754
+00:31:24,220 --> 00:31:30,220
+Pour changer ça, pour updater ça, qu'on est capable de régler le problème en faisant comme...
+
+755
+00:31:30,220 --> 00:31:36,220
+Ben, faites juste l'updater dans un... dans un... dans un... un mutator ou un transformer,
+
+756
+00:31:36,220 --> 00:31:39,220
+pis that's it, c'est fini, on n'en parle plus.
+
+757
+00:31:39,220 --> 00:31:42,220
+Ben, moi, je prends le... je prends le mutator ou le transformer, là.
+
+758
+00:31:42,220 --> 00:31:46,220
+T'es-tu... pardon, ça serait-tu applicable aussi pour ceux qui sont pour les HLOD?
+
+759
+00:31:46,220 --> 00:31:49,220
+C'est-à-dire qu'au moment de faire les HLOD, on serait correct?
+
+760
+00:31:49,220 --> 00:31:50,220
+Ben...
+
+761
+00:31:50,220 --> 00:31:52,220
+Parce que ça aussi, c'est un problème, là.
+
+762
+00:31:52,220 --> 00:31:54,220
+Là, je pense qu'on sauve... on sauve plus le runtime.
+
+763
+00:31:54,220 --> 00:31:59,220
+Ça dépend, c'est à propos de quoi... c'est à quel moment que les HLOD sont générés.
+
+764
+00:31:59,220 --> 00:32:04,220
+Ça, c'est ben des... c'est plusieurs questions que... que... que je répondrais en premier, là.
+
+765
+00:32:04,220 --> 00:32:09,220
+Si les HLOD utilisent le runtime pour être créés pis générés...
+
+766
+00:32:09,220 --> 00:32:11,220
+Je veux dire, les HLOD, de toute façon, eux autres,
+
+767
+00:32:11,220 --> 00:32:16,220
+il faut qu'il y ait une version que... que les embeds ont déjà été faites.
+
+768
+00:32:16,220 --> 00:32:19,220
+Fait que... je sais pas quand est-ce qu'ils passent.
+
+769
+00:32:19,220 --> 00:32:21,220
+Tu comprends-tu mon problème?
+
+770
+00:32:21,220 --> 00:32:23,220
+Ouais, quand tu parles du embed, c'est...
+
+771
+00:32:23,220 --> 00:32:26,220
+Que les HLOD soient été embeddés.
+
+772
+00:32:26,220 --> 00:32:30,220
+Parce qu'une fois que les... les... les acteurs ont été embeddés,
+
+773
+00:32:30,220 --> 00:32:32,220
+ben là, ils sont individuels.
+
+774
+00:32:32,220 --> 00:32:36,220
+Pis là, à ce moment-là, si tu changes le runtime grid dessus,
+
+775
+00:32:36,220 --> 00:32:40,220
+ben, nécessairement, ça va être juste cette instance-là qui va être changée.
+
+776
+00:32:40,220 --> 00:32:41,220
+C'est ça.
+
+777
+00:32:41,220 --> 00:32:44,220
+C'est ça l'intérêt des transformers, parce que les transformers agissent
+
+778
+00:32:44,220 --> 00:32:48,220
+après que... après que le... l'embed a été fait.
+
+779
+00:32:48,220 --> 00:32:50,220
+Exact. Mais là, pour faire les HLOD,
+
+780
+00:32:50,220 --> 00:32:53,220
+je pense pas qu'on soit embeddés, là.
+
+781
+00:32:53,220 --> 00:32:56,220
+Ben non, mais c'est ça ma question, je sais pas.
+
+782
+00:32:56,220 --> 00:33:00,220
+Quand les HLOD sont générés, je sais pas si t'es embeddé ou pas, ou...
+
+783
+00:33:00,220 --> 00:33:01,220
+Je pose la question.
+
+784
+00:33:01,220 --> 00:33:03,720
+T'es-tu là à quel moment?
+
+785
+00:33:03,720 --> 00:33:05,720
+Demandez à mon maître.
+
+786
+00:33:09,230 --> 00:33:12,230
+Vous êtes chanceux, moi, je fais bientôt un cours de crédit, là.
+
+787
+00:33:12,230 --> 00:33:13,230
+Moi aussi, t'inquiète pas.
+
+788
+00:33:13,230 --> 00:33:16,230
+Mettre de l'argent ou des crédits, moi, je suis à 4-5-5, là, c'est correct.
+
+789
+00:33:16,230 --> 00:33:17,230
+J'en profite, il me reste deux jours.
+
+790
+00:33:17,230 --> 00:33:20,230
+Ouais, t'es chanceux, moi, je suis à 490, là.
+
+791
+00:33:20,230 --> 00:33:21,230
+De quoi vous parlez?
+
+792
+00:33:21,230 --> 00:33:22,230
+Dans Cursor, là.
+
+793
+00:33:22,230 --> 00:33:23,230
+Dans Cursor.
+
+794
+00:33:23,230 --> 00:33:26,230
+Ouais, je comprends, dans Cursor, mais qu'est-ce que vous... dans le...
+
+795
+00:33:26,230 --> 00:33:30,230
+Ça aussi, tu vois? Le nom de request.
+
+796
+00:33:30,230 --> 00:33:33,230
+Genre, mon dashboard, là, je suis à 4-5-5.
+
+797
+00:33:33,230 --> 00:33:34,230
+J'aurais peut-être fait...
+
+798
+00:33:34,230 --> 00:33:35,230
+Tu fais quoi, moi?
+
+799
+00:33:35,230 --> 00:33:38,230
+Mais toi, t'étais pas là à moitié du mois, aussi.
+
+800
+00:33:38,230 --> 00:33:41,230
+Ah, et toi, t'es...
+
+801
+00:33:41,230 --> 00:33:44,230
+Si tu peux cliquer sur le lien, là, que j'ai envoyé, tu verras ton utilisation.
+
+802
+00:33:44,230 --> 00:33:47,230
+Ah ben, tiens, je suis passé à 500, tu vois.
+
+803
+00:33:47,230 --> 00:33:54,560
+Et t'sais, j'ai pas demandé une extension pour un jour, là, c'est ridicule.
+
+804
+00:33:54,560 --> 00:33:57,560
+Mais toi, ta limite, c'est 100$, non?
+
+805
+00:33:57,560 --> 00:34:00,560
+Ben là, là, je viens juste d'avoir 500, alors est-ce que je peux...
+
+806
+00:34:00,560 --> 00:34:04,560
+Après, on demande usage, là, je suis à 0$ sur 100$, là, mais...
+
+807
+00:34:04,560 --> 00:34:12,920
+T'sais, comment ça marche? Est-ce que je peux juste commencer à l'utiliser, puis ça va taper dans... là-dedans, là?
+
+808
+00:34:12,920 --> 00:34:15,920
+Euh, non, ça va le faire automatiquement. Ça va switcher automatiquement dans les requests.
+
+809
+00:34:15,920 --> 00:34:16,920
+Ah. Donc je vais...
+
+810
+00:34:16,920 --> 00:34:19,920
+Je vais juste à continuer, puis là, c'est juste en warning, puis... OK.
+
+811
+00:34:19,920 --> 00:34:25,920
+Moi, je pense qu'il y a eu un bug quelque part dans le mois, parce qu'ils m'ont fait genre un adjustment, puis ils m'ont chargé 4-5$.
+
+812
+00:34:25,920 --> 00:34:26,920
+Ouais.
+
+813
+00:34:26,920 --> 00:34:30,920
+Mais je pense pas que ça soit vrai. Ça fait partie de mes requests, aussi.
+
+814
+00:34:30,920 --> 00:34:32,920
+Bon, c'est une détail.
+
+815
+00:34:32,920 --> 00:34:36,920
+Puis là, dans le fond, moi, il me resterait genre 45 requests, puis aujourd'hui, j'en ai consommé quand même beaucoup.
+
+816
+00:34:36,920 --> 00:34:40,920
+Je pense, aujourd'hui, tout seul, j'en ai fait 31. Non, c'est possible.
+
+817
+00:34:40,920 --> 00:34:43,270
+On est devenu...
+
+818
+00:34:43,270 --> 00:34:47,270
+Tu vois, moi, depuis juillet, je suis à 375 requests.
+
+819
+00:34:47,270 --> 00:34:49,270
+315 requêtes.
+
+820
+00:34:49,270 --> 00:34:51,270
+Depuis juillet?
+
+821
+00:34:51,270 --> 00:34:52,270
+Ouais.
+
+822
+00:34:52,270 --> 00:34:53,270
+Mais non.
+
+823
+00:34:53,270 --> 00:34:54,270
+Ben, il est qui, du moins?
+
+824
+00:34:54,270 --> 00:34:55,270
+Je te le dis.
+
+825
+00:34:55,270 --> 00:34:56,270
+Ben...
+
+826
+00:34:56,270 --> 00:34:58,270
+Regarde mon mois de septembre, là.
+
+827
+00:34:58,270 --> 00:35:00,270
+Mon mois de septembre, là.
+
+828
+00:35:00,270 --> 00:35:02,270
+C'était...
+
+829
+00:35:02,270 --> 00:35:03,270
+C'était bien trop vite.
+
+830
+00:35:03,270 --> 00:35:09,630
+518 requests.
+
+831
+00:35:09,630 --> 00:35:11,630
+J'en avais, là, des requests.
+
+832
+00:35:11,630 --> 00:35:17,000
+Non, mais je comprends. Mais mettons, moi, je pogne de juillet à août.
+
+833
+00:35:17,000 --> 00:35:19,000
+Je suis juste à...
+
+834
+00:35:19,000 --> 00:35:21,000
+Je dois être juste à 300 quelque chose, là.
+
+835
+00:35:21,000 --> 00:35:25,690
+Juillet et août.
+
+836
+00:35:25,690 --> 00:35:27,690
+Avec zéro on-demand.
+
+837
+00:35:27,690 --> 00:35:29,690
+Oh, oui.
+
+838
+00:35:29,690 --> 00:35:32,690
+Mon on-demand usage est à zéro, ever, tout le temps.
+
+839
+00:35:32,690 --> 00:35:37,230
+Je sais même pas comment tu fais du on-demand usage.
+
+840
+00:35:37,230 --> 00:35:38,230
+Ben, moi, j'avais pas de temps, non plus, là.
+
+841
+00:35:38,230 --> 00:35:40,230
+Juillet et août, j'ai fait 288 requests.
+
+842
+00:35:40,230 --> 00:35:41,230
+Mais si je fais juillet...
+
+843
+00:35:41,230 --> 00:35:44,230
+Ah, toi, c'est parce que t'es parti quand? T'es parti en juillet?
+
+844
+00:35:44,230 --> 00:35:46,230
+Non, je suis parti mi-septembre.
+
+845
+00:35:46,230 --> 00:35:49,510
+Mi-septembre.
+
+846
+00:35:49,510 --> 00:35:54,510
+Ben, regarde, Maxime, là, clairement, on a tous switché à Cursor massivement.
+
+847
+00:35:54,510 --> 00:35:55,510
+Ouais.
+
+848
+00:35:55,510 --> 00:35:56,510
+Pis...
+
+849
+00:35:56,510 --> 00:35:59,510
+Et même pour des trucs, hein, t'sais, c'est devenu des...
+
+850
+00:35:59,510 --> 00:36:02,510
+Des investigations, des reviews, des trucs, t'sais, c'est...
+
+851
+00:36:02,510 --> 00:36:04,510
+Moi, j'suis Deckard, by the way, là, j'fais pas de code.
+
+852
+00:36:04,510 --> 00:36:06,510
+Ça, c'est tout des changes de code.
+
+853
+00:36:06,510 --> 00:36:08,510
+Sauf...
+
+854
+00:36:08,510 --> 00:36:11,010
+Peut-être deux.
+
+855
+00:36:11,010 --> 00:36:13,010
+Ça, y'a rien là-dedans.
+
+856
+00:36:13,010 --> 00:36:15,010
+C'est tout des changes de code.
+
+857
+00:36:15,010 --> 00:36:17,010
+Ça y est du plaisir, là, moi, j'ai...
+
+858
+00:36:17,010 --> 00:36:18,010
+Ouais, ouais, j'ai du plaisir pas mal.
+
+859
+00:36:18,010 --> 00:36:20,010
+J'en pense moins que vous autres pas mal, là.
+
+860
+00:36:20,010 --> 00:36:22,010
+Ben, c'est une bonne chose, je pense.
+
+861
+00:36:22,010 --> 00:36:25,010
+C'est sûr que, moi, j'suis rendu à 74 en novembre.
+
+862
+00:36:25,010 --> 00:36:30,010
+J'suis rendu à 74 en octobre, pis ça fait quatre jours que j'suis loul.
+
+863
+00:36:30,010 --> 00:36:35,010
+Ben, on s'en reparlera au party de Noël, là, mais on est en train de complètement morpher en tant que...
+
+864
+00:36:35,010 --> 00:36:36,010
+En tant que développeur, là.
+
+865
+00:36:36,010 --> 00:36:37,010
+Ouais.
+
+866
+00:36:37,010 --> 00:36:38,010
+Pis...
+
+867
+00:36:38,010 --> 00:36:39,010
+Mais moi, perso, perso, ça m'en fait...
+
+868
+00:36:39,010 --> 00:36:40,010
+Non, mais ça va switcher...
+
+869
+00:36:40,010 --> 00:36:43,010
+Ça va switcher encore en novembre, parce que...
+
+870
+00:36:43,010 --> 00:36:45,010
+Ça va commencer d'être calculé différemment, là.
+
+871
+00:36:45,010 --> 00:36:46,010
+Ouais.
+
+872
+00:36:46,010 --> 00:36:47,010
+Ouais, en tokens.
+
+873
+00:36:47,010 --> 00:36:48,010
+OK.
+
+874
+00:36:48,010 --> 00:36:49,010
+Retour à notre affaire.
+
+875
+00:36:49,010 --> 00:36:51,010
+J'ai-tu lancé ma question, moi?
+
+876
+00:36:51,010 --> 00:36:52,010
+Ah, oui.
+
+877
+00:36:52,010 --> 00:36:53,010
+Il a pensé.
+
+878
+00:36:53,010 --> 00:36:54,010
+Qu'est-ce qu'il veut dire?
+
+879
+00:36:54,010 --> 00:36:56,010
+Il a 45 millions de tokens, j'pense.
+
+880
+00:36:56,010 --> 00:36:58,390
+Quand même.
+
+881
+00:36:58,390 --> 00:36:59,390
+Mais ça dépend.
+
+882
+00:36:59,390 --> 00:37:00,390
+Les affaires d'un million, c'est bizarre.
+
+883
+00:37:00,390 --> 00:37:02,390
+It depends on the level instance runtime behavior setting.
+
+884
+00:37:02,390 --> 00:37:06,390
+Only the default mode embeds the child partitioned.
+
+885
+00:37:06,390 --> 00:37:11,390
+Default for level instances as they're embedded, the level instance actor descriptors reaches
+
+886
+00:37:11,390 --> 00:37:16,390
+the child container of the main world with cluster mode partitioned.
+
+887
+00:37:16,390 --> 00:37:21,390
+The HLED builder, therefore, sees each child actor as a normal actor of the persistent
+
+888
+00:37:21,390 --> 00:37:24,920
+world, YFX embedding.
+
+889
+00:37:24,920 --> 00:37:31,920
+Each actor gets assigned its HLED layer and grid cell individually, as if it had been
+
+890
+00:37:31,920 --> 00:37:32,920
+placed.
+
+891
+00:37:32,920 --> 00:37:33,920
+Ouais, OK.
+
+892
+00:37:33,920 --> 00:37:34,920
+Qu'on est bain?
+
+893
+00:37:34,920 --> 00:37:37,920
+Fait qu'un cell transformer pourrait faire ça déjà?
+
+894
+00:37:37,920 --> 00:37:39,920
+Ben, probablement, là.
+
+895
+00:37:39,920 --> 00:37:41,920
+Transformer ou mutator, là, j'sais pas lequel des deux.
+
+896
+00:37:41,920 --> 00:37:42,920
+C'est quoi que ça veut dire mutator?
+
+897
+00:37:42,920 --> 00:37:43,920
+Excuse.
+
+898
+00:37:43,920 --> 00:37:46,920
+Parce que j'sais qu'il y a un autre système de mutator pour les characters pis c'est autre
+
+899
+00:37:46,920 --> 00:37:47,920
+chose, là.
+
+900
+00:37:47,920 --> 00:37:48,920
+Ouais, j'sais pas, mais y arrive...
+
+901
+00:37:48,920 --> 00:37:49,920
+Ce serait quoi?
+
+902
+00:37:49,920 --> 00:37:50,920
+C'est un cell transformer?
+
+903
+00:37:50,920 --> 00:37:51,920
+Ouais.
+
+904
+00:37:51,920 --> 00:37:52,920
+Euh...
+
+905
+00:37:52,920 --> 00:37:53,920
+Ouais.
+
+906
+00:37:53,920 --> 00:37:54,920
+Ou un mutator.
+
+907
+00:37:54,920 --> 00:37:55,920
+Ou un mutator.
+
+908
+00:37:55,920 --> 00:38:18,170
+Je m'en souviens.
+
+909
+00:38:18,170 --> 00:38:19,170
+Alright.
+
+910
+00:38:19,170 --> 00:38:20,170
+Yeah.
+
+911
+00:38:20,170 --> 00:38:21,170
+Alors que...
+
+912
+00:38:21,170 --> 00:38:22,170
+Alors qu'il y a une drive.
+
+913
+00:38:22,170 --> 00:38:26,930
+Est-ce qu'il y avait autre chose qu'on voulait explorer?
+
+914
+00:38:26,930 --> 00:38:31,930
+Ben, qu'est-ce que ça voudrait dire d'ajouter une propriété à un actor descriptor?
+
+915
+00:38:31,930 --> 00:38:33,930
+Moi, j'ai compris qu'il faut que tu re-saves tous les acteurs.
+
+916
+00:38:33,930 --> 00:38:34,930
+C'est...
+
+917
+00:38:34,930 --> 00:38:35,930
+C'est massif.
+
+918
+00:38:35,930 --> 00:38:36,930
+Pas nécessairement.
+
+919
+00:38:36,930 --> 00:38:38,930
+Oui, mais pas nécessairement.
+
+920
+00:38:38,930 --> 00:38:40,930
+Parce qu'on veut pas loader les objets.
+
+921
+00:38:40,930 --> 00:38:41,930
+C'est ça l'affaire.
+
+922
+00:38:41,930 --> 00:38:42,930
+C'est ça.
+
+923
+00:38:42,930 --> 00:38:44,930
+Mais plus tu dépasses du stock dans un descriptor, plus tu perds du stock.
+
+924
+00:38:44,930 --> 00:38:45,930
+Ouais.
+
+925
+00:38:45,930 --> 00:38:46,930
+Tu perds le bénéfice, là.
+
+926
+00:38:46,930 --> 00:38:47,930
+Tu sais, ça ralentit tout le temps.
+
+927
+00:38:47,930 --> 00:38:48,930
+Mais là, on met un float.
+
+928
+00:38:48,930 --> 00:38:49,930
+On met un float.
+
+929
+00:38:49,930 --> 00:38:50,930
+C'est genre le moins cher qu'on pourrait ajouter.
+
+930
+00:38:50,930 --> 00:38:51,930
+Ah, mais...
+
+931
+00:38:51,930 --> 00:38:52,930
+Sauf si on le met intégre, genre.
+
+932
+00:38:52,930 --> 00:38:53,930
+On le met pas un double.
+
+933
+00:38:53,930 --> 00:38:54,930
+On le met ça, un intégre, si tu veux.
+
+934
+00:38:54,930 --> 00:38:55,930
+Puis un 32, là.
+
+935
+00:38:55,930 --> 00:38:56,930
+Il va être correct.
+
+936
+00:38:56,930 --> 00:38:57,930
+C'est parce que, tu sais, les...
+
+937
+00:38:57,930 --> 00:39:02,930
+Si tu rajoutes un truc dans l'actor descriptor, Maxime va me corriger, mais pour moi, c'est
+
+938
+00:39:02,930 --> 00:39:05,930
+comme une structure, finalement, que tu bindes à chacun des acteurs.
+
+939
+00:39:05,930 --> 00:39:06,930
+Ouais.
+
+940
+00:39:06,930 --> 00:39:11,930
+Puis les acteurs dans lesquels ta variable serait pas concernée, ben, en le rajoutant
+
+941
+00:39:11,930 --> 00:39:15,930
+dans l'actor descriptor, ben, il l'aurait quand même, même si c'est un false, là.
+
+942
+00:39:15,930 --> 00:39:16,930
+Et donc...
+
+943
+00:39:16,930 --> 00:39:17,930
+Ouais, mais qui...
+
+944
+00:39:17,930 --> 00:39:18,930
+Ben, oui, puis non.
+
+945
+00:39:18,930 --> 00:39:20,930
+C'est possible d'avoir des spécialisations dans l'actor descriptor.
+
+946
+00:39:20,930 --> 00:39:21,930
+OK.
+
+947
+00:39:21,930 --> 00:39:25,930
+C'est ça que je fais, entre autres, pour le Dependency Group.
+
+948
+00:39:25,930 --> 00:39:28,930
+C'est possible d'avoir une spécialisation, mais...
+
+949
+00:39:28,930 --> 00:39:30,930
+Ben oui, t'as raison.
+
+950
+00:39:30,930 --> 00:39:35,930
+Si on rajoute quelque chose dans l'actor descriptor par défaut, ben, ce quelque chose-là va
+
+951
+00:39:35,930 --> 00:39:39,930
+exister pour tous tes autres acteurs, mais ça existe juste en éditeur, de toute façon.
+
+952
+00:39:39,930 --> 00:39:40,930
+Ah ouais?
+
+953
+00:39:40,930 --> 00:39:41,930
+Sans perspective, là.
+
+954
+00:39:41,930 --> 00:39:43,930
+Les acteurs descriptors, ça n'existe qu'en...
+
+955
+00:39:43,930 --> 00:39:44,930
+Que dans un...
+
+956
+00:39:44,930 --> 00:39:45,930
+Que dans un...
+
+957
+00:39:45,930 --> 00:39:46,930
+Qu'en...
+
+958
+00:39:46,930 --> 00:39:47,930
+Qu'en runtime.
+
+959
+00:39:47,930 --> 00:39:48,930
+OK.
+
+960
+00:39:48,930 --> 00:39:49,930
+Euh, qu'en éditeur, je veux dire.
+
+961
+00:39:49,930 --> 00:39:50,930
+Mais...
+
+962
+00:39:50,930 --> 00:39:51,930
+Attention, parce que même si c'est l'éditeur, faut y aller doucement.
+
+963
+00:39:51,930 --> 00:39:52,930
+On est à 650 000 acteurs, là.
+
+964
+00:39:52,930 --> 00:39:53,930
+Peut-être même 700 000, maintenant, là.
+
+965
+00:39:53,930 --> 00:39:54,930
+Non, non, non, mais je...
+
+966
+00:39:54,930 --> 00:39:55,930
+Je suis pas...
+
+967
+00:39:55,930 --> 00:39:56,930
+Je suis en train de te dire...
+
+968
+00:39:56,930 --> 00:39:57,930
+On n'existe pas, ça.
+
+969
+00:39:57,930 --> 00:39:58,930
+Non, c'est ça.
+
+970
+00:39:58,930 --> 00:39:59,930
+Ben, c'est pour ça que je te dis, à ce moment-ci, de...
+
+971
+00:39:59,930 --> 00:40:00,930
+De faire un...
+
+972
+00:40:00,930 --> 00:40:01,930
+De faire un...
+
+973
+00:40:01,930 --> 00:40:02,930
+Un...
+
+974
+00:40:02,930 --> 00:40:03,930
+Un...
+
+975
+00:40:03,930 --> 00:40:04,930
+Un...
+
+976
+00:40:04,930 --> 00:40:05,930
+Un...
+
+977
+00:40:05,930 --> 00:40:06,930
+Un...
+
+978
+00:40:06,930 --> 00:40:07,930
+Un...
+
+979
+00:40:07,930 --> 00:40:08,930
+Un transformer pour...
+
+980
+00:40:08,930 --> 00:40:09,930
+Pour saté les...
+
+981
+00:40:09,930 --> 00:40:10,930
+Pour saté les grids.
+
+982
+00:40:10,930 --> 00:40:11,930
+Ben, c'est probablement ça qui est le plus...
+
+983
+00:40:11,930 --> 00:40:12,930
+Le plus facile, là, dans le sens où...
+
+984
+00:40:12,930 --> 00:40:13,930
+Ça...
+
+985
+00:40:13,930 --> 00:40:14,930
+Ça va fonctionner, pis ça va être toujours à jour, hein.
+
+986
+00:40:14,930 --> 00:40:20,670
+Je pense pas que les deux y existent.
+
+987
+00:40:20,670 --> 00:40:21,670
+Non?
+
+988
+00:40:21,670 --> 00:40:22,670
+Je pense que...
+
+989
+00:40:22,670 --> 00:40:23,670
+Euh...
+
+990
+00:40:23,670 --> 00:40:24,670
+Euh...
+
+991
+00:40:24,670 --> 00:40:25,670
+Euh...
+
+992
+00:40:25,670 --> 00:40:26,670
+Euh...
+
+993
+00:40:26,670 --> 00:40:27,670
+Euh...
+
+994
+00:40:27,670 --> 00:40:28,670
+Euh...
+
+995
+00:40:28,670 --> 00:40:29,670
+Euh...
+
+996
+00:40:29,670 --> 00:40:30,670
+Euh...
+
+997
+00:40:30,670 --> 00:40:31,670
+Euh...
+
+998
+00:40:31,670 --> 00:40:32,670
+Euh...
+
+999
+00:40:32,670 --> 00:40:33,670
+Euh...
+
+1000
+00:40:33,670 --> 00:40:34,670
+Euh...
+
+1001
+00:40:34,670 --> 00:40:35,670
+Euh...
+
+1002
+00:40:35,670 --> 00:40:36,670
+Euh...
+
+1003
+00:40:36,670 --> 00:40:48,930
+Euh...
+
+1004
+00:40:48,930 --> 00:40:49,930
+Euh...
+
+1005
+00:40:49,930 --> 00:40:50,930
+Euh...
+
+1006
+00:40:50,930 --> 00:40:51,930
+Euh...
+
+1007
+00:40:51,930 --> 00:40:52,930
+Euh...
+
+1008
+00:40:52,930 --> 00:40:53,930
+Euh...
+
+1009
+00:40:53,930 --> 00:40:54,930
+Euh...
+
+1010
+00:40:54,930 --> 00:40:55,930
+Euh...
+
+1011
+00:40:55,930 --> 00:40:56,930
+Euh...
+
+1012
+00:40:56,930 --> 00:40:57,930
+Euh...
+
+1013
+00:40:57,930 --> 00:41:00,880
+Euh...
+
+1014
+00:41:00,880 --> 00:41:01,880
+Euh...
+
+1015
+00:41:01,880 --> 00:41:02,880
+Euh...
+
+1016
+00:41:02,880 --> 00:41:03,880
+Euh...
+
+1017
+00:41:03,880 --> 00:41:04,880
+Euh...
+
+1018
+00:41:04,880 --> 00:41:05,880
+Euh...
+
+1019
+00:41:05,880 --> 00:41:06,880
+C'est ça qu'on fait?
+
+1020
+00:41:06,880 --> 00:41:07,880
+C'est ça que l'on fait?
+
+1021
+00:41:07,880 --> 00:41:08,880
+Ouais.
+
+1022
+00:41:08,880 --> 00:41:09,880
+Pourquoi le Cell Transformer dáïe trop tard?
+
+1023
+00:41:09,880 --> 00:41:10,880
+Je comprends pas.
+
+1024
+00:41:10,880 --> 00:41:11,880
+Le mutateur se passe...
+
+1025
+00:41:11,880 --> 00:41:12,880
+Il y a le...
+
+1026
+00:41:12,880 --> 00:41:13,880
+Le mutateur se passe...
+
+1027
+00:41:13,880 --> 00:41:14,960
+Il y a le embedding après, c'est le mutateur, après, c'est le Cell Transformer.
+
+1028
+00:41:14,960 --> 00:41:15,960
+C'est comme s'il y avait quelque chose entre Cell Transformer, puis mutateur.
+
+1029
+00:41:15,960 --> 00:41:21,040
+Là, j'ai lancé un can utilisé, faque il va vérifier qu'est ce qu'il peut faire...
+
+1030
+00:41:21,040 --> 00:41:22,480
+Oui mais je m'sen suis plus...
+
+1031
+00:41:22,480 --> 00:41:23,480
+Ça dépend quand est-ce qu'il passe comme ça...
+
+1032
+00:41:23,480 --> 00:41:35,880
+Le Cell Transformer passe après que les grids aient été faits, donc c'est trop tard.
+
+1033
+00:41:35,880 --> 00:41:42,480
+Il y a Mutator, ça passe juste avant que les grids soient faits, mais là t'es peut-être correct.
+
+1034
+00:41:54,890 --> 00:42:06,890
+C'est ça qui se passe dans le fond.
+
+1035
+00:42:06,890 --> 00:42:16,390
+Le Mutate Phase c'est vraiment tôt, Validate plus Cluster, Grid Cell est là de l'air, donc ça se passe Step 4, puis nous autres on ferait Cell Transformer, c'est bien trop tard.
+
+1036
+00:42:16,390 --> 00:42:18,390
+C'est pour ça.
+
+1037
+00:42:18,390 --> 00:42:23,390
+Ouais mais je sais pas si Mutator c'est pas trop tôt, tu vois le problème?
+
+1038
+00:42:23,390 --> 00:42:24,390
+Non.
+
+1039
+00:42:24,390 --> 00:42:28,390
+Non? Pourquoi? À cause du Clustering qui arrive juste après?
+
+1040
+00:42:28,390 --> 00:42:37,390
+Oui mais le Clustering dans le fond c'est que t'as ton Actor Descriptor qui est lié à son Container, mais t'as pas...
+
+1041
+00:42:37,390 --> 00:42:46,860
+À ce moment-là dans le Mutate Phase, il faudrait que tes Acteurs soient déjà dupliqués.
+
+1042
+00:42:46,860 --> 00:42:47,860
+Ok.
+
+1043
+00:42:47,860 --> 00:42:54,390
+Ils sont pas déjà dupliqués ici? Ah ok parce que c'est ça.
+
+1044
+00:42:54,390 --> 00:42:57,390
+Ok lui c'est qui qui est Embed?
+
+1045
+00:42:57,390 --> 00:43:07,860
+Une, deux...
+
+1046
+00:43:07,860 --> 00:43:21,980
+J'allais me chercher du Torino, c'était bon, mais peut-être que pour nous ça a fait rater. Bon.
+
+1047
+00:43:21,980 --> 00:43:23,980
+De quoi t'as dit? Victorino?
+
+1048
+00:43:23,980 --> 00:43:24,980
+Du Torino.
+
+1049
+00:43:24,980 --> 00:43:28,980
+Ah Torino! Ben oui. Avec la sauce à l'ail surtout.
+
+1050
+00:43:28,980 --> 00:43:33,980
+Non moi je prends toutes les sauces, avant je les prenais pas, maintenant je prends toutes les sauces.
+
+1051
+00:43:33,980 --> 00:43:35,980
+Tu prenais pas de sauce pour vrai?
+
+1052
+00:43:35,980 --> 00:43:40,980
+Ben j'avais de la misère avec la sauce à l'ail, je sais que j'ai des reflux pis tout pis...
+
+1053
+00:43:40,980 --> 00:43:44,980
+Ouais ça c'est tough. Mais là tu le mixes avec le hummus pis t'es correct.
+
+1054
+00:43:44,980 --> 00:43:46,980
+Je le mixe avec tout le reste, tout est mixé.
+
+1055
+00:43:46,980 --> 00:43:47,980
+Tout est... tout est mixé.
+
+1056
+00:43:47,980 --> 00:43:50,980
+Tout est... ouais une sauce la fin là.
+
+1057
+00:43:50,980 --> 00:43:54,980
+Ah j'aurais aimé ça qu'ils m'indiquent ça dans Canva.
+
+1058
+00:43:54,980 --> 00:43:55,980
+C'est pas grave.
+
+1059
+00:43:55,980 --> 00:43:58,980
+C'est parce que moi j'arrive pas à lire ça, je comprends pas ce que ça veut dire ça.
+
+1060
+00:43:58,980 --> 00:44:00,980
+Ah ben laisse-moi le temps là.
+
+1061
+00:44:00,980 --> 00:44:01,980
+Hein?
+
+1062
+00:44:01,980 --> 00:44:02,980
+Laisse-moi le temps là.
+
+1063
+00:44:02,980 --> 00:44:04,980
+Ok. Mais je vais quand même le faire.
+
+1064
+00:44:04,980 --> 00:44:07,980
+Je suis en phase de préparation.
+
+1065
+00:44:07,980 --> 00:44:15,060
+Tu peux le suivre.
+
+1066
+00:44:15,060 --> 00:44:20,260
+De toute façon il a fuck up ses boîtes.
+
+1067
+00:44:20,260 --> 00:44:24,260
+Ah ok, on partition a leaf flattened into child containers. Ok faque la première étape c'est ça.
+
+1068
+00:44:24,260 --> 00:44:26,260
+Hum.
+
+1069
+00:44:26,260 --> 00:44:27,260
+Faque on est correct.
+
+1070
+00:44:27,260 --> 00:44:29,260
+T'es pas vraiment capable de le faire dans un...
+
+1071
+00:44:29,260 --> 00:44:30,260
+Mutator.
+
+1072
+00:44:30,260 --> 00:44:32,580
+Mutator.
+
+1073
+00:44:32,580 --> 00:44:41,050
+Mais là... ok. Faut que tu process tes acteurs dans un autre particulier parce que...
+
+1074
+00:44:41,050 --> 00:44:43,050
+Non. Pas vrai ça.
+
+1075
+00:44:43,050 --> 00:44:52,070
+Non. Pourquoi tu penses à un autre particulier?
+
+1076
+00:44:52,070 --> 00:44:56,070
+Non ben j'étais convaincu. Ben là si tu fais partie d'un level instance y'a des conditions.
+
+1077
+00:44:56,070 --> 00:45:01,070
+Parce que quand tu fais... parce que nous autres on a des grids... des conditions par rapport au actor pack.
+
+1078
+00:45:01,070 --> 00:45:07,070
+Pis là ben s'il est dumpé dans le persistent level y'as-tu quand même son pack?
+
+1079
+00:45:07,070 --> 00:45:09,070
+Son actor pack?
+
+1080
+00:45:09,070 --> 00:45:11,070
+Dans le sens... attends.
+
+1081
+00:45:11,070 --> 00:45:14,070
+Excuse. Parce que nous dans nos conditions on a aussi actor pack.
+
+1082
+00:45:14,070 --> 00:45:16,070
+On a actor type.
+
+1083
+00:45:16,070 --> 00:45:22,180
+On a... on a le bound.
+
+1084
+00:45:22,180 --> 00:45:27,180
+Pis dans ces conditions là par exemple si tu trouves dans ton pack genre Hogwarts.
+
+1085
+00:45:27,180 --> 00:45:30,180
+Ben là tu tombes dans la grille de Hogwarts tu sais.
+
+1086
+00:45:30,180 --> 00:45:33,180
+Pis si t'es quidditch bitch ben tu tombes aussi dans Hogwarts.
+
+1087
+00:45:33,180 --> 00:45:35,180
+Fait que ça, ça fait partie de nos rules.
+
+1088
+00:45:35,180 --> 00:45:39,180
+Mais quand t'es un MBD est-ce que cet acteur là il sait encore c'est quoi son pack?
+
+1089
+00:45:39,180 --> 00:45:43,180
+Genre il sait qu'il existait dans L.I. Hogwarts genre?
+
+1090
+00:45:43,180 --> 00:45:49,950
+J'pense...
+
+1091
+00:45:49,950 --> 00:45:50,950
+Ok.
+
+1092
+00:45:50,950 --> 00:45:51,950
+Juste...
+
+1093
+00:45:51,950 --> 00:45:53,950
+J'vais... j'vais demander straight... straight forward.
+
+1094
+00:45:53,950 --> 00:45:56,950
+On a déjà des mutators en passant si tu veux regarder à quoi ça ressemble.
+
+1095
+00:45:56,950 --> 00:46:01,950
+Mais oui on en a... mais... là j'fais juste un... un... un toment quoi.
+
+1096
+00:46:01,950 --> 00:46:06,950
+On a... on a déjà des mutators qui apply les runtime grid rules by the way.
+
+1097
+00:46:06,950 --> 00:46:07,950
+T'es pas sérieux?
+
+1098
+00:46:07,950 --> 00:46:08,950
+Oui oui!
+
+1099
+00:46:08,950 --> 00:46:10,950
+On a... on a deux... deux points comme ça.
+
+1100
+00:46:10,950 --> 00:46:33,330
+On corrige dynamiquement pour certaines choses alors j'ai plus tous les détails là.
+
+1101
+00:46:33,330 --> 00:46:36,330
+Ah man j'ai plus comment ça s'appelle.
+
+1102
+00:46:36,330 --> 00:46:37,330
+Euh...
+
+1103
+00:46:37,330 --> 00:46:38,330
+Rules...
+
+1104
+00:46:38,330 --> 00:46:44,100
+Total set.
+
+1105
+00:46:44,100 --> 00:46:45,100
+Ok.
+
+1106
+00:46:45,100 --> 00:46:46,100
+Ben ok.
+
+1107
+00:46:46,100 --> 00:46:49,100
+Ben qu'est-ce qu'on peut bouger ça dans un mutated phase pis...
+
+1108
+00:46:49,100 --> 00:46:54,100
+En le fond on set... on va continuer à faire ce qu'on fait pour setter la majorité des choses.
+
+1109
+00:46:54,100 --> 00:46:55,100
+Pis...
+
+1110
+00:46:55,100 --> 00:46:57,100
+À la dernière minute y'a un mutated phase qui va prendre ceux qui viennent d'un level.
+
+1111
+00:46:57,100 --> 00:47:01,100
+On va prendre ceux qui viennent d'un level instance pis qui va comme les réévaluer.
+
+1112
+00:47:01,100 --> 00:47:03,100
+On peut faire ça.
+
+1113
+00:47:03,100 --> 00:47:05,100
+On va essayer de réduire le pool là.
+
+1114
+00:47:05,100 --> 00:47:11,100
+Le problème qu'il va y avoir c'est que ça va être dur de prévoir dans l'éditeur qu'est-ce qui va arriver au runtime après.
+
+1115
+00:47:11,100 --> 00:47:16,100
+Sauf si on est capable d'avoir ce mutated phase là comme dans un step de validation.
+
+1116
+00:47:16,100 --> 00:47:19,100
+Dites moi quand on fait le paille euh...
+
+1117
+00:47:19,100 --> 00:47:20,100
+Oui ça fait mutate.
+
+1118
+00:47:20,100 --> 00:47:24,100
+Donc là on passe là dedans donc on peut quand même le prévoir.
+
+1119
+00:47:24,100 --> 00:47:25,100
+Oui c'est peut-être...
+
+1120
+00:47:25,100 --> 00:47:26,100
+Ouais.
+
+1121
+00:47:26,100 --> 00:47:29,100
+C'est pas l'auto-ring mais quand tu entres dans paille tu as le visuel.
+
+1122
+00:47:29,100 --> 00:47:31,100
+Oh oui oui absolument.
+
+1123
+00:47:31,100 --> 00:47:32,100
+Ok.
+
+1124
+00:47:32,100 --> 00:47:34,100
+Mais est-ce qu'on pourrait comme...
+
+1125
+00:47:34,100 --> 00:47:36,100
+Simuler un mutated...
+
+1126
+00:47:36,100 --> 00:47:38,100
+Pour un acteur?
+
+1127
+00:47:38,100 --> 00:47:40,100
+Dans l'éditeur?
+
+1128
+00:47:40,100 --> 00:47:42,100
+Ou là je commence à jouer avec le feu?
+
+1129
+00:47:42,100 --> 00:47:44,100
+Pas vraiment.
+
+1130
+00:47:44,100 --> 00:47:47,100
+Y'a pas vraiment l'intérêt de faire ça.
+
+1131
+00:47:47,100 --> 00:47:51,100
+Ben si on est capable d'évaluer chaque acteur pis on pourrait avoir une...
+
+1132
+00:47:51,100 --> 00:47:53,100
+Une colonne ici qui fait genre mutated...
+
+1133
+00:47:53,100 --> 00:47:54,100
+Resolved.
+
+1134
+00:47:54,100 --> 00:47:56,100
+Parce que là en ce moment on a genre le runtime.
+
+1135
+00:47:56,100 --> 00:47:57,100
+Non non mais je veux dire euh...
+
+1136
+00:47:57,100 --> 00:48:02,100
+Oui tu peux rajouter une colonne qui fake pis qui évalue euh...
+
+1137
+00:48:02,100 --> 00:48:03,100
+Qui fake euh...
+
+1138
+00:48:03,100 --> 00:48:08,100
+Peut pas qui fake mais qui évalue à travers les rows c'est quoi que ça va donner euh...
+
+1139
+00:48:08,100 --> 00:48:09,100
+Ton euh...
+
+1140
+00:48:09,100 --> 00:48:10,100
+Ton...
+
+1141
+00:48:10,100 --> 00:48:11,100
+Ton...
+
+1142
+00:48:11,100 --> 00:48:12,100
+Ton runtime...
+
+1143
+00:48:12,100 --> 00:48:13,100
+Ton...
+
+1144
+00:48:13,100 --> 00:48:14,100
+Ton...
+
+1145
+00:48:14,100 --> 00:48:16,100
+Real runtime grid si tu veux là.
+
+1146
+00:48:16,100 --> 00:48:17,100
+Oui on pourrait faire ça.
+
+1147
+00:48:17,100 --> 00:48:18,100
+Le final.
+
+1148
+00:48:18,100 --> 00:48:22,100
+Mais avant de se lancer dans une telle initiative...
+
+1149
+00:48:22,100 --> 00:48:28,100
+Moi ce que je propose c'est peut-être sans parler techniquement venir avec un plan pis t'sais être sûr de son truc.
+
+1150
+00:48:28,100 --> 00:48:31,100
+Mais re-challenger l'idée cette fois-ci avec Phil.
+
+1151
+00:48:31,100 --> 00:48:34,100
+Euh parce que Phil a toujours des trucs...
+
+1152
+00:48:34,100 --> 00:48:38,100
+Qu'on a pas ou des fois des bonnes astuces euh...
+
+1153
+00:48:38,100 --> 00:48:42,100
+En disant ouais mais on peut faire ça comme ça pis tout ça ou des fois il...
+
+1154
+00:48:42,100 --> 00:48:46,100
+Il baisse les yeux il réfléchit pendant une minute pis il dit euh...
+
+1155
+00:48:46,100 --> 00:48:47,100
+Attends attends...
+
+1156
+00:48:47,100 --> 00:48:48,100
+Le nôtre?
+
+1157
+00:48:48,100 --> 00:48:49,100
+Hein?
+
+1158
+00:48:49,100 --> 00:48:50,100
+Tu veux dire le nôtre là?
+
+1159
+00:48:50,100 --> 00:48:51,100
+Le nôtre là, notre Phil.
+
+1160
+00:48:51,100 --> 00:48:52,100
+Ouais Phil.
+
+1161
+00:48:52,100 --> 00:48:53,100
+Ouais Phil Saint-Jean.
+
+1162
+00:48:53,100 --> 00:48:54,100
+C'est le maître des clés là pour euh...
+
+1163
+00:48:54,100 --> 00:48:55,100
+Pour ce...
+
+1164
+00:48:55,100 --> 00:48:56,100
+Ce système là là.
+
+1165
+00:48:56,100 --> 00:48:57,100
+Pis euh...
+
+1166
+00:48:57,100 --> 00:49:01,100
+Regarde je commence à comprendre certaines choses plutôt bien maintenant.
+
+1167
+00:49:01,100 --> 00:49:02,100
+Mais euh...
+
+1168
+00:49:02,100 --> 00:49:03,100
+J'ai encore...
+
+1169
+00:49:03,100 --> 00:49:04,100
+Justement moi le truc des...
+
+1170
+00:49:04,100 --> 00:49:08,100
+Des runtime grid et HLOD là je fais quasiment du...
+
+1171
+00:49:08,100 --> 00:49:10,100
+Du ramp up là dessus là.
+
+1172
+00:49:10,100 --> 00:49:12,100
+C'est odd odd que l'assignation là.
+
+1173
+00:49:12,100 --> 00:49:14,100
+Euh mais commencer à voir ok euh...
+
+1174
+00:49:14,100 --> 00:49:17,100
+Genre là ce dont on parle avec l'imitator et tout ça.
+
+1175
+00:49:17,100 --> 00:49:18,100
+Euh...
+
+1176
+00:49:18,100 --> 00:49:19,100
+J'en ai entendu parler.
+
+1177
+00:49:19,100 --> 00:49:20,100
+Puis Phil m'a déjà dit...
+
+1178
+00:49:20,100 --> 00:49:21,100
+Oui on peut faire de...
+
+1179
+00:49:21,100 --> 00:49:22,100
+De quoi?
+
+1180
+00:49:22,100 --> 00:49:23,100
+C'est comme un patch.
+
+1181
+00:49:23,100 --> 00:49:27,100
+Mais je sais aussi qu'il voulait limiter là au maximum ce genre de truc.
+
+1182
+00:49:27,100 --> 00:49:30,100
+Bref ce que je dis c'qu'il faut juste l'inclure dans...
+
+1183
+00:49:30,100 --> 00:49:31,100
+Ah ben il est là!
+
+1184
+00:49:31,100 --> 00:49:32,100
+Sacré...
+
+1185
+00:49:32,100 --> 00:49:33,100
+Sacré Maxime.
+
+1186
+00:49:33,100 --> 00:49:34,100
+Salut!
+
+1187
+00:49:34,100 --> 00:49:35,100
+Ben t'sais...
+
+1188
+00:49:35,100 --> 00:49:36,100
+On prend pas...
+
+1189
+00:49:36,100 --> 00:49:37,100
+Ben oui!
+
+1190
+00:49:37,100 --> 00:49:38,100
+On prend pas un autre MiiPix qui est disponible là.
+
+1191
+00:49:38,100 --> 00:49:39,100
+Ah ben ça aurait été bien de...
+
+1192
+00:49:39,100 --> 00:49:40,100
+Ça aurait été bien de valider au moins l'approche technique là.
+
+1193
+00:49:40,100 --> 00:49:41,100
+Pardon je vous ai dit.
+
+1194
+00:49:41,100 --> 00:49:42,100
+T'sais...
+
+1195
+00:49:42,100 --> 00:49:43,100
+T'es tu...
+
+1196
+00:49:43,100 --> 00:49:44,100
+Je vais te re-ramp up.
+
+1197
+00:49:44,100 --> 00:49:45,100
+Dans le...
+
+1198
+00:49:45,100 --> 00:49:46,100
+La discussion.
+
+1199
+00:49:46,100 --> 00:49:47,100
+On devait...
+
+1200
+00:49:47,100 --> 00:49:48,100
+On devait...
+
+1201
+00:49:48,100 --> 00:49:49,100
+On devait...
+
+1202
+00:49:49,100 --> 00:49:50,100
+La discussion.
+
+1203
+00:49:50,100 --> 00:49:51,100
+On est en train de parler des...
+
+1204
+00:49:51,100 --> 00:49:57,600
+Des Actor Bounds qui sont utilisés pour les Runtime Grid et un HLack Layer Association.
+
+1205
+00:49:57,600 --> 00:49:58,600
+Pis...
+
+1206
+00:49:58,600 --> 00:50:02,380
+Là ici par exemple, si tu viens à notre cas où est-ce qu'on a un level Instinct qui
+
+1207
+00:50:02,380 --> 00:50:03,380
+est pareil...
+
+1208
+00:50:03,380 --> 00:50:04,380
+Qu'il utilise le...
+
+1209
+00:50:04,380 --> 00:50:06,240
+Deux level Instincts qui utilisent le même level.
+
+1210
+00:50:06,240 --> 00:50:08,400
+Dans un cas il est tourné, dans l'autre cas il l'est pas.
+
+1211
+00:50:08,400 --> 00:50:12,360
+Pis nous ici dans notre Runtime Grid qui on évalue, les Bounds sont pas pareils, faque
+
+1212
+00:50:12,360 --> 00:50:14,840
+ils pourraient être shiftés dans deux...
+
+1213
+00:50:14,840 --> 00:50:15,880
+Dans deux...
+
+1214
+00:50:15,880 --> 00:50:17,920
+Dans deux layers ou deux grids différents.
+
+1215
+00:50:17,920 --> 00:50:18,920
+Maxime...
+
+1216
+00:50:18,920 --> 00:50:23,740
+s'est dit ben moi en fait je me trouve stupide de pas y avoir pensé avant mais
+
+1217
+00:50:23,740 --> 00:50:28,020
+il a dit pourquoi tu utilises pas juste le radius de l'acteur alors il faut du bound de
+
+1218
+00:50:28,020 --> 00:50:32,980
+l'acteur fait que peu importe son orientation il serait toujours pareil
+
+1219
+00:50:32,980 --> 00:50:39,620
+fait que c'est super intelligent mais ça règle pas le problème pareil parce que
+
+1220
+00:50:39,620 --> 00:50:43,520
+on a quand même le case de j'ai mon instance 1 qui est scalé à 1 puis mon
+
+1221
+00:50:43,520 --> 00:50:47,840
+instance 2 qui est scalé trois fois ou moins ou point 1 fait que là je me
+
+1222
+00:50:47,840 --> 00:50:54,740
+retrouve avec deux billets pareil à 2,2 du milieu différent pour le même acteur
+
+1223
+00:50:54,740 --> 00:51:01,560
+fait que là bas c'est que non parce qu'il va lui tomberait pas son âme fait
+
+1224
+00:51:01,560 --> 00:51:11,020
+que le maxi dit mais ta time out parce que je m'imagine majoritairement je
+
+1225
+00:51:11,020 --> 00:51:15,480
+dirais autant d'associés sur les d'avoir l'instance puis en théorie ça devrait
+
+1226
+00:51:15,480 --> 00:51:19,500
+être irrité c'est juste que l'on est dans le cas du sport de grèce
+
+1227
+00:51:19,500 --> 00:51:24,060
+je sais pas ici tombe dans ce monde fluide dans la majorité des cas les
+
+1228
+00:51:24,060 --> 00:51:29,940
+acteurs qui font partie d'un niveau l'instance vont hériter de durant un
+
+1229
+00:51:29,940 --> 00:51:35,740
+gré d'où du h l'odeur du parent ouais exception la seule exception c'est si
+
+1230
+00:51:35,740 --> 00:51:40,120
+je suis un small considéré comme un small acteur auquel club elle je vais
+
+1231
+00:51:40,120 --> 00:51:45,180
+ouvrir à aider ce que le parent dit que je vais aller le mettre à ce mot avec
+
+1232
+00:51:45,180 --> 00:51:49,340
+l'heure ça n'arrête pas notre problème de ce titre parce que là c'est jusqu'à ce que
+
+1233
+00:51:49,340 --> 00:51:55,080
+trois fois mais le je suis dans ce monde lui vient plutôt souvent je fais ça
+
+1234
+00:51:55,080 --> 00:52:00,320
+de même va clamaq s'est dit on peut se faire soit un seul transformer water
+
+1235
+00:52:00,320 --> 00:52:06,220
+qui lui va le faire parce qu'il à ce moment là le acteur de scriptures et puis
+
+1236
+00:52:06,220 --> 00:52:10,440
+dans son l'évolution rendu dans le processus de la vôtre parce que enfin
+
+1237
+00:52:10,440 --> 00:52:16,400
+c'est une mauvaise sauvetage avec le cuir sur pied son canne va quand on process
+
+1238
+00:52:16,400 --> 00:52:18,460
+les égides pour le setup des flèches
+
+1239
+00:52:19,340 --> 00:52:24,340
+Il va rentrer des mutators. Les mutators, c'est de la semainote pour corriger les problèmes d'en même.
+
+1240
+00:52:24,340 --> 00:52:26,340
+C'est ça votre plan?
+
+1241
+00:52:26,340 --> 00:52:30,340
+Ce n'est pas le plan, mais ce serait juste ce qu'on est en train de proposer.
+
+1242
+00:52:30,340 --> 00:52:35,340
+Moi, j'étais comme, ah mais là, les Build Machines prennent 6 heures à appliquer les rules.
+
+1243
+00:52:35,340 --> 00:52:37,340
+Ça va être incroyablement long.
+
+1244
+00:52:37,340 --> 00:52:42,340
+Mais Max dit non, parce que c'est vrai que tu loads l'éditeur, tu loads les acteurs, tu loads Barber, tu loads whatever.
+
+1245
+00:52:42,340 --> 00:52:46,340
+Le processus d'ajouter, de setter les valeurs, ça ne va pas être nécessairement si long que ça,
+
+1246
+00:52:46,340 --> 00:52:48,340
+mais c'est quand même un gros process qu'on ajoute.
+
+1247
+00:52:48,340 --> 00:52:51,340
+Je ne comprends pas pourquoi tu parles de ça.
+
+1248
+00:52:51,340 --> 00:52:53,340
+Qu'est-ce qui allonge le temps?
+
+1249
+00:52:53,340 --> 00:52:56,340
+On a déjà des trucs dans les mutators qui loads sur tout.
+
+1250
+00:52:56,340 --> 00:52:58,340
+Ce n'est pas la fin du...
+
+1251
+00:52:58,340 --> 00:53:00,340
+On le faisait jusqu'à...
+
+1252
+00:53:00,340 --> 00:53:04,340
+Même en ce moment, je le fais pour corriger les problèmes de discrepancies.
+
+1253
+00:53:04,340 --> 00:53:05,340
+OK.
+
+1254
+00:53:05,340 --> 00:53:12,340
+En ce moment, pour toutes les validations de discrepancies qui apparaissent dans les coupes,
+
+1255
+00:53:12,340 --> 00:53:16,340
+les warnings que je vous ai envoyés à matin,
+
+1256
+00:53:16,340 --> 00:53:17,340
+ça, c'est à quoi?
+
+1257
+00:53:17,340 --> 00:53:18,340
+À matin.
+
+1258
+00:53:18,340 --> 00:53:20,340
+J'ai envoyé un warning.
+
+1259
+00:53:20,340 --> 00:53:25,340
+Je dis que les « worst offender » des cooks, c'est les H-LOD en ce moment.
+
+1260
+00:53:25,340 --> 00:53:26,340
+Oui.
+
+1261
+00:53:26,340 --> 00:53:27,340
+Bon.
+
+1262
+00:53:27,340 --> 00:53:29,340
+Mais ça, ça se passe ici.
+
+1263
+00:53:29,340 --> 00:53:30,340
+Exact.
+
+1264
+00:53:30,340 --> 00:53:31,340
+C'est ici que ça se passe.
+
+1265
+00:53:31,340 --> 00:53:36,340
+Ce que je fais, c'est que je fixe le problème à la dernière minute dans le mutator phase.
+
+1266
+00:53:36,340 --> 00:53:39,030
+C'est rapide.
+
+1267
+00:53:39,030 --> 00:53:40,030
+Ce n'est pas un problème.
+
+1268
+00:53:40,030 --> 00:53:45,030
+Je donne un warning à cet endroit-là, mais le fixe, ça va être de le fixer en amont.
+
+1269
+00:53:45,030 --> 00:53:49,030
+Long story short, ce que je dis, c'est que pour votre problème à vous,
+
+1270
+00:53:49,030 --> 00:53:55,030
+votre problématique de « size » différent à cause des « transform » du « scale » différent,
+
+1271
+00:53:55,030 --> 00:53:59,030
+mutator, c'est une bonne maison pour fixer ces problèmes-là de dernière minute.
+
+1272
+00:53:59,030 --> 00:54:02,030
+Je ne pense pas que ça va être si coûteux que ça en termes de performance,
+
+1273
+00:54:02,030 --> 00:54:04,030
+les attraper et les assigner.
+
+1274
+00:54:04,030 --> 00:54:05,030
+OK.
+
+1275
+00:54:05,030 --> 00:54:06,030
+Dans le fond…
+
+1276
+00:54:06,030 --> 00:54:07,030
+C'était ça, ton concern.
+
+1277
+00:54:07,030 --> 00:54:08,030
+OK.
+
+1278
+00:54:08,030 --> 00:54:09,030
+Oui, c'était ça, un peu.
+
+1279
+00:54:09,030 --> 00:54:13,030
+Mais là, dans le fond, moi, ce que je me suis dit, c'est qu'on va garder ça,
+
+1280
+00:54:13,030 --> 00:54:16,030
+on va scoper ça pour les acteurs qui viennent d'un level instance.
+
+1281
+00:54:16,030 --> 00:54:17,030
+Comme ça, on a comme…
+
+1282
+00:54:17,030 --> 00:54:18,030
+Oui, on a beaucoup qui sont…
+
+1283
+00:54:18,030 --> 00:54:22,030
+La majorité sont dans des level instances, mais il n'y en a quand même pas pire qui sont à l'extérieur aussi.
+
+1284
+00:54:22,030 --> 00:54:26,030
+Puis l'autre affaire, c'est quand nous autres, on applique nos « rules »,
+
+1285
+00:54:26,030 --> 00:54:30,030
+est-ce qu'on veut que ça…
+
+1286
+00:54:30,030 --> 00:54:33,030
+On « skip » ces acteurs-là et qu'on ne s'attait à rien du tout,
+
+1287
+00:54:33,030 --> 00:54:38,030
+parce qu'on va avoir des « discrepancies ».
+
+1288
+00:54:38,030 --> 00:54:43,030
+C'est-à-dire, tu sais, des acteurs de level instance A puis B, tu as le même acteur,
+
+1289
+00:54:43,030 --> 00:54:46,030
+mais là, tu sais, on n'a pas encore fait le « mutate », je pense, à ce moment-là, right?
+
+1290
+00:54:46,030 --> 00:54:48,440
+Quand ça?
+
+1291
+00:54:48,440 --> 00:54:50,440
+Quand tu fais rouge, je pense.
+
+1292
+00:54:50,440 --> 00:54:56,440
+Oui, tu sais, le « dump » qu'on a ici, cette affaire-là ici, est-ce qu'il vient d'un…
+
+1293
+00:54:56,440 --> 00:54:58,440
+Il vient de quelle étape?
+
+1294
+00:54:58,440 --> 00:55:02,440
+Le « apply rule », il fait-tu le « mutate » ?
+
+1295
+00:55:02,440 --> 00:55:03,440
+Non.
+
+1296
+00:55:03,440 --> 00:55:04,440
+OK.
+
+1297
+00:55:04,440 --> 00:55:09,440
+Donc, il faudrait qu'il fasse le « mutate » ou s'il ne le fait pas, il faut qu'on « skip ».
+
+1298
+00:55:09,440 --> 00:55:10,440
+Parce que là, en ce moment, nous autres, on a des…
+
+1299
+00:55:10,440 --> 00:55:13,440
+Ce n'est pas cette « warning »-là que je débuguais, mais c'est ici.
+
+1300
+00:55:13,440 --> 00:55:17,440
+« Multiple single-valued rules match one actor ».
+
+1301
+00:55:18,440 --> 00:55:21,440
+Donc, on aurait quand même ces « warning »-là qui ne sont plus vrais,
+
+1302
+00:55:21,440 --> 00:55:24,440
+ou on faisait juste les ignorer, ceux-là.
+
+1303
+00:55:24,440 --> 00:55:27,440
+En fait, avant, juste pour mettre en contexte,
+
+1304
+00:55:27,440 --> 00:55:32,440
+avant, les « small grids », c'était dans les « mutators ».
+
+1305
+00:55:32,440 --> 00:55:37,440
+Puis là, je les ai déplacés pour les faire en amont pour, justement, des « game performance ».
+
+1306
+00:55:37,440 --> 00:55:42,440
+Je te dis qu'il n'y aura pas de « hit performance », mais il va falloir quand même valider.
+
+1307
+00:55:42,440 --> 00:55:47,440
+Ça dépend comment vous faites votre coup dans le « mutator », mais avant, c'est ça.
+
+1308
+00:55:47,440 --> 00:55:53,440
+Ça fait que tous les intérieurs du château, on les sacrait sur « small grid ».
+
+1309
+00:55:53,440 --> 00:55:56,440
+Ça fait que ça, ça prenait du temps.
+
+1310
+00:55:56,440 --> 00:56:00,440
+Idem pour tous les petits objets dans « Overland », on les sacrait sur « small grid ».
+
+1311
+00:56:00,440 --> 00:56:03,440
+Puis on faisait ça dans le « mutator » à la dernière minute.
+
+1312
+00:56:03,440 --> 00:56:07,440
+Mais quand tu faisais un « pie », en fait, essentiellement, quand on faisait un « pie »,
+
+1313
+00:56:07,440 --> 00:56:09,440
+bien là, ça bouffait peut-être une couple de secondes.
+
+1314
+00:56:09,440 --> 00:56:12,440
+Tu avais peut-être 10-15 secondes qui processaient ces affaires-là.
+
+1315
+00:56:12,440 --> 00:56:15,440
+Je ne m'en souviens plus des « benchmarks ».
+
+1316
+00:56:15,440 --> 00:56:18,440
+Mais c'est une des raisons pour lesquelles je les ai déplacés là.
+
+1317
+00:56:18,440 --> 00:56:22,440
+Puis si tu vas dans...
+
+1318
+00:56:22,440 --> 00:56:30,100
+Tu sais, comme j'ai déjà un concept de...
+
+1319
+00:56:30,100 --> 00:56:33,100
+Le « framework » est déjà capable de checker qu'est-ce qui doit rouler dans le « mutator »,
+
+1320
+00:56:33,100 --> 00:56:37,100
+puis qu'est-ce qui doit rouler comme « unsafe » quand tu fais un « apply ».
+
+1321
+00:56:37,100 --> 00:56:39,100
+Ça s'en va dans tes « project settings ».
+
+1322
+00:56:39,100 --> 00:56:42,100
+Ouais. « Project settings », OK. Ah, shit.
+
+1323
+00:56:42,100 --> 00:56:46,100
+Dans tes WP... Je ne me souviens pas de ça.
+
+1324
+00:56:46,100 --> 00:56:49,100
+J'ai changé de « level », je pensais que c'était dans les « world settings ».
+
+1325
+00:56:49,100 --> 00:56:52,570
+Je n'ai pas partitionné.
+
+1326
+00:56:52,570 --> 00:57:00,530
+Je vous dirais que c'est un gros gâteau à manger, cette affaire-là.
+
+1327
+00:57:00,530 --> 00:57:02,530
+Ouais.
+
+1328
+00:57:02,530 --> 00:57:05,530
+La question, c'est qu'il y en a combien qui se sont touchés par ça aussi.
+
+1329
+00:57:05,530 --> 00:57:08,530
+Est-ce que c'est une grande partie qui sont affectés par ça,
+
+1330
+00:57:08,530 --> 00:57:11,530
+ou c'est genre quelques-uns, puis auquel cas, ce n'est pas la fin du monde.
+
+1331
+00:57:11,530 --> 00:57:14,530
+Le « worst case » qui arrive, c'est qu'ils se posent dans « small grid »,
+
+1332
+00:57:14,530 --> 00:57:16,530
+puis atterrirent dans « main », ou vice-versa.
+
+1333
+00:57:16,530 --> 00:57:19,530
+On peut demander à « hackers » de faire une petite évaluation.
+
+1334
+00:57:19,530 --> 00:57:21,530
+Combien d'acteurs « level instance » sont pareils, puis avec des « skills » différents.
+
+1335
+00:57:22,530 --> 00:57:24,530
+Il y a des orientations différentes.
+
+1336
+00:57:24,530 --> 00:57:27,530
+Là, dans « world partition rule », dans les « hit stars »,
+
+1337
+00:57:27,530 --> 00:57:33,860
+le dernier en bas, il y a dans la section « hit stars ».
+
+1338
+00:57:33,860 --> 00:57:35,860
+Ah, c'est dans « engine », peut-être ?
+
+1339
+00:57:35,860 --> 00:57:36,860
+« hit stars ».
+
+1340
+00:57:36,860 --> 00:57:39,860
+Ah, « hit stars », excuse, je pensais que c'était dans « hit stars ».
+
+1341
+00:57:39,860 --> 00:57:41,860
+« world partition rules ».
+
+1342
+00:57:41,860 --> 00:57:43,860
+Ouais.
+
+1343
+00:57:43,860 --> 00:57:45,860
+Là, c'est du « collapse » tout le monde.
+
+1344
+00:57:45,860 --> 00:57:47,860
+Je vais juste mettre...
+
+1345
+00:57:49,860 --> 00:57:53,860
+Il y en a un qui est dans les « mutate », le « reset ».
+
+1346
+00:57:53,860 --> 00:57:55,860
+« runtime grid rule »
+
+1347
+00:57:55,860 --> 00:57:57,860
+Il n'y a rien.
+
+1348
+00:57:57,860 --> 00:57:59,860
+Non, là, il n'y a plus rien.
+
+1349
+00:57:59,860 --> 00:58:03,860
+Mais avant, j'avais la « rule » de « small grid » qui était ici.
+
+1350
+00:58:03,860 --> 00:58:04,860
+OK.
+
+1351
+00:58:04,860 --> 00:58:07,860
+Ce que ça fait, c'est que quand...
+
+1352
+00:58:07,860 --> 00:58:10,860
+Quand il est dans l'acteur « mutator »,
+
+1353
+00:58:10,860 --> 00:58:12,860
+puis qu'il « loose » tous les acteurs de scriptures,
+
+1354
+00:58:12,860 --> 00:58:15,860
+puis que ça « match » la « rule »,
+
+1355
+00:58:15,860 --> 00:58:17,860
+ça fait l'indignation,
+
+1356
+00:58:17,860 --> 00:58:22,860
+ça « override » dans le fond le « runtime grid » dans le « mutator ».
+
+1357
+00:58:22,860 --> 00:58:24,860
+Auparavant, j'avais la « rule » du « small grid ».
+
+1358
+00:58:24,860 --> 00:58:30,100
+Là, ce qu'on pourrait faire,
+
+1359
+00:58:30,100 --> 00:58:32,100
+puis là, je pense toujours,
+
+1360
+00:58:32,100 --> 00:58:35,100
+t'sais, on pourrait faire ça sans aucun « code change ».
+
+1361
+00:58:35,100 --> 00:58:39,100
+On pourrait juste faire ça « data driven », dans le sens que...
+
+1362
+00:58:39,100 --> 00:58:41,100
+Si tu pognes la « rule » ici...
+
+1363
+00:58:41,100 --> 00:58:43,100
+Fais juste « expand » lui.
+
+1364
+00:58:43,100 --> 00:58:44,100
+OK.
+
+1365
+00:58:44,100 --> 00:58:48,100
+Lui, des « small grid », ici, ce qu'on pourrait faire, si on lui dit, ben toi,
+
+1366
+00:58:48,100 --> 00:58:51,100
+tu vas juste, finalement, t'appliquer au château.
+
+1367
+00:58:52,100 --> 00:58:55,100
+Parce qu'en fait, on utilise « small grid » pour deux affaires, là, pour...
+
+1368
+00:58:55,100 --> 00:58:59,100
+les petits objets dans « Overland »,
+
+1369
+00:58:59,100 --> 00:59:01,100
+mais pour les intérieurs, aussi.
+
+1370
+00:59:01,100 --> 00:59:03,100
+On peut le splitter en deux, ouais.
+
+1371
+00:59:03,100 --> 00:59:08,100
+Fait que t'aurais comme une « rule » pour, dans le fond, « Hogwarts Interior ».
+
+1372
+00:59:08,100 --> 00:59:11,100
+Puis ça, ça a déjà quasiment un meilleur nom que « small grid », là,
+
+1373
+00:59:11,100 --> 00:59:13,100
+parce que c'est pas super « obvious ».
+
+1374
+00:59:13,100 --> 00:59:14,100
+Ouais.
+
+1375
+00:59:14,100 --> 00:59:17,100
+Puis l'autre « rule », là, si tu « back » dans tes « project settings »,
+
+1376
+00:59:17,100 --> 00:59:21,100
+fait que « Hogwarts Interior », il resterait là.
+
+1377
+00:59:21,100 --> 00:59:23,100
+Puis ici, tu te ferais un « small grid » de « Overland », ou je sais pas quoi.
+
+1378
+00:59:23,100 --> 00:59:24,100
+Attends.
+
+1379
+00:59:24,100 --> 00:59:25,100
+Attends.
+
+1380
+00:59:25,100 --> 00:59:29,100
+« Hogwarts Interior », aussi, il est écrit dans « small grid », mais on a aussi « small grid ».
+
+1381
+00:59:29,100 --> 00:59:33,100
+Fait qu'il est déjà splitté en deux « rules », mais c'est juste qu'on l'écrit dans la même grille, c'est ça?
+
+1382
+00:59:34,100 --> 00:59:37,100
+Parce qu'on a « small grid », puis on a « Hogwarts Interior grid »,
+
+1383
+00:59:37,100 --> 00:59:40,100
+puis celle-là, c'est pas réellement « Hogwarts », c'est « small grid ».
+
+1384
+00:59:40,100 --> 00:59:41,100
+Ça, c'est les affaires.
+
+1385
+00:59:41,100 --> 00:59:44,100
+Ah ben, peut-être qu'il était déjà splitté, ah ben, tu vois, ouais.
+
+1386
+00:59:44,100 --> 00:59:46,100
+Fait que là, tu vois, nous autres, on prendrait ça.
+
+1387
+00:59:46,100 --> 00:59:47,100
+Là, tu ferais...
+
+1388
+00:59:47,100 --> 00:59:50,100
+En fait, toi, tu fais juste « pognel », puis la sacrée, là.
+
+1389
+00:59:50,100 --> 00:59:51,100
+Puis tu ferais ça.
+
+1390
+00:59:52,100 --> 00:59:53,100
+Je pense.
+
+1391
+00:59:53,100 --> 00:59:54,100
+Ok.
+
+1392
+00:59:54,100 --> 00:59:56,100
+Mais...
+
+1393
+00:59:57,100 --> 00:59:59,100
+Mais c'est peut-être pas juste eux autres qui sont...
+
+1394
+00:59:59,100 --> 01:00:01,100
+C'est peut-être pas juste lui qui...
+
+1395
+01:00:01,100 --> 01:00:03,100
+C'est peut-être pas juste les « small grid », là, notre problème.
+
+1396
+01:00:03,100 --> 01:00:09,760
+Parce que, là, ici, « small grid », ça pogne n'importe quel acteur qui sont...
+
+1397
+01:00:09,760 --> 01:00:10,760
+Le petit qui sent.
+
+1398
+01:00:10,760 --> 01:00:15,760
+Mais tu sais, t'as juste un objet qui fait 200, qui est escalé à 0.5, qui tombe dedans, là.
+
+1399
+01:00:15,760 --> 01:00:16,760
+Attends.
+
+1400
+01:00:16,760 --> 01:00:17,760
+Juste finis, là.
+
+1401
+01:00:17,760 --> 01:00:18,760
+« Back », où est-ce que t'étais?
+
+1402
+01:00:18,760 --> 01:00:19,760
+Ouais, ouais.
+
+1403
+01:00:19,760 --> 01:00:20,760
+Excuse-moi.
+
+1404
+01:00:20,760 --> 01:00:22,760
+Si tu fais ça, fais juste...
+
+1405
+01:00:22,760 --> 01:00:23,760
+C'est pas ça.
+
+1406
+01:00:23,760 --> 01:00:24,760
+C'est pas lui, hein.
+
+1407
+01:00:24,760 --> 01:00:25,760
+Quoi?
+
+1408
+01:00:25,760 --> 01:00:26,760
+Qu'est-ce qu'on veut, là?
+
+1409
+01:00:26,760 --> 01:00:27,760
+Attends.
+
+1410
+01:00:27,760 --> 01:00:28,760
+C'est pas ça que tu m'as dit?
+
+1411
+01:00:28,760 --> 01:00:29,760
+Non, non, non.
+
+1412
+01:00:29,760 --> 01:00:30,760
+« Hogwarts », il reste en haut, là.
+
+1413
+01:00:30,760 --> 01:00:31,760
+« Hogwarts », c'est unanime.
+
+1414
+01:00:31,760 --> 01:00:32,760
+Tu veux...
+
+1415
+01:00:32,760 --> 01:00:33,760
+« Hogwarts Interior Grid ».
+
+1416
+01:00:33,760 --> 01:00:36,900
+« Hogwarts », il reste « on-save », ça.
+
+1417
+01:00:36,900 --> 01:00:42,900
+Je veux dire, c'est qu'il y a un process offline, tu peux rouler le process des rules, puis
+
+1418
+01:00:42,900 --> 01:00:46,900
+à chaque fois qu'il croise un acteur qui fait partie de « Hogwarts », il va le sacrer
+
+1419
+01:00:46,900 --> 01:00:48,900
+à « small grid ». Il y a pas, comme, d'ambiguïté, là.
+
+1420
+01:00:48,900 --> 01:00:49,900
+Fait qu'il y a pas...
+
+1421
+01:00:49,900 --> 01:00:50,900
+Non, non, c'est ça.
+
+1422
+01:00:50,900 --> 01:00:51,900
+Ah ben, il faut que je le change dans la minute.
+
+1423
+01:00:51,900 --> 01:00:55,900
+L'ambiguïté vient pour les « overland », les acteurs dans « overland » qui sont
+
+1424
+01:00:55,900 --> 01:00:56,900
+petits.
+
+1425
+01:00:56,900 --> 01:00:57,900
+Exact.
+
+1426
+01:00:57,900 --> 01:00:59,900
+Qui rentrent dans le cas de petites figures, que « ah ben, des fois, j'ai un scale de
+
+1427
+01:00:59,900 --> 01:01:03,140
+1, des fois, j'ai un scale de 2 », puis là, ben, à la dernière minute, tu veux fixer
+
+1428
+01:01:03,140 --> 01:01:04,140
+ce problème-là.
+
+1429
+01:01:04,140 --> 01:01:08,900
+Ça, c'est du « small grid », puis ça, ça doit être fixé à la dernière minute,
+
+1430
+01:01:08,900 --> 01:01:09,900
+ici, dans les mutators.
+
+1431
+01:01:09,900 --> 01:01:14,280
+Excuse-moi, c'est juste peut-être une question trop ignorante, là, mais pourquoi
+
+1432
+01:01:14,280 --> 01:01:16,900
+est-ce qu'on a besoin de « small grid », puis « main grid »?
+
+1433
+01:01:16,900 --> 01:01:19,400
+On peut-tu pas tout « dumpé » « small grid » dans « main grid »?
+
+1434
+01:01:19,400 --> 01:01:21,900
+Est-ce qu'on a vraiment besoin de « small grid »?
+
+1435
+01:01:21,900 --> 01:01:25,900
+Genre, est-ce que c'est vraiment plus détaillé, genre, plus proche, puis…
+
+1436
+01:01:25,900 --> 01:01:27,900
+Ouais, ça, je laisse Max répondre là-dessus.
+
+1437
+01:01:27,900 --> 01:01:31,900
+Je sais pas si on a fait des « benchmarks » pour savoir tous les petits objets qu'on
+
+1438
+01:01:31,900 --> 01:01:35,900
+voulait laisser à créer dans « main grid », puis l'impact que ça a, là, mais c'est
+
+1439
+01:01:35,900 --> 01:01:36,900
+pas une bonne pratique, là.
+
+1440
+01:01:36,900 --> 01:01:41,900
+Parce que si c'est ça, on va juste retirer le « tie », la condition de la « tie », puis
+
+1441
+01:01:41,900 --> 01:01:42,900
+ça sera même plus un problème.
+
+1442
+01:01:42,900 --> 01:01:46,900
+On va se fier au « pad », puis au « actor type », parce que je pense que les autres,
+
+1443
+01:01:46,900 --> 01:01:47,900
+ils se fient pas à la « tie », là.
+
+1444
+01:01:47,900 --> 01:01:50,900
+Tout ce qui est dans « Hogsmeade », on le « dump » dans « Hogsmeade », il semble,
+
+1445
+01:01:50,900 --> 01:01:51,900
+là.
+
+1446
+01:01:51,900 --> 01:01:54,900
+On utilise pas la « tie », ici.
+
+1447
+01:01:54,900 --> 01:01:58,900
+Il y a juste « small grid » qui, lui, est conditionné dans la « tie ».
+
+1448
+01:01:58,900 --> 01:02:04,900
+Ouais, on s'entend que les « cell size » de « Hogwarts », puis de « Hogsmeade »,
+
+1449
+01:02:04,900 --> 01:02:06,900
+c'est pas pareil, là.
+
+1450
+01:02:06,900 --> 01:02:10,900
+Je veux dire, les « cell size » de « Hogsmeade » sont quand même petites, fait qu'on s'en
+
+1451
+01:02:10,900 --> 01:02:13,900
+fout de les distinguer, les séparer en deux, là.
+
+1452
+01:02:13,900 --> 01:02:15,900
+C'est ça, mais « Hogsmeade », il a ses affaires à lui.
+
+1453
+01:02:15,900 --> 01:02:18,900
+Mais dans « Overland », il parle de 256 par 256, puis de « loading range », je sais
+
+1454
+01:02:18,900 --> 01:02:20,900
+plus à combien qu'il est.
+
+1455
+01:02:20,900 --> 01:02:21,900
+512.
+
+1456
+01:02:21,900 --> 01:02:24,900
+C'est une affaire de même, fait que si t'as pas envie de voir des petits bouts de
+
+1457
+01:02:24,900 --> 01:02:27,900
+branches super loin, de les « loader » pour rien...
+
+1458
+01:02:27,900 --> 01:02:31,900
+Ouais, pis là, on règle pas le problème du « H-load », là, c'est juste « runtime ».
+
+1459
+01:02:31,900 --> 01:02:35,900
+Parce que « H-load », aussi, c'est le même mesh qui est « scaled » deux fois,
+
+1460
+01:02:35,900 --> 01:02:37,900
+mais là, tu vas le ramasser dans le « H-load » ou pas.
+
+1461
+01:02:37,900 --> 01:02:43,790
+Fait qu'on a quand même besoin de la « tie » pour le « H-load », parce qu'on
+
+1462
+01:02:43,790 --> 01:02:45,790
+veut savoir si on l'inclue ou pas.
+
+1463
+01:02:45,790 --> 01:02:47,790
+Ouais, on est pas sortis du bout.
+
+1464
+01:02:47,790 --> 01:02:50,790
+Ouais, ça, c'était un autre problème, mais...
+
+1465
+01:02:50,790 --> 01:02:51,790
+Ouais, ouais, mais ça...
+
+1466
+01:02:51,790 --> 01:02:52,790
+Pour moi, là, la discussion, c'est autant « runtime » que « loading range ».
+
+1467
+01:02:52,790 --> 01:02:54,790
+Pour moi, là, la discussion, c'est autant « runtime » que « H-load layer »,
+
+1468
+01:02:54,790 --> 01:02:56,790
+parce que ça fait partie des...
+
+1469
+01:02:56,790 --> 01:02:58,790
+Comment on applique les « layer rules » ?
+
+1470
+01:02:58,790 --> 01:03:00,790
+Mais, oui.
+
+1471
+01:03:00,790 --> 01:03:03,790
+On dirait que les « runtime grid », c'est plus facile.
+
+1472
+01:03:03,790 --> 01:03:05,790
+À ta clé, que les « H-load rules ».
+
+1473
+01:03:05,790 --> 01:03:08,790
+Pis en plus, ton « H-load rules », y'a pas de...
+
+1474
+01:03:08,790 --> 01:03:09,790
+T'as pas de ça ici, là.
+
+1475
+01:03:09,790 --> 01:03:11,790
+Non, mais c'est ça, j'allais dire ça.
+
+1476
+01:03:11,790 --> 01:03:13,790
+Dans le fond...
+
+1477
+01:03:13,790 --> 01:03:17,790
+Si ta conclusion, c'est de dire « je veux ajouter mes « gogos » dans les « mutators »,
+
+1478
+01:03:17,790 --> 01:03:20,790
+dans « streaming generation », soit ici...
+
+1479
+01:03:20,790 --> 01:03:21,790
+Ben, à l'époque, ce que j'ai fait, c'est...
+
+1480
+01:03:21,790 --> 01:03:24,790
+À l'époque, ce que j'ai fait, ça, ça existait pas, les...
+
+1481
+01:03:24,790 --> 01:03:27,790
+Tu pouvais pas « overrider » le « H-load layer » dans les « mutators ».
+
+1482
+01:03:27,790 --> 01:03:30,790
+Ça a été ajouté dans 5-8, si je dis pas de niaiseries.
+
+1483
+01:03:30,790 --> 01:03:35,790
+Je l'ai découvert, là, ça fait comme 3 semaines, un mois, là, de ça.
+
+1484
+01:03:35,790 --> 01:03:36,790
+Mais maintenant, c'est là.
+
+1485
+01:03:36,790 --> 01:03:39,790
+Fait qu'y'a rien qui nous empêche de créer notre propre truc,
+
+1486
+01:03:39,790 --> 01:03:42,790
+« H-load layer » dans « streaming generation »,
+
+1487
+01:03:42,790 --> 01:03:44,790
+pis là, aller sacrer vos « rules » ici,
+
+1488
+01:03:44,790 --> 01:03:47,790
+pis juste « follow » le même « pattern » de l'autre bord.
+
+1489
+01:03:47,790 --> 01:03:49,790
+Ça fait du sens.
+
+1490
+01:03:49,790 --> 01:03:50,790
+Ouais.
+
+1491
+01:03:50,790 --> 01:03:52,790
+Et là, là, on vient...
+
+1492
+01:03:52,790 --> 01:03:58,790
+Peut-être que la meilleure idée, c'est l'autre idée que j'avais proposée.
+
+1493
+01:03:58,790 --> 01:03:59,790
+Tu se fais « reduce » ?
+
+1494
+01:03:59,790 --> 01:04:03,790
+On négocie avec le projet pour que...
+
+1495
+01:04:03,790 --> 01:04:05,790
+Y'aille...
+
+1496
+01:04:05,790 --> 01:04:10,790
+Pour que le « scale » des « level instance » soit obligatoirement toujours 1-1-1.
+
+1497
+01:04:10,790 --> 01:04:12,790
+Ah, ben là, c'est sûr que ça...
+
+1498
+01:04:12,790 --> 01:04:14,790
+Ça, ça se peut que ça soit possible, hey,
+
+1499
+01:04:14,790 --> 01:04:16,790
+parce que, là, en ce moment, là,
+
+1500
+01:04:16,790 --> 01:04:19,790
+on se ramasse avec plein de « level instance » qui sont utilisés pour du « dressing »,
+
+1501
+01:04:19,790 --> 01:04:21,790
+mais c'est surtout le « dressing » qui, j'imagine, qui est « scalé ».
+
+1502
+01:04:21,790 --> 01:04:23,790
+C'est des affaires comme le « mount », pis des affaires, là.
+
+1503
+01:04:23,790 --> 01:04:26,790
+Mais on a aussi une option d'utiliser des...
+
+1504
+01:04:26,790 --> 01:04:29,790
+« PCG data instance », je pense que ça s'appelle.
+
+1505
+01:04:29,790 --> 01:04:32,790
+Bon, « PCG... »
+
+1506
+01:04:32,790 --> 01:04:35,790
+En tout cas, c'est une affaire de « placed », whatever.
+
+1507
+01:04:35,790 --> 01:04:39,790
+Ils ont fait que tu peux placer des « PCG data »,
+
+1508
+01:04:39,790 --> 01:04:45,790
+qui, lui, est une référence à un « level » qui pourrait être utilisé comme un « level instance ».
+
+1509
+01:04:45,790 --> 01:04:47,790
+Pis quand c'est « dumpé » dans l'éditeur,
+
+1510
+01:04:47,790 --> 01:04:51,790
+« biome core » va le « pick up », pis va le « dumpé » dans une « PCG partition ».
+
+1511
+01:04:51,790 --> 01:04:57,870
+Fait que, là, ben, ce serait la « PCG partition » qui, elle, va être traitée dans l'étude-là,
+
+1512
+01:04:57,870 --> 01:04:59,870
+pis dans le « runtime grid ».
+
+1513
+01:04:59,870 --> 01:05:02,870
+Fait qu'à ce moment-là, si on peut avoir cette « pass de cleanup », là,
+
+1514
+01:05:02,870 --> 01:05:06,870
+tous les « level instance » qui sont placés, pis que c'est pour du « dressing », là,
+
+1515
+01:05:06,870 --> 01:05:10,870
+tous les « L A », en général, pas « L I », les « L A »,
+
+1516
+01:05:10,870 --> 01:05:13,870
+eux autres, ils pourraient être remplacés par ça, pis on sauverait.
+
+1517
+01:05:13,870 --> 01:05:15,870
+Tu vois ça, ici, là, dans le fond.
+
+1518
+01:05:15,870 --> 01:05:18,870
+Ces affaires-là, j'ai l'impression que ça, ça peut être « scalé », pis orienté comme ils veulent.
+
+1519
+01:05:19,870 --> 01:05:22,870
+Orientation, ça, c'est sûr, là, on va pas se battre pour ça.
+
+1520
+01:05:22,870 --> 01:05:25,870
+Mais, le « scale »,
+
+1521
+01:05:25,870 --> 01:05:32,030
+là, il est à 1.
+
+1522
+01:05:32,030 --> 01:05:35,030
+On va, on va le « focuser », mais je veux juste trouver un, je veux,
+
+1523
+01:05:35,030 --> 01:05:43,050
+je veux me faire prouver « wrong », là.
+
+1524
+01:05:43,050 --> 01:05:46,050
+Oui, personnellement, je trouve pas ça une bonne pratique que ce soit pas 1, en fait.
+
+1525
+01:05:46,050 --> 01:05:50,050
+L'orientation me dérange moins, pour la simple et bonne raison que,
+
+1526
+01:05:50,050 --> 01:05:55,050
+quand t'as ton « runtime », quand t'as ton « runtime cell », blablabla,
+
+1527
+01:05:55,050 --> 01:06:00,050
+quand t'as ton « actor descriptor », tu vas avoir, en théorie, le « runtime »,
+
+1528
+01:06:00,050 --> 01:06:05,050
+le « runtime bounds », il devrait d'être indépendant du,
+
+1529
+01:06:05,050 --> 01:06:08,050
+il devrait pas d'être, déjà, avec la rotation.
+
+1530
+01:06:08,050 --> 01:06:11,050
+Mais t'as quoi, quand tu...
+
+1531
+01:06:11,050 --> 01:06:16,050
+Quand t'as un « level instance », peu importe comment qui est, comment la rotation, elle se fait,
+
+1532
+01:06:16,050 --> 01:06:19,050
+la taille de tes objets vont être tout le temps la même.
+
+1533
+01:06:19,050 --> 01:06:21,050
+Non, c'est pas vrai.
+
+1534
+01:06:21,050 --> 01:06:24,050
+C'est ça que je montrais, dans le fond, qui était problématique.
+
+1535
+01:06:24,050 --> 01:06:27,050
+J'ai dit la taille de tes objets, j'ai pas dit la taille de ton « runtime bounds ».
+
+1536
+01:06:27,050 --> 01:06:29,050
+Ah, oui, oui, ok, oui, c'est vrai.
+
+1537
+01:06:30,050 --> 01:06:31,050
+Merci, Max.
+
+1538
+01:06:31,050 --> 01:06:33,050
+Ah, tu vois, j'en ai des exemples.
+
+1539
+01:06:33,050 --> 01:06:35,050
+Quinte, oui.
+
+1540
+01:06:35,050 --> 01:06:38,050
+Peut-être un « scale » comme ils veulent.
+
+1541
+01:06:38,050 --> 01:06:40,050
+Fait que ceux-là, matchent pas.
+
+1542
+01:06:40,050 --> 01:06:41,050
+C'est des rochers.
+
+1543
+01:06:41,050 --> 01:06:42,050
+Des rochers.
+
+1544
+01:06:42,050 --> 01:06:46,180
+Fait que là...
+
+1545
+01:06:46,180 --> 01:06:52,180
+Moi, j'te dis juste que l'idée, ça serait de les mettre un pour un, mais...
+
+1546
+01:06:52,180 --> 01:06:55,140
+Effectivement.
+
+1547
+01:06:55,140 --> 01:07:01,140
+Mais ça, comme je disais, c'est pas impossible de les remplacer pour des...
+
+1548
+01:07:01,140 --> 01:07:03,140
+Les autres affaires que...
+
+1549
+01:07:03,140 --> 01:07:04,140
+Comment je les trouve, ceux-là?
+
+1550
+01:07:04,140 --> 01:07:06,140
+Si je « browse » à ça...
+
+1551
+01:07:06,140 --> 01:07:10,560
+Non, attendez-moi.
+
+1552
+01:07:10,560 --> 01:07:14,350
+Je suis probablement pas efficace dans ce workflow-là.
+
+1553
+01:07:14,350 --> 01:07:17,350
+Ici, j'ai mes « Level Instance », puis après ça, j'ai des...
+
+1554
+01:07:17,350 --> 01:07:19,350
+« Data Asset » qu'ils appellent.
+
+1555
+01:07:19,350 --> 01:07:22,350
+Puis là, je vais chercher « Large A », puis si je le prends, puis je le « dump ».
+
+1556
+01:07:22,350 --> 01:07:25,350
+Visuellement, on voit un...
+
+1557
+01:07:25,350 --> 01:07:27,350
+Un équivalent.
+
+1558
+01:07:27,350 --> 01:07:31,350
+Ça s'appelle un « PCG Data Asset Instance ».
+
+1559
+01:07:31,350 --> 01:07:36,820
+Si je m'en vais voir le « Detail Panel », c'est ça.
+
+1560
+01:07:36,820 --> 01:07:37,820
+C'est une référence à ça.
+
+1561
+01:07:37,820 --> 01:07:38,820
+Puis ça, ça peut être « scalé ».
+
+1562
+01:07:38,820 --> 01:07:39,820
+Puis une fois que...
+
+1563
+01:07:39,820 --> 01:07:40,820
+Ça, c'est...
+
+1564
+01:07:40,820 --> 01:07:42,820
+Dans le fond, ça, c'est juste le « Preview ».
+
+1565
+01:07:42,820 --> 01:07:48,820
+Puis quand on « Build PCG » à « Biome Core », ça, c'est caché.
+
+1566
+01:07:48,820 --> 01:07:52,820
+Puis ces acteurs-là, ces « Components »-là, sont « pick-up » dans le...
+
+1567
+01:07:52,820 --> 01:07:56,820
+« Biome Core », dans la partition qui matche sa position.
+
+1568
+01:07:56,820 --> 01:07:58,820
+Fait que lui, il peut être « scalé ».
+
+1569
+01:07:58,820 --> 01:08:00,820
+Fait que dans le fond, c'est juste...
+
+1570
+01:08:00,820 --> 01:08:02,820
+Il faudrait qu'on force les artistes...
+
+1571
+01:08:02,820 --> 01:08:03,820
+Des artistes, pardon.
+
+1572
+01:08:03,820 --> 01:08:08,820
+Ou une « Passe de conversion » pour utiliser ça au lieu des « Level Instance » pour du « Dressing ».
+
+1573
+01:08:08,820 --> 01:08:09,820
+Là, où est-ce qu'on a du « Scale ».
+
+1574
+01:08:09,820 --> 01:08:12,820
+Puis toutes les autres, les « Level Instance », on les « Lock » le « Scale » à 1.
+
+1575
+01:08:12,820 --> 01:08:20,600
+Puis qu'on introduise aussi le concept de « Spare Radius ».
+
+1576
+01:08:20,600 --> 01:08:22,600
+« Bound Spare Radius ».
+
+1577
+01:08:22,600 --> 01:08:25,600
+Parce que là, d'une instance à l'autre, ben le « Scale » serait constant.
+
+1578
+01:08:25,600 --> 01:08:27,600
+Puis qu'on pourrait toujours traiter nos « Rules » de la même manière.
+
+1579
+01:08:27,600 --> 01:08:34,590
+C'est tout ça.
+
+1580
+01:08:34,590 --> 01:08:35,590
+Tout le monde est sur la même page?
+
+1581
+01:08:35,590 --> 01:08:36,590
+Ou est-ce qu'on a déjà...
+
+1582
+01:08:36,590 --> 01:08:37,590
+Non, moi, je ne l'écoutais pas.
+
+1583
+01:08:37,590 --> 01:08:38,590
+J'étais en train de faire d'autres choses, mais...
+
+1584
+01:08:38,590 --> 01:08:39,590
+Mais là, « Build ».
+
+1585
+01:08:39,590 --> 01:08:40,590
+C'est quelque chose que je...
+
+1586
+01:08:40,590 --> 01:08:42,590
+Vous avez vu, je me suis arrêté à...
+
+1587
+01:08:42,590 --> 01:08:45,590
+On devrait forcer le projet à garder ça à 1.
+
+1588
+01:08:45,590 --> 01:08:46,590
+Oui.
+
+1589
+01:08:46,590 --> 01:08:48,590
+C'est toujours le cas, mais ce serait comme un...
+
+1590
+01:08:48,590 --> 01:08:51,590
+Genre, les « Level Instance ».
+
+1591
+01:08:51,590 --> 01:08:54,590
+Pour du « Dressing ».
+
+1592
+01:08:54,590 --> 01:08:58,590
+On va jeter ça.
+
+1593
+01:08:58,590 --> 01:09:06,640
+Pour des « PCG Data Asset Instancer ».
+
+1594
+01:09:06,640 --> 01:09:08,640
+C'est quoi ça?
+
+1595
+01:09:08,640 --> 01:09:10,640
+C'est ça que je montrais là.
+
+1596
+01:09:10,640 --> 01:09:15,640
+Dans le fond, cet acteur-là ici, ça utilise le « PCG Data Asset ».
+
+1597
+01:09:15,640 --> 01:09:17,640
+C'est notre « PCG Assembly ».
+
+1598
+01:09:17,640 --> 01:09:21,640
+Qui est la représentation d'un « Level ».
+
+1599
+01:09:21,640 --> 01:09:23,640
+Qu'on utiliserait comme un « Level Instance ».
+
+1600
+01:09:23,640 --> 01:09:27,640
+Ça fait que là, eux autres, disons, ces roches-là ici, c'est des « Level Instance ».
+
+1601
+01:09:27,640 --> 01:09:29,640
+Mais cette « Level Instance » là...
+
+1602
+01:09:29,640 --> 01:09:32,640
+Le « Level », pardon, source de ce « Level Instance » là, c'est lui.
+
+1603
+01:09:32,640 --> 01:09:36,640
+Puis, il y a un équivalent en « Data Asset » qu'on utilise pour faire du « Dressing ».
+
+1604
+01:09:36,640 --> 01:09:40,640
+Puis là, bien, Actree, ils ont créé ce système-là de...
+
+1605
+01:09:40,640 --> 01:09:45,640
+On peut placer des acteurs qui vont « Hold » ces « Components » là.
+
+1606
+01:09:45,640 --> 01:09:46,640
+En « Preview ».
+
+1607
+01:09:46,640 --> 01:09:50,640
+Puis, lorsqu'on « Build PCG », ces acteurs-là sont cachés.
+
+1608
+01:09:50,640 --> 01:09:52,640
+Le « Preview » n'existe plus.
+
+1609
+01:09:52,640 --> 01:09:57,640
+Et puis, on va « Dump » ça dans les « Partition Actors ».
+
+1610
+01:09:57,640 --> 01:09:59,640
+Ça fait qu'il va tomber dans la grille des « Partition ».
+
+1611
+01:09:59,640 --> 01:10:02,640
+Ce qui, eux, sont déjà « Handley » par le « Streaming » puis par « HLOD ».
+
+1612
+01:10:02,640 --> 01:10:04,640
+Par « Runtime », « Grid » puis « HLOD ».
+
+1613
+01:10:04,640 --> 01:10:06,640
+Ça fait qu'on « Solve » notre problème de...
+
+1614
+01:10:06,640 --> 01:10:08,640
+Eux autres peuvent être « Scalés » comme ils veulent.
+
+1615
+01:10:08,640 --> 01:10:10,640
+Ils font ce qu'ils veulent.
+
+1616
+01:10:10,640 --> 01:10:12,640
+Ça, ça va être « Pickup » dans « Biome Core ».
+
+1617
+01:10:12,640 --> 01:10:14,640
+On n'utilise plus des « Level Instance » pour faire du « Dressing ».
+
+1618
+01:10:14,640 --> 01:10:17,640
+Ça fait que ça, on règle notre problème ici de « Scaling » différents acteurs.
+
+1619
+01:10:17,640 --> 01:10:19,640
+Ça, ça, c'est jamais « End Place », c'est ça?
+
+1620
+01:10:19,640 --> 01:10:20,640
+Ça, ça peut être « End Place ».
+
+1621
+01:10:20,640 --> 01:10:22,640
+C'est juste que c'est toujours « End Place », ça.
+
+1622
+01:10:22,640 --> 01:10:23,640
+Mais ça, ça va...
+
+1623
+01:10:23,640 --> 01:10:24,640
+Ça, c'est...
+
+1624
+01:10:24,640 --> 01:10:25,640
+Le PCG...
+
+1625
+01:10:25,640 --> 01:10:26,640
+Attends.
+
+1626
+01:10:26,640 --> 01:10:27,640
+Le PCG d'un...
+
+1627
+01:10:27,640 --> 01:10:28,640
+Mais en quoi ça règle votre problème?
+
+1628
+01:10:28,640 --> 01:10:29,640
+Attends un peu.
+
+1629
+01:10:29,640 --> 01:10:32,640
+Je veux dire, ça peut être dragué comme un acteur qui contient toute la...
+
+1630
+01:10:32,640 --> 01:10:34,640
+Composition de tous les sous-acteurs.
+
+1631
+01:10:34,640 --> 01:10:36,640
+Ou en tout cas, de la sous-géométrie.
+
+1632
+01:10:36,640 --> 01:10:37,640
+Fais ça comme tu veux.
+
+1633
+01:10:37,640 --> 01:10:38,640
+Mais c'est juste le « Preview ».
+
+1634
+01:10:38,640 --> 01:10:41,640
+Mais tu sais, si je fais « Build PCG » ici...
+
+1635
+01:10:41,640 --> 01:10:42,640
+Ça, c'est caché.
+
+1636
+01:10:42,640 --> 01:10:43,640
+Cet acteur-là, il est transient.
+
+1637
+01:10:43,640 --> 01:10:44,640
+Il est pas transient.
+
+1638
+01:10:44,640 --> 01:10:45,640
+Il est « Editor Only ».
+
+1639
+01:10:45,640 --> 01:10:46,640
+Cet acteur-là disparaît.
+
+1640
+01:10:46,640 --> 01:10:51,640
+Puis le contenu de cet acteur-là se « Dump » dans...
+
+1641
+01:10:51,640 --> 01:10:53,640
+Dans le « Partition Grid ».
+
+1642
+01:10:53,640 --> 01:10:56,640
+Fait qu'on n'a plus besoin de s'en soucier comme étant indépendant.
+
+1643
+01:10:56,640 --> 01:11:00,640
+Il devient un « ISMC » dans une « Partition ».
+
+1644
+01:11:00,640 --> 01:11:03,640
+Fait que ça, c'est tous les cas de « Dressing ».
+
+1645
+01:11:03,640 --> 01:11:06,640
+Quand on utilise des « Level Instance » pour faire de l'« Instancing »
+
+1646
+01:11:06,640 --> 01:11:11,640
+comme « Hogwarts » avec, genre, une bibliothèque puis une série de livres,
+
+1647
+01:11:11,640 --> 01:11:14,640
+j'espère que la bibliothèque de livres est pas « Scaled ».
+
+1648
+01:11:14,640 --> 01:11:17,640
+Mais le but, dans le fond, ce serait que ça.
+
+1649
+01:11:17,640 --> 01:11:20,640
+Son « Scale » serait toute « Locker ».
+
+1650
+01:11:20,640 --> 01:11:24,640
+Je crois qu'il y a du « Scale » des fois dans leurs livres.
+
+1651
+01:11:24,640 --> 01:11:28,640
+C'est quand ils font leur rangée, là, de livres.
+
+1652
+01:11:28,640 --> 01:11:29,640
+Ils placent ça comme des « 7 ».
+
+1653
+01:11:29,640 --> 01:11:32,640
+Puis des fois, j'en ai vu, il me semble, des plus petits que d'autres.
+
+1654
+01:11:32,640 --> 01:11:35,640
+Merde, oui.
+
+1655
+01:11:35,640 --> 01:11:39,640
+Ben, on est « Locker ».
+
+1656
+01:11:39,640 --> 01:11:40,640
+Ben, c'est ton combat, là.
+
+1657
+01:11:41,640 --> 01:11:44,640
+Regarde, avant de partir en « Akbar » puis tout, je veux dire,
+
+1658
+01:11:44,640 --> 01:11:50,640
+faites l'assessment de combien ça représente d'acteurs qui sont impactés par ça.
+
+1659
+01:11:50,640 --> 01:11:54,640
+S'il y en a 6, là, je veux dire, c'est l'artillerie lourde pour quelque chose de...
+
+1660
+01:11:54,640 --> 01:11:56,640
+Oui, il va falloir « Adresser », là.
+
+1661
+01:11:56,640 --> 01:12:02,640
+Mais c'est-tu le moment, genre, avec toutes les priorités qu'on a.
+
+1662
+01:12:02,640 --> 01:12:03,640
+Fait que...
+
+1663
+01:12:03,640 --> 01:12:05,640
+Mais après, vous avez plein d'options, là.
+
+1664
+01:12:05,640 --> 01:12:09,640
+Comme je te dis, l'option des « Mutateurs », je pense que c'est bon.
+
+1665
+01:12:09,640 --> 01:12:11,640
+Mais là, c'est « Side Effect ».
+
+1666
+01:12:11,640 --> 01:12:13,640
+T'as noté le temps de...
+
+1667
+01:12:13,640 --> 01:12:15,640
+Quand tu rentres en paille, puis t'sais, comme...
+
+1668
+01:12:15,640 --> 01:12:19,640
+T'as du code « Change » à faire, aussi, pour supporter les « Headshot Layer », puis tout.
+
+1669
+01:12:19,640 --> 01:12:25,640
+Ça, ben, c'est juste un combat avec les artistes, puis mettre la validation en place, I guess, puis...
+
+1670
+01:12:25,640 --> 01:12:26,640
+Ouais.
+
+1671
+01:12:26,640 --> 01:12:33,640
+Je pense que Dan avait déjà commencé un effort là-dessus, parce qu'ils ont fait ça, cette affaire-là, de PCG à « Set Instance ».
+
+1672
+01:12:33,640 --> 01:12:35,640
+Fait que je pense qu'il y a déjà cet effort-là.
+
+1673
+01:12:35,640 --> 01:12:38,640
+Maintenant, ils n'ont pas fait comme « OK, il faut absolument les convertir », parce qu'on a une...
+
+1674
+01:12:38,640 --> 01:12:41,640
+On a quelque chose qui bloque, je pense qu'ils le voyaient venir.
+
+1675
+01:12:41,640 --> 01:12:44,640
+Mais ça, après, ça règle pas tout, là. Je veux dire, c'est certains d'entre eux.
+
+1676
+01:12:44,640 --> 01:12:49,640
+T'sais, y'a certains autres petits... objets qui...
+
+1677
+01:12:49,640 --> 01:12:52,640
+rentreront peut-être pas dans ces...
+
+1678
+01:12:52,640 --> 01:12:56,640
+Comment t'les appelles, PCG, « Instancer Machine », là?
+
+1679
+01:12:56,640 --> 01:13:03,640
+Fait que ceux-là, ils vont quand même être soumis aux règles de « Small Grid », puis...
+
+1680
+01:13:03,640 --> 01:13:06,640
+Ben non, parce que ces acteurs-là, ils existent plus.
+
+1681
+01:13:06,640 --> 01:13:08,640
+Ils ont pas de « Grid », ils ont pas de...
+
+1682
+01:13:08,640 --> 01:13:13,640
+Non, c'est ça que je comprends, mais y'a d'autres acteurs qui sont pas ceux-là, qui existent, qui sont petits, qui doivent être...
+
+1683
+01:13:13,640 --> 01:13:17,640
+qui ont peut-être la géométrie, qui doivent peut-être être d'âge là.
+
+1684
+01:13:17,640 --> 01:13:21,640
+Qui sont dans des « Level Instance »? Qui sont dans des « Level Instance »?
+
+1685
+01:13:21,640 --> 01:13:24,920
+Oui. Pas une interrogation.
+
+1686
+01:13:24,920 --> 01:13:25,920
+Ben, c'est ça, je sais pas.
+
+1687
+01:13:25,920 --> 01:13:31,920
+Ben, « Level Instance » ou pas, là, ça a pas d'importance, ça. Y'a juste un p'tit acteur dans « Overland », là.
+
+1688
+01:13:31,920 --> 01:13:36,920
+Non, mais les p'tits acteurs dans « Overland », ça, c'est correct. Nous, notre problème, c'est les « Level Instance ».
+
+1689
+01:13:36,920 --> 01:13:37,920
+Les acteurs dans les « Level Instance » sont utilisés plus qu'une fois.
+
+1690
+01:13:37,920 --> 01:13:43,920
+Ben oui, mais rien n'empêche qu'il y en ait pas d'autres dans les « Level Instance », oui.
+
+1691
+01:13:43,920 --> 01:13:46,920
+Ouais. J'ai une question pour toi.
+
+1692
+01:13:46,920 --> 01:13:57,920
+Tu te souviens le code que t'avais fait pour tes « Data Layer » pour pouvoir différencier deux « Data Layer », deux « Level Instance » qui sont...
+
+1693
+01:13:57,920 --> 01:14:01,920
+des « Data Layer » pour des « Level Instance » qui sont différents?
+
+1694
+01:14:01,920 --> 01:14:08,730
+Des « Level Instance »... des « Data Layer » pour des « Level Instance » différents?
+
+1695
+01:14:08,730 --> 01:14:10,730
+C'est dans ton « Rules of Data Layer », là.
+
+1696
+01:14:10,730 --> 01:14:11,730
+Ouais.
+
+1697
+01:14:11,730 --> 01:14:27,730
+T'avais fait... me semble que tu avais fait quelque chose de spécial pour que... pour être capable de savoir le « Level Instance », l'acteur d'un « Level Instance », c'était quoi son... c'était d'où il venait.
+
+1698
+01:14:27,730 --> 01:14:28,730
+Ouais.
+
+1699
+01:14:28,730 --> 01:14:29,730
+C'est quoi son « Path ».
+
+1700
+01:14:29,730 --> 01:14:31,730
+C'est ici?
+
+1701
+01:14:31,730 --> 01:14:32,730
+Non, non.
+
+1702
+01:14:32,730 --> 01:14:36,730
+Ouais, ben l'affaire d'acteur de « Outlander Path », là, tu parles, là?
+
+1703
+01:14:36,730 --> 01:14:37,730
+Ouais.
+
+1704
+01:14:37,730 --> 01:14:38,730
+Ouais.
+
+1705
+01:14:38,730 --> 01:14:39,730
+Le...
+
+1706
+01:14:39,730 --> 01:14:40,730
+Ça existe, ça? C'est encore là?
+
+1707
+01:14:40,730 --> 01:14:41,730
+Ouais.
+
+1708
+01:14:41,730 --> 01:14:46,730
+Non, non, mais c'est parce que je me pose la question, est-ce qu'on pourrait faire... est-ce qu'on pourrait utiliser ça?
+
+1709
+01:14:46,730 --> 01:14:51,520
+Mon... ce que je pense en ce moment, là.
+
+1710
+01:14:51,520 --> 01:15:10,520
+Ce que je pense en ce moment, c'est... on fait le... la « Path » normale, pis quand on détecte qu'il y a un acteur qui est à deux places, on utilise un code similaire pour avoir le « Path », le « Path » du truc, pis on met de côté cette valeur-là.
+
+1711
+01:15:10,520 --> 01:15:22,520
+Pis là, ben, on va avoir une liste de ces « Paths », là, avec quelle valeur ils doivent avoir, pis quand on arrive au « Mutator », on passe à travers cette liste-là, pis on fait juste « Setter » ceux-là, en particulier.
+
+1712
+01:15:22,520 --> 01:15:33,730
+Mais comment, la première fois, tu sais que t'as deux acteurs? Ça veut dire qu'à chaque fois que t'évalue un acteur, il faut que tu « Check » toutes les autres pour savoir quand t'en as deux?
+
+1713
+01:15:33,730 --> 01:15:37,730
+Supposons que... supposons qu'on ait une manière de le faire, là, pour l'instant, là, juste...
+
+1714
+01:15:37,730 --> 01:15:42,380
+OK.
+
+1715
+01:15:42,380 --> 01:15:43,380
+On sait pas en combien de fois qu'un level est instantané, on a pas... ça, ça fait...
+
+1716
+01:15:43,380 --> 01:15:44,380
+On sait pas en combien de fois qu'un level est instantané, on a pas... ça, ça fait...
+
+1717
+01:15:44,380 --> 01:15:47,380
+A l'instant-ci, on a pas... Tu sais pas faire ça facilement, Jo.
+
+1718
+01:15:47,380 --> 01:15:49,380
+Allô?
+
+1719
+01:15:49,380 --> 01:15:51,380
+Pas vraiment, hein?
+
+1720
+01:15:51,380 --> 01:15:52,380
+Non.
+
+1721
+01:15:52,380 --> 01:16:01,380
+Je veux dire, à la limite, si on se bâtit une « Base de données », quand on va à travers toutes les « Levels », si on se bâtit une « Base de données », on va la voir à la fin, là ...
+
+1722
+01:16:01,380 --> 01:16:11,380
+alors à partir de cette « Base de données », là, on est capable de créer la liste plus courte de toutes les « Paths » qu'on a besoin, pis qu'eux ...
+
+1723
+01:16:11,380 --> 01:16:13,380
+Si ta liste des « Paths » existe, là...
+
+1724
+01:16:13,380 --> 01:16:35,340
+un Outliner Path Registry, c'est exactement ça, ça store tout le full Outliner Path avec le GUID, en fait c'est ça, je recommence,
+
+1725
+01:16:35,340 --> 01:16:48,880
+pour identifier une instance, l'instance 1 de l'instance 2, qui sont dans le fond l'instance du même level, mais dans deux levels d'instance différents, je ne suis pas sûr,
+
+1726
+01:16:49,300 --> 01:16:57,040
+vous comprenez où est-ce que je m'en vais, je crée un hash avec toutes les IDs des parents,
+
+1727
+01:16:57,040 --> 01:17:04,860
+et dans mon Outliner Path Registry, j'ai un hash unique, parce qu'instance 1, il y a un path unique, ou des parents uniques,
+
+1728
+01:17:04,920 --> 01:17:05,320
+qui sont différents,
+
+1729
+01:17:05,340 --> 01:17:07,820
+différents du parent de l'instance 2,
+
+1730
+01:17:08,840 --> 01:17:15,580
+fait que du coup, dans mon Registry, j'ai le Outliner Path pour l'instance 1,
+
+1731
+01:17:15,800 --> 01:17:18,680
+puis un Outliner Path pour l'instance 2,
+
+1732
+01:17:20,500 --> 01:17:25,440
+est-ce qu'on est capable de savoir que l'instance 1 et l'instance 2 existent,
+
+1733
+01:17:25,560 --> 01:17:29,320
+le nombre de fois que cette instance-là existe, avec juste ça peut-être,
+
+1734
+01:17:29,880 --> 01:17:33,700
+est-ce que ton hash est composé de ceux qui sont source actor, ceux qui sont source level,
+
+1735
+01:17:33,700 --> 01:17:35,240
+non mais c'est un combine,
+
+1736
+01:17:35,340 --> 01:17:38,420
+un hash, je ne sais plus comment j'avais fait ça, je ne me rappelle, tu avais mis dans le chose,
+
+1737
+01:17:38,540 --> 01:17:40,300
+puis tu m'avais dit, oh, utilise celui-là à la place,
+
+1738
+01:17:40,520 --> 01:17:46,580
+mais dans le fond, il me semble que je poigne le guid du parent, de toute sa parenté,
+
+1739
+01:17:46,840 --> 01:17:50,240
+fait que je prends son parent, donne-moi un guid, prends l'autre parent, prends un guid,
+
+1740
+01:17:50,360 --> 01:17:53,480
+puis combine tout ça ensemble, puis crée-moi un hash.
+
+1741
+01:17:55,240 --> 01:18:02,720
+C'est ça, parce que je me dis, si on a déjà un processus qui prend 5-6 heures, qui passe au travers de tout le monde,
+
+1742
+01:18:04,400 --> 01:18:04,480
+ben lui, il peut faire...
+
+1743
+01:18:04,480 --> 01:18:05,320
+ben lui, il peut faire...
+
+1744
+01:18:05,340 --> 01:18:11,720
+il peut faire sa job, après ces 5-6 heures-là, à travers ces 5-6 heures-là,
+
+1745
+01:18:11,780 --> 01:18:17,760
+on bâtit la base de données complète de tous les paths qu'on a avec chacun des acteurs,
+
+1746
+01:18:17,840 --> 01:18:21,700
+puis après ça, on le résolve, puis ceux qui sont en duplica,
+
+1747
+01:18:21,820 --> 01:18:28,080
+ben eux, on les envoie, on fait une liste de côté avec quelle valeur qu'on a besoin pour chaque path exact.
+
+1748
+01:18:29,180 --> 01:18:32,340
+Non, mais c'est dangereux, parce que ça, tu assumes que tu fais ta...
+
+1749
+01:18:32,340 --> 01:18:33,340
+T'as été aussi...
+
+1750
+01:18:33,340 --> 01:18:34,480
+T'as été aussi...
+
+1751
+01:18:34,480 --> 01:18:39,660
+On le fait, mais des fois, on fait des subsets, donc on parcouche partiellement.
+
+1752
+01:18:39,960 --> 01:18:46,320
+Ben, si tu fais des subsets, il va y avoir des manquants, puis il va y avoir des erreurs, c'est tout.
+
+1753
+01:18:46,760 --> 01:18:47,480
+C'est pas...
+
+1754
+01:18:47,480 --> 01:18:51,590
+Je sais pas.
+
+1755
+01:18:52,970 --> 01:18:55,890
+Je peux vous laisser en brainstormer, les gars, je veux juste finir.
+
+1756
+01:18:56,210 --> 01:18:56,910
+De quoi, là, mais...
+
+1757
+01:18:56,910 --> 01:18:57,330
+Merci, Phil.
+
+1758
+01:18:58,550 --> 01:18:59,090
+Oui, merci.
+
+1759
+01:18:59,370 --> 01:19:00,730
+Vous avez des bonnes solutions.
+
+1760
+01:19:01,390 --> 01:19:02,110
+Faites-les beaucoup, hein.
+
+1761
+01:19:02,110 --> 01:19:02,290
+Ouais.
+
+1762
+01:19:03,330 --> 01:19:04,030
+Merci, Phil.
+
+1763
+01:19:04,590 --> 01:19:05,090
+Bye-bye, ciao.
+
+1764
+01:19:05,510 --> 01:19:05,870
+Ciao, ciao.
+
+1765
+01:19:05,870 --> 01:19:06,050
+Bye-bye.
+
+1766
+01:19:07,170 --> 01:19:07,970
+Euh...
+
+1767
+01:19:07,970 --> 01:19:12,810
+Je pensais pas que cette discussion allait être aussi longue, en réalité.
+
+1768
+01:19:13,810 --> 01:19:14,150
+Ouais.
+
+1769
+01:19:15,050 --> 01:19:20,530
+Mais là, l'histoire de hash, c'est quand même cool, parce que je me dis, si une partie du hash qu'on peut prédire,
+
+1770
+01:19:21,270 --> 01:19:29,830
+c'est qui ton level source, on peut utiliser le hash pour compter combien de levels instants il y a par level source.
+
+1771
+01:19:30,430 --> 01:19:30,570
+Non.
+
+1772
+01:19:31,050 --> 01:19:35,290
+Ben, oui puis non, là, dans le sens où, quand tu fais ton hash,
+
+1773
+01:19:35,290 --> 01:19:36,290
+tu as...
+
+1774
+01:19:37,170 --> 01:19:38,570
+quand tu crées le hash,
+
+1775
+01:19:39,030 --> 01:19:41,050
+tu sais à quelle profondeur que t'es.
+
+1776
+01:19:41,550 --> 01:19:41,890
+Hum-hum.
+
+1777
+01:19:42,710 --> 01:19:44,910
+À ce moment-là, oui, mais...
+
+1778
+01:19:44,910 --> 01:19:46,470
+C'est ça.
+
+1779
+01:19:46,850 --> 01:19:51,770
+Mais pas juste la profondeur, ça serait cool d'avoir la profondeur et le level qui est utilisé par le level instants.
+
+1780
+01:19:53,250 --> 01:19:56,970
+Non, non, mais je veux dire, tu peux garder toute cette info-là, si tu veux, c'est juste que...
+
+1781
+01:19:57,710 --> 01:20:00,850
+faut t'en mettre quelque part, puis éventuellement, faut-tu t'en...
+
+1782
+01:20:00,850 --> 01:20:02,030
+Faut-tu t'en servir.
+
+1783
+01:20:02,030 --> 01:20:03,070
+Faut-tu t'en servir, pour t'en servir.
+
+1784
+01:20:03,550 --> 01:20:05,970
+T'as-tu DB, ça m'a fait penser à...
+
+1785
+01:20:05,970 --> 01:20:07,050
+à Satan Abyss.
+
+1786
+01:20:07,170 --> 01:20:09,790
+À vous-autres, là, qui chient tout le temps.
+
+1787
+01:20:10,930 --> 01:20:13,350
+Non, ben, je suis pas obligé d'utiliser du SQLite, là.
+
+1788
+01:20:13,750 --> 01:20:14,850
+Non, non, je sais, mais...
+
+1789
+01:20:14,850 --> 01:20:17,730
+Je suis pas d'avis, ça c'est peut-être juste un gros array de toutes les...
+
+1790
+01:20:17,730 --> 01:20:20,190
+de toute la liste, là, une grosse map, ou whatever.
+
+1791
+01:20:21,410 --> 01:20:21,910
+Ouais.
+
+1792
+01:20:22,350 --> 01:20:26,350
+Genre, comment ça s'appelle ça déjà, c'est les assets à côté des levels, là.
+
+1793
+01:20:26,670 --> 01:20:28,150
+Euh, je suis un explorer.
+
+1794
+01:20:30,810 --> 01:20:31,650
+C'est pas du map.
+
+1795
+01:20:33,250 --> 01:20:35,250
+I guess qu'on a plus de shadow, c'est vrai.
+
+1796
+01:20:36,410 --> 01:20:39,150
+T'avais un autre asset avant pour faire un autre fichier pour...
+
+1797
+01:20:39,150 --> 01:20:42,110
+sauvegarder des affaires du level, qui s'appelait toujours avec le même nom du level.
+
+1798
+01:20:42,270 --> 01:20:42,470
+Anyway.
+
+1799
+01:20:44,790 --> 01:20:46,950
+Fait que là, je lancerais-tu mon cursor à faire ça, non?
+
+1800
+01:20:47,830 --> 01:20:51,090
+Parce qu'on vient de unique level asset à level instance actor,
+
+1801
+01:20:51,210 --> 01:20:53,410
+avec différents scales, puis rotation, il y a dans l'overland.
+
+1802
+01:20:53,490 --> 01:20:54,390
+Comme ça, on va évaluer le scope.
+
+1803
+01:20:56,430 --> 01:20:57,350
+On s'en fout du scope.
+
+1804
+01:20:59,290 --> 01:20:59,750
+Ah ouais?
+
+1805
+01:21:00,170 --> 01:21:02,890
+Ben, c'est parce que tantôt, on disait, ça vaut-tu la peine de travailler sur un système de même,
+
+1806
+01:21:02,930 --> 01:21:03,970
+si on a genre 6 use cases?
+
+1807
+01:21:04,670 --> 01:21:06,030
+Euh, ouais, je...
+
+1808
+01:21:06,030 --> 01:21:08,830
+Tu peux voir ça.
+
+1809
+01:21:08,830 --> 01:21:10,830
+Dans le fond, moi, je pré-spend une petite coupe de tokens pour...
+
+1810
+01:21:11,710 --> 01:21:19,660
+une petite poignée de change pour faire un canevas, puis illustrer que...
+
+1811
+01:21:19,660 --> 01:21:21,640
+Sure, tu peux faire ça.
+
+1812
+01:21:22,480 --> 01:21:27,680
+There's more than one LE in the overland.
+
+1813
+01:21:30,440 --> 01:21:31,340
+Here goes nothing.
+
+1814
+01:21:33,820 --> 01:21:35,560
+Ben ouais, c'est...
+
+1815
+01:21:35,560 --> 01:21:39,540
+Vous êtes tombé sur un problème qui est pas...
+
+1816
+01:21:39,540 --> 01:21:42,780
+Mais je me demande, Epic, ils sont pas tombés sur ce problème-là?
+
+1817
+01:21:42,860 --> 01:21:44,380
+Genre, sur Fortnite, c'est quoi qui se passe?
+
+1818
+01:21:45,520 --> 01:21:46,380
+Non, parce que...
+
+1819
+01:21:46,960 --> 01:21:48,380
+Depuis le début, Epic nous dit...
+
+1820
+01:21:48,720 --> 01:21:49,440
+J'utilise le moins...
+
+1821
+01:21:49,440 --> 01:21:51,080
+Le moins de grids possible.
+
+1822
+01:21:52,080 --> 01:21:52,840
+Ah ouais, ok.
+
+1823
+01:21:54,860 --> 01:21:56,300
+Ben, ils piquent les autres parce qu'ils...
+
+1824
+01:21:56,300 --> 01:21:56,480
+Ils utilisent tous les grids comme nous.
+
+1825
+01:21:56,840 --> 01:22:00,040
+Puis moi, c'est ça, je dis à Phil, puis à Phil, depuis le début,
+
+1826
+01:22:01,100 --> 01:22:05,720
+depuis longtemps, je dis, le small grid, on devrait juste le coller sur le vidange.
+
+1827
+01:22:06,540 --> 01:22:07,000
+Ben, ok.
+
+1828
+01:22:07,240 --> 01:22:07,760
+Moi, ça me...
+
+1829
+01:22:07,760 --> 01:22:08,960
+Je veux dire, on peut évaluer ça, là.
+
+1830
+01:22:09,940 --> 01:22:14,100
+Si on dump tout le small grid dans main grid,
+
+1831
+01:22:14,100 --> 01:22:18,100
+puis que ce qui est small grid dans l'intérieur du château, ça devient genre...
+
+1832
+01:22:18,720 --> 01:22:23,120
+Et qu'on le traite différemment, ben...
+
+1833
+01:22:23,120 --> 01:22:25,880
+On n'a plus cette espèce de bataille de taille-là, non?
+
+1834
+01:22:28,200 --> 01:22:28,740
+Je sais pas.
+
+1835
+01:22:29,300 --> 01:22:30,760
+Moi, c'est pas moi qui...
+
+1836
+01:22:30,760 --> 01:22:33,520
+Tu sais, moi, j'ai pas fait d'investigation, moi, je fais juste faire comme...
+
+1837
+01:22:35,140 --> 01:22:38,700
+Ouais, tu regardes de loin, puis tu fais comme ça, c'est fichu, pareil.
+
+1838
+01:22:40,140 --> 01:22:41,200
+Mais on a...
+
+1839
+01:22:41,200 --> 01:22:41,520
+On a...
+
+1840
+01:22:42,080 --> 01:22:44,100
+Là, avec le farfoyage, c'est un autre problème, ça?
+
+1841
+01:22:45,260 --> 01:22:46,180
+Pour les tuelades, ouais.
+
+1842
+01:22:47,160 --> 01:22:47,660
+C'est ça, hein?
+
+1843
+01:22:48,300 --> 01:22:49,360
+Attends, je suis pas sûr que...
+
+1844
+01:22:49,360 --> 01:22:50,160
+Parce que là, on a aussi des trésors...
+
+1845
+01:22:50,160 --> 01:22:50,200
+Là, on a aussi des trésors...
+
+1846
+01:22:50,200 --> 01:22:50,300
+Là, on a aussi des trésors...
+
+1847
+01:22:50,320 --> 01:22:53,160
+Là, on a aussi des trésors de solde, puis ça aussi, là, tu sais, inférieur à 500.
+
+1848
+01:22:53,680 --> 01:22:54,940
+Donc là, on a encore des problèmes.
+
+1849
+01:22:55,500 --> 01:23:03,820
+Mais en fait, farfoyage, je sais pas si, à la limite, on peut se baser sur notre...
+
+1850
+01:23:03,820 --> 01:23:07,290
+À ce moment-là, vu que c'est...
+
+1851
+01:23:07,290 --> 01:23:09,010
+Ouais, le farfoyage, il peut être dans une loi de soutien.
+
+1852
+01:23:09,030 --> 01:23:09,930
+J'ai besoin d'une crème glacée, moi.
+
+1853
+01:23:11,090 --> 01:23:11,530
+Hein?
+
+1854
+01:23:12,130 --> 01:23:13,070
+Excusez-moi, mon crudo, ouais.
+
+1855
+01:23:13,330 --> 01:23:15,170
+J'ai besoin d'une crème glacée, je suis rendu à l'eau, là.
+
+1856
+01:23:15,810 --> 01:23:16,710
+Non, non, vas-y, vas-y.
+
+1857
+01:23:16,990 --> 01:23:18,210
+Peut-être qu'on peut prendre une petite pause, là.
+
+1858
+01:23:18,210 --> 01:23:23,210
+Ça fait une heure et quart, 45, qu'on est là, fait que...
+
+1859
+01:23:23,210 --> 01:23:24,450
+Moi aussi, je veux chercher de l'eau.
+
+1860
+01:23:25,030 --> 01:23:25,850
+OK, mais...
+
+1861
+01:23:25,850 --> 01:23:31,070
+On n'est pas obligés de faire un marathon, si vous voulez, qu'on arrête là, puis qu'on reprenne...
+
+1862
+01:23:31,070 --> 01:23:31,910
+Tu parles d'un sprint, toi.
+
+1863
+01:23:31,930 --> 01:23:33,850
+On peut se donner le temps d'y penser, aussi, là.
+
+1864
+01:23:34,490 --> 01:23:35,770
+Tu parles d'un sprint, toi, mon Arnaud.
+
+1865
+01:23:36,150 --> 01:23:36,990
+Ah, mais...
+
+1866
+01:23:36,990 --> 01:23:39,870
+Non, mais, je veux dire, si...
+
+1867
+01:23:39,870 --> 01:23:41,890
+William, si tu veux essayer des affaires, aussi,
+
+1868
+01:23:42,090 --> 01:23:47,890
+puis Arnaud, si tu veux te renseigner un peu sur ce que ça implique un mutator,
+
+1869
+01:23:47,890 --> 01:23:51,890
+puis si vous voulez faire ça, on...
+
+1870
+01:23:52,650 --> 01:23:52,890
+Moi, je...
+
+1871
+01:23:53,210 --> 01:23:57,770
+Moi, je suis dispo, de toute façon, là, fait que ça peut être demain, on s'en reparle, ou...
+
+1872
+01:23:57,770 --> 01:23:57,990
+OK.
+
+1873
+01:23:58,710 --> 01:23:59,730
+Tu sais, il n'y a pas de trouble, là.
+
+1874
+01:24:00,170 --> 01:24:00,990
+Ouais, on peut s'en reparler demain.
+
+1875
+01:24:00,990 --> 01:24:02,790
+On peut reprendre ça, là, aussi, mais...
+
+1876
+01:24:02,790 --> 01:24:03,550
+C'est pour vous autres, là.
+
+1877
+01:24:04,030 --> 01:24:04,870
+On peut s'en reparler demain.
+
+1878
+01:24:04,950 --> 01:24:07,690
+Moi, de toute façon, j'ai un hard cut-off dans une heure, fait que...
+
+1879
+01:24:07,690 --> 01:24:08,570
+Faut que j'aille chercher mon auto.
+
+1880
+01:24:09,230 --> 01:24:09,590
+Au fait...
+
+1881
+01:24:09,590 --> 01:24:10,230
+Ah là là.
+
+1882
+01:24:10,530 --> 01:24:10,910
+Est-ce que...
+
+1883
+01:24:10,910 --> 01:24:11,570
+Est-ce qu'on peut...
+
+1884
+01:24:11,570 --> 01:24:13,130
+Est-ce que je peux changer de sujet?
+
+1885
+01:24:13,350 --> 01:24:14,330
+Est-ce qu'on est clos là-dessus?
+
+1886
+01:24:14,330 --> 01:24:14,710
+Bien sûr.
+
+1887
+01:24:15,030 --> 01:24:16,430
+C'est moi qui allais changer de sujet, mon Arnaud.
+
+1888
+01:24:16,430 --> 01:24:16,550
+OK.
+
+1889
+01:24:16,550 --> 01:24:17,890
+Oui, mais là, j'ai une question.
+
