@@ -10,10 +10,11 @@ Parent: [Validate World Partition Rules — LV_Overland, 2026-09-27](README.md)
 | **World** | `LV_Overland` |
 | **Warning family** | `WarningKind.MultipleHLODLayerRules` — triaged as *"Multiple single-valued rules match one actor (only one should)"* |
 | **Occurrences** | **463** (all `High` severity) |
-| **Status** | Proposal — awaiting owner sign-off |
+| **Status** | **Superseded** — the rule set was reworked after this audit; the overlap still exists but its outcome is now inverted. See [Update 2026-11-02](#update-2026-11-02-original-findings-superseded). |
 
 ## Contents
 
+- [Update 2026-11-02: original findings superseded](#update-2026-11-02-original-findings-superseded)
 - [1. Executive summary](#1-executive-summary)
 - [2. Scope and method](#2-scope-and-method)
 - [3. Findings](#3-findings)
@@ -34,6 +35,68 @@ Parent: [Validate World Partition Rules — LV_Overland, 2026-09-27](README.md)
 - [Appendix A — Warning inventory](#appendix-a--warning-inventory)
 - [Appendix B — All `HLODLayer` assignments in the log](#appendix-b--all-hlodlayer-assignments-in-the-log)
 - [Appendix C — Reproduction commands](#appendix-c--reproduction-commands)
+
+---
+
+## Update 2026-11-02: original findings superseded
+
+> This section was added on **2026-11-02** after re-verifying the audit **live** against the open
+> `LV_Overland` world through Unreal MCP (`WorldPartitionRuleAuditToolset`, read-only). The HLOD rule
+> set has been **materially reworked** since the 2026-09-27 log this audit is based on. The overlap
+> described below **still exists**, but its **outcome is now inverted**, so sections 1–8 no longer
+> describe current behaviour and must be read as history.
+
+**What changed in the rules (verified live).**
+
+- **The FarFoliage rule matches by class + size now, not by species name.**
+  `DA_FarFoliage_HLODLayer_Foliage_Mid_Rules` now has a **single condition**: actor type
+  `PlacedFoliageSkinnedNaniteAssembly` **and** min bounds dimension `>= 500`. The species-prefix /
+  `InstancedFoliageActor` matching described in [§3.4](#34-root-cause) and
+  [Appendix B](#appendix-b--all-hlodlayer-assignments-in-the-log) is gone.
+- **A landscape-depth condition was added to the Overland exclude rule.**
+  `DA_Overland_HLODLayer_NoneExclude_Rules` now carries **three conditions**, including
+  `Min Depth Below Landscape >= 100` (the "-100 Landscape" condition under discussion with the level
+  team).
+- **The Overland HLOD rules now path-exclude Hogsmeade.** All seven Overland HLOD rules (`NoneInclude`,
+  `NoneExclude`, `Near`, `Foliage_Near`, `Landscape_Near`, `Water_Near`, `Road_Near`) are stopped on
+  `LV_Overland/Hogsmeade/LI_Hogsmeade` by `OutlinerPathsToExclude`. This is close in spirit to the
+  Option A / Option B scoping proposed below, but it was applied to the **Overland** rules, not to the
+  FarFoliage rule.
+- **The Hogsmeade rules now defer to FarFoliage.** `DA_HM_HLODLayer_NoneInclude_Rules` and
+  `DA_HM_HLODLayer_Foliage_Near_Rules` list `DA_FarFoliage_HLODLayer_Foliage_Mid_Rules` in their
+  `HLODLayerRulesToExclude`, so they step aside when FarFoliage matches.
+
+**Why the outcome is inverted.** In 2026-09-27 (§1, §3.3) the FarFoliage match was a **no-op**: it set
+`Foliage_Mid`, then the Hogsmeade rules overwrote it back to `None`, so the final HLOD layer was `None`
+on all 463 actors. Today `DA_FarFoliage_HLODLayer_Foliage_Mid_Rules` is **registered last (index 14)
+and wins**: the matching Hogsmeade foliage now **ends on `LV_FarFoliage_HLODLayer_Foliage_Mid`**, not
+`None`. The Hogsmeade `NoneExclude` rule still matches but loses on array order. This is the behaviour
+raised by the level team (large buried/under-landscape foliage landing in an HLOD layer it arguably
+should not).
+
+**Evidence (live descriptor reads, 2026-11-02).**
+
+| Actor | Class | Largest bounds axis | Matched HLOD rules (array order) | Winner → final layer |
+| --- | --- | ---: | --- | --- |
+| `…/HM_StreetDressing_Foliage/SM_Spruce_Med_A24` | `PlacedFoliageSkinnedNaniteAssembly` | ~691 | `[11] DA_HM_HLODLayer_NoneExclude` (excluded) · `[14] DA_FarFoliage_..._Foliage_Mid` | `[14]` → `LV_FarFoliage_HLODLayer_Foliage_Mid` |
+| `…/Owlery_Basement/SM_Gorse_B` | `PlacedFoliageSkinnedNaniteAssembly` | ~559 | `[11] DA_HM_HLODLayer_NoneExclude` (excluded) · `[14] DA_FarFoliage_..._Foliage_Mid` | `[14]` → `LV_FarFoliage_HLODLayer_Foliage_Mid` |
+
+For contrast, small debris such as `…/HM_StreetDressing_Foliage/SM_Leaf_Debris_Thin_5` (a
+`StaticMeshActor`, not `PlacedFoliageSkinnedNaniteAssembly`) is now force-excluded from HLOD by
+`OutlinerPathsToForceExcludeFromHLOD` (`SM_Leaf_Debris`) and never reaches the rules — so the old
+street-dressing population no longer behaves uniformly.
+
+**Still accurate.** The structural lesson holds: `HLODLayer` is single-valued, every matching rule is
+applied in array order, and the last match silently wins — so an overlap that looks like a no-op flips
+outcome the moment either rule's conditions or array position changes. The reviewer-noise point in
+[§7](#7-secondary-track--reduce-reviewer-noise) also still stands.
+
+**Not re-quantified.** The counts in this document (463 warnings, 508/45 footprint, the §6 deltas) come
+from the 2026-09-27 builder log and were **not** recomputed here; a fresh Apply/Validate run on
+`LV_Overland` is needed to restate them against the current rules. `AuditRuleSetup` on the live level
+reports **0 Error / 0 Warning** (only the known `Info` overlaps and `NoTargetLayer` notes), so this
+overlap is not flagged at config level — it is an actor-level, order-resolved overlap, exactly as
+before.
 
 ---
 
