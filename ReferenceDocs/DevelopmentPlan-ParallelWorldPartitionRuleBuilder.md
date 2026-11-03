@@ -143,6 +143,16 @@ flowchart LR
   D --> Pd["..."]
 ```
 
+Here is what that looks like on the real `LV_Overland`. Its footprint is about **6.8 km x 9.4 km**
+(`680 000 x 940 000 cm`), so a `102 400 cm` (~1 km) cell gives an **8 x 10 grid of ~80 cells**, each
+dealt to one of `N = 8` shards by `hash(cell) mod 8`:
+
+![8-shard cell assignment over the LV_Overland World Partition minimap](images/shard-grid-8-lv-overland.png)
+
+Note the checkerboard: neighbouring cells almost never share a colour. Each shard ends up with a
+handful of cells scattered across the whole map - dense and sparse ones mixed - which is exactly what
+balances the load.
+
 So **any positive `N` works** - `5`, `7`, `13`, no need for a power of two or an even divisor. `N`
 only has to divide the *cell count*, not the world's geometry, and interleaving by hash is what keeps
 each shard balanced even though dense regions (Hogwarts Valley) sit in one corner.
