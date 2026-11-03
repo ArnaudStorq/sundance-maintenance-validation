@@ -81,7 +81,21 @@ flowchart LR
   end
 ```
 
-`T_fixed` is not yet measured, so the gain depends on it. Against today's 10 hours:
+**First measurement of the shared hit** (shard 0 of 40, `LV_Overland`, 2026-11-03). Before the
+first actor is written, every shard pays the same fixed startup, measured here at **~3 min**:
+
+| Phase | Duration | Shared by all shards? |
+|-------|----------|-----------------------|
+| Editor + module boot | ~1 min 40 s | yes |
+| World + World Partition init - **all actor descriptors discovered here** | ~50 s | yes |
+| Walk the descriptors to the first owned actor | ~35 s | yes (walk); shard 0 also runs the HLOD streaming pass the others skip |
+| **Total before first write** | **~3 min** | |
+
+So discovering every actor is a ~50 s step inside a ~3 min floor that no amount of sharding can
+divide - it is the hard floor under `T_fixed`. (Bracketed from the builder's `Display` logs;
+`-LogCmds=Global none` hid the engine's own phase timers, so treat these as estimates.)
+
+The full `T_fixed` vs `T_write` split still needs a whole unsharded run. Against today's 10 hours:
 
 | `T_fixed` | 4 shards | 8 shards |
 |-----------|----------|----------|
