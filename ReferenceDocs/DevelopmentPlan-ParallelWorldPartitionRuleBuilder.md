@@ -114,6 +114,27 @@ Two details carry the correctness:
 - **Level Instances shard by their inner-level package**, not by cell. Every placement of one asset
   writes the same shared inner packages, so all placements must land on the same shard.
 
+### `SplitWorld` is not a geometric cut
+
+The world's shape (square, rectangle) is irrelevant: we never slice the map into `N` big blocks. The
+grid covers it with **hundreds of small fixed cells** (`ShardCellSize` ≈ 1 km), and each cell is then
+**dealt to a shard by hash**, like dealing a deck of cards to `N` players:
+
+```mermaid
+flowchart LR
+  R["World = hundreds of ~1 km cells"] --> D["deal each cell by hash(cell) mod N"]
+  D --> P0["shard 0: cells from all over the map"]
+  D --> P1["shard 1: cells from all over the map"]
+  D --> Pd["..."]
+```
+
+So **any positive `N` works** - `5`, `7`, `13`, no need for a power of two or an even divisor. `N`
+only has to divide the *cell count*, not the world's geometry, and interleaving by hash is what keeps
+each shard balanced even though dense regions (Hogwarts Valley) sit in one corner.
+
+Practical caps (waste, not errors): `N` far above the cell count leaves some shards nearly empty, and
+`N` above the agent pool (13) cannot run fully in parallel. `N < 1` is clamped to `1`.
+
 ## Parameters
 
 Builder switches (`WorldPartitionRuleBuilder`); defaults = today's behaviour, bit for bit:
