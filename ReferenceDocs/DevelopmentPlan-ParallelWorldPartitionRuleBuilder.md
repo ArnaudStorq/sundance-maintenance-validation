@@ -19,6 +19,7 @@ Defaults reproduce today's behaviour exactly; the TeamCity fan-out (Phase 3) is 
 - [Testing locally](#testing-locally)
 - [Deploying on TeamCity](#deploying-on-teamcity)
 - [Correctness guarantees](#correctness-guarantees)
+- [Downstream: the WP Rules Reviewer](#downstream-the-wp-rules-reviewer)
 - [See also](#see-also)
 
 ---
@@ -261,6 +262,27 @@ to keep as a recurring CI check.
 owned by a different shard could be missed. This is tied to the existing placement-dedup question
 (the same asset placed *k* times is processed *k* times today), which needs a World Building ruling
 before it is touched. The whole-level `-ReportOnly` Verify step surfaces any resulting miss.
+
+## Downstream: the WP Rules Reviewer
+
+The [WP Rules Reviewer](../Tools/WPRulesReviewer/) lists recent TeamCity builds of the Apply / Validate
+config and reviews **one whole-level log per build**, comparing the actor population against an oracle.
+Sharding breaks that "one build = one full-level log" assumption, so the tool needs:
+
+- **Group the fan-out.** A run becomes N shard sub-builds plus a composite head under the *same* build
+  config, so the build list shows ~8x more entries. List the composite (or group the shards) instead
+  of treating each shard as a standalone full run.
+- **Merge the shard logs.** Each shard log covers only ~1/N of the actors, so the oracle comparison and
+  the counts are meaningless on one shard alone. Download all N and merge (and dedup) before analysis.
+- **Aggregate counts** - `FindingCount` / `ActorsConsidered`, and the parsed applied / warning / skipped
+  totals - across the N shards.
+- **Carry shard identity.** Read `ShardIndex` / `ShardCount` from the report (or the `i/N` suffix in the
+  build number) to label and group shards, and handle **N changelists per run** instead of one.
+
+**Simplest path:** add the new `..._Verify` build as a review source (a third `BuildSourceKind`). Its
+whole-level, unsharded `-ReportOnly` report is the single complete, authoritative population, so the
+reviewer's existing "one build = one report" model keeps working unchanged; per-shard drill-down on the
+Apply tab is then optional, not required.
 
 ## See also
 
