@@ -18,7 +18,6 @@ Defaults reproduce today's behaviour exactly; the TeamCity fan-out (Phase 3) is 
 - [Testing locally](#testing-locally)
 - [Deploying on TeamCity](#deploying-on-teamcity)
 - [Correctness guarantees](#correctness-guarantees)
-- [Remaining work](#remaining-work)
 - [See also](#see-also)
 
 ---
@@ -229,15 +228,6 @@ graph LR
 
 Both set-based properties are proven by the [local disjointness test](#testing-locally), cheap enough
 to keep as a recurring CI check.
-
-## Remaining work
-
-| Phase | Work | State |
-|-------|------|-------|
-| 1 | Builder switches, Level Instance container sharding, shared-package guard, report census. | **Done** |
-| 0 | Measure `T_fixed` vs `T_write`; confirm the night-window agent pool; choose N. | Pending |
-| 3 | TeamCity parameters (dark launch), Matrix fan-out, Verify configuration. | Pending |
-| 4 | Ramp N, tune `ShardCellSize`, update the runbook. | Pending |
 
 **Open question - nested Level Instances.** A nested Level Instance reachable only through a parent
 owned by a different shard could be missed. This is tied to the existing placement-dedup question
