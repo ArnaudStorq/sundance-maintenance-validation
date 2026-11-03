@@ -14,6 +14,7 @@ Defaults reproduce today's behaviour exactly; the TeamCity fan-out (Phase 3) is 
 - [What is a shard](#what-is-a-shard)
 - [Why this is faster](#why-this-is-faster)
 - [How an actor is assigned to a shard](#how-an-actor-is-assigned-to-a-shard)
+- [Load balancing and cell density](#load-balancing-and-cell-density)
 - [Parameters](#parameters)
 - [Testing locally](#testing-locally)
 - [Deploying on TeamCity](#deploying-on-teamcity)
@@ -133,6 +134,33 @@ each shard balanced even though dense regions (Hogwarts Valley) sit in one corne
 
 Practical caps (waste, not errors): `N` far above the cell count leaves some shards nearly empty, and
 `N` above the agent pool (13) cannot run fully in parallel. `N < 1` is clamped to `1`.
+
+## Load balancing and cell density
+
+Density varies by orders of magnitude: `Hogwarts Valley` holds 32% of the writes, other cells almost
+none. Balance - making the shards equal-sized - is what sets the wall clock, since the heaviest shard
+is the long pole.
+
+The hash deal handles this at the **region** level. A dense region is not one cell but *many* cells,
+and those cells scatter across every shard, so no shard ever gets "all of Hogwarts Valley". Each shard
+draws a mix of dense and light cells that **averages out by the law of large numbers** - as long as
+there are far more cells than shards. This is exactly what the contiguous outliner-path split could
+not do.
+
+The limit: a **cell is atomic** - it is never split. So the single heaviest cell sets a floor on the
+wall clock, no matter how large `N` is (the same "heaviest group wins" effect as today, but at a much
+finer grain). The knob is **`ShardCellSize`**: smaller cells break a dense region into more, lighter,
+independently-dealt cells → better balance and a lower floor; too small and cells turn to overhead and
+near-empty noise. Tune it by measuring the heaviest shard and shrinking the cell until that shard is
+within ~15% of the mean.
+
+Two caveats worth knowing:
+
+- The hash balances **statistically**, not by weight. It is not a bin-packing that counts actors per
+  cell - that would need a counting pre-pass, i.e. a coordinator, which would break the "no
+  communication, fully deterministic" property. Statistical balance is the deliberate trade-off.
+- Cost tracks the **~57k actors needing a write**, not the 622k descriptor walk (which is roughly
+  uniform). Non-spatial / invalid-bounds actors are spread by `hash(Guid)`, which is naturally even.
 
 ## Parameters
 
