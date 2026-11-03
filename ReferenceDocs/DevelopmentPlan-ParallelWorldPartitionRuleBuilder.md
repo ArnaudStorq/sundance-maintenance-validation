@@ -134,11 +134,13 @@ No agents and no writes needed - `-ReportOnly` only reads descriptors. The key t
 design in one shot: **the N shards cover every actor exactly once.**
 
 ```bat
-:: 4 shard reports + 1 unsharded reference, all on the same revision
+:: 1) The reference: the usual unsharded run (no -SplitWorld, so it defaults to 1).
+::    Only difference from a normal -ReportOnly run is the output filename.
 UnrealEditor-Cmd.exe Sundance -run=WorldPartitionBuilderCommandlet -Builder=WorldPartitionRuleBuilder ^
   -DataLayerRules -HLODLayerRules -RuntimeGridRules -ReportOnly ^
   -ReportFile=report-ref.json  <LevelPath>
 
+:: 2) The 4 shards: same run + -SplitWorld=4 and a shard index, all on the same revision.
 UnrealEditor-Cmd.exe Sundance -run=WorldPartitionBuilderCommandlet -Builder=WorldPartitionRuleBuilder ^
   -DataLayerRules -HLODLayerRules -RuntimeGridRules -ReportOnly ^
   -SplitWorld=4 -SplitWorldStartAt=0 -ReportFile=report-0.json  <LevelPath>
