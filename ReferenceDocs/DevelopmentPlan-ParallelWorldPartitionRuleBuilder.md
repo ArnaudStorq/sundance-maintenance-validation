@@ -62,11 +62,31 @@ the N answers fit together with **no overlap and no gap**.
 
 ## Why this is faster
 
-The writes divide by N; the fixed costs (agent setup, world init, the descriptor walk) do not:
+Only part of the work can be split. Each shard still boots its own editor, inits the world and
+discovers every actor before it writes anything - that cost does **not** shrink when you add shards.
+Only the actual actor writing divides up. So the wall-clock time of the whole (parallel) job is:
 
 ```
 wall clock(N)  =  T_fixed  +  T_write / N
 ```
+
+| Term | Meaning |
+|------|---------|
+| `N` | number of shards (parallel processes) |
+| `wall clock(N)` | real time until the job is done - the shards run in parallel, so it finishes when the slowest one does |
+| `T_fixed` | the one-time cost **every** shard pays no matter what: editor boot + world init + discovering all actors (~3 min measured). Adding shards does not divide it - each process pays it in full |
+| `T_write` | the total actor-writing work (today's ~10 h). The **only** part that splits: with `N` shards each writes ~`1/N` of the actors |
+
+Worked example with `T_fixed = 1 h` and `T_write = 9 h`:
+
+```
+N = 1:  1 + 9/1  = 10 h    (today)
+N = 4:  1 + 9/4  = 3 h 15
+N = 8:  1 + 9/8  = 2 h 10
+```
+
+Because `T_fixed` never divides, past a point more shards barely help (diminishing returns): the `9/N`
+term shrinks toward zero but the `1 h` floor stays.
 
 ```mermaid
 flowchart LR
