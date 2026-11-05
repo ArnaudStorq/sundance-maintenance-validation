@@ -20,6 +20,7 @@ not clear a single one of them.** The reasoning and the per-warning evidence are
 - [The question asked](#the-question-asked)
 - [Method](#method)
 - [What the warning actually means](#what-the-warning-actually-means)
+- [What the mutator does today](#what-the-mutator-does-today)
 - [Live grid → hosted-HLOD-layer map](#live-grid--hosted-hlod-layer-map)
 - [The log, line by line, against the live setup](#the-log-line-by-line-against-the-live-setup)
 - [Verdict 1 — is this the "rules don't match" case?](#verdict-1--is-this-the-rules-dont-match-case)
@@ -88,6 +89,59 @@ Reading the two message shapes:
 
 Nowhere in this mechanism is there an actor-size comparison. The decision is "is this
 `(RuntimeGrid, HLODLayer)` pair in the tier allowlist?" — a name match, not a measurement.
+
+---
+
+## What the mutator does today
+
+Both warning shapes come from `UAvaStreamingGenerationMutator`, guarded by the CVar
+**`AvaResolveHLODLayerGridMismatch`** (default **on**). During
+`OnGenerateStreamingActorDescsMutatePhase` the mutator runs two passes, in order.
+
+### Pass 1 — `ResolveHLODLayerGridMismatches` (the "moved N actor(s)" line)
+
+For every candidate actor it reads the **current** `RuntimeGrid` and `HLODLayer`,
+honouring any override already posted by an earlier mutator. It then:
+
+- skips the actor if it is **not spatially loaded**, or if its current grid **already
+  hosts** the layer (`HostGridCache.IsHosted`);
+- asks which grids host that layer (`FindHostGrids`). If there is **not exactly one**
+  host, it leaves the actor untouched — more than one host is ambiguous, zero is
+  handled by pass 2;
+- when there is a **single host grid**, it **overrides the actor's `RuntimeGrid`** to
+  that grid (`FindOrAddMutator(...).RuntimeGrid = TargetGridName`) and accumulates a
+  per-`(layer, from-grid, to-grid)` summary.
+
+One `Warning` is then logged per summary group:
+
+> `HLOD layer '%s' is not hosted by RuntimeGrid '%s'; moved %d actor(s) to '%s'
+> (e.g. '%s' in '%s'). Fix the RuntimeGrid or HLODLayer rules`
+
+So this message reports a **correction already applied** — the actor was relocated to
+the only grid that can host its layer. The loading range is still overridden, hence the
+"fix the rules" reminder.
+
+### Pass 2 — `ReportHLODLayerGridMismatches` (the "still not hosted" line)
+
+After resolution it re-reads each candidate's **final** grid (post-override) and reports
+whoever remains mismatched. This catches two residual cases:
+
+- layers with **no single host** (zero or more than one host grid — pass 1 skipped them);
+- actors a **reference cluster** pulled back onto a grid that cannot host their layer.
+
+It **does not fix anything** here; it only logs, listing the grids that *could* host the
+layer (`none` when no grid does):
+
+> `HLOD layer '%s' is still not hosted by RuntimeGrid '%s' for %d actor(s)
+> (e.g. '%s' in '%s'); hosted by: %s. Their HLOD actors can end up always loaded;
+> fix the RuntimeGrid or HLODLayer rules`
+
+| Pass | Function | Action | Message |
+|---|---|---|---|
+| 1 | `ResolveHLODLayerGridMismatches` | **Moves** the actor to the host grid, only when exactly one host exists | `… moved N actor(s) to 'Z'` |
+| 2 | `ReportHLODLayerGridMismatches` | **Reports only** the residual mismatches | `… is still not hosted …; hosted by: …` |
+
+Source: `Source/WorldBuildingEditor/WorldPartition/AvaStreamingGenerationMutator.cpp`.
 
 ---
 
