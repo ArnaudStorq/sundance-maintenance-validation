@@ -16,6 +16,7 @@ Defaults reproduce today's behaviour exactly; the TeamCity fan-out (Phase 3) is 
 - [How an actor is assigned to a shard](#how-an-actor-is-assigned-to-a-shard)
 - [Load balancing and cell density](#load-balancing-and-cell-density)
 - [Parameters](#parameters)
+- [Why we don't derive from `UAvaWorldPartitionBuilder`](#why-we-dont-derive-from-uavaworldpartitionbuilder)
 - [Testing locally](#testing-locally)
 - [Deploying on TeamCity](#deploying-on-teamcity)
 - [Correctness guarantees](#correctness-guarantees)
@@ -223,6 +224,37 @@ The switch names follow the `UAvaWorldPartitionBuilder` convention. The sharding
 
 In `-ReportOnly`, the JSON report also carries `ShardCount` / `ShardIndex` / `ShardCellSize` so the
 disjointness check (below) can tell the sharded reports apart.
+
+## Why we don't derive from `UAvaWorldPartitionBuilder`
+
+`WorldPartitionRuleBuilder` derives from the **engine** base `UWorldPartitionBuilder`, **not** from the
+studio's `UAvaWorldPartitionBuilder`. We borrow only its switch *names* (`-SplitWorld` /
+`-SplitWorldStartAt`), not its code - two sibling builders on the same engine base, not parent/child.
+
+`UAvaWorldPartitionBuilder` already has a `-SplitWorld`, so why not inherit it? Because its sharding is a
+different, incompatible model, and reusing it would add complexity for no gain:
+
+- **It splits contiguously; we split by hash.** Ava runs in `IterativeCells2D` mode: it walks a 2D grid
+  of cells and `-SplitWorld` hands each shard a *contiguous linear-index range* of that grid. A
+  contiguous block of the map is exactly the clumped, badly-balanced split this design set out to avoid
+  (dense `Hogwarts Valley` would land in one shard). Our builder deals cells by **hash**, so every shard
+  draws a mix from all over the map.
+- **Different execution model.** Ava's base loads-processes-unloads one cell at a time. Our builder runs
+  in `ELoadingMode::Custom` with a single `ForEachActorWithLoading` descriptor walk, because it must
+  recurse into Level Instances and handle non-spatial actors, which a per-cell loop does not. It already
+  used `Custom` before sharding existed.
+- **Correctness lives in our gate, not theirs.** Ava's base explicitly "makes no assumptions or
+  guarantees about determinism or overlap". Our disjoint / deterministic / exactly-one-owner guarantees
+  and the shared-package guard sit in our own `ShouldProcessActor`, so inheriting Ava's machinery would
+  buy nothing - we'd still write all of it.
+- **Less coupling.** Staying on the engine base keeps the builder free of the `AvaWorldPipeline` plugin
+  and its iteration framework. The whole sharding addition is ~125 lines of self-contained ownership
+  logic, fully opt-in (`SplitWorld=1` is bit-for-bit today's behaviour).
+
+**The one thing we keep from Ava is the switch naming.** `-SplitWorld` / `-SplitWorldStartAt` are what
+TeamCity already passes to the Pipeline builder, so operators and job configs carry over unchanged across
+builders. The cost is one shared word with a slightly different meaning under the hood; the benefit is
+zero new vocabulary for the people running these jobs.
 
 ## Testing locally
 
