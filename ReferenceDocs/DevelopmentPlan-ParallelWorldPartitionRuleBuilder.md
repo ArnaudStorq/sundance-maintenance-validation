@@ -195,11 +195,10 @@ not do.
 
 The limit: a **cell is atomic** - it is never split. So the single heaviest cell sets a floor on the
 wall clock, no matter how large `N` is (the same "heaviest group wins" effect as today, but at a much
-finer grain). The lever is **`ShardCellSize`** - a fixed code constant (`102400` cm ≈ 1 km), not a
-command-line switch: small enough that a dense region breaks into many lighter, independently-dealt
-cells → better balance and a lower floor, without being so small that cells turn to overhead and
-near-empty noise. If future measurements show the heaviest shard running too long, shrink the constant
-in code and rebuild until that shard is within ~15% of the mean.
+finer grain). The knob is **`-ShardCellSize`** (default `102400` cm ≈ 1 km): smaller cells break a
+dense region into more, lighter, independently-dealt cells → better balance and a lower floor; too
+small and cells turn to overhead and near-empty noise. Tune it by measuring the heaviest shard and
+shrinking the cell until that shard is within ~15% of the mean.
 
 Two caveats worth knowing:
 
@@ -217,10 +216,12 @@ Builder switches (`WorldPartitionRuleBuilder`); defaults = today's behaviour, bi
 |--------|---------|---------|
 | `-SplitWorld=N` | `1` | Number of shards. `1` = no sharding. |
 | `-SplitWorldStartAt=I` | `0` | Which shard this process is, 0-based. |
-| `-CellCoord=X,Y` | — | Dev-only: process just one cell ("redo this area"). |
+| `-ShardCellSize=<cm>` *(optional)* | `102400` | Cell edge (~1 km). Fixed grid anchored at the world origin. |
+| `-CellCoord=X,Y` *(optional)* | — | Dev-only: process just one cell ("redo this area"). |
 
-The switch names follow the `UAvaWorldPartitionBuilder` convention. The sharding cell is a fixed
-`102400` cm (~1 km) square grid anchored at the world origin - a **code constant**, not a switch.
+The switch names follow the `UAvaWorldPartitionBuilder` convention. `-SplitWorld` / `-SplitWorldStartAt`
+drive the split; `-ShardCellSize` and `-CellCoord` are optional. Passing none of them is today's
+single-process behaviour, bit for bit.
 
 In `-ReportOnly`, the JSON report also carries `ShardCount` / `ShardIndex` / `ShardCellSize` so the
 disjointness check (below) can tell the sharded reports apart.
@@ -286,8 +287,23 @@ Other useful local runs:
 :: one real shard, left pending for review instead of submitted
 ApplyWorldPartitionRules.bat -StayPending ... -SplitWorld=4 -SplitWorldStartAt=2
 
-:: redo a single map area after a local fix
-UnrealEditor-Cmd.exe ... -Builder=WorldPartitionRuleBuilder -CellCoord=12,7 <LevelPath>
+:: finer grid for better balance: ~512 m cells instead of the ~1 km default, so a dense
+:: region (Hogwarts Valley) is dealt out as more, lighter cells across the shards
+UnrealEditor-Cmd.exe Sundance -run=WorldPartitionBuilderCommandlet -Builder=WorldPartitionRuleBuilder ^
+  -DataLayerRules -HLODLayerRules -RuntimeGridRules -ReportOnly ^
+  -SplitWorld=8 -SplitWorldStartAt=0 -ShardCellSize=51200 -ReportFile=report-0.json  <LevelPath>
+
+:: coarser grid: ~2 km cells (fewer, heavier cells - usually worse balance, shown for contrast)
+UnrealEditor-Cmd.exe Sundance -run=WorldPartitionBuilderCommandlet -Builder=WorldPartitionRuleBuilder ^
+  -DataLayerRules -HLODLayerRules -RuntimeGridRules -ReportOnly ^
+  -SplitWorld=8 -SplitWorldStartAt=0 -ShardCellSize=204800 -ReportFile=report-0.json  <LevelPath>
+
+:: redo a single map area after a local fix - grid cell X=12, Y=7 at the default ~1 km resolution
+UnrealEditor-Cmd.exe ... -Builder=WorldPartitionRuleBuilder -CellCoord=12,7  <LevelPath>
+
+:: -CellCoord indexes the grid set by -ShardCellSize, so pairing them redoes one area at a finer
+:: resolution: the same X,Y now points at a smaller ~512 m cell
+UnrealEditor-Cmd.exe ... -Builder=WorldPartitionRuleBuilder -ShardCellSize=51200 -CellCoord=12,7  <LevelPath>
 ```
 
 ## Deploying on TeamCity
