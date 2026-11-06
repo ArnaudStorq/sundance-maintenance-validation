@@ -219,9 +219,11 @@ Builder switches (`WorldPartitionRuleBuilder`); defaults = today's behaviour, bi
 | `-ShardCellSize=<cm>` *(optional)* | `102400` | Cell edge (~1 km). Fixed grid anchored at the world origin. |
 | `-CellCoord=X,Y` *(optional)* | — | Dev-only: process just one cell ("redo this area"). |
 
-The switch names follow the `UAvaWorldPartitionBuilder` convention. `-SplitWorld` / `-SplitWorldStartAt`
-drive the split; `-ShardCellSize` and `-CellCoord` are optional. Passing none of them is today's
-single-process behaviour, bit for bit.
+Only `-SplitWorld` / `-SplitWorldStartAt` reuse names `UAvaWorldPartitionBuilder` already exposes (so
+TeamCity configs carry over); they drive the split. `-ShardCellSize` and `-CellCoord` are ours and
+optional - Ava has no `-CellCoord`, and its iteration cell size is a *separate* switch
+(`-IterativeCellSizeOverride`), named apart on purpose so the two "cell" ideas are not conflated.
+Passing none of these is today's single-process behaviour, bit for bit.
 
 In `-ReportOnly`, the JSON report also carries `ShardCount` / `ShardIndex` / `ShardCellSize` so the
 disjointness check (below) can tell the sharded reports apart.
