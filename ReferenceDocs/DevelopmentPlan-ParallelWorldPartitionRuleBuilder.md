@@ -225,6 +225,32 @@ optional - Ava has no `-CellCoord`, and its iteration cell size is a *separate* 
 (`-IterativeCellSizeOverride`), named apart on purpose so the two "cell" ideas are not conflated.
 Passing none of these is today's single-process behaviour, bit for bit.
 
+### `-ShardCellSize=<cm>`
+
+Edge length, in **centimetres** (the engine's world unit), of the square XY cells the world is diced into
+before hashing. The grid is **fixed and anchored at the world origin** `(0, 0)` - it is never derived from
+the world bounds, so the same actor lands in the same cell on every shard and every run. An actor's cell is
+`floor(center.xy / ShardCellSize)`, and that cell index is what gets hashed to a shard.
+
+The default is `102400` cm (`1024` m, ≈ 1 km). That number is a **hand-picked tuning default baked into the
+builder** (`WorldPartitionRuleBuilder.h`), not a value read from any world or World Partition config - it is
+simply a sensible ~1 km grain for our maps. A value `<= 0` is rejected and falls back to the default.
+
+It is a load-balancing knob, not a correctness knob: **smaller cells** = finer grid = more even actor spread
+across shards (at the cost of more cells to hash), **larger cells** = coarser grid = risk of one dense cell
+dominating a shard. Changing it never changes the *result* of a full run, only how work is distributed.
+
+### `-CellCoord=X,Y`
+
+Developer-only switch: instead of sharding, process **only the single grid cell** whose integer index is
+`(X, Y)` in the `-ShardCellSize` grid. It answers "re-apply the rules on just this one area" without a full
+run. The cell index is the same `floor(center.xy / ShardCellSize)` used for sharding, so `-CellCoord` and
+`-ShardCellSize` are meant to be read together - the coordinates only make sense relative to the chosen cell
+size (change the size and the same `(X, Y)` points at a different patch of world).
+
+Setting it turns sharding mode on even with `-SplitWorld=1`. Because it targets a **geographic** cell, Level
+Instances (owned by a non-geographic inner-level container package) are skipped in this mode.
+
 In `-ReportOnly`, the JSON report also carries `ShardCount` / `ShardIndex` / `ShardCellSize` so the
 disjointness check (below) can tell the sharded reports apart.
 
