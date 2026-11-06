@@ -194,10 +194,11 @@ not do.
 
 The limit: a **cell is atomic** - it is never split. So the single heaviest cell sets a floor on the
 wall clock, no matter how large `N` is (the same "heaviest group wins" effect as today, but at a much
-finer grain). The knob is **`ShardCellSize`**: smaller cells break a dense region into more, lighter,
-independently-dealt cells → better balance and a lower floor; too small and cells turn to overhead and
-near-empty noise. Tune it by measuring the heaviest shard and shrinking the cell until that shard is
-within ~15% of the mean.
+finer grain). The lever is **`ShardCellSize`** - a fixed code constant (`102400` cm ≈ 1 km), not a
+command-line switch: small enough that a dense region breaks into many lighter, independently-dealt
+cells → better balance and a lower floor, without being so small that cells turn to overhead and
+near-empty noise. If future measurements show the heaviest shard running too long, shrink the constant
+in code and rebuild until that shard is within ~15% of the mean.
 
 Two caveats worth knowing:
 
@@ -215,8 +216,10 @@ Builder switches (`WorldPartitionRuleBuilder`); defaults = today's behaviour, bi
 |--------|---------|---------|
 | `-SplitWorld=N` | `1` | Number of shards. `1` = no sharding. |
 | `-SplitWorldStartAt=I` | `0` | Which shard this process is, 0-based. |
-| `-ShardCellSize=<cm>` | `102400` | Cell edge. Fixed grid anchored at the world origin. |
 | `-CellCoord=X,Y` | — | Dev-only: process just one cell ("redo this area"). |
+
+The switch names follow the `UAvaWorldPartitionBuilder` convention. The sharding cell is a fixed
+`102400` cm (~1 km) square grid anchored at the world origin - a **code constant**, not a switch.
 
 In `-ReportOnly`, the JSON report also carries `ShardCount` / `ShardIndex` / `ShardCellSize` so the
 disjointness check (below) can tell the sharded reports apart.
